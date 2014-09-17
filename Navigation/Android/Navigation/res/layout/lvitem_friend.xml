@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/lvitem_friend_content"
+	android:layout_width="match_parent" 
+	android:layout_height="wrap_content"
+	android:padding="5.0dip">
+	
+    <TextView
+        android:id="@+id/lvitem_friend_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_head"
+        android:drawablePadding="5.0dip"
+        android:gravity="center_vertical"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/lvitem_textcolor"
+        android:textSize="@dimen/lvitem_textsize1"/>
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10.0dip" >
+        
+        <ImageButton
+            android:id="@+id/lvitem_friend_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_location_selector"
+            android:contentDescription="@string/empty"
+            android:visibility="gone"/>
+        
+        <ImageButton
+            android:id="@+id/lvitem_friend_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_relieve_selector"
+            android:contentDescription="@string/empty"
+            android:visibility="gone"/>
+        
+        <ImageButton
+            android:id="@+id/lvitem_friend_authorize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_authorize_selector"
+            android:contentDescription="@string/empty"
+            android:visibility="gone"/>
+        
+    </RelativeLayout>
+    
+</RelativeLayout>

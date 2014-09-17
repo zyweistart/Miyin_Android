@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:background="@drawable/popup_bg" >
+    <ImageView
+        android:id="@+id/direction" 
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:src="@drawable/ic_popup_direction"/>
+    <View
+        android:layout_height="fill_parent"
+        android:layout_width="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#666" />
+    <TextView
+        android:id="@+id/poiName"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:textColor="#000"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/ic_popup_disclosure" />
+
+</LinearLayout>

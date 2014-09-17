@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/lvitem_mapdata_content"
+	android:layout_width="match_parent" 
+	android:layout_height="wrap_content"
+	android:padding="5.0dip">
+	<LinearLayout 
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+	    <TextView
+	        android:id="@+id/lvitem_mapdata_name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="#0a7771"
+	        android:textSize="@dimen/lvitem_textsize1"/>
+	    <TextView
+	        android:id="@+id/lvitem_mapdata_description"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10.0dip"
+	        android:textSize="13.0dip"/>
+	</LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10.0dip"
+        android:orientation="horizontal">
+        
+        <ImageButton
+            android:id="@+id/lvitem_mapdata_btn_download"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:onClick="onClick"
+            android:background="@drawable/bg_download_selector"
+            android:contentDescription="@string/empty"/>
+        
+        <ImageButton
+            android:id="@+id/lvitem_mapdata_btn_use"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:onClick="onClick"
+            android:visibility="gone"
+            android:background="@drawable/bg_use_selector"
+            android:contentDescription="@string/empty"/>
+        
+        <ImageButton
+            android:id="@+id/lvitem_mapdata_btn_detail"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_marginLeft="5.0dip"
+            android:onClick="onClick"
+            android:background="@drawable/bg_search_selector"
+            android:contentDescription="@string/empty"/>
+        
+    </LinearLayout>
+    
+</RelativeLayout>

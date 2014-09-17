@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/module_main_frame_introduction_content"
+    android:orientation="vertical" 
+    android:gravity="center_vertical|center_horizontal"
+    android:layout_width="match_parent" 
+    android:layout_height="match_parent">
+    
+    <Button 
+        android:id="@+id/module_main_frame_introduction_btn_hospital"
+        android:layout_width="200.0dip"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:onClick="onClick"
+        android:drawableLeft="@drawable/ic_introduction_1"
+        android:background="@drawable/bg1_selector"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lvitem_textsize1"
+        android:text="@string/frame_introduction_hospital"/>
+    <Button 
+        android:id="@+id/module_main_frame_introduction_btn_department"
+        android:layout_width="200.0dip"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:onClick="onClick"
+        android:background="@drawable/bg1_selector"
+        android:drawableLeft="@drawable/ic_introduction_2"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lvitem_textsize1"
+        android:text="@string/frame_introduction_doctor"/>
+    <Button 
+        android:id="@+id/module_main_frame_introduction_btn_doctor"
+        android:layout_width="200.0dip"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:onClick="onClick"
+        android:background="@drawable/bg1_selector"
+        android:drawableLeft="@drawable/ic_introduction_3"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lvitem_textsize1"
+        android:text="@string/frame_introduction_department"/>
+    
+</LinearLayout>

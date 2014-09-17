@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    
+	<include layout="@layout/module_main_header" />
+    
+	<TextView
+	    android:id="@+id/activity_map_data_description_txt"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="10.0dip"/>
+	
+	<Button 
+        android:id="@+id/activity_map_data_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:background="@drawable/bg1_selector"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lvitem_textsize1"
+        android:onClick="onClick"
+        android:text="@string/download"
+        android:visibility="gone"/>
+	
+	<Button 
+        android:id="@+id/activity_map_data_re_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:background="@drawable/bg1_selector"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lvitem_textsize1"
+        android:onClick="onClick"
+        android:text="@string/redownload"
+        android:visibility="gone"/>
+	
+	<Button 
+        android:id="@+id/activity_map_data_use"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:background="@drawable/bg1_selector"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lvitem_textsize1"
+        android:onClick="onClick"
+        android:text="@string/use"
+        android:visibility="gone"/>
+	
+</LinearLayout>

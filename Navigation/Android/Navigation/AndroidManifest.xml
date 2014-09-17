@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.start.navigation"
+    android:versionCode="2013121222"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+    
+	<!-- 允许应用程序读取手机设置状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />  
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+    <!-- 允许应用程序对扩展存储设备（如SD卡）进行写入操作 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />   
+    <!-- 允许应用程序使用网络进行数据交换 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 允许程序访问Wi-Fi网络状态信息 -->
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<!-- 允许应用程序访问设备网络状态信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	  
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- Permission for Unit Test -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    
+    
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+    
+    <application
+        android:allowBackup="true"
+        android:name=".AppContext"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+        
+        <meta-data android:name="UMENG_APPKEY" android:value="52a88b7956240b901e064d65" />
+        <meta-data android:name="UMENG_CHANNEL" android:value="start" />
+        
+        <activity
+            android:name=".StartActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".NavigationActivity"/>
+        <activity android:name=".FirstSetMapDataActivity"/>
+        
+        <activity android:name=".MainActivity" android:launchMode="singleTask"/>
+        
+        <activity android:name=".HospitalDetailActivity"/>
+        <activity android:name=".DoctorListActivity" android:launchMode="singleTask"/>
+        <activity android:name=".DoctorDetailActivity" android:launchMode="singleTask"/>
+        <activity android:name=".DepartmentListActivity" android:launchMode="singleTask"/>
+        <activity android:name=".DepartmentDetailActivity" android:launchMode="singleTask"/>
+        
+        <activity android:name=".MoreActivity"/>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".ForgetPwdActivity"/>
+        <activity android:name=".ModifyPwdActivity"/>
+        <activity android:name=".FriendRelationListActivity"/>
+        <activity android:name=".FriendRelationSetActivity"/>
+        <activity android:name=".FriendHistoryListActivity"/>
+        <activity android:name=".MapDataListActivity"/>
+        <activity android:name=".MapDataDetailActivity"/>
+        
+    </application>
+
+</manifest>

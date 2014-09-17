@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">医院导航</string>
+    <string name="empty"></string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="settings">设置</string>
+    <string name="prompt">温馨提示</string>
+    
+    <string name="msg_please_wait">请稍候···</string>
+    <string name="msg_locationing">正在定位中···</string>
+    <string name="msg_path_searching">路线查询中···</string>
+    <string name="msg_downloading_datafile">正在下载数据文件···</string>
+    <string name="msg_clear_datafile">正在清除原始数据文件···</string>
+    <string name="msg_decompressing_datafile">正在解压数据文件···</string>
+    <string name="msg_importing_datafile">正在导入数据文件···</string>
+    <string name="msg_location_unavailable">当前位置不可用</string>
+    <string name="msg_network_connecterror">网络连接不可用，请检查网络设置</string>
+    <string name="msg_error_please_try_again">糟糕，好像出错了，抱歉请稍后重试下吧</string>
+    <string name="msg_download_success">下载成功</string>
+    <string name="msg_login_error">用户名或密码有误</string>
+    <string name="msg_app_title">就医导航系统</string>
+    
+    <string name="load_more">更多</string>
+    <string name="load_ing">加载中···</string>
+    <string name="load_full">已加载全部</string>
+    <string name="load_empty">暂无数据</string>
+    <string name="load_error">加载数据出错</string>
+    
+    <!-- PullToRefreshListView -->
+    <string name="pull_to_refresh_pull_label">下拉刷新</string>
+    <string name="pull_to_refresh_release_label">松开后刷新</string>
+    <string name="pull_to_refresh_refreshing_label">刷新\u2026</string>
+    
+</resources>

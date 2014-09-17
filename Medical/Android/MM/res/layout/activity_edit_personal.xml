@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/activity_gb">
+    
+	<include layout="@layout/module_header" />
+     
+    <start.widget.CustomEditText
+        android:id="@+id/et_name"
+        style="@style/edittext1"
+    	android:layout_margin="5.0dip"
+    	android:hint="请输入姓名" />
+     
+    <start.widget.CustomEditText
+        android:id="@+id/et_mobile"
+        style="@style/edittext1"
+    	android:layout_margin="5.0dip"
+    	android:hint="请输入要手机号码" />
+
+	
+	<RadioGroup 
+        android:id="@+id/et_sex"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:checkedButton="@+id/et_sex_gg"
+	    android:layout_margin="5.0dip">
+	    
+	    <RadioButton 
+        	android:id="@+id/et_sex_gg"
+	        style="@style/randiobutton1"
+	        android:text="男"/>
+	    
+	    <View
+	        android:layout_width="10.0dip"
+	        android:layout_height="match_parent"/>
+	    
+	    <RadioButton 
+        	android:id="@+id/et_sex_mm"
+	        style="@style/randiobutton1"
+	        android:text="女"/>
+	    
+	</RadioGroup>
+
+ 	<start.widget.CustomEditText
+        android:id="@+id/et_icard"
+        style="@style/edittext1"
+    	android:layout_margin="5.0dip"
+    	android:hint="请输入要身份证号" />   
+
+ 	<start.widget.CustomEditText
+        android:id="@+id/et_hcno"
+        style="@style/edittext1"
+    	android:layout_margin="5.0dip"
+    	android:hint="请输入医保卡号" />
+
+ 	<start.widget.CustomEditText
+        android:id="@+id/et_mcno"
+        style="@style/edittext1"
+    	android:layout_margin="5.0dip"
+    	android:hint="请输入就诊卡号" />
+     
+    <Button 
+	    android:id="@+id/btn_update"
+	    style="@style/button1"
+        android:text="@string/ok"/>
+    
+</LinearLayout>

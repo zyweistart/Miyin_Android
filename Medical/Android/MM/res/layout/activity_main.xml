@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<start.widget.SlidingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_slidingLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sliding_layout_bg" >
+
+    <LinearLayout
+        android:id="@+id/main_menu"
+        android:layout_width="270.0dip"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@color/sliding_layout_bg"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="150.0dip"
+	        android:background="@drawable/bg_sliding_layout_left_top">
+	        <RelativeLayout 
+               android:id="@+id/left_head_nologin_frame"
+               android:layout_width="match_parent"
+               android:layout_height="100.0dip"
+               android:layout_alignParentTop="true">
+               
+               <Button
+                   android:id="@+id/btn_login" 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:padding="3.0dip"
+                   android:layout_margin="3.0dip"
+                   android:textColor="@color/white"
+                   android:textSize="16.0dip"
+                   android:onClick="onClick"
+                   android:background="#08b2c9"
+                   android:text="@string/login"/>
+               
+            </RelativeLayout>
+            <RelativeLayout 
+               android:id="@+id/left_head_login_frame"
+               android:layout_width="match_parent"
+               android:layout_height="100.0dip"
+               android:layout_alignParentTop="true"
+               android:visibility="gone">
+            
+                <TextView
+                    android:id="@+id/txt_current_user"
+                   	style="@style/textview1"/>
+               
+            </RelativeLayout>
+	        <RelativeLayout 
+               android:layout_width="match_parent"
+               android:layout_height="50.0dip"
+               android:layout_alignParentBottom="true">
+               
+	           <View
+	               android:id="@+id/personal_middle_bottom"
+			        android:layout_width="1.0dip"
+			        android:layout_height="match_parent"
+			        android:layout_marginLeft="40.0dip"
+			        android:layout_marginRight="40.0dip"
+			        android:layout_marginTop="10.0dip"
+			        android:layout_marginBottom="10.0dip"
+			        android:layout_centerInParent="true"
+			        android:background="@drawable/line" />
+	           
+	           <TextView 
+                   style="@style/textview1"
+                   android:layout_toLeftOf="@id/personal_middle_bottom"
+                   android:drawableLeft="@drawable/ic_message"
+                   android:drawablePadding="5.0dip"
+                   android:text="@string/message"/>
+	           
+               <TextView 
+                   style="@style/textview1"
+                   android:layout_toRightOf="@id/personal_middle_bottom"
+                   android:drawableLeft="@drawable/ic_collect"
+                   android:drawablePadding="5.0dip"
+                   android:text="@string/collection"/>
+               
+	        </RelativeLayout>
+            
+	    </RelativeLayout>
+        
+        <TextView 
+            android:id="@+id/main_location_title"
+            android:layout_width="match_parent"
+            android:layout_height="45.0dip"
+            android:gravity="center_vertical"
+            android:padding="5.0dip"
+            android:textSize="15.0dip"
+            android:background="#08b2c9"
+            android:textColor="@color/white"
+            android:text="@string/app_name"/>
+        
+        <include android:id="@+id/more_item_1" layout="@layout/module_sliding_layout_left_item"/>
+        <include android:id="@+id/more_item_2" layout="@layout/module_sliding_layout_left_item"/>
+        <include android:id="@+id/more_item_3" layout="@layout/module_sliding_layout_left_item"/>
+        <include android:id="@+id/more_item_4" layout="@layout/module_sliding_layout_left_item"/>
+        <include android:id="@+id/more_item_5" layout="@layout/module_sliding_layout_left_item"/>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_content"
+        android:layout_width="320.0dip"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <include layout="@layout/module_header" />
+
+        <ScrollView 
+            android:id="@+id/main_content_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+			android:scrollbars="none">
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                
+                <android.support.v4.view.ViewPager
+		            android:id="@+id/main_banner"
+		            android:layout_width="match_parent"
+		            android:layout_height="150.0dip" />
+                
+                <LinearLayout 
+	                android:layout_width="match_parent"
+	                android:layout_height="@dimen/main_function_height"
+	                android:orientation="horizontal">
+	                
+                    <include android:id="@+id/main_function_1" layout="@layout/module_sliding_layout_right_item"/>
+                    <View
+				        android:layout_width="1.0dip"
+				        android:layout_height="match_parent"
+				        android:background="@drawable/line" />
+                    <include android:id="@+id/main_function_2" layout="@layout/module_sliding_layout_right_item"/>
+	                
+	            </LinearLayout>
+	            <View
+			        android:layout_width="match_parent"
+			        android:layout_height="1.0dip"
+			        android:background="@drawable/line" />
+	            <LinearLayout 
+	                android:layout_width="match_parent"
+	                android:layout_height="@dimen/main_function_height"
+	                android:orientation="horizontal">
+	                
+                    <include android:id="@+id/main_function_3" layout="@layout/module_sliding_layout_right_item"/>
+                    <View
+				        android:layout_width="1.0dip"
+				        android:layout_height="match_parent"
+				        android:background="@drawable/line" />
+                    <include android:id="@+id/main_function_4" layout="@layout/module_sliding_layout_right_item"/>
+	                
+	            </LinearLayout>
+	            <View
+			        android:layout_width="match_parent"
+			        android:layout_height="1.0dip"
+			        android:background="@drawable/line" />
+	            <LinearLayout 
+	                android:layout_width="match_parent"
+	                android:layout_height="@dimen/main_function_height"
+	                android:orientation="horizontal">
+	                
+                    <include android:id="@+id/main_function_5" layout="@layout/module_sliding_layout_right_item"/>
+                    <View
+				        android:layout_width="1.0dip"
+				        android:layout_height="match_parent"
+				        android:background="@drawable/line" />
+                    <include android:id="@+id/main_function_6" layout="@layout/module_sliding_layout_right_item"/>
+	                
+	            </LinearLayout>
+	            <View
+			        android:layout_width="match_parent"
+			        android:layout_height="1.0dip"
+			        android:background="@drawable/line" />
+	            <LinearLayout 
+	                android:layout_width="match_parent"
+	                android:layout_height="@dimen/main_function_height"
+	                android:orientation="horizontal">
+	                
+                    <include android:id="@+id/main_function_7" layout="@layout/module_sliding_layout_right_item"/>
+                    <View
+				        android:layout_width="1.0dip"
+				        android:layout_height="match_parent"
+				        android:background="@drawable/line" />
+                    <include android:id="@+id/main_function_8" layout="@layout/module_sliding_layout_right_item"/>
+	                
+	            </LinearLayout>
+                
+            </LinearLayout>
+        </ScrollView>
+        
+    </LinearLayout>
+
+</start.widget.SlidingLayout>

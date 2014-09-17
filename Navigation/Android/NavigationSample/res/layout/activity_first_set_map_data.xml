@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#FFFFFF">
+    
+	<include layout="@layout/module_main_header" />
+    
+	<TextView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="10.0dip"
+	    android:textColor="#1cb0a4"
+	    android:textSize="20.0dip"
+	    android:text="目前还没有指定要访问的医院，是否马上去切换使用？"/>
+	
+	<Button 
+        android:id="@+id/activity_first_set_map_data_btn_set"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:layout_margin="10.0dip"
+        android:background="@drawable/bg4_selector"
+        android:textColor="#FFFFFF"
+        android:textSize="22.0dip"
+        android:text="导入数据并切换为当前医院"/>
+
+</LinearLayout>

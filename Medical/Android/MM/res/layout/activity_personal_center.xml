@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/activity_gb" >
+    
+    <include layout="@layout/module_header" />
+    
+    <Button 
+	    android:id="@+id/btn_edit_personal"
+	    style="@style/button1"
+        android:text="编辑个人中心"/>
+    
+    <Button 
+	    android:id="@+id/btn_health_records"
+	    style="@style/button1"
+        android:text="健康档案"/>
+    
+    <Button 
+	    android:id="@+id/btn_my_registered"
+	    style="@style/button1"
+        android:text="我的挂号"/>
+    
+    <Button 
+	    android:id="@+id/btn_my_appointment"
+	    style="@style/button1"
+        android:text="我的预约"/>
+    
+    <Button 
+	    android:id="@+id/btn_my_takereport"
+	    style="@style/button1"
+        android:text="我的报告单"/>
+    
+    <Button 
+	    android:id="@+id/btn_my_consultation"
+	    style="@style/button1"
+        android:text="我的咨询"/>
+
+</LinearLayout>

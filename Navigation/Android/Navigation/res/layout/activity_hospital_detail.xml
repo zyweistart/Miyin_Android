@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    
+	<include layout="@layout/module_main_header" />
+    
+	<TextView
+        android:id="@+id/hotspital_detail_introduction"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"/>
+	
+	<Button 
+        android:id="@+id/hotspital_detail_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40.0dp"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:onClick="onClick"
+        android:background="@drawable/bg1_selector"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lvitem_textsize1"
+        android:text="@string/msg_show_map"/>
+
+</LinearLayout>

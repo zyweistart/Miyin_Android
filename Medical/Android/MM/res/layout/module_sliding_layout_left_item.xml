@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45.0dip"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:onClick="onClick">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44.0dip"
+        android:background="@drawable/selector_main_sliding_left"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ic_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5.0dip"
+            android:contentDescription="@string/empty" />
+
+        <TextView
+            android:id="@+id/txt_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/ic_more"
+            android:textColor="#686868"
+            android:textSize="15.0dip" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5.0dip"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/ic_arrow" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.0dip"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="5.0dip"
+        android:background="#ffc9c9c9" />
+
+</LinearLayout>

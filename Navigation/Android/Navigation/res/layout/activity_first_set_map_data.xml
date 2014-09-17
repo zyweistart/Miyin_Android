@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/white">
+    
+	<include layout="@layout/module_main_header" />
+    
+	<TextView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="10.0dip"
+	    android:textColor="#1cb0a4"
+	    android:textSize="20.0dip"
+	    android:text="@string/msg_first_set_data_tip"/>
+	
+	<Button 
+        android:id="@+id/activity_first_set_map_data_btn_set"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:layout_margin="10.0dip"
+        android:background="@drawable/bg4_selector"
+        android:textColor="@color/white"
+        android:textSize="22.0dip"
+        android:text="@string/msg_goto_switch_data"/>
+
+</LinearLayout>

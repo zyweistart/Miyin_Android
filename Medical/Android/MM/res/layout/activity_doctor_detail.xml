@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/activity_gb">
+    
+    <include layout="@layout/module_header" />
+    
+    <ScrollView 
+       	android:layout_width="match_parent"
+       	android:layout_height="match_parent">
+       	
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">            
+            
+            
+            <LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="80.0dip"
+			    android:gravity="center_vertical"
+			    android:orientation="horizontal">
+			
+			    <ImageView 
+				    android:id="@+id/iv_header"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_margin="5.0dip"
+			        android:contentDescription="@string/empty"/>
+			    
+			    <ImageView 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_margin="5.0dip"
+			        android:background="@drawable/dividingline"
+			        android:contentDescription="@string/empty"/>
+			    
+			    <LinearLayout
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+			        android:layout_margin="5.0dip"
+				    android:orientation="vertical">
+				    
+			        <TextView
+				        android:id="@+id/txt_name"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:textStyle="bold"
+				        android:textSize="16.0dip"
+				        android:textColor="#444444"/>
+			        
+			        <View
+			            android:layout_width="match_parent"
+			            android:layout_height="5.0dip"/>
+			        
+			        <TextView
+				        android:id="@+id/txt_desc"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:textSize="15.0dip"
+				        android:textColor="#c3c3c3"/>
+			        
+			    </LinearLayout>
+			
+			</LinearLayout>
+         
+            <TextView 
+                style="@style/textview2"
+                android:text="擅长"/>
+            
+            <TextView 
+                android:id="@+id/txt_thefield"
+                style="@style/textview3"/>
+            
+            <TextView 
+                style="@style/textview2"
+                android:text="门诊时间"/>
+            
+            <TextView 
+                android:id="@+id/txt_outtime"
+                style="@style/textview3"/>
+            
+            <TextView 
+                style="@style/textview2"
+                android:text="门诊地点"/>
+            
+            <TextView 
+                android:id="@+id/txt_outlocat"
+                style="@style/textview3"/>
+            
+            <TextView 
+                style="@style/textview2"
+                android:text="挂号费"/>
+            
+            <TextView 
+                android:id="@+id/txt_regfee"
+                style="@style/textview3"/>
+            
+            <TextView 
+                style="@style/textview2"
+                android:text="其它信息"/>
+            
+            <TextView 
+                android:id="@+id/txt_otherinfo"
+                style="@style/textview3"/>
+            
+        </LinearLayout>
+        
+    </ScrollView>
+    
+</LinearLayout>

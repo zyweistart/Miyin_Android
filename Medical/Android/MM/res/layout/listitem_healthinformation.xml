@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@drawable/selector_listitem1">
+
+    <ImageView 
+	    android:id="@+id/listitem_iv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:contentDescription="@string/empty"/>
+    
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:background="@drawable/dividingline"
+        android:contentDescription="@string/empty"/>
+    
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+	    android:orientation="vertical">
+	    
+        <TextView
+	        android:id="@+id/listitem_main_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textStyle="bold"
+	        android:textSize="16.0dip"
+	        android:textColor="#444444"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5.0dip"/>
+        
+        <TextView
+	        android:id="@+id/listitem_child_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="15.0dip"
+	        android:textColor="#c3c3c3"/>
+        
+    </LinearLayout>
+
+</LinearLayout>

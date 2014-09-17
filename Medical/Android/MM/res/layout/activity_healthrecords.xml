@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/activity_gb">
+    
+    <include layout="@layout/module_header" />
+    
+    <Button 
+	    android:id="@+id/btn_medical_recor"
+	    style="@style/button1"
+        android:text="病历"/>
+    <Button 
+	    android:id="@+id/btn_check"
+	    style="@style/button1"
+        android:text="检查"/>
+    <Button 
+	    android:id="@+id/btn_medication"
+	    style="@style/button1"
+        android:text="服药"/>
+    <Button 
+	    android:id="@+id/btn_discomfort_record"
+	    style="@style/button1"
+        android:text="不适记录"/>
+    <Button 
+	    android:id="@+id/btn_medication_reminder"
+	    style="@style/button1"
+        android:text="用药提醒"/>
+    <Button 
+	    android:id="@+id/btn_health_tracking"
+	    style="@style/button1"
+        android:text="健康跟踪"/>
+    
+</LinearLayout>

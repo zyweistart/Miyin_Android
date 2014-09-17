@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">彭卫医疗</string>
+    <string name="empty"></string>
+    <string name="ok">好</string>
+    <string name="not_login_message">你还没有登录请先登录</string>
+    <!-- 个人 -->
+    <string name="collection">收藏</string>
+    <string name="message">消息</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="reset_password">重置密码</string>
+    <string name="register_success">恭喜您，注册成功</string>
+    <string name="reset_password_success">恭喜您，重置密码成功</string>
+    <string name="personal_center">个人中心</string>
+    <string name="edit_personal">修改资料</string>
+    <string name="change_password">修改密码</string>
+    <string name="accounthint">请输入账户</string>
+    <string name="passwordhint">请输入密码</string>
+    <string name="repasswordhint">请再次输入密码</string>
+    <string name="autologinttxt">自动登录</string>
+    <string name="getauthcode">获取校验码</string>
+    <string name="regetauthcode">重新获取校验码</string>
+    <string name="phoneemptytip">手机号码不能为空</string>
+    <string name="pwdemptytip">密码不能为空</string>
+    <string name="autocodeemptytip">验证码不能为空</string>
+    <string name="twopwddifftip">二次密码输入不一致</string>
+    <string name="usernameorpassworderrortip">用户名或密码有误</string>
+    <string name="changepasswordsuccess">修改密码成功</string>
+    <string name="mysubscribe">我的预约</string>
+    <string name="electroniccase">电子病例</string>
+    <string name="switchhospital">切换医院</string>
+    
+    <string name="authcodehint">请输入校验码</string>
+    <string name="next">下一步</string>
+    <string name="haveaccount">已有账号</string>
+    <string name="gologin">马上去登录</string>
+    
+    <string name="mainfunctiontxt1">手机挂号</string>
+    <string name="mainfunctionchiltxt1">手机实时挂号，叫号查询</string>
+    <string name="mainfunctiontxt2">妇保中心</string>
+    <string name="mainfunctionchiltxt2">妇保信息跟踪健康中心</string>
+    <string name="mainfunctiontxt3">报告单</string>
+    <string name="mainfunctionchiltxt3">手机及时查询，减少不必要的等待时间</string>
+    <string name="mainfunctiontxt4">疫苗接种</string>
+    <string name="mainfunctionchiltxt4">新生婴儿疫苗接种情况</string>
+    <string name="mainfunctiontxt5">医院导航</string>
+    <string name="mainfunctionchiltxt5">医院位置，楼层、周边情况</string>
+    <string name="mainfunctiontxt6">科室医生</string>
+    <string name="mainfunctionchiltxt6">科室医生信息查询</string>
+    <string name="mainfunctiontxt7">健康百科</string>
+    <string name="mainfunctionchiltxt7">海量医学健康知识</string>
+    <string name="mainfunctiontxt8">健康资讯</string>
+    <string name="mainfunctionchiltxt8">日常生活健康资讯</string>
+    <!-- 挂号 -->
+    
+    <!-- 取单 -->
+    
+    <!-- 导航 -->
+    <string name="navigation">导航</string>
+    
+    <!-- 科室医生 -->
+    
+    <!-- 健康百科 -->
+    
+    <!-- 健康资讯 -->
+    
+    <!-- 更多 -->
+    <string name="more">更多</string>
+    <string name="aboutus">关于我们</string>
+    <string name="feedback">意见反馈</string>
+    <string name="checkver">版本检测</string>
+    
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#ffffff</color>
+   	<color name="activity_gb">#f3f3f3</color>
+   	<color name="line">#efefef</color>
+   	
+   	<color name="sliding_layout_bg">#d9d9d9</color>
+   	<color name="sliding_layout_left_bg_n">#d9d9d9</color>
+   	<color name="sliding_layout_left_bg_p">#efefef</color>
+   	
+   	<color name="main_function_n">#ffffff</color>
+   	<color name="main_function_p">#efefef</color>
+   	<color name="main_function_1">#09b2c9</color>
+   	<color name="main_function_2">#df4dcc</color>
+   	<color name="main_function_3">#f2a90e</color>
+   	<color name="main_function_4">#2ecb3c</color>
+   	<color name="main_function_5">#368ff5</color>
+   	<color name="main_function_6">#fe854c</color>
+   	<color name="main_function_7">#388df7</color>
+   	<color name="main_function_8">#c7a909</color>
+   	
+   	<color name="button_1_n">#ff9702</color>
+   	<color name="button_1_p">#fcd499</color>
+   	<color name="button_2_n">#0abad2</color>
+   	<color name="button_2_p">#fcd499</color>
+	
+   	<color name="selector_item_n">#eff1f5</color>
+   	<color name="selector_item_p">#e7eaee</color>
+   	
+   	<color name="bg_frame">#e7eaee</color>
+   	
+</resources>

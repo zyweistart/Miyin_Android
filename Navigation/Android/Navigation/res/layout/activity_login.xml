@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20.0dip"
+    android:background="@drawable/login_bg">
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="15.0dip">
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo"
+            android:contentDescription="@string/empty"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="27.0dip"
+            android:textColor="#7cb6cc"
+            android:text="@string/msg_app_title"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="15.0dip"
+	    android:padding="5.0dip"
+	    android:background="@drawable/more_frame"
+	    android:orientation="vertical">
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="5.0dip"
+	        android:gravity="center_vertical"
+	        android:orientation="horizontal">
+	        <ImageView 
+	            android:layout_width="25.0dip"
+	            android:layout_height="25.0dip"
+	            android:src="@drawable/ic_more_account"
+	            android:contentDescription="@string/empty"/>
+	        <EditText 
+			    android:id="@+id/login_account_name"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    style="?android:attr/textViewStyle"
+	     		android:background="@null" 
+	     		android:textColor="@null"
+			    android:onClick="onClick"
+			    android:padding="5.0dip"
+			    android:textSize="17.0dip"
+			    android:hint="@string/msg_hint_account"/>
+	    </LinearLayout>
+	    
+	    <View
+            android:layout_width="match_parent"
+            android:layout_height="1.0dip"
+            android:background="#ffc9c9c9" />
+	    
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="5.0dip"
+	        android:gravity="center_vertical"
+	        android:orientation="horizontal">
+	        <ImageView 
+	            android:layout_width="25.0dip"
+	            android:layout_height="25.0dip"
+	            android:src="@drawable/ic_more_pwd"
+	            android:contentDescription="@string/empty"/>
+	        <EditText 
+			    android:id="@+id/login_account_password"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    style="?android:attr/textViewStyle"
+			    android:inputType="textPassword"
+	     		android:background="@null" 
+	     		android:textColor="@null"
+			    android:onClick="onClick"
+			    android:padding="5.0dip"
+			    android:textSize="17.0dip"
+			    android:hint="@string/msg_hint_password"/>
+	    </LinearLayout>
+		
+	</LinearLayout>
+	
+    <RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="15.0dip"
+	    android:layout_marginBottom="15.0dip"
+	    android:paddingLeft="5.0dip"
+	    android:paddingRight="5.0dip">
+	    
+        <CheckBox 
+            android:id="@+id/login_ck_autologin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:button="@null"
+            android:drawableLeft="@drawable/checkbox_bg"
+            android:textColor="#878883"
+		    android:textSize="15.0dip"
+            android:text="@string/msg_login_autologin"/>
+        
+		<Button
+		    android:id="@+id/login_btn_forgetpwd"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:onClick="onClick"
+		    android:layout_centerInParent="true"
+		    android:layout_alignParentRight="true"
+		    android:background="@null"
+		    android:textColor="#878883"
+		    android:textSize="15.0dip"
+		    android:text="@string/activity_title_forgetpwd"/>
+        
+	</RelativeLayout>
+	    
+	<Button 
+        android:id="@+id/login_btn_account"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:background="@drawable/bg4_selector"
+        android:textColor="@color/white"
+        android:textSize="22.0dip"
+        android:text="@string/login"/>
+	
+	<Button
+	    android:id="@+id/login_btn_register"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_horizontal"
+	    android:onClick="onClick"
+	    android:background="@null"
+	    android:layout_marginTop="15.0dip"
+	    android:textSize="18.0dip"
+	    android:textColor="#397f98"
+	    android:text="@string/msg_login_not_account_gotto_register"/>
+	
+</LinearLayout>

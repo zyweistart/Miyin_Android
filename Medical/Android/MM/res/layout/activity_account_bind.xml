@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/activity_gb"  >
+    
+    <include layout="@layout/module_header" />
+     
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@drawable/bg_frame"
+         android:orientation="horizontal"
+         android:layout_margin="5.0dip" >
+
+         <start.widget.CustomEditText
+             android:id="@+id/et_bind_account"
+             style="@style/edittext1"
+             android:drawableLeft="@drawable/ic_account"
+        	 android:drawablePadding="5.0dip"
+        	 android:padding="5.0dip"
+        	 android:hint="请输入要绑定的账号" />
+     </LinearLayout>
+     
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="10.0dip" />
+     
+    <Button 
+	    android:id="@+id/btn_bind"
+	    style="@style/button1"
+        android:text="绑定"/>
+
+</LinearLayout>

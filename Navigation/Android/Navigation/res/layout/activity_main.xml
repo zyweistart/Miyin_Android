@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    
+	<include layout="@layout/module_main_header" />
+    
+	<LinearLayout 
+	    android:id="@+id/main_content_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1">
+        
+ 	 	<include layout="@layout/module_main_frame_introduction" />
+ 	 	
+ 	 	<include layout="@layout/module_main_frame_map" />
+      
+	  	<include layout="@layout/module_main_frame_process" />
+	  
+	  	<include layout="@layout/module_main_frame_friend" />
+	    
+	</LinearLayout>
+    
+    <include layout="@layout/module_main_footer" />   
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/module_main_header_content" 
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/mmtitle_bg" >
+  	<TextView
+        android:id="@+id/module_main_header_content_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="20.0dip" />
+  	<LinearLayout 
+  	    android:layout_width="wrap_content"
+  	    android:layout_height="wrap_content"
+  	    android:layout_centerInParent="true"
+  	    android:layout_alignParentRight="true"
+  	    android:orientation="horizontal">
+  	    <Button
+  	        android:id="@+id/module_main_header_content_park"
+            android:layout_width="32.0dip"
+            android:layout_height="32.0dip"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/bar_park_selector"
+  	        android:visibility="gone"/>
+  	    <Button
+  	        android:id="@+id/module_main_header_content_location"
+            android:layout_width="32.0dip"
+            android:layout_height="32.0dip"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/bar_location_selector"
+  	        android:visibility="gone"/>
+  	    <Button 
+  	        android:id="@+id/module_main_header_content_click"
+  	        android:layout_width="wrap_content"
+  	        android:layout_height="wrap_content"
+  	        android:background="@drawable/bg4_selector"
+  	        android:textColor="@color/white"
+  	        android:padding="0dip"
+  	        android:layout_margin="2.0dip"
+  	        android:onClick="onClick"
+  	        android:textSize="30.0dip"
+  	        android:text="+"
+  	        android:visibility="gone"/>
+  	</LinearLayout>
+</RelativeLayout>

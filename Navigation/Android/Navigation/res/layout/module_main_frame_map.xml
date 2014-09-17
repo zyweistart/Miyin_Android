@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/module_main_frame_map_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/search_bar_bg"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/module_main_frame_map_query"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_bar_edit_bg"
+            android:drawableLeft="@drawable/search_bar_icon_normal"
+            android:hint="@string/msg_hint_search_department_doctor"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColor="#000" />
+
+        <Button
+            android:id="@+id/module_main_frame_map_button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/btn_style_eight"
+            android:text="@string/cancel"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+    </LinearLayout>
+    
+    <RelativeLayout 
+        	 android:id="@+id/module_main_frame_map_contentll"
+	     android:layout_width="match_parent"
+	     android:layout_height="match_parent" >
+	
+	     <ListView 
+	        android:id="@+id/module_main_frame_map_content_mapdataindexlist"
+	        android:layout_height="wrap_content"
+	        android:layout_width="32dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginRight="8dp"
+	        android:cacheColorHint="@android:color/transparent"
+	        android:listSelector="@android:color/transparent"
+	        android:divider="@color/border_mapdata_index"
+	        android:dividerHeight="1dp"
+	        android:fadingEdge="none"
+	        android:scrollbars="none"
+	        android:background="@drawable/bg_mapdata_index"
+	        android:choiceMode="singleChoice"/>
+	
+	     <LinearLayout
+	         android:id="@+id/module_main_frame_map_query_content_container"
+	         android:layout_width="match_parent"
+	         android:layout_height="match_parent"
+	         android:orientation="vertical"
+	         android:visibility="gone">
+	
+	         <LinearLayout
+	             android:layout_width="match_parent"
+	             android:layout_height="wrap_content"
+	             android:gravity="center_vertical"
+	             android:orientation="horizontal"
+	             android:background="@drawable/tabs_bar_bg" >
+	
+	             <TextView
+	                 android:id="@+id/module_main_frame_map_query_content_tab_department"
+	                 android:layout_width="0dp"
+	                 android:layout_height="wrap_content"
+	                 android:layout_marginLeft="8dp"
+	                 android:layout_weight="1"
+	                 android:background="@drawable/tabs_bar_left_on"
+	                 android:clickable="true"
+	                 android:gravity="center"
+	                 android:onClick="onClick"
+	                 android:text="@string/msg_tab_department" />
+	
+	             <TextView
+	                 android:id="@+id/module_main_frame_map_query_content_tab_doctor"
+	                 android:layout_width="0dp"
+	                 android:layout_height="wrap_content"
+	                 android:layout_weight="1"
+	                 android:background="@drawable/tabs_bar_right_off"
+	                 android:clickable="true"
+	                 android:gravity="center"
+	                 android:onClick="onClick"
+	                 android:text="@string/msg_tab_doctor" />
+	
+	             <TextView
+	                 android:id="@+id/module_main_frame_map_query_content_tab_restroom"
+	                 android:layout_width="0dp"
+	                 android:layout_height="wrap_content"
+	                 android:layout_marginLeft="8dp"
+	                 android:layout_weight="1"
+	                 android:background="@drawable/tab_left"
+	                 android:clickable="true"
+	                 android:gravity="center"
+	                 android:onClick="onClick"
+	                 android:text="@string/msg_tab_restroom"
+	                 android:textSize="14sp"/>
+	
+	             <TextView
+	                 android:id="@+id/module_main_frame_map_query_content_tab_drinking_water"
+	                 android:layout_width="0dp"
+	                 android:layout_height="wrap_content"
+	                 android:layout_marginRight="8dp"
+	                 android:layout_weight="1"
+	                 android:background="@drawable/tab_right"
+	                 android:clickable="true"
+	                 android:gravity="center"
+	                 android:onClick="onClick"
+	                 android:text="@string/msg_tab_drinking_water"
+	                 android:textSize="14sp"/>
+	         </LinearLayout>
+	
+	         <ListView
+	             android:id="@+id/module_main_frame_map_query_list"
+	             android:layout_width="match_parent"
+	             android:layout_height="match_parent"
+	             android:background="@android:color/white"/>
+	         
+	     </LinearLayout>
+     
+ 	</RelativeLayout>
+    
+</LinearLayout>
