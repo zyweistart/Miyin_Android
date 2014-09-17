@@ -57,7 +57,7 @@
         NSString* docDir = [paths objectAtIndex:0];
         //更改到待操作的目录下
         [fileManager changeCurrentDirectoryPath:[docDir stringByExpandingTildeInPath]];
-        NSString *sqlQuery = @"SELECT * FROM PIC";
+        NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM PIC ORDER BY ID DESC limit %d offset 0",TOPIMAGENUM];
         NSMutableArray *indata=[db query1:sqlQuery];
         if(indata!=nil&&[indata count]>0){
             for(int i=0;i<[indata count];i++){
@@ -67,16 +67,14 @@
                 if([fileManager fileExistsAtPath:path]){
                     [images addObject:[UIImage imageWithContentsOfFile:path]];
                 }
-                if([images count]==3){
-                    break;
-                }
             }
         }
     }
-    //每次显示3幅如果不够3幅则加载默认的图片
-    int num=3-[images count];
-    for(int i=0;i<num;i++){
-        [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"image%d",i+1]]];
+    //如果不够则加载默认的图片
+    if([images count]==0){
+        for(int i=0;i<TOPIMAGENUM;i++){
+            [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"image%d",i+1]]];
+        }
     }
     [foursquareImages setImages:images];
 //    [foursquareImages setBackgroundColor:[UIColor redColor]];

@@ -26,7 +26,7 @@
         [self.view setBackgroundColor:[UIColor whiteColor]];
         db=[[SQLiteOperate alloc]init];
         if([db openDB]){
-            NSString *sqlQuery = @"SELECT * FROM NEW";
+            NSString *sqlQuery = @"SELECT * FROM NEW ORDER BY ID DESC";
             NSMutableArray *indata=[db query:sqlQuery];
             if(indata!=nil&&[indata count]>0){
                 titleArr=[[NSMutableArray alloc]initWithArray:indata];
