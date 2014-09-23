@@ -1,9 +1,9 @@
 .DS_Store
 Lib/StartLibrary/bin
 Lib/StartLibrary/gen
-Navigation/Android/Navigation/bin
-Navigation/Android/Navigation/gen
-Navigation/Android/NavigationSample/bin
-Navigation/Android/NavigationSample/gen
-Medical/Android/MM/bin
-Medical/Android/MM/gen
+Navigation/Navigation/bin
+Navigation/Navigation/gen
+Navigation/NavigationSample/bin
+Navigation/NavigationSample/gen
+Medical/MM/bin
+Medical/MM/gen
