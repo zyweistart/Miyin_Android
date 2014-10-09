@@ -52,13 +52,13 @@ public class AccountBindActivity extends BaseActivity  {
 					@Override
 					public void run(Response response) throws AppException {
 						
-						getHandlerContext().makeTextLong("还好");
+						getHandlerContext().makeTextLong("绑定成功了哦");
 						
 					}
 					
 				});
 			}else{
-				getHandlerContext().makeTextLong("请输入账户");
+				getHandlerContext().makeTextLong("请输入绑定的账户信息");
 			}
 		}else{
 			super.onClick(v);

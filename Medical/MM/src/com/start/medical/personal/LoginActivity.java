@@ -50,6 +50,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		et_login_account=(CustomEditText)findViewById(R.id.et_login_account);
 		et_login_password=(CustomEditText)findViewById(R.id.et_login_password);
 		cb_login_autologin=(CheckBox)findViewById(R.id.cb_login_autologin);
+		
+//		et_login_account.setText("13395811012");
 	}
 	
 	@Override
