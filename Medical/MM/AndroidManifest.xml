@@ -7,174 +7,181 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
-    
+
     <!-- 允许应用程序使用网络进行数据交换 -->
-  	<uses-permission android:name="android.permission.INTERNET" />
-  	<!-- 允许程序访问Wi-Fi网络状态信息 -->
-  	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-  	<!-- 允许应用程序访问设备网络状态信息 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序访问Wi-Fi网络状态信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许应用程序访问设备网络状态信息 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 允许应用程序对扩展存储设备（如SD卡）进行写入操作 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 获取用户设备的IMEI，通过IMEI和mac来唯一的标识用户 -->
-	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:name=".BaseContext"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar"
-        android:allowBackup="true">
-        
+        android:theme="@android:style/Theme.NoTitleBar" >
+
         <!-- 友盟统计 -->
-        <meta-data android:name="UMENG_APPKEY" android:value="52707c2a56240b904805ff9e"/>
-		<meta-data android:name="UMENG_CHANNEL" android:value="WebSite"/>
-        
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="52707c2a56240b904805ff9e" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="WebSite" />
+
         <activity
             android:name=".StartActivity"
-        	android:screenOrientation="portrait"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name=".main.MainActivity"
-        	android:screenOrientation="portrait"
-        	android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <!-- 个人 -->
-         <activity
+        <activity
             android:name=".personal.LoginActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.RegisterActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.ResetPassWordActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.ChangePassWordActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.PersonalCenterActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.EditPersonalActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.AccountBindActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 健康档案 -->
         <activity
             android:name=".personal.healthrecords.HealthRecordsActivity"
-        	android:screenOrientation="portrait"/>
-        <!--不适记录  -->
+            android:screenOrientation="portrait" />
+        <!-- 不适记录 -->
         <activity
             android:name=".personal.healthrecords.discomfortrecord.DiscomfortRecordActivity"
-        	android:screenOrientation="portrait"/>
-        <!--健康跟踪 -->
+            android:screenOrientation="portrait" />
+        <!-- 健康跟踪 -->
         <activity
             android:name=".personal.healthrecords.healthtracking.HealthTrackingActivity"
-        	android:screenOrientation="portrait"/>
-        <!--检查  -->
+            android:screenOrientation="portrait" />
+        <!-- 检查 -->
         <activity
             android:name=".personal.healthrecords.inspect.InspectActivity"
-        	android:screenOrientation="portrait"/>
-        <!--病史  -->
+            android:screenOrientation="portrait" />
+        <!-- 病史 -->
         <activity
             android:name=".personal.healthrecords.medicalhistory.MedicalHistoryActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.healthrecords.medicalhistory.MedicalHistoryDetailActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.healthrecords.medicalhistory.MedicalHistoryUpdateActivity"
-        	android:screenOrientation="portrait"/>
-        <!--服药  -->
+            android:screenOrientation="portrait" />
+        <!-- 服药 -->
         <activity
             android:name=".personal.healthrecords.medication.MedicationActivity"
-        	android:screenOrientation="portrait"/>
-        <!--用药提醒  -->
+            android:screenOrientation="portrait" />
+        <!-- 用药提醒 -->
         <activity
             android:name=".personal.healthrecords.medicationreminder.MedicationReminderActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 我的挂号 -->
         <activity
             android:name=".personal.registered.MyRegisteredActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.registered.MyRegisteredDetailActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 我的预约 -->
         <activity
             android:name=".personal.appointment.MyAppointmentActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.appointment.MyAppointmentDetailActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 我的报告单 -->
         <activity
             android:name=".personal.report.MyReportActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".personal.report.MyReportDetailActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 我的咨询 -->
-        
+
+
         <!-- 手机挂号 -->
         <activity
             android:name=".registered.RegisteredActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 妇保中心 -->
-        
+
+
         <!-- 报告单 -->
         <activity
             android:name=".report.TakeReportActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 疫苗接种 -->
-        
+
+
         <!-- 医院导航 -->
         <activity
             android:name=".navigation.NavigationActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 科室医生 -->
         <activity
             android:name=".department.DepartmentActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".department.DoctorsActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".department.DoctorsDetailActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 健康百科 -->
         <activity
             android:name=".wikipedia.HealthWikipediaActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".wikipedia.HealthWikipediaDetailActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 健康资讯 -->
         <activity
             android:name=".information.HealthInformationActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".information.HealthInformationDetailActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 更多 -->
         <activity
             android:name=".more.MoreActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 关于我们 -->
         <activity
             android:name=".more.AboutUsActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!-- 意见反馈 -->
         <activity
             android:name=".more.FeedbackActivity"
-        	android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
