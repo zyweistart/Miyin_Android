@@ -7,4 +7,29 @@
     
     <include layout="@layout/module_header" />
     
+    <CheckBox
+         android:id="@+id/cb_agree"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:drawablePadding="4.0dip"
+         android:checked="false"
+         android:textSize="18.0dip"
+         android:textColor="#d0d0d0"
+         android:text="我已阅读并同意声明" />
+    
+    <Button 
+	    android:id="@+id/btn_outpatient_registration"
+	    style="@style/button1"
+        android:text="门诊挂号"/>
+    
+    <Button 
+	    android:id="@+id/btn_appointment_of_experts"
+	    style="@style/button1"
+        android:text="专家预约"/>
+    
+    <Button 
+	    android:id="@+id/btn_station_to_station_query"
+	    style="@style/button1"
+        android:text="叫号查询"/>
+    
 </LinearLayout>
