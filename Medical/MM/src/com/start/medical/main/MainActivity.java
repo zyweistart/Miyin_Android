@@ -19,6 +19,7 @@ import com.start.medical.department.DepartmentActivity;
 import com.start.medical.information.HealthInformationActivity;
 import com.start.medical.more.MoreActivity;
 import com.start.medical.navigation.NavigationActivity;
+import com.start.medical.personal.AccountBindActivity;
 import com.start.medical.personal.PersonalCenterActivity;
 import com.start.medical.registered.RegisteredActivity;
 import com.start.medical.report.TakeReportActivity;
@@ -235,6 +236,12 @@ public class MainActivity extends BaseActivity{
 			//手机挂号
 			if(!getAppContext().currentUser().isLogin()){
 				goLogin(getString(R.string.not_login_message));
+				return;
+			}
+			//未绑定就诊信息
+			if(!getAppContext().currentUser().isBind()){
+				Intent intent=new Intent(this,AccountBindActivity.class);
+				startActivity(intent);
 				return;
 			}
 			startActivity(new Intent(this,RegisteredActivity.class));

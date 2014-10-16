@@ -51,9 +51,8 @@ public class AccountBindActivity extends BaseActivity  {
 					
 					@Override
 					public void run(Response response) throws AppException {
-						
-						getHandlerContext().makeTextLong("绑定成功了哦");
-						
+						getHandlerContext().makeTextLong("账户信息已绑定成功");
+						finish();
 					}
 					
 				});

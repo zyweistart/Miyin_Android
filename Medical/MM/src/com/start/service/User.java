@@ -5,6 +5,7 @@ import java.util.Map;
 
 import start.core.AppConstant;
 import start.core.AppContext;
+import android.text.TextUtils;
 
 import com.start.core.Constant.Preferences;
 
@@ -41,6 +42,16 @@ public class User {
 		return mUser;
 	}
 	
+	/**
+	 * 判断是否已经绑定就诊信息
+	 */
+	public Boolean isBind(){
+		return !TextUtils.isEmpty(getInfo().get("name"));
+	}
+	
+	/**
+	 * 判断是否有用户登录
+	 */
 	public Boolean isLogin() {
 		return login;
 	}
