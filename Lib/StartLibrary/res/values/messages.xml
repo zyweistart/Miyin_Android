@@ -2,6 +2,7 @@
 <resources>
     
     <string name="sure">确定</string>
+    <string name="submit">提交</string>
     <string name="cancle">取消</string>
     <string name="setting">设置</string>
     <string name="prompt">提示</string>

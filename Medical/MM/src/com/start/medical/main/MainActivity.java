@@ -17,6 +17,7 @@ import com.start.core.BaseActivity;
 import com.start.medical.R;
 import com.start.medical.department.DepartmentActivity;
 import com.start.medical.information.HealthInformationActivity;
+import com.start.medical.more.FeedbackActivity;
 import com.start.medical.more.MoreActivity;
 import com.start.medical.navigation.NavigationActivity;
 import com.start.medical.personal.AccountBindActivity;
@@ -225,6 +226,7 @@ public class MainActivity extends BaseActivity{
 			startActivity(new Intent(this,PersonalCenterActivity.class));
 		}else if(v.getId()==R.id.more_item_2){
 			//我的预约
+			startActivity(new Intent(this,FeedbackActivity.class));
 		}else if(v.getId()==R.id.more_item_3){
 			//电子病例
 		}else if(v.getId()==R.id.more_item_4){

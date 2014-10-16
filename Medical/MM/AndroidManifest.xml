@@ -132,8 +132,16 @@
         <activity
             android:name=".registered.RegisteredActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".registered.OutpatientRegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".registered.AppointmentOfExpertsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".registered.StationToStationQueryActivity"
+            android:screenOrientation="portrait" />
         <!-- 妇保中心 -->
-
 
         <!-- 报告单 -->
         <activity

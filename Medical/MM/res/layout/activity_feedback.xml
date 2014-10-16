@@ -7,4 +7,28 @@
     
     <include layout="@layout/module_header" />
     
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical">
+	    
+        <EditText
+	        android:id="@+id/et_content"
+	        style="@style/edittext2"
+	  	 	android:layout_margin="5.0dip" 
+	        android:hint="反馈内容" />
+        
+         <EditText
+	        android:id="@+id/et_contact"
+	        style="@style/edittext2"
+	  	 	android:layout_margin="5.0dip" 
+	        android:hint="联系信息" />
+     
+	    <Button 
+		    android:id="@+id/btn_submit"
+		    style="@style/button1"
+	        android:text="@string/submit"/>
+        
+    </LinearLayout>
+    
 </LinearLayout>

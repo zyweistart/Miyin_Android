@@ -40,6 +40,10 @@ public final class Constant {
 		 */
 		public static final String userinfoGet="userinfoGet";
 		/**
+		 * 就诊信息绑定
+		 */
+		public static final String hisinfoBind="hisinfoBind";
+		/**
 		 * 密码修改
 		 */
 		public static final String userpwdMod="userpwdMod";
@@ -72,9 +76,13 @@ public final class Constant {
 		 */
 		public static final String htinfonewsDetail="htinfonewsDetail";
 		/**
-		 * 就诊信息绑定
+		 * 意见反馈
 		 */
-		public static final String hisinfoBind="hisinfoBind";
+		public static final String userFeedback="userFeedback";
+		/**
+		 * 预约挂号请求
+		 */
+		public static final String hisyyghRequest="hisyyghRequest";
 	}
 	
 	public final class Handler {
