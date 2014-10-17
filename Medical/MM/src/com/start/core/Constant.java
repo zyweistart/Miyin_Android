@@ -83,6 +83,27 @@ public final class Constant {
 		 * 预约挂号请求
 		 */
 		public static final String hisyyghRequest="hisyyghRequest";
+		/**
+		 * 普通科室列表
+		 */
+		public static final String hispbxxptksList="hispbxxptksList";
+		/**
+		 * 普通科室排班列表
+		 */
+		public static final String hispbxxptkspbList="hispbxxptkspbList";
+		/**
+		 * 专家科室列表
+		 */
+		public static final String hispbxxzjksList="hispbxxzjksList";
+		/**
+		 * 专家医生排班列表
+		 */
+		public static final String hispbxxzjyspbList="hispbxxzjyspbList";
+		/**
+		 * 当日挂号查询
+		 */
+		public static final String hisregQuery="hisregQuery";
+		
 	}
 	
 	public final class Handler {

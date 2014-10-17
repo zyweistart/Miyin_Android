@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/listitem_main_title"
+     android:layout_width="match_parent"
+     android:layout_height="45.0dip"
+     android:drawableRight="@drawable/ic_arrow"
+     android:padding="10.0dip"
+     android:textSize="20.0dip"
+     android:textColor="#333333"
+ 	 android:background="@drawable/selector_listitem1"/>

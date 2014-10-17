@@ -133,13 +133,16 @@
             android:name=".registered.RegisteredActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".registered.OutpatientRegistrationActivity"
+            android:name=".registered.outpatient.OutpatientRegistrationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".registered.AppointmentOfExpertsActivity"
+            android:name=".registered.appointment.AppointmentOfExpertsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".registered.StationToStationQueryActivity"
+            android:name=".registered.appointment.AppointmentOfExpertsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".registered.station.StationToStationQueryActivity"
             android:screenOrientation="portrait" />
         <!-- 妇保中心 -->
 
