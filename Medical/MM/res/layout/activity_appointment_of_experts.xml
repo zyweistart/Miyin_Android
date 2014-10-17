@@ -14,7 +14,7 @@
 
         <include layout="@layout/module_registered_appointment_header" />
 
-        <start.widget.xlistview.XListView
+        <ListView
             android:id="@+id/xlv_listview"
             style="@style/listview1" />
     </LinearLayout>

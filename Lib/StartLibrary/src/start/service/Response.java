@@ -221,6 +221,34 @@ public class Response {
 		return mListMapData;
 	}
 	
+	public List<Map<String,String>> getListMapData2(String tag,String chinaTag) throws AppException {
+		if(mListMapData==null){
+			try {
+				if(mResponseDataArray==null){
+					if(this.mJsonObject!=null){
+						mResponseDataArray=this.mJsonObject.getJSONArray(tag);
+					}
+				}
+				if(mResponseDataArray!=null){
+					mListMapData=new ArrayList<Map<String,String>>();
+					for(int i=0;i<mResponseDataArray.length();i++){
+						JSONObject current=mResponseDataArray.getJSONObject(i).getJSONObject(chinaTag);
+						Map<String,String> datas=new HashMap<String,String>();
+						JSONArray names=current.names();
+						for(int j=0;j<names.length();j++){
+							String name=names.getString(j);
+							datas.put(name, current.getString(name));
+						}
+						mListMapData.add(datas);
+					}
+				}
+			} catch (JSONException e) {
+				throw AppException.json(e);
+			}
+		}
+		return mListMapData;
+	}
+	
 	public Response(HttpResponse httpResponse) {
 		this.mHttpResponse=httpResponse;
 	}

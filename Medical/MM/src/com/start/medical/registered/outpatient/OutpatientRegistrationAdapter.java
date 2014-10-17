@@ -28,7 +28,7 @@ public class OutpatientRegistrationAdapter extends AppListAdapter{
 			holder = (HolderView) convertView.getTag();
 		}
 		Map<String,String> data=mItemDatas.get(position);
-		holder.listitem_main_title.setText(data.get("name"));
+		holder.listitem_main_title.setText(data.get("ksmc"));
 		return convertView;
 	}
 	

@@ -136,6 +136,9 @@
             android:name=".registered.outpatient.OutpatientRegistrationActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".registered.outpatient.OutpatientRegistrationDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".registered.appointment.AppointmentOfExpertsActivity"
             android:screenOrientation="portrait" />
         <activity
