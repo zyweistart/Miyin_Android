@@ -174,6 +174,7 @@ public class HttpServer {
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,30*1000);
 		HttpPost post = new HttpPost(AppContext.getInstance().getServerURL());
 		try {
+			post.addHeader("format", "json");
 			post.addHeader("reqlength", StringUtils.encode(String.valueOf(requestContent.getBytes(AppConstant.ENCODE).length)));
 			if (mHeaders != null) {
 				for (String key : mHeaders.keySet()) {

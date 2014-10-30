@@ -9,7 +9,7 @@ public final class Constant {
 	public static final boolean ISSYSTEMTEST =true;
 
 	public static final String RESTURL = ISSYSTEMTEST ?
-			"http://115.238.38.126:6666/http/HttpService":"http://account.chinacloudapp.cn:81/pwyl/http/HttpService";
+			"http://192.168.0.221:8888/accore/http/HttpService":"http://account.chinacloudapp.cn:81/pwyl/http/HttpService";
 
 	/**
 	 * 用户接口
@@ -18,91 +18,75 @@ public final class Constant {
 		/**
 		 * 校验码获取
 		 */
-		public static final String useracodeGet="useracodeGet";
+		public static final String v4scodeGet="v4scodeGet";
 		/**
 		 * 注册
 		 */
-		public static final String userReg="userReg";
+		public static final String v4Signup="v4Signup";
 		/**
 		 * 密码重置
 		 */
-		public static final String userpwdReset="userpwdReset";
+		public static final String v4pwdReset="v4pwdReset";
 		/**
 		 * 登录
 		 */
-		public static final String userLogin="userLogin";
-		/**
-		 * 退出
-		 */
-		public static final String userLogout="userLogout";
+		public static final String v4Login="v4Login";
 		/**
 		 * 用户信息获取
 		 */
-		public static final String userinfoGet="userinfoGet";
+		public static final String v4infoGet="v4infoGet";
 		/**
-		 * 就诊信息绑定
+		 * 呼叫请求
 		 */
-		public static final String hisinfoBind="hisinfoBind";
+		public static final String v4Call  ="v4Call ";
+		/**
+		 * 录音查询
+		 */
+		public static final String v4recQry="v4recQry";
+		/**
+		 * 录音信息获取
+		 */
+		public static final String v4recGet ="v4recGet ";
+		/**
+		 * 录音下载
+		 */
+		public static final String v4recDown="v4recDown";
+		/**
+		 * 录音备注修改
+		 */
+		public static final String v4recRemark ="v4recRemark";
+		/**
+		 * 录音状态变更
+		 */
+		public static final String v4recAlter="v4recAlter";
+		/**
+		 * 录音提取码
+		 */
+		public static final String v4recAcccode="v4recAcccode";
+		/**
+		 * 录音出证
+		 */
+		public static final String v4recCer="v4recCer";
 		/**
 		 * 密码修改
 		 */
-		public static final String userpwdMod="userpwdMod";
+		public static final String v4pwdModify ="v4pwdModify";
 		/**
-		 * 科室查询
+		 * 销户
 		 */
-		public static final String hisdeptQuery="hisdeptQuery";
+		public static final String v4Canserv  ="v4Canserv";
 		/**
-		 * 医生查询
+		 * 退出
 		 */
-		public static final String hisdoctorQuery="hisdoctorQuery";
-		/**
-		 * 医生详情
-		 */
-		public static final String hisdoctorDetail="hisdoctorDetail";
-		/**
-		 * 健康百科-疾病查询
-		 */
-		public static final String htwikidisQuery="htwikidisQuery";
-		/**
-		 * 健康百科-疾病详情
-		 */
-		public static final String htwikidisDetail="htwikidisDetail";
-		/**
-		 * 健康资讯-新闻查询
-		 */
-		public static final String htinfonewsQuery="htinfonewsQuery";
-		/**
-		 * 健康资讯-新闻详情
-		 */
-		public static final String htinfonewsDetail="htinfonewsDetail";
+		public static final String v4Logout  ="v4Logout";
 		/**
 		 * 意见反馈
 		 */
-		public static final String userFeedback="userFeedback";
+		public static final String v4Feedback  ="v4Feedback";
 		/**
-		 * 预约挂号请求
+		 * 终端版本信息获取
 		 */
-		public static final String hisyyghRequest="hisyyghRequest";
-		/**
-		 * 普通科室列表
-		 */
-		public static final String hispbxxptksList="hispbxxptksList";
-		/**
-		 * 普通科室排班列表
-		 */
-		public static final String hispbxxptkspbList="hispbxxptkspbList";
-		/**
-		 * 专家科室列表
-		 */
-		public static final String hispbxxzjksList="hispbxxzjksList";
-		/**
-		 * 专家医生排班列表
-		 */
-		public static final String hispbxxzjyspbList="hispbxxzjyspbList";
-		/**
-		 * 当日挂号查询
-		 */
-		public static final String hisregQuery="hisregQuery";
+		public static final String versioninfoGet   ="versioninfoGet";
 		
 	}
 	

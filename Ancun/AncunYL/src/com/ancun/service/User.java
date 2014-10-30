@@ -14,13 +14,13 @@ public class User {
 	public static String ACCESSID = AppConstant.EMPTYSTR;
 	public static String ACCESSKEY = AppConstant.EMPTYSTR;
 	public static final String USER_ACCESSID_LOCAL = AppContext.getInstance().isTestEnvironmental() ? 
-			"8e39719bf7f47f0332d2f3a4c7093229":"4a069ace58ba0918a3aa11b62b472b9e";
+			"b99810e661d546f14763f15a9270c28d":"4a069ace58ba0918a3aa11b62b472b9e";
 	public static final String USER_ACCESSKEY_LOCAL = AppContext.getInstance().isTestEnvironmental() ? 
-			"YzQ2YzdkZjgwNDA0ZWJmNDU4YTkxYzQ5ZTU3ZDRhZTA=":"MThjMDE3ZjAwMTE3NTIzNmE4OTM2ZjQ5N2M2Y2JhNDc=";
-	public static final String COMMON_ACCESSID_LOCAL = AppContext.getInstance().isTestEnvironmental() ? 
-			"1cbaaa4c6e667f169e2630f871cb57cd":"3c075d12a568dbc5be68902f99c24393";
-	public static final String COMMON_ACCESSKEY_LOCAL =AppContext.getInstance().isTestEnvironmental() ? 
-			"MjAwOTAwMWFlYjUyNmU1MDY1NDNlMzU3MGM1NmFjOTk=":"MDY4YmVmMDM2NGM0ODliMGVhYmQ1MDI1NzE5YzQwOWI=";
+			"aRxzVdMiopnzpJco3fPJOmXSDZL7rGiL3UgbqQA9YeJ=":"MThjMDE3ZjAwMTE3NTIzNmE4OTM2ZjQ5N2M2Y2JhNDc=";
+//	public static final String COMMON_ACCESSID_LOCAL = AppContext.getInstance().isTestEnvironmental() ? 
+//			"1cbaaa4c6e667f169e2630f871cb57cd":"3c075d12a568dbc5be68902f99c24393";
+//	public static final String COMMON_ACCESSKEY_LOCAL =AppContext.getInstance().isTestEnvironmental() ? 
+//			"MjAwOTAwMWFlYjUyNmU1MDY1NDNlMzU3MGM1NmFjOTk=":"MDY4YmVmMDM2NGM0ODliMGVhYmQ1MDI1NzE5YzQwOWI=";
 	
 	/**
 	 * 用户登录标记

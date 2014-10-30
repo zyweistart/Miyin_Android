@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ancun.core.Constant.ResultCode;
+import com.ancun.yzb.BaseContext;
+import com.ancun.yzb.LoginActivity;
 import com.ancun.yzb.R;
 
 public class BaseActivity extends AppActivity {
@@ -19,9 +21,7 @@ public class BaseActivity extends AppActivity {
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.module_header_left_back){
-			finish();
-		}else if(v.getId()==R.id.module_header_right_more){
+		if(v.getId()==R.id.btn_back){
 			finish();
 		}
 	}
@@ -42,7 +42,7 @@ public class BaseActivity extends AppActivity {
 	 * 设置导航标题
 	 */
 	public void setMainHeadTitle(String title){
-		TextView tvTitle=(TextView)findViewById(R.id.module_header_title);
+		TextView tvTitle=(TextView)findViewById(R.id.main_head_title);
 		if(tvTitle!=null){
 			tvTitle.setText(title);
 		}

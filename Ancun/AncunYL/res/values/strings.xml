@@ -2,5 +2,30 @@
 <resources>
 
     <string name="app_name">音证宝</string>
-
+	<string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="reset_password">重置密码</string>
+    <string name="accounthint">请输入账户</string>
+    <string name="passwordhint">请输入密码</string>
+    <string name="repasswordhint">请再次输入密码</string>
+    <string name="autologinttxt">自动登录</string>
+    <string name="forgetgesutepassword">忘记手势密码</string>
+    <string name="otheraccountlogin">用其他账号登录</string>
+    <string name="getauthcode">获取校验码</string>
+    <string name="regetauthcode">重新获取校验码</string>
+    <string name="phoneemptytip">手机号码不能为空</string>
+    <string name="authcodehint">请输入校验码</string>
+    <string name="pwdemptytip">密码不能为空</string>
+    <string name="autocodeemptytip">验证码不能为空</string>
+    <string name="twopwddifftip">二次密码输入不一致</string>
+    <string name="usernameorpassworderrortip">用户名或密码有误</string>
+    <string name="changepasswordsuccess">修改密码成功</string>
+    <string name="next">下一步</string>
+    <string name="goregister">立即注册</string>
+    <string name="nohaveaccount">还没有账号？</string>
+    <string name="haveaccount">已有账号</string>
+    <string name="register_success">恭喜您，注册成功</string>
+    <string name="reset_password_success">恭喜您，重置密码成功</string>
+    <string name="login_tip">请使用本机号码注册或登录，非本机号码登录时通话录音将无法被正确保全。</string>
+    
 </resources>

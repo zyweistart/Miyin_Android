@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+   	<color name="white">#ffffff</color>
+   	<color name="activity_gb">#f3f3f3</color>
+   	<color name="bg_frame">#e7eaee</color>
+    <color name="button_1_n">#0e75d4</color>
+   	<color name="button_1_p">#bc0000</color>
+   	<color name="button_2_n">#0abad2</color>
+   	<color name="button_2_p">#fcd499</color>
+   	
+</resources>
