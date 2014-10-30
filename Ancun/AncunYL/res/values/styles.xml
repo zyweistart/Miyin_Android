@@ -37,6 +37,27 @@
         <item name="android:background">@drawable/selector_button_1</item>
     </style>
     
+    <style name="button2">
+        <item name="android:layout_width">0.0dip</item>
+   		<item name="android:layout_height">wrap_content</item>
+   		<item name="android:layout_weight">1</item>
+   		<item name="android:onClick">onClick</item>
+   		<item name="android:textSize">17.0dip</item>
+   		<item name="android:textColor">#FFFFFF</item>
+   		<item name="android:layout_margin">5.0dip</item>
+   		<item name="android:padding">8.0dip</item>
+   		<item name="android:background">@drawable/selector_button_1</item>
+    </style>
+    
+    <style name="imageButton1">
+        <item name="android:layout_width">0.0dip</item>
+   		<item name="android:layout_height">wrap_content</item>
+   		<item name="android:layout_weight">1</item>
+   		<item name="android:layout_margin">0.5dip</item>
+   		<item name="android:padding">5.0dip</item>
+   		<item name="android:background">@drawable/selector_button_4</item>
+    </style>
+    
     <style name="edittext1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">45.0dip</item>

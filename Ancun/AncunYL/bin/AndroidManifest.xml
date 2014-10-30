@@ -34,7 +34,7 @@
             android:value="WebSite" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".StartActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
@@ -53,10 +53,10 @@
         <activity
             android:name=".ResetPassWordActivity"
             android:screenOrientation="portrait"/>
-        <!-- <activity
+        <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" /> -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AccountActivity"
     	    android:screenOrientation="portrait" />

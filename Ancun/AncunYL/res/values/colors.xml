@@ -15,5 +15,6 @@
 	<color name="tab_txt_p">#262d33</color>
     <color name="tab_bar_s">#262d33</color>
     <color name="tab_bar_n">#596067</color>
+    <color name="selector_item_p">#e7eaee</color>
 	
 </resources>
