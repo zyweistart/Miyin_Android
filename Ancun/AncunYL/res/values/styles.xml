@@ -62,7 +62,7 @@
         <item name="android:fastScrollEnabled">true</item>
         <item name="android:scrollingCache">false</item>
         <item name="android:cacheColorHint">#00000000</item>
-        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:listSelector">@color/transparent</item>
     </style>
     
 </resources>

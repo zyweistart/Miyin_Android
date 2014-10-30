@@ -22,10 +22,17 @@
     <string name="changepasswordsuccess">修改密码成功</string>
     <string name="next">下一步</string>
     <string name="goregister">立即注册</string>
+    <string name="gologin">马上去登录</string>
     <string name="nohaveaccount">还没有账号？</string>
     <string name="haveaccount">已有账号</string>
     <string name="register_success">恭喜您，注册成功</string>
     <string name="reset_password_success">恭喜您，重置密码成功</string>
     <string name="login_tip">请使用本机号码注册或登录，非本机号码登录时通话录音将无法被正确保全。</string>
+    <string name="myaccount">我的账户</string>
+    <string name="dial">拨号盘</string>
+    <string name="callrecordeds">通话记录</string>
+    <string name="contact">通讯录</string>
+    <string name="recordeds">我的录音</string>
+    <string name="checknetworkconnected">网络连接异常</string>
     
 </resources>

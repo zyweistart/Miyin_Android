@@ -34,31 +34,35 @@
             android:value="WebSite" />
 
         <activity
-            android:name=".StartActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ResetPassWordActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
+            android:screenOrientation="portrait"/>
+        <!-- <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" /> -->
+        <activity
+            android:name=".AccountActivity"
+    	    android:screenOrientation="portrait" />
+        <activity
+            android:name=".SettingActivity"
+    	    android:screenOrientation="portrait" />
         
     </application>
 

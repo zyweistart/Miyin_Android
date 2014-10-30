@@ -1,7 +1,220 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${packageName}.${activityClass}" >
+    android:orientation="vertical" >
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_main"
+        android:padding="10.0dip" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/app_main_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:contentDescription="@string/empty"
+                android:scaleType="center"
+                android:src="@drawable/logotxt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/main_btnacount"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:onClick="onClick"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:text="@string/myaccount"
+                android:textColor="#eff2f4"
+                android:textSize="18.0dip"
+                android:background="@drawable/selector_button_3" />
+
+            <ImageButton
+                android:id="@+id/main_ibmore"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="0dp"
+                android:contentDescription="@string/empty"
+                android:onClick="onClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/more"
+                android:background="@drawable/selector_button_3" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/tab_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:background="#d4dde6"
+            android:baselineAligned="false" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" >
+
+                <TextView
+                    android:id="@+id/tab1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="18.0dip" 
+                    android:textColor="@color/tab_txt_p"
+                    android:text="@string/dial"/>
+
+                <ImageView
+                    android:layout_width="1dip"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/tab_line"
+                    android:contentDescription="@string/empty" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" >
+
+                <TextView
+                    android:id="@+id/tab2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="18.0dip" 
+                    android:textColor="@color/tab_bar_n"
+                    android:text="@string/callrecordeds"/>
+
+                <ImageView
+                    android:layout_width="1dip"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/tab_line"
+                    android:contentDescription="@string/empty" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" >
+
+                <TextView
+                    android:id="@+id/tab3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="18.0dip"
+                    android:textColor="@color/tab_bar_n"
+                    android:text="@string/contact" />
+
+                <ImageView
+                    android:layout_width="1dip"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/tab_line"
+                    android:contentDescription="@string/empty" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" >
+
+                <TextView
+                    android:id="@+id/tab4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="18.0dip" 
+                    android:textColor="@color/tab_bar_n"
+                    android:text="@string/recordeds"/>
+            </RelativeLayout>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tab_linearlayout" >
+
+            <ImageView
+                android:id="@+id/tab_bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:background="#d4790e"
+                android:contentDescription="@string/empty" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/empty"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/empty"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/empty"
+                android:visibility="invisible" />
+            
+        </LinearLayout>
+        
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_networkconnected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="6.0dip"
+        android:textSize="16.0dip"
+        android:textColor="#a3783b"
+        android:text="@string/checknetworkconnected"
+        android:background="#deecd9"
+        android:visibility="gone" />
+
+    <start.widget.ScrollLayout
+        android:id="@+id/main_scrolllayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

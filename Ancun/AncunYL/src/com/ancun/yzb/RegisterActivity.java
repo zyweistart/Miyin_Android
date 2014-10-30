@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.Handler;
-import com.ancun.service.User;
 
 /**
  * 注册
@@ -141,14 +140,15 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			}
 			HttpServer hServer=new HttpServer(Constant.URL.v4Signup, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
-			headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+			headers.put("sign", "");
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
-			params.put("accessid", User.USER_ACCESSID_LOCAL);
-			params.put("mobile", phone);
-			params.put("pwd", MD5.md5(password));
+			params.put("phone",phone);
+			params.put("password", MD5.md5(password));
 			params.put("authcode", authcode);
-			params.put("regsource", "10");
+			params.put("signupsource","9");
+			params.put("ip", "");
+			params.put("mac", "");
 			params.put("loginflag", "1");
 			hServer.setParams(params);
 			hServer.get(new UIRunnable() {
@@ -173,12 +173,11 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	public void getAuthCode(int type){
 		HttpServer hServer=new HttpServer(Constant.URL.v4scodeGet, getHandlerContext());
 		Map<String,String> headers=new HashMap<String,String>();
-		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+		headers.put("sign", "");
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
-		params.put("accessid", User.USER_ACCESSID_LOCAL);
-		params.put("mobile", phone);
-		params.put("type", String.valueOf(type));
+		params.put("phone", phone);
+		params.put("actype", String.valueOf(type));
 		hServer.setParams(params);
 		hServer.get(new UIRunnable() {
 			

@@ -100,6 +100,9 @@ public final class Constant {
 		 */
 		public static final int REGISTER_RESET_PASSWORD_STEP2=0x1120;
 		
+		public static final int HANDLERNETCHECKMESSAGEWHATCONNECT=0x1121;
+		public static final int HANDLERNETCHECKMESSAGEWHATNOCONNECT=0x1122;
+		
 	}
 
 	public final class ResultCode{
