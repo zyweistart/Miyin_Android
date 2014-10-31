@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/seracher_boraod">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="2dip"
+        android:layout_marginRight="2dip"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="5dip"
+        android:background="@drawable/contact_search_bg"
+        android:orientation="horizontal" >
+        <ImageButton
+            android:id="@+id/contact_search_bar_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/contact_search_icon"
+            android:contentDescription="@string/empty"
+            android:focusable="false" />
+        <EditText
+            android:id="@+id/contact_search_bar_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="0.0dip"
+            android:layout_marginLeft="0.0dip"
+            android:layout_marginRight="0.0dip"
+            android:layout_marginTop="0dip"
+            android:layout_toLeftOf="@+id/contact_search_bar_clean"
+            android:layout_toRightOf="@+id/contact_search_bar_icon"
+            android:background="@color/transparent"
+            android:hint="请输入联系人号码"
+            android:paddingLeft="10.0dip"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textColorHint="#AAAAAA"
+            android:textSize="18.0dip" />
+        <ImageButton
+            android:id="@+id/contact_search_bar_clean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/contact_search_clean"
+            android:contentDescription="@string/empty"
+            android:focusable="false" />
+    </RelativeLayout>
+</LinearLayout>

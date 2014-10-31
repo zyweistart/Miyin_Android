@@ -8,6 +8,8 @@ import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ancun.bean.impl.ContactDaoImpl;
+import com.ancun.bean.impl.RecentDaoImpl;
 import com.ancun.core.Constant.ResultCode;
 import com.ancun.yzb.BaseContext;
 import com.ancun.yzb.LoginActivity;
@@ -36,6 +38,23 @@ public class BaseActivity extends AppActivity {
 			super.onProcessMessage(msg);
 			break;
 		}
+	}
+	
+	private RecentDaoImpl mRecentDaoImpl;
+	private ContactDaoImpl mContactDaoImpl;
+	
+	public RecentDaoImpl getRecentDaoImpl(){
+		if(mRecentDaoImpl==null){
+			mRecentDaoImpl=new RecentDaoImpl(this);
+		}
+		return mRecentDaoImpl;
+	}
+	
+	public ContactDaoImpl getContactDaoImpl(){
+		if(mContactDaoImpl==null){
+			mContactDaoImpl=new ContactDaoImpl(this);
+		}
+		return mContactDaoImpl;
 	}
 	
 	/**

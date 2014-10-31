@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@drawable/selector_item"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5.0dip" >
+
+        <ImageView
+            android:id="@+id/contact_photo"
+            android:layout_width="65.0dip"
+            android:layout_height="65.0dip"
+            android:layout_gravity="center"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/ic_contact_head" />
+
+        <TextView
+            android:id="@+id/contact_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_marginLeft="10.0dip"
+            android:textSize="18.0dip"
+            android:textColor="#404040"
+            android:textAppearance="?android:textAppearanceMedium" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dial_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f6f7f9"
+        android:orientation="horizontal"
+        android:padding="5.0dip"
+        android:visibility="gone" >
+
+        <Button
+            android:id="@+id/dial_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20.0dip"
+            android:background="@null"
+            android:drawableTop="@drawable/phone_recording"
+            android:text="录音拨号"
+            android:textColor="#5e5f61"
+            android:textSize="14.0dip" />
+
+        <Button
+            android:id="@+id/dial_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20.0dip"
+            android:background="@null"
+            android:drawableTop="@drawable/phone_normal"
+            android:text="普通拨号"
+            android:textColor="#5e5f61"
+            android:textSize="14.0dip" />
+    </LinearLayout>
+
+</LinearLayout>

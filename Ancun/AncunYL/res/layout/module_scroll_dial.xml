@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white" >
+    android:background="@color/activity_gb">
 
     <LinearLayout
         android:id="@+id/frame_bottom"
@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/dial_content"
-                style="@style/textview1"
+                style="@style/textview3"
                 android:layout_centerVertical="true"
                 android:layout_margin="10.0dip"
                 android:layout_toLeftOf="@id/dial_clear"
