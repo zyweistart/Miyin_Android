@@ -2,10 +2,12 @@ package com.ancun.core;
 
 import start.core.AppActivity;
 import start.core.AppException;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.ancun.bean.impl.ContactDaoImpl;
@@ -17,6 +19,8 @@ import com.ancun.yzb.R;
 
 public class BaseActivity extends AppActivity {
 
+	private InputMethodManager mInputMethodManager;
+	
 	public BaseContext getAppContext() {
 		return (BaseContext)BaseContext.getInstance();
 	}
@@ -65,6 +69,13 @@ public class BaseActivity extends AppActivity {
 		if(tvTitle!=null){
 			tvTitle.setText(title);
 		}
+	}
+	
+	public InputMethodManager getInputMethodManager(){
+		if(mInputMethodManager==null){
+			mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		}
+		return mInputMethodManager;
 	}
 	
 	public void goLogin(Boolean autoLogin){

@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -86,6 +87,9 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 	
 	@Override
 	public void onClick(View v) {
+		if(getInputMethodManager().isActive()){
+			getInputMethodManager().hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		}
 		if (v == mTab1.getParent()) {
 			mScrollLayout.snapToScreen(0);
 		} else if (v == mTab2.getParent()) {
