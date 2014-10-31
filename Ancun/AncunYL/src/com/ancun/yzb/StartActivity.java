@@ -5,7 +5,6 @@ import java.util.List;
 
 import start.utils.FileUtils;
 import start.utils.TimeUtils;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -46,10 +45,10 @@ public class StartActivity extends BaseActivity{
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-//				goLogin(true);
-				Intent intent=new Intent(StartActivity.this,MainActivity.class);
-				startActivity(intent);
-				finish();
+				goLogin(true);
+//				Intent intent=new Intent(StartActivity.this,MainActivity.class);
+//				startActivity(intent);
+//				finish();
 			}
 			
 		});

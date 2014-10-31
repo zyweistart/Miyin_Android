@@ -3,9 +3,9 @@ package com.ancun.yzb;
 import java.util.HashMap;
 import java.util.Map;
 
+import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.Response;
-import start.service.UIRunnable;
 import start.utils.MD5;
 import start.utils.StringUtils;
 import android.os.Bundle;
@@ -70,7 +70,7 @@ public class ResetPassWordActivity  extends RegisterActivity {
 			params.put("mac", "");
 			params.put("loginflag", "1");
 			hServer.setParams(params);
-			hServer.get(new UIRunnable() {
+			hServer.get(new HttpRunnable() {
 				
 				@Override
 				public void run(Response response) {

@@ -5,9 +5,9 @@ import java.util.Map;
 
 import start.core.AppConstant;
 import start.core.AppException;
+import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.Response;
-import start.service.UIRunnable;
 import start.utils.MD5;
 import start.utils.StringUtils;
 import start.widget.CustomEditText;
@@ -150,7 +150,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		params.put("ip", "");
 		params.put("mac", "");
 		hServer.setParams(params);
-		hServer.get(new UIRunnable() {
+		hServer.get(new HttpRunnable() {
 			
 			@Override
 			public void run(Response response) throws AppException {

@@ -47,7 +47,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dip"
-            android:background="@drawable/contact_search_clean"
+            android:background="@drawable/ic_input_clear"
             android:contentDescription="@string/empty"
             android:focusable="false" />
     </RelativeLayout>

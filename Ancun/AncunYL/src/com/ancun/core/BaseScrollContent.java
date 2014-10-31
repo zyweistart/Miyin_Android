@@ -17,6 +17,8 @@ import com.ancun.core.Constant.ResultCode;
  */
 public abstract class BaseScrollContent implements HandleContextListener {
 	
+	protected final String TAG = this.getClass().getSimpleName();
+	
 	private View mLayoutView;
 	private BaseActivity mActivity;
 	private LayoutInflater mLayoutInflater;

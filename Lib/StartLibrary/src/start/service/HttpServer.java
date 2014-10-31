@@ -1,5 +1,10 @@
 package start.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +33,9 @@ import start.utils.TimeUtils;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.Message;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
+import android.os.AsyncTask;
 
 /**
  * @author Start   
@@ -46,13 +53,14 @@ public class HttpServer {
 	private Map<String,String> mHeaders;
 	private Map<String,String>mParams;
 	private ProgressDialog mPDialog;
-	private Boolean download;
+	
+	private String downloadDirectory;
+	private String downloadFileName;
 	
 	public HttpServer(String mUrl, HandlerContext mHandler) {
 		this.mUrl = mUrl;
 		this.mHandler = mHandler;
 		this.mContext = mHandler.getContext();
-		this.setDownload(false);
 	}
 	
 	public void setHeaders(Map<String, String> mHeaders) {
@@ -62,23 +70,15 @@ public class HttpServer {
 	public void setParams(Map<String, String> mParams) {
 		this.mParams = mParams;
 	}
-	
-	public Boolean isDownload() {
-		return download;
-	}
 
-	public void setDownload(Boolean download) {
-		this.download = download;
-	}
-
-	public void get(final UIRunnable runnable){
+	public void get(final HttpRunnable runnable){
 		get(runnable,true);
 	}
 	
-	public void get(final UIRunnable runnable,Boolean dialog){
+	public void get(final HttpRunnable runnable,Boolean dialog){
 		
 		if(NetConnectManager.isNetworkConnected(mContext)){
-			
+			//HTTP请求
 			if(dialog){
 				mPDialog = new ProgressDialog(mContext);
 				mPDialog.setMessage(mContext.getString(R.string.wait));
@@ -93,46 +93,49 @@ public class HttpServer {
 				public void run() {
 					
 					try{
-						String requestContent=buildRequestContentByStringJson();
-						if(mHeaders==null){
-							mHeaders=new HashMap<String,String>();
-						}
-						mHeaders.put("sign",AppConstant.EMPTYSTR.equals(mHeaders.get("sign"))?
-								MD5.md5(requestContent):
-									StringUtils.signatureHmacSHA1(MD5.md5(requestContent),mHeaders.get("sign")));
-						HttpResponse httpResponse=getResponse(requestContent);
+						HttpResponse httpResponse=getResponse(setBuildRequestContent());
 						Response response=new Response(httpResponse);
-						if(isDownload()){
-							//TODO:文件下载处理
+						response.resolveJson();
+						if(ResultCode.SUCCESS.equals(response.getCode())){
+							runnable.run(response);
 						}else{
-							response.resolveJson();
-							if(ResultCode.SUCCESS.equals(response.getCode())){
-								runnable.run(response);
-							}else{
-								Message msg = new Message();
-								msg.what = StringUtils.toInt(response.getCode());
-								msg.obj = response.getMsg();
-								mHandler.sendMessage(msg);
-							}
+							mHandler.sendMessage(StringUtils.toInt(response.getCode()),response.getMsg());
 						}
 					}catch(AppException e){
-						//发送HTTP请求信息
-						Message message=new Message();
-						message.what=Handler.HTTP_APPEXCEPTION_MESSAGE;
-						message.obj=e.getErrorString(mContext);
-						mHandler.sendMessage(message);
+						mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, e.getErrorString(mContext));
 					}finally{
 						if (mPDialog != null) {
 							mPDialog.dismiss();
+							mPDialog=null;
 						}
 					}
 					
 				}}).start();
-			
 		}else{
 			UIHelper.goSettingNetwork(mContext);
 		}
 		
+	}
+	
+	public void download(DownloadRunnable runnable,String downloadDirectory,String downloadFileName){
+		if(NetConnectManager.isNetworkConnected(mContext)){
+			this.downloadDirectory = downloadDirectory;
+			this.downloadFileName = downloadFileName;
+			new DownloadTask(runnable).execute();
+		}else{
+			UIHelper.goSettingNetwork(mContext);
+		}
+	}
+	
+	public String setBuildRequestContent() throws AppException{
+		String requestContent=buildRequestContentByStringJson();
+		if(mHeaders==null){
+			mHeaders=new HashMap<String,String>();
+		}
+		mHeaders.put("sign",AppConstant.EMPTYSTR.equals(mHeaders.get("sign"))?
+				MD5.md5(requestContent):
+					StringUtils.signatureHmacSHA1(MD5.md5(requestContent),mHeaders.get("sign")));
+		return requestContent;
 	}
 	
 	/**
@@ -187,6 +190,140 @@ public class HttpServer {
 		} catch (Exception e) {
 			throw AppException.http(e);
 		}
+	}
+	
+	private class DownloadTask extends AsyncTask<Void, Float, File> {
+
+		private ProgressDialog pDialog;
+		
+		private DownloadRunnable mRunnable;
+		
+		public DownloadTask(DownloadRunnable runnable){
+			this.mRunnable=runnable;
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			// 创建ProgressDialog对象  
+			pDialog = new ProgressDialog(mContext);  
+			// 设置进度条风格，风格为圆形，旋转的  
+			pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);  
+			// 设置ProgressDialog提示信息  
+			pDialog.setMessage(mContext.getString(R.string.downloading));  
+			// 设置ProgressDialog标题图标  
+//            pDialog.setIcon(R.drawable.img2);  
+			// 设置ProgressDialog 的进度条是否不明确 false 就是不设置为不明确  
+			pDialog.setIndeterminate(false);  
+			// 设置ProgressDialog 进度条进度  
+			pDialog.setProgress(100);
+			// 设置ProgressDialog 是否可以按退回键取消  
+			pDialog.setCancelable(true);
+			pDialog.setOnCancelListener(new OnCancelListener() {
+				@Override
+				public void onCancel(DialogInterface dialog) {
+					onCancelled();
+				}
+			});
+			pDialog.show();
+		}
+
+		@Override
+		protected void onCancelled() {
+			cancel(true);
+		}
+
+		@Override
+		protected File doInBackground(Void... params) {
+			File dirFile=new File(downloadDirectory);
+			if(!dirFile.exists()){
+				dirFile.mkdirs();
+			}
+			File downFile=new File(dirFile,downloadFileName);
+			if(!downFile.exists()){
+				try{
+					File tmpFile=new File(dirFile,downloadFileName+".tmp");
+					HttpResponse httpResponse=getResponse(setBuildRequestContent());
+					if(httpResponse!=null&&httpResponse.getStatusLine().getStatusCode()==200){
+						Response response=new Response(httpResponse);
+						int len=-1;
+						long reallen=0;
+						//获取下载文件的总大小
+						long totallen=httpResponse.getEntity().getContentLength();
+						InputStream is=null;
+						FileOutputStream fos=null;
+						byte[] buffer=new byte[1024*8];
+						try {
+							is=response.getInputStream();
+							fos = new FileOutputStream(tmpFile);
+							while((len=is.read(buffer))!=-1&&!isCancelled()){
+								fos.write(buffer,0,len);
+								reallen+=len;
+								publishProgress((float)reallen/totallen);
+							}
+						} catch (AppException e) {
+							mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, e.getMessage());
+						} catch (FileNotFoundException e) {
+							mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, e.getMessage());
+						} catch (IOException e) {
+							mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, e.getMessage());
+						}finally{
+							if(fos!=null){
+								try {
+									fos.flush();
+								} catch (IOException e) {
+									mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, e.getMessage());
+								}finally{
+									try {
+										fos.close();
+									} catch (IOException e) {
+										mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, e.getMessage());
+									}finally{
+										fos=null;
+									}
+								}
+							}
+							buffer=null;
+							if(isCancelled()){
+								tmpFile.delete();
+							}else{
+								if(tmpFile.length()==totallen){
+									tmpFile.renameTo(downFile);
+								}else{
+									mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, "文件大小不一致");
+									tmpFile.delete();
+								}
+							}
+						}
+					}else{
+						mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE,"文件下载失败");
+					}
+				}catch(AppException e){
+					mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, e.getErrorString(mContext));
+				}
+			}
+			return downFile;
+		}
+
+		@Override
+		protected void onProgressUpdate(Float... values) {
+			pDialog.setProgress(Math.round(values[0]*100f)); 
+		}
+
+		@Override
+		protected void onPostExecute(File result) {
+			if(result.exists()){
+				try {
+					mRunnable.run(result);
+				} catch (AppException e) {
+					mHandler.sendMessage(Handler.HTTP_APPEXCEPTION_MESSAGE, e.getErrorString(mContext));
+				}
+			}
+			if(pDialog!=null){
+				pDialog.dismiss();
+				mPDialog=null;
+			}
+		}
+		
 	}
 	
 }

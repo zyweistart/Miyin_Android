@@ -21,7 +21,7 @@ import com.ancun.core.Constant;
 import com.ancun.yzb.layout.CallRecordsContentView;
 import com.ancun.yzb.layout.ContactsContentView;
 import com.ancun.yzb.layout.DialContentView;
-import com.ancun.yzb.layout.MyRecordingContentView;
+import com.ancun.yzb.layout.RecordingContentView;
 
 public class MainActivity extends BaseActivity implements ScrollLayout.OnViewChangeListener {
 	
@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 	private DialContentView mDialContentView;
 	private CallRecordsContentView mCallRecordsContentView;
 	private ContactsContentView mContactsContentView;
-	private MyRecordingContentView mMyRecordingContentView;
+	private RecordingContentView mMyRecordingContentView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 		mScrollLayout.addView(mCallRecordsContentView.getLayoutView());
 		mContactsContentView = new ContactsContentView(this);
 		mScrollLayout.addView(mContactsContentView.getLayoutView());
-		mMyRecordingContentView = new MyRecordingContentView(this);
+		mMyRecordingContentView = new RecordingContentView(this);
 		mScrollLayout.addView(mMyRecordingContentView.getLayoutView());
 	}
 	

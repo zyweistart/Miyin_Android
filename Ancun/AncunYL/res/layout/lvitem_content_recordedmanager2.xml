@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recordeditemlayout"
+    android:layout_width="match_parent"
+    android:layout_height="75.0dip"
+    android:padding="5.0dip"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@drawable/selector_list_item_n" >
+
+    <ImageView
+        android:id="@+id/recorded_main_head_img"
+        android:layout_width="65.0dip"
+        android:layout_height="65.0dip"
+        android:src="@drawable/ic_contact_head"
+        android:contentDescription="@string/empty" />
+    
+	<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65.0dip">
+        
+	     <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="65.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5.0dip"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/recorded_main_name"
+                android:layout_width="wrap_content"
+                android:layout_height="25dip"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="#398fe2"/>
+            <TextView
+                android:id="@+id/recorded_main_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="20dip"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AAAAAA"/>
+            <TextView
+                android:id="@+id/recorded_main_from"
+                android:layout_width="wrap_content"
+               	android:layout_height="20dip"
+                android:singleLine="true"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AAAAAA"
+                android:text="2014年05月06号" />
+        </LinearLayout>
+        
+		<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="65.0dip"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal" >
+            <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical">
+		    	<TextView
+		            android:id="@+id/recorded_main_download_status"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:layout_marginLeft="2.0dip"
+		            android:layout_marginRight="3.0dip"
+		            android:gravity="center"
+		            android:textAppearance="?android:textAppearanceSmall"
+		            android:textColor="#AAAAAA"
+		            android:paddingBottom="23.0dip"
+		            android:paddingTop="2dp"
+		            android:text="4秒" />
+		    	<TextView
+		            android:id="@+id/recorded_main_recendtime"
+		            android:layout_width="wrap_content"
+		            android:layout_height="20.0dip"
+		            android:layout_gravity="center"
+		            android:textAppearance="?android:textAppearanceSmall"
+		            android:textColor="#FF0000"
+		            android:text="2014年05月05号"/>
+            </LinearLayout>
+         
+			<ImageButton
+		        android:id="@+id/recorded_main_detail_btn_remark"
+		        android:layout_width="63.0dip"
+		        android:layout_height="65.0dip"
+		        android:layout_gravity="center"
+		        android:background="#00000000"
+		        android:src="@drawable/selector_recording_go_detail" 
+		        android:contentDescription="@string/empty"/>
+		</LinearLayout>
+		
+	</RelativeLayout>
+	
+</LinearLayout>

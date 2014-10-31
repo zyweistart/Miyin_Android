@@ -16,10 +16,10 @@ import start.core.AppConstant;
 import start.core.AppContext;
 import start.core.AppException;
 import start.core.HandlerContext;
+import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.Response;
 import start.service.UIHelper;
-import start.service.UIRunnable;
 import start.utils.LogUtils;
 import start.utils.NetConnectManager;
 import start.utils.SharedPreferencesUtils;
@@ -63,7 +63,7 @@ public class UpdateApplication {
 	public void startCheck(final boolean backgroundCheckFlag) {
 		if (NetConnectManager.isNetworkConnected(currentActivity)) {
 			HttpServer hServer=new HttpServer("", mHandlerContext);
-			hServer.get(new UIRunnable() {
+			hServer.get(new HttpRunnable() {
 				
 				@Override
 				public void run(Response response) throws AppException {

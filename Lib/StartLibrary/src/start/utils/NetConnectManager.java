@@ -24,6 +24,26 @@ public class NetConnectManager {
 	}
 
 	/**
+	 * 判断是否在移动网络模式下
+	 */
+	public static Boolean isMobilenetwork(Context context){
+		ConnectivityManager connectivity = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		 NetworkInfo[] info;
+	       if (connectivity != null) {
+	           info = connectivity.getAllNetworkInfo();
+	            if (info != null) {
+	              for (int i = 0; i < info.length; i++) {
+	                  if (info[i].getTypeName().equals("WIFI") &&
+	                         info[i].isConnected()) {
+	                      return false;
+	                  }
+	              }
+	          }
+	      }
+	      return true;
+	}
+	
+	/**
 	 * 获取当前网络类型
 	 * @return 0：没有网络   1：WIFI网络   2：WAP网络    3：NET网络
 	 */
