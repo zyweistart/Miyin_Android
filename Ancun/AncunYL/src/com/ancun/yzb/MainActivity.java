@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 	private DialContentView mDialContentView;
 	private CallRecordsContentView mCallRecordsContentView;
 	private ContactsContentView mContactsContentView;
-	private RecordingContentView mMyRecordingContentView;
+	private RecordingContentView mRecordingContentView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,8 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 		mScrollLayout.addView(mCallRecordsContentView.getLayoutView());
 		mContactsContentView = new ContactsContentView(this);
 		mScrollLayout.addView(mContactsContentView.getLayoutView());
-		mMyRecordingContentView = new RecordingContentView(this);
-		mScrollLayout.addView(mMyRecordingContentView.getLayoutView());
+		mRecordingContentView = new RecordingContentView(this);
+		mScrollLayout.addView(mRecordingContentView.getLayoutView());
 	}
 	
 	
@@ -70,6 +70,18 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 	protected void onStart() {
 		super.onStart();
 		mScrollLayout.setIsScroll(true);
+	}
+	
+	@Override
+	protected void onPause() {
+		mRecordingContentView.onPause();
+		super.onPause();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		mContactsContentView.onDestroy();
+		super.onDestroy();
 	}
 	
 	@Override

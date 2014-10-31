@@ -30,6 +30,7 @@ import com.ancun.core.BaseActivity;
 import com.ancun.core.BaseScrollContent;
 import com.ancun.core.Constant;
 import com.ancun.service.User;
+import com.ancun.widget.PlayerView;
 import com.ancun.yzb.R;
 import com.ancun.yzb.layout.RecordingAdapter.HolderView;
 
@@ -40,9 +41,11 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 	private XListView mListView;
 	private RefreshListServer mRefreshListServer;
 	private RecordingAdapter mRecordingAdapter;
+	private PlayerView playerView;
 
 	public RecordingContentView(BaseActivity activity) {
 		super(activity, R.layout.module_scroll_recording);
+		playerView=(PlayerView)findViewById(R.id.playerview);
 		mListView = (XListView) findViewById(R.id.xlv_listview);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -53,9 +56,8 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 					mRecordingAdapter.setSelectedPosition(i);
 					HolderView v=(HolderView)view.getTag();
 					if(v.file.exists()){
-//						playerView.initPlayerFile(v.file.getAbsolutePath());
-//						playerView.startPlayer();
-						getHandlerContext().makeTextLong("播放");
+						playerView.initPlayerFile(v.file.getAbsolutePath());
+						playerView.startPlayer();
 					}else{
 						final String fileno=v.fileno;
 						if(NetConnectManager.isMobilenetwork(getCurrentActivity())){
@@ -201,16 +203,22 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		hServer.download(new DownloadRunnable() {
 			
 			@Override
-			public void run(File file) throws AppException {
+			public void run(final File file) throws AppException {
 				getCurrentActivity().runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
 						mRecordingAdapter.notifyDataSetChanged();
+						playerView.initPlayerFile(file.getAbsolutePath());
+						playerView.startPlayer();
 					}
 				});
 			}
 			
 		},DOWNLOADDIRECTORY,fileNo);
+	}
+	
+	public void onPause() {
+		playerView.pause();
 	}
 	
 }

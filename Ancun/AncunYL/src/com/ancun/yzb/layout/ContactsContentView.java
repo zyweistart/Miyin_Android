@@ -160,15 +160,14 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		loadData(true);
 	}
 	
-//	@Override
-//	public void onDestroy() {
-//		if(mWindowManager!=null){
-//			if(overlay!=null){
-//				mWindowManager.removeView(overlay);
-//				overlay=null;
-//			}
-//		}
-//	}
+	public void onDestroy() {
+		if(mWindowManager!=null){
+			if(overlay!=null){
+				mWindowManager.removeView(overlay);
+				overlay=null;
+			}
+		}
+	}
 	
 	public void loadData(final Boolean flag){
 		new Thread() {
