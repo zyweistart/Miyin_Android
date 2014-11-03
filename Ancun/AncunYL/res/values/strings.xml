@@ -5,6 +5,7 @@
     <string name="app_phone">968682</string>
     <string name="app_compayname">安存科技</string>
     
+	<string name="back">返回</string>
 	<string name="login">登录</string>
     <string name="register">注册</string>
     <string name="reset_password">重置密码</string>
@@ -56,10 +57,22 @@
     <string name="copy_success">复制成功</string>
     <string name="undo_success">撤销成功</string>
     <string name="undo_extraction_code_sure">是否撤销提取</string>
+    <string name="extraction_code">提取码</string>
+    <string name="extraction_code_validity_tip">有效期至</string>
+    <string name="extraction_code_tip1">凭提取码可在官网</string>
+    <string name="extraction_code_tip2">(http://www.968682.com)公开查询、下载本条通话录音；并可作为依据提交给第三方，以证明录音的真实性、可靠性和法律效力。</string>
+    <string name="extraction_code_tip">温馨提醒：请妥善保管好您的录音提取码。</string>
+    <string name="copy_extraction_code">复制提取码</string>
+    <string name="short_message_send">以短信的形式发送</string>
+    <string name="undo_extraction_code">撤销提取</string>
     <string name="notary_request_success">申办公证</string>
     <string name="notary_notice">公证须知</string>
     <string name="notary_list">公证机构一览表</string>
     <string name="apple_extraction_code_tip">凭提取码可在官网公开查询、验证本条通话录音，确定申请？</string>
     <string name="apply_notary_submit_tip">您确定将该录音提交至公证机构申办公证吗？</string>
     <string name="apply_notary_cancel_tip">您确定要取消该录音申办公证吗？</string>
+    <string name="recording_remark_modify_success">录音备注修改成功</string>
+    <string name="unsubscribe">退订</string>
+    <string name="unsubscribe_sure">确认退订</string>
+    <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.968682.com进行操作</string>
 </resources>

@@ -41,7 +41,7 @@
                     android:layout_marginTop="10dip"
                     android:gravity="center|left"
                     android:singleLine="true"
-                    android:text="提取码: "
+                    android:text="@string/extraction_code"
                     android:textColor="#000000"
                     android:textSize="18dip" />
 
@@ -92,7 +92,7 @@
                         android:layout_marginRight="5dip"
                         android:gravity="center|left"
                         android:singleLine="true"
-                        android:text="有效期至: "
+                        android:text="@string/extraction_code_validity_tip"
                         android:textColor="#000000"
                         android:textSize="18dip" />
 
@@ -105,7 +105,6 @@
                         android:gravity="center|left"
                         android:paddingLeft="0dip"
                         android:singleLine="true"
-                        android:text="2012-10-15 12:15"
                         android:textColor="#666666"
                         android:textSize="16dip" />
                 </RelativeLayout>
@@ -120,7 +119,7 @@
                     android:layout_marginTop="10dip"
                     android:gravity="center|left"
                     android:singleLine="false"
-                    android:text="凭提取码可在官网"
+                    android:text="@string/extraction_code_tip1"
                     android:textColor="#666666"
                     android:textSize="16dip" />
 
@@ -134,7 +133,7 @@
                     android:layout_marginTop="0dip"
                     android:gravity="center|left"
                     android:singleLine="false"
-                    android:text="(http://www.968682.com)公开查询、下载本条通话录音；并可作为依据提交给第三方，以证明录音的真实性、可靠性和法律效力。"
+                    android:text="@string/extraction_code_tip2"
                     android:textColor="#666666"
                     android:textSize="16dip" />
 
@@ -148,7 +147,7 @@
                     android:layout_marginTop="10dip"
                     android:gravity="center|left"
                     android:singleLine="false"
-                    android:text="温馨提醒：请妥善保管好您的录音提取码。"
+                    android:text="@string/extraction_code_tip"
                     android:textColor="#ff0000"
                     android:textSize="14dip" />
             </LinearLayout>
@@ -162,7 +161,7 @@
                 android:layout_marginRight="25dip"
                 android:layout_marginTop="30dip"
                 android:background="@drawable/selector_button_6"
-                android:text="复制提取码"
+                android:text="@string/copy_extraction_code"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
 
@@ -175,7 +174,7 @@
                 android:layout_marginRight="25dip"
                 android:layout_marginTop="25dip"
                 android:background="@drawable/selector_button_6"
-                android:text="以短信的形式发送"
+                android:text="@string/short_message_send"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
 
@@ -188,7 +187,7 @@
                 android:layout_marginRight="25dip"
                 android:layout_marginTop="30dip"
                 android:background="@drawable/selector_button_9"
-                android:text="撤销提取"
+                android:text="@string/undo_extraction_code"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
         </LinearLayout>

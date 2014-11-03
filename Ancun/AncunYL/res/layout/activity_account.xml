@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/activity_gb">
+    
+    <include layout="@layout/module_header" />
+
+    <LinearLayout 
+	       android:layout_width="match_parent"
+	       android:layout_height="wrap_content"
+	       android:padding="8.0dip"
+	       android:background="#e7e8ec"
+	       android:orientation="vertical">
+	       <TextView 
+	           android:id="@+id/activity_myaccount_phone"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:textSize="15.0dip"
+	           android:textColor="@color/black"
+	           android:layout_marginTop="4.0dip"/>
+	       
+	       <TextView 
+	           android:id="@+id/activity_myaccount_recordingcount"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:textSize="15.0dip"
+	           android:textColor="@color/black"
+	           android:layout_marginTop="4.0dip"/>
+	       
+	       <TextView 
+	           android:id="@+id/activity_myaccount_timelong"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:textSize="15.0dip"
+	           android:textColor="@color/black"
+	           android:layout_marginTop="4.0dip"/>
+	       
+	       <TextView 
+	           android:id="@+id/activity_myaccount_storageinfo"
+	           android:layout_width="match_parent"
+	           android:layout_height="wrap_content"
+	           android:textSize="15.0dip"
+	           android:textColor="@color/black"
+	           android:ellipsize="none"
+			 	android:scrollHorizontally="false"/>
+	       
+    	</LinearLayout>
+    	
+    	<start.widget.xlistview.XListView
+	        android:id="@+id/xlv_listview"
+	        style="@style/listview1" />
+    
+</LinearLayout>

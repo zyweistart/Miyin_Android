@@ -111,11 +111,11 @@
             android:name=".MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"  />
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".RecordedDetailActivity"
     	    android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"  />
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".ExtractionConfirmActivity"
     	    android:screenOrientation="portrait"
@@ -135,6 +135,10 @@
         <activity
             android:name=".AccountActivity"
     	    android:screenOrientation="portrait" />
+        <activity
+            android:name=".UnsubscribeActivity"
+    	    android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".SettingActivity"
     	    android:screenOrientation="portrait" />

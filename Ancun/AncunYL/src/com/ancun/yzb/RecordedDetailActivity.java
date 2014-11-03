@@ -166,7 +166,7 @@ public class RecordedDetailActivity extends BaseActivity {
  						bundle.putString("remark", remark);
  						intent.putExtras(bundle);
  						setResult(REMARKMODIFYCODE,intent);
- 						getHandlerContext().makeTextLong("录音备注修改成功");
+ 						getHandlerContext().makeTextLong(getString(R.string.recording_remark_modify_success));
  						
  					}
  				});

@@ -145,7 +145,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("username", account);
-		params.put("username", account);
 		params.put("loginsource", "9");
 		params.put("ip", "");
 		params.put("mac", "");
