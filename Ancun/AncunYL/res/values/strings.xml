@@ -2,6 +2,9 @@
 <resources>
 
     <string name="app_name">音证宝</string>
+    <string name="app_phone">968682</string>
+    <string name="app_compayname">安存科技</string>
+    
 	<string name="login">登录</string>
     <string name="register">注册</string>
     <string name="reset_password">重置密码</string>
@@ -50,7 +53,13 @@
     <string name="not_expired">不过期</string>
     <string name="view_extractioncode">查看提取码</string>
     <string name="reg_extractioncode">申请提取码</string>
+    <string name="copy_success">复制成功</string>
+    <string name="undo_success">撤销成功</string>
+    <string name="undo_extraction_code_sure">是否撤销提取</string>
     <string name="notary_request_success">申办公证</string>
     <string name="notary_notice">公证须知</string>
     <string name="notary_list">公证机构一览表</string>
+    <string name="apple_extraction_code_tip">凭提取码可在官网公开查询、验证本条通话录音，确定申请？</string>
+    <string name="apply_notary_submit_tip">您确定将该录音提交至公证机构申办公证吗？</string>
+    <string name="apply_notary_cancel_tip">您确定要取消该录音申办公证吗？</string>
 </resources>

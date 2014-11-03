@@ -32,6 +32,8 @@ public class ExtractionViewActivity extends BaseActivity implements OnClickListe
 	
 	public static final int RecordedAppealTaobaoExtractionCodeResultCode=0xAC0012;
 
+	private String fileno;
+	
 	private ClipboardManager clipboard;
 	
 	private TextView tv_recorded_appeal_taobao_code_url;
@@ -40,8 +42,6 @@ public class ExtractionViewActivity extends BaseActivity implements OnClickListe
 	private Button btn_recorded_appeal_taobao_btn_copy;
 	private Button btn_recorded_appeal_taobao_btn_send_to_mobile;
 	private Button btn_recorded_appeal_taobao_btn_cancel;
-	
-	private String fileno;
 	
 	@Override
 	protected void onCreate(Bundle bundle) {
@@ -88,7 +88,7 @@ public class ExtractionViewActivity extends BaseActivity implements OnClickListe
 			@Override
 			public void run(Response response) throws AppException {
 				
-				final Map<String,String> info=response.getMapData("recinfo");
+				final Map<String,String> info=response.getMapData("acccodeinfo");
 				
 				runOnUiThread(new Runnable() {
 					
@@ -109,7 +109,7 @@ public class ExtractionViewActivity extends BaseActivity implements OnClickListe
 							Intent resultIntent=new Intent();
 							resultIntent.putExtras(resultBundle);
 							setResult(RecordedAppealTaobaoExtractionCodeResultCode,resultIntent);
-							getHandlerContext().makeTextLong("撤销成功！");
+							getHandlerContext().makeTextLong(getString(R.string.undo_success));
 							finish();
 						}
 					}
@@ -121,75 +121,22 @@ public class ExtractionViewActivity extends BaseActivity implements OnClickListe
 	
 	@Override
 	public void onClick(View v) {
-		final String strContent=tv_recorded_appeal_taobao_code_url.getText().toString()+tv_recorded_appeal_taobao_code.getText().toString();
-		switch(v.getId()){
-		case R.id.recorded_appeal_taobao_btn_copy:
-			//复制内容
+		String strContent=String.valueOf(tv_recorded_appeal_taobao_code_url.getText())+
+				String.valueOf(tv_recorded_appeal_taobao_code.getText());
+		if(v.getId()==R.id.recorded_appeal_taobao_btn_copy){
 			clipboard.setText(strContent);
 			btn_recorded_appeal_taobao_btn_copy.setEnabled(false);
-			getHandlerContext().makeTextLong("复制成功");
-			break;
-		case R.id.recorded_appeal_taobao_btn_send_to_mobile:
-//			 boolean SP_ALIYUN_SENDMESSAGE_MESSAGE=getAppContext().getSharedPreferencesUtils().getBoolean(Constant.SharedPreferencesConstant.SP_ALIYUN_SENDMESSAGE_MESSAGE,true);
-//     		if(SP_ALIYUN_SENDMESSAGE_MESSAGE){
-//     			final CheckBox cb=new CheckBox(this);
-//     			cb.setText("不再显示提醒");
-//     			new AlertDialog.Builder(this)
-//     			.setIcon(android.R.drawable.ic_dialog_info)
-//     			.setCancelable(false)
-//     			.setMessage("该条录音提取码信息将启用手机短信生成功能并以手机短信形式发给对方，短信费用由运营商收取，确认以手机短信形式发送给对方？")
-//     			.setView(cb)
-//     			.setPositiveButton("否", new DialogInterface.OnClickListener() {
-//     				@Override
-//     				public void onClick(DialogInterface dialog, int which) {
-//     					dialog.dismiss();
-//     				}
-//     			}).setNegativeButton("是", new DialogInterface.OnClickListener() {
-//     				@Override
-//     				public void onClick(DialogInterface dialog, int which) {
-//     					if(cb.isChecked()){
-//     						getAppContext().getSharedPreferencesUtils().putBoolean(Constant.SharedPreferencesConstant.SP_ALIYUN_SENDMESSAGE_MESSAGE,false);
-//     					}
-//     					 // 联系人地址 
-//     		             Uri smsToUri = Uri.parse("smsto:");
-//     		             Intent mIntent = new Intent(android.content.Intent.ACTION_SENDTO, 
-//     		             smsToUri); 
-//     		             
-//     		             String strContent1="您申请的录音提取码为："+strContent+" ，凭该提取码可在官网公开查询、下载本条通话录音，请妥善保管。客服电话:968682【安存科技】";
-//     		             
-//     		             // 短信内容 
-//     		             mIntent.putExtra("sms_body",strContent1);
-//     		             startActivity(mIntent); 
-//     				}
-//     			}).show();
-//     		}else{
-//     			 // 联系人地址 
-//                Uri smsToUri = Uri.parse("smsto:");
-//                Intent mIntent = new Intent(android.content.Intent.ACTION_SENDTO, 
-//                smsToUri); 
-//                
-//                String strContent1="您申请的录音提取码为："+strContent+" ，凭该提取码可在官网公开查询、下载本条通话录音，请妥善保管。客服电话:968682【安存科技】";
-//                
-//                // 短信内容 
-//                mIntent.putExtra("sms_body",strContent1);
-//                startActivity(mIntent); 
-//     		}
-     		 // 联系人地址 
-            Uri smsToUri = Uri.parse("smsto:");
-            Intent mIntent = new Intent(android.content.Intent.ACTION_SENDTO, 
-            smsToUri); 
-            
-            String strContent1="您申请的录音提取码为："+strContent+" ，凭该提取码可在官网公开查询、下载本条通话录音，请妥善保管。客服电话:968682【安存科技】";
-            
-            // 短信内容 
-            mIntent.putExtra("sms_body",strContent1);
-            startActivity(mIntent); 
-			break;
-		case R.id.recorded_appeal_taobao_btn_cancel:
-			AlertDialog.Builder aDialog = new AlertDialog.Builder(this);
-			aDialog.
-			setIcon(android.R.drawable.ic_dialog_info).
-			setMessage("是否撤销提取？").
+			getHandlerContext().makeTextShort(getString(R.string.copy_success));
+		}else if(v.getId()==R.id.recorded_appeal_taobao_btn_send_to_mobile){
+			 Uri smsToUri = Uri.parse("smsto:");
+	            Intent mIntent = new Intent(android.content.Intent.ACTION_SENDTO, smsToUri); 
+	            String strContent1="您申请的录音提取码为："+strContent+" ，凭该提取码可在官网公开查询、下载本条通话录音，请妥善保管。客服电话:"+getString(R.string.app_phone)+"【"+getString(R.string.app_compayname)+"】";
+	            mIntent.putExtra("sms_body",strContent1);
+	            startActivity(mIntent); 
+		}else if(v.getId()==R.id.recorded_appeal_taobao_btn_cancel){
+			new AlertDialog.Builder(this)
+			.setIcon(android.R.drawable.ic_dialog_info).
+			setMessage(R.string.undo_extraction_code_sure).
 			setPositiveButton(R.string.cancle, null)
 			.setNeutralButton(R.string.sure, new DialogInterface.OnClickListener() {
 				@Override
@@ -197,7 +144,8 @@ public class ExtractionViewActivity extends BaseActivity implements OnClickListe
 					getDataTask(3);
 				}
 			}).show();
-			break;
+		}else{
+			super.onClick(v);
 		}
 	}
 }

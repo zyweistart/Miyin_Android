@@ -24,8 +24,7 @@ public class ExtractionConfirmActivity extends BaseActivity {
 	
 	private ImageView ivTitle=null;
 	private TextView tvMessage=null;
-	private ImageButton ibYes=null;
-	private ImageButton ibNo=null;
+	private ImageButton ibYes,ibNo;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +36,26 @@ public class ExtractionConfirmActivity extends BaseActivity {
 		final int appealType=getIntent().getExtras().getInt("appeal_type");
 		final String fileno=getIntent().getExtras().getString("fileno");
 		final int cerflag=getIntent().getExtras().getInt("cerflag");
-		if (1==appealType) {//淘申述
+		if (1==appealType) {
+			//申请提取码
 			ivTitle.setBackgroundResource(R.drawable.apply_extracting_code);
-			tvMessage.setText("凭提取码可在官网公开查询、验证本条通话录音，确定申请？");
-		}else if (2==appealType) {//申请公证
+			tvMessage.setText(R.string.apple_extraction_code_tip);
+		}else if (2==appealType) {
+			//申请公证
 			ivTitle.setBackgroundResource(R.drawable.appeal_notary);
 			if(cerflag==1){
-				tvMessage.setText("您确定将该录音提交至公证机构申办公证吗？");
+				tvMessage.setText(R.string.apply_notary_submit_tip);
 			}else if(cerflag==2){
-				tvMessage.setText("您确定要取消该录音申办公证吗？");
+				tvMessage.setText(R.string.apply_notary_cancel_tip);
 			}
 		}
 		ibYes=(ImageButton)findViewById(R.id.recorded_appeal_confirm_yes);
 		ibYes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Bundle bundle=getIntent().getExtras();
 				if (1==appealType) {
 					Intent intentTaobao=new Intent(ExtractionConfirmActivity.this,ExtractionViewActivity.class);
-					intentTaobao.putExtras(bundle);
+					intentTaobao.putExtras(getIntent().getExtras());
 					startActivityForResult(intentTaobao,RecordedDetailActivity.TAOBAOREQUESTCODE);
 				}else if (2==appealType) {
 					HttpServer hServer=new HttpServer(Constant.URL.v4recCer, getHandlerContext());
