@@ -17,6 +17,8 @@ import start.utils.NetConnectManager;
 import start.widget.xlistview.XListView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
@@ -32,6 +34,7 @@ import com.ancun.core.Constant;
 import com.ancun.service.User;
 import com.ancun.widget.PlayerView;
 import com.ancun.yzb.R;
+import com.ancun.yzb.RecordedDetailActivity;
 import com.ancun.yzb.layout.RecordingAdapter.HolderView;
 
 public class RecordingContentView extends BaseScrollContent implements RefreshListServerListener {
@@ -221,4 +224,43 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		playerView.pause();
 	}
 	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(data!=null&&mRecordingAdapter!=null){
+			if(requestCode==RecordingAdapter.REMARKREQUESTCODE){
+				if(resultCode==RecordedDetailActivity.REMARKRESULTCODE){
+					Bundle bundle=data.getExtras();
+					if(bundle!=null){
+						String fileno=bundle.getString(RecordingAdapter.RECORDED_FILENO);
+						Integer cerflag=bundle.getInt(RecordingAdapter.RECORDED_CEFFLAG);
+						Integer accstatus=bundle.getInt(RecordingAdapter.RECORDED_ACCSTATUS);
+						String remark=bundle.getString(RecordingAdapter.RECORDED_REMARK);
+						for(Map<String,String> content:mRefreshListServer.getItemDatas()){
+							if(content.get(RecordingAdapter.RECORDED_FILENO).equals(fileno)){
+								content.put(RecordingAdapter.RECORDED_FILENO, fileno);
+								content.put(RecordingAdapter.RECORDED_CEFFLAG, cerflag+"");
+								content.put(RecordingAdapter.RECORDED_ACCSTATUS, accstatus+"");
+								content.put(RecordingAdapter.RECORDED_REMARK, remark);
+								mRecordingAdapter.notifyDataSetChanged();
+								break;
+							}
+						}
+					}
+				}else if(resultCode==RecordedDetailActivity.REMARKMODIFYCODE){
+					Bundle bundle=data.getExtras();
+					if(bundle!=null){
+						String fileno=bundle.getString(RecordingAdapter.RECORDED_FILENO);
+						String remark=bundle.getString(RecordingAdapter.RECORDED_REMARK);
+						for(Map<String,String> content:mRefreshListServer.getItemDatas()){
+							if(content.get(RecordingAdapter.RECORDED_FILENO).equals(fileno)){
+								content.put(RecordingAdapter.RECORDED_FILENO, fileno);
+								content.put(RecordingAdapter.RECORDED_REMARK, remark);
+								mRecordingAdapter.notifyDataSetChanged();
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

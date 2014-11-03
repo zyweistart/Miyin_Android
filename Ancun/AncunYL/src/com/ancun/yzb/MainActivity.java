@@ -66,7 +66,6 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 		mScrollLayout.addView(mRecordingContentView.getLayoutView());
 	}
 	
-	
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -83,6 +82,12 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 	protected void onDestroy() {
 		mContactsContentView.onDestroy();
 		super.onDestroy();
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		mRecordingContentView.onActivityResult(requestCode, resultCode, data);
 	}
 	
 	@Override

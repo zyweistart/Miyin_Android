@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     
+    <style name="Theme_Dialog_NoTitle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
     <style name="checkbox1">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -10,7 +14,7 @@
         <item name="android:background">@null</item>
         <item name="android:button">@null</item>
         <item name="android:checked">true</item>
-        <item name="android:drawableLeft">@drawable/bg_checkbox</item>
+        <item name="android:drawableLeft">@drawable/selector_checkbox</item>
         <item name="android:drawablePadding">4.0dip</item>
     </style>
     

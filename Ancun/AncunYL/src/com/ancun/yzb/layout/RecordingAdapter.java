@@ -8,6 +8,8 @@ import java.util.Map;
 
 import start.core.AppListAdapter;
 import start.utils.TimeUtils;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.ancun.bean.ContactModel;
 import com.ancun.core.BaseActivity;
 import com.ancun.yzb.MainActivity;
 import com.ancun.yzb.R;
+import com.ancun.yzb.RecordedDetailActivity;
 
 public class RecordingAdapter extends AppListAdapter{
 
@@ -32,6 +35,8 @@ public class RecordingAdapter extends AppListAdapter{
 	public static final String RECORDED_DURATION="duration";
 	public static final String RECORDED_CEFFLAG="cerflag";
 	public static final String RECORDED_ACCSTATUS="accstatus";
+	
+	public static final int REMARKREQUESTCODE=0xAC003;
 	
 	public RecordingAdapter(BaseActivity activity) {
 		super(activity);
@@ -56,13 +61,13 @@ public class RecordingAdapter extends AppListAdapter{
 				
 				@Override
 				public void onClick(View v) {
-//					HolderView vh=(HolderView)v.getTag();
-//					Intent intent=new Intent();
-//					Bundle bundle=new Bundle();
-//					bundle.putString(RECORDED_FILENO,vh.fileno);
-//					intent.setClass(mActivity, RecordedRemark.class);
-//					intent.putExtras(bundle);
-//					startActivityForResult(intent,REMARKREQUESTCODE);
+					HolderView vh=(HolderView)v.getTag();
+					Intent intent=new Intent();
+					Bundle bundle=new Bundle();
+					bundle.putString(RECORDED_FILENO,vh.fileno);
+					intent.setClass(mActivity, RecordedDetailActivity.class);
+					intent.putExtras(bundle);
+					mActivity.startActivityForResult(intent,REMARKREQUESTCODE);
 				}
 			});
 			convertView.setTag(holder);

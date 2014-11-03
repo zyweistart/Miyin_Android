@@ -37,5 +37,20 @@
     <string name="suredeleterecording">确认删除该条录音？</string>
     <string name="deleterecordinginputpasswordtip">请输入登录密码——被录音删除将进入录音回收站，如需还原或彻底删除请登录音证宝官网“我的录音-回收站”进行操作。</string>
     <string name="mobiledownloadtip">录音首次收听前需加载且需消耗一定的网络流量，当前网络环境为移动2G/3G网络，建议在Wifi环境下加载时长较长的通话录音，是否确认在当前网络模式下加载？</string>
-    
+    <string name="recording_detail">录音详情</string>
+    <string name="calling">主叫号码</string>
+    <string name="called">被叫号码</string>
+    <string name="start_time">起始时间</string>
+    <string name="end_time">结束时间</string>
+    <string name="invalid_time">失效时间</string>
+    <string name="recording_length">录音时长</string>
+    <string name="recorded_remark">录音备注</string>
+    <string name="remark_edit_hint">你还没有添加备注</string>
+    <string name="edit">编辑</string>
+    <string name="not_expired">不过期</string>
+    <string name="view_extractioncode">查看提取码</string>
+    <string name="reg_extractioncode">申请提取码</string>
+    <string name="notary_request_success">申办公证</string>
+    <string name="notary_notice">公证须知</string>
+    <string name="notary_list">公证机构一览表</string>
 </resources>

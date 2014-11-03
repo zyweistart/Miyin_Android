@@ -1,0 +1,139 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_gb"
+    android:orientation="vertical" >
+
+    <include layout="@layout/module_header" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="10dip"
+            android:layout_height="fill_parent" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="0dip"
+                android:background="@drawable/bg_radiogroup"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="15dip" >
+
+                    <TextView
+                        android:id="@+id/recorded_appeal_taobao_code_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="申请成功"
+                        android:textColor="#244786"
+                        android:textSize="24dip" />
+
+                    <ImageView
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/recorded_appeal_taobao_code_static"
+                        android:background="@drawable/result_ok" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="10dip" >
+
+                    <TextView
+                        android:id="@+id/recorded_appeal_taobao_limit_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dip"
+                        android:layout_marginRight="10dip"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="温馨提示: "
+                        android:textColor="#666666"
+                        android:textSize="18dip" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/recorded_appeal_taobao_limit_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center|left"
+                    android:singleLine="false"
+                    android:text="您可就本语音公证事项前往公证机构办理相关出证手续。"
+                    android:textColor="#666666"
+                    android:textSize="16dip" />
+
+                
+                <TextView
+                    android:id="@+id/recorded_appeal_notary_notify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dip"
+                    android:layout_marginLeft="0dip"
+                    android:layout_marginRight="25dip"
+                    android:layout_marginTop="30dip"
+                    android:background="@color/transparent"
+                    android:paddingBottom="10dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="10dip"
+                    android:text="公证须知 >"
+                    android:textColor="#f87514"
+                    android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/recorded_appeal_notary_list"
+                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="25dip"
+                    android:layout_marginTop="10dip"
+                    android:background="@color/transparent"
+                    android:paddingBottom="10dip"
+                    android:paddingLeft="0dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="10dip"
+                    android:text="公证机构一览表>"
+                    android:textColor="#f87514"
+                    android:textSize="16dp" />
+                
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="10dip"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
+
+</LinearLayout>
