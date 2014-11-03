@@ -75,4 +75,18 @@
     <string name="unsubscribe">退订</string>
     <string name="unsubscribe_sure">确认退订</string>
     <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.968682.com进行操作</string>
+    
+    <string name="tip">小贴士</string>
+    <string name="feedback">意见反馈</string>
+    <string name="versioncheck">新版本检测</string>
+    <string name="softwareshare">软件分享</string>
+    <string name="comment">给个好评吧</string>
+    <string name="follow">关注安存语录</string>
+    <string name="aboutus">关于我们</string>
+    <string name="cleanrecording">清理本地录音缓存</string>
+    <string name="modifypassword">修改密码</string>
+    <string name="gesturesetting">手势密码设置</string>
+    <string name="gesturemodify">手势密码修改</string>
+    <string name="exitlogin">退出登录</string>
+    
 </resources>

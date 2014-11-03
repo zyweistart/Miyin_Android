@@ -109,4 +109,17 @@
         <item name="android:listSelector">@color/transparent</item>
     </style>
     
+    <style name="setting_frame">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">5.0dip</item>
+        <item name="android:padding">10.0dip</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:background">@drawable/selector_frame_setting</item>
+    </style>
+    
 </resources>
