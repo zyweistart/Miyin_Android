@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import start.core.AppException;
+import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.Response;
-import start.service.UIRunnable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -72,7 +72,7 @@ public class DoctorsDetailActivity extends BaseActivity {
 		params.put("accessid", User.COMMON_ACCESSID_LOCAL);
 		params.put("userno", userno);
 		hServer.setParams(params);
-		hServer.get(new UIRunnable() {
+		hServer.get(new HttpRunnable() {
 			
 			@Override
 			public void run(Response response) throws AppException {

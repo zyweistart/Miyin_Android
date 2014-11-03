@@ -6,7 +6,7 @@ import java.util.Map;
 import start.core.AppException;
 import start.service.HttpServer;
 import start.service.Response;
-import start.service.UIRunnable;
+import start.service.HttpRunnable;
 import start.utils.MD5;
 import start.utils.StringUtils;
 import android.os.Bundle;
@@ -69,7 +69,7 @@ public class ChangePassWordActivity extends BaseActivity implements OnClickListe
 			params.put("accessid", User.ACCESSID);
 			params.put("pwd", MD5.md5(oldpassword));
 			hServer.setParams(params);
-			hServer.get(new UIRunnable() {
+			hServer.get(new HttpRunnable() {
 				
 				@Override
 				public void run(Response response) throws AppException {

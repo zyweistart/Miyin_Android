@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import start.core.AppException;
+import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.ListServer;
 import start.service.ListServer.RefreshListServerListener;
 import start.service.Response;
-import start.service.UIRunnable;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -68,7 +68,7 @@ public class StationToStationQueryActivity extends BaseActivity implements Refre
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid", User.ACCESSID);
 		hServer.setParams(params);
-		hServer.get(new UIRunnable() {
+		hServer.get(new HttpRunnable() {
 
 			@Override
 			public void run(Response response) throws AppException {

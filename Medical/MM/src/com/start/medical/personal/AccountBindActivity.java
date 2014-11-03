@@ -6,7 +6,7 @@ import java.util.Map;
 import start.core.AppException;
 import start.service.HttpServer;
 import start.service.Response;
-import start.service.UIRunnable;
+import start.service.HttpRunnable;
 import start.widget.CustomEditText;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -47,7 +47,7 @@ public class AccountBindActivity extends BaseActivity  {
 				params.put("accessid", User.ACCESSID);
 				params.put("name", account);
 				hServer.setParams(params);
-				hServer.get(new UIRunnable() {
+				hServer.get(new HttpRunnable() {
 					
 					@Override
 					public void run(Response response) throws AppException {

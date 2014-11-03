@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import start.core.AppException;
+import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.Response;
-import start.service.UIRunnable;
 import start.utils.MD5;
 import start.utils.StringUtils;
 import start.utils.TimeUtils;
@@ -152,7 +152,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			params.put("regsource", "10");
 			params.put("loginflag", "1");
 			hServer.setParams(params);
-			hServer.get(new UIRunnable() {
+			hServer.get(new HttpRunnable() {
 				
 				@Override
 				public void run(Response response) {
@@ -181,7 +181,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		params.put("mobile", phone);
 		params.put("type", String.valueOf(type));
 		hServer.setParams(params);
-		hServer.get(new UIRunnable() {
+		hServer.get(new HttpRunnable() {
 			
 			@Override
 			public void run(Response response) {

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import start.service.HttpServer;
 import start.service.Response;
-import start.service.UIRunnable;
+import start.service.HttpRunnable;
 import start.utils.MD5;
 import start.utils.StringUtils;
 import android.os.Bundle;
@@ -71,7 +71,7 @@ public class ResetPassWordActivity  extends RegisterActivity {
 			params.put("regsource", "10");
 			params.put("loginflag", "1");
 			hServer.setParams(params);
-			hServer.get(new UIRunnable() {
+			hServer.get(new HttpRunnable() {
 				
 				@Override
 				public void run(Response response) {

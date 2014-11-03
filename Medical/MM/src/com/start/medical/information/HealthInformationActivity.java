@@ -5,11 +5,11 @@ import java.util.Map;
 
 import start.core.AppConstant;
 import start.core.AppException;
+import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.RefreshListServer;
 import start.service.RefreshListServer.RefreshListServerListener;
 import start.service.Response;
-import start.service.UIRunnable;
 import start.widget.xlistview.XListView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -78,7 +78,7 @@ public class HealthInformationActivity extends BaseActivity implements RefreshLi
 		params.put("content", AppConstant.EMPTYSTR);
 		params.put("ordersort", AppConstant.EMPTYSTR);
 		hServer.setParams(params);
-		hServer.get(new UIRunnable() {
+		hServer.get(new HttpRunnable() {
 
 			@Override
 			public void run(Response response) throws AppException {
