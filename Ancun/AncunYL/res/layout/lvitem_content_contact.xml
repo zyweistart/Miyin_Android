@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20.0dip"
             android:background="@null"
-            android:drawableTop="@drawable/phone_recording"
+            android:drawableTop="@drawable/ic_recording"
             android:text="录音拨号"
             android:textColor="#5e5f61"
             android:textSize="14.0dip" />
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20.0dip"
             android:background="@null"
-            android:drawableTop="@drawable/phone_normal"
+            android:drawableTop="@drawable/ic_phone"
             android:text="普通拨号"
             android:textColor="#5e5f61"
             android:textSize="14.0dip" />

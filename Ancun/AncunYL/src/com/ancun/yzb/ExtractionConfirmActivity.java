@@ -42,7 +42,7 @@ public class ExtractionConfirmActivity extends BaseActivity {
 			tvMessage.setText(R.string.apple_extraction_code_tip);
 		}else if (2==appealType) {
 			//申请公证
-			ivTitle.setBackgroundResource(R.drawable.appeal_notary);
+			ivTitle.setBackgroundResource(R.drawable.apply_notary);
 			if(cerflag==1){
 				tvMessage.setText(R.string.apply_notary_submit_tip);
 			}else if(cerflag==2){
