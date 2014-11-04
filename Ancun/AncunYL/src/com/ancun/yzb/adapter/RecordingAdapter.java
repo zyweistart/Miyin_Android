@@ -18,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ancun.bean.ContactModel;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.BaseCallListAdapter;
 import com.ancun.yzb.MainActivity;
@@ -71,20 +70,23 @@ public class RecordingAdapter extends BaseCallListAdapter{
 			convertView.setTag(holder);
 		}
 		Map<String,String> data=mItemDatas.get(position);
-		ContactModel contactModel=((MainActivity)mActivity).getContactDaoImpl().getContactModelByPhone(data.get("oppno"));
-		if(contactModel!=null){
-			holder.name.setTag(contactModel.getName());
-			holder.name.setText(contactModel.getName());				
+		Map<String,String> cdata=((MainActivity)mActivity).getContactDaoImpl().getContactByPhone(data.get("oppno"));
+		if(cdata!=null){
+			Long id=Long.parseLong(cdata.get(ContactAdapter.STRID));
+			String name=cdata.get(ContactAdapter.STRNAME);
+			Long phoneId=Long.parseLong(cdata.get(ContactAdapter.STRPHONEID));
+			holder.name.setTag(name);
+			holder.name.setText(name);				
 			holder.phone.setText(data.get("oppno"));
-			if (contactModel.getPhotoID() > 0) {
-				holder.head.setImageBitmap(((MainActivity)mActivity).getContactDaoImpl().loadContactPhoto(contactModel.getId()));
+			if (phoneId> 0) {
+				holder.head.setImageBitmap(((MainActivity)mActivity).getContactDaoImpl().loadContactPhoto(id));
 			}else{
 				holder.head.setImageResource(R.drawable.ic_head);
 			}
 		}else{
 			holder.name.setText(data.get("oppno"));
 			holder.name.setTag(data.get("oppno"));
-			holder.phone.setText("");
+			holder.phone.setText(R.string.empty);
 			holder.head.setImageResource(R.drawable.ic_head);
 		}
 		holder.phone.setTag(data.get("oppno"));

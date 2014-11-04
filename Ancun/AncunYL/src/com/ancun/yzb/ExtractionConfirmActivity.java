@@ -38,11 +38,11 @@ public class ExtractionConfirmActivity extends BaseActivity {
 		final int cerflag=getIntent().getExtras().getInt("cerflag");
 		if (1==appealType) {
 			//申请提取码
-			ivTitle.setBackgroundResource(R.drawable.apply_extracting_code);
+			ivTitle.setBackgroundResource(R.drawable.app_extracting_code_header);
 			tvMessage.setText(R.string.apple_extraction_code_tip);
 		}else if (2==appealType) {
 			//申请公证
-			ivTitle.setBackgroundResource(R.drawable.apply_notary);
+			ivTitle.setBackgroundResource(R.drawable.app_notary_header);
 			if(cerflag==1){
 				tvMessage.setText(R.string.apply_notary_submit_tip);
 			}else if(cerflag==2){

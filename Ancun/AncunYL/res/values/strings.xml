@@ -44,7 +44,7 @@
     <string name="recordeds">我的录音</string>
     <string name="checknetworkconnected">网络连接不可用，请检查网络设置</string>
     <string name="suredeleterecording">确认删除该条录音？</string>
-    <string name="deleterecordinginputpasswordtip">请输入登录密码——被录音删除将进入录音回收站，如需还原或彻底删除请登录音证宝官网“我的录音-回收站”进行操作。</string>
+    <string name="deleterecordinginputpasswordtip">请输入登录密码——被录音删除将进入录音回收站，如需还原或彻底删除请登录官网“我的录音-回收站”进行操作。</string>
     <string name="mobiledownloadtip">录音首次收听前需加载且需消耗一定的网络流量，当前网络环境为移动2G/3G网络，建议在Wifi环境下加载时长较长的通话录音，是否确认在当前网络模式下加载？</string>
     <string name="recording_detail">录音详情</string>
     <string name="calling">主叫号码</string>

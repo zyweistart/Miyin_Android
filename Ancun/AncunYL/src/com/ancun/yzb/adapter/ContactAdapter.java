@@ -22,6 +22,7 @@ public class ContactAdapter extends BaseCallListAdapter{
 
 	public static final String STRID="id";
 	public static final String STRNAME="name";
+	public static final String STRPHONE="phone";
 	public static final String STRPHONEID="phoneid";
 	public static final String STRLOOKUPKEY="LookupKey";
 	
