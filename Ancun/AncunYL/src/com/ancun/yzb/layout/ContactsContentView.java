@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import start.utils.HanziToPinyin;
+import start.widget.CustomEditText;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Handler;
@@ -40,9 +41,8 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 	private FilterContact mFilter; 
 	private ListView contactListView;
 	private ContactAdapter mAdapter;
-	private EditText etSearch;
-	private ImageButton ibSearchClean;
-	private ImageButton ibSearchBegin;
+	private CustomEditText etSearch;
+	private ImageButton ib_search;
 	private List<Map<String,String>> mListDataItems;
 	private List<Map<String,String>> mListDataItemsFilter;
 
@@ -64,27 +64,23 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		super(activity, R.layout.module_scroll_contacts);
 		contactListView = (ListView) findViewById(R.id.contacts_listview);
 		contactListView.setOnItemClickListener(this);
-		View ContactsSearchBarView = View.inflate(activity, R.layout.module_contact_search_bar, null);  
+		View ContactsSearchBarView = View.inflate(activity, R.layout.module_search_bar, null);  
 		//把view对象添加到listView对象的头部，可以随listView一起滑动
 		contactListView.addHeaderView(ContactsSearchBarView); 
  
-		etSearch=(EditText)ContactsSearchBarView.findViewById(R.id.contact_search_bar_content);
+		etSearch=(CustomEditText)ContactsSearchBarView.findViewById(R.id.et_search_bar_content);
 		etSearch.addTextChangedListener(new CustomTextWatcher());
-		ibSearchClean=(ImageButton)ContactsSearchBarView.findViewById(R.id.contact_search_bar_clean);
-		ibSearchClean.setOnClickListener(new View.OnClickListener() {
+		
+		ib_search=(ImageButton)ContactsSearchBarView.findViewById(R.id.ib_search);
+		ib_search.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				etSearch.setText("");
-			}
-		});
-		ibSearchBegin=(ImageButton)ContactsSearchBarView.findViewById(R.id.contact_search_bar_icon);
-		ibSearchBegin.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//打开软键盘
 				if (getCurrentActivity().getInputMethodManager().isActive()) {
 					getCurrentActivity().getInputMethodManager().toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 				}
+				getFilter().filter(String.valueOf(etSearch.getText()));
+				//每次输入框文字变化    需要滚动屏幕才显示浮动姓
+				isShowOverLay=false;
 			}
 		});
 

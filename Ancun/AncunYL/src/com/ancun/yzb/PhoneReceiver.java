@@ -61,7 +61,7 @@ public class PhoneReceiver extends BroadcastReceiver {
 				IDLE=true;
 				if (myFV == null) {
 					wm = (WindowManager)currentActivity.getAppContext().getSystemService(Context.WINDOW_SERVICE);
-					View view = LayoutInflater.from(currentActivity.getAppContext()).inflate(R.layout.common_diallistener, null);
+					View view = LayoutInflater.from(currentActivity.getAppContext()).inflate(R.layout.module_diallistener, null);
 					ImageView ivClose = (ImageView) view.findViewById(R.id.dial_listener_btn_close);
 					ivClose.setOnClickListener(new View.OnClickListener() {
 						@Override

@@ -40,7 +40,7 @@ public class SettingActivity extends BaseActivity {
 		setting_gesturesetting=(TextView)findViewById(R.id.setting_gesturesetting);
 		setting_gesturemodify=(TextView)findViewById(R.id.setting_gesturemodify);
 		Resources res=getResources();
-		ic_gesture= res.getDrawable(R.drawable.ic_share);
+		ic_gesture= res.getDrawable(R.drawable.ic_gesture);
 		ic_gesture.setBounds(0, 0, ic_gesture.getMinimumWidth(), ic_gesture.getMinimumHeight());
 		img_off= res.getDrawable(R.drawable.state_off);
 		img_off.setBounds(0, 0, img_off.getMinimumWidth(), img_off.getMinimumHeight());
@@ -70,18 +70,12 @@ public class SettingActivity extends BaseActivity {
 		} else if (v.getId() == R.id.setting_versioncheck) {
 			// 新版本检测
 			AppService.checkAppUpdate(this, false);
-		} else if (v.getId() == R.id.setting_softwareshare) {
-			// 软件分享
-			getHandlerContext().makeTextLong("软件分享");
 		} else if (v.getId() == R.id.setting_comment) {
 			// 给个好评吧
 			Intent iMarket = GetMarketUri.getIntent(this);
 			if (!GetMarketUri.judge(this, iMarket)) {
 				startActivity(iMarket);
 			}
-		} else if (v.getId() == R.id.setting_follow) {
-			// 关注安存语录
-			getHandlerContext().makeTextLong("关注安存语录");
 		} else if (v.getId() == R.id.setting_aboutus) {
 			// 关于我们
 			startActivity(new Intent(this, AboutusActivity.class));

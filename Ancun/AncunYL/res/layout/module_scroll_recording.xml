@@ -3,72 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_gb" >
-
-    <LinearLayout
-        android:id="@+id/recording_search_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:orientation="horizontal"
-        android:background="@drawable/seracher_boraod">
-		<RelativeLayout
-	        android:layout_width="0.0dip"
-	        android:layout_height="40dip"
-	        android:layout_weight="1"
-	        android:layout_marginLeft="2dip"
-	        android:layout_marginRight="2dip"
-	        android:layout_marginTop="5dip"
-	        android:layout_marginBottom="5dip"
-	        android:background="@drawable/contact_search_bg"
-	        android:orientation="horizontal" >
-	        <ImageButton
-	            android:id="@+id/contact_search_bar_clean"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentLeft="true"
-	            android:layout_centerVertical="true"
-	            android:layout_marginLeft="5dip"
-	            android:background="@drawable/ic_input_clear"
-	            android:contentDescription="@string/empty"
-	            android:focusable="false" 
-	            android:visibility="gone"/>
-	        <EditText
-	            android:id="@+id/contact_search_bar_content"
-	            android:layout_width="match_parent"
-	            android:layout_height="match_parent"
-	            android:layout_centerVertical="true"
-	            android:layout_marginBottom="0.0dip"
-	            android:layout_marginLeft="0.0dip"
-	            android:layout_marginRight="0.0dip"
-	            android:layout_marginTop="0dip"
-	            android:layout_toLeftOf="@+id/contact_search_bar_icon"
-	            android:layout_toRightOf="@+id/contact_search_bar_clean"
-	            android:background="@color/transparent"
-	            android:hint="如按通讯录姓名查找需先加载全部录音"
-	            android:paddingLeft="10.0dip"
-	            android:singleLine="true"
-	            android:textColor="#000000"
-	            android:textColorHint="#AAAAAA"
-	            android:textSize="14.0dip" />
-	        <ImageButton
-	            android:id="@+id/contact_search_bar_icon"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentRight="true"
-	            android:layout_centerVertical="true"
-	            android:layout_marginRight="5dip"
-	            android:background="@drawable/contact_search_icon"
-	            android:contentDescription="@string/empty"
-	            android:focusable="false" />
-	    </RelativeLayout>
-	    <TextView
-	        android:id="@+id/contact_search_bar_adv"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center"
-	        android:textSize="16.0dip"
-	        android:textColor="#262d33"
-	        android:text="精确查找"/>
-    </LinearLayout>
+    
+    <include android:id="@+id/recording_search_top" layout="@layout/module_search_bar"/>
     
     <start.widget.xlistview.XListView
         android:id="@+id/xlv_listview"

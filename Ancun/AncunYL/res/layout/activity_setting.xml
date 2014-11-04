@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/activity_gb"
-    android:orientation="vertical" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/activity_gb" >
 
     <include layout="@layout/module_header" />
 
@@ -26,7 +26,7 @@
                 <TextView
                     android:id="@+id/setting_tip"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_uselog"
+                    android:drawableLeft="@drawable/ic_tip"
                     android:drawableRight="@drawable/selector_ic_arrow"
                     android:text="@string/tip" />
 
@@ -38,7 +38,7 @@
                 <TextView
                     android:id="@+id/setting_feedback"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
+                    android:drawableLeft="@drawable/ic_feedback"
                     android:drawableRight="@drawable/selector_ic_arrow"
                     android:text="@string/feedback" />
 
@@ -50,19 +50,8 @@
                 <TextView
                     android:id="@+id/setting_versioncheck"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
+                    android:drawableLeft="@drawable/ic_versioncheck"
                     android:text="@string/versioncheck" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1.0dip"
-                    android:background="@color/bg_frame" />
-
-                <TextView
-                    android:id="@+id/setting_softwareshare"
-                    style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
-                    android:text="@string/softwareshare" />
 
                 <View
                     android:layout_width="match_parent"
@@ -72,19 +61,8 @@
                 <TextView
                     android:id="@+id/setting_comment"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
+                    android:drawableLeft="@drawable/ic_comment"
                     android:text="@string/comment" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1.0dip"
-                    android:background="@color/bg_frame" />
-
-                <TextView
-                    android:id="@+id/setting_follow"
-                    style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
-                    android:text="@string/follow" />
 
                 <View
                     android:layout_width="match_parent"
@@ -94,7 +72,7 @@
                 <TextView
                     android:id="@+id/setting_aboutus"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
+                    android:drawableLeft="@drawable/ic_aboutus"
                     android:drawableRight="@drawable/selector_ic_arrow"
                     android:text="@string/aboutus" />
             </LinearLayout>
@@ -112,7 +90,7 @@
                 <TextView
                     android:id="@+id/setting_cleanrecording"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_uselog"
+                    android:drawableLeft="@drawable/ic_cleanrecording"
                     android:text="@string/cleanrecording" />
 
                 <View
@@ -123,7 +101,7 @@
                 <TextView
                     android:id="@+id/setting_modifypassword"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
+                    android:drawableLeft="@drawable/ic_modifypwd"
                     android:drawableRight="@drawable/selector_ic_arrow"
                     android:text="@string/modifypassword" />
 
@@ -135,7 +113,7 @@
                 <TextView
                     android:id="@+id/setting_gesturesetting"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
+                    android:drawableLeft="@drawable/ic_gesture"
                     android:text="@string/gesturesetting" />
 
                 <View
@@ -146,7 +124,7 @@
                 <TextView
                     android:id="@+id/setting_gesturemodify"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_share"
+                    android:drawableLeft="@drawable/ic_gesture"
                     android:drawableRight="@drawable/selector_ic_arrow"
                     android:text="@string/gesturemodify" />
             </LinearLayout>

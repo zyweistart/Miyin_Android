@@ -47,7 +47,7 @@ public class PlayerView extends LinearLayout implements OnClickListener,OnSeekBa
 	public PlayerView(Context context,AttributeSet attrs){
 		super(context,attrs);
 		LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		inflater.inflate(R.layout.common_player_view, this);
+		inflater.inflate(R.layout.module_player_view, this);
 		player_view_ib_player=(ImageButton)findViewById(R.id.player_view_ib_player);
 		player_view_ib_player.setOnClickListener(this);
 		player_view_tv_playtime=(TextView)findViewById(R.id.player_view_tv_playtime);
