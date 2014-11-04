@@ -37,11 +37,11 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 	//是否刷新数据
 	public static Boolean isRefreshData=true;
 	
+	private ImageButton ibSearch;
+	private CustomEditText etContent;
 	private FilterContact mFilter; 
 	private ListView mListView;
 	private ContactAdapter mAdapter;
-	private CustomEditText et_content;
-	private ImageButton ibSearch;
 	private List<Map<String,String>> mListDataItems;
 	private List<Map<String,String>> mListDataItemsFilter;
 
@@ -63,15 +63,15 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		super(activity, R.layout.module_scroll_contacts);
 		mListView = (ListView) findViewById(R.id.listview);
 		mListView.setOnItemClickListener(this);
+		
 		View searchBarView = View.inflate(activity, R.layout.module_search_bar, null);  
 		//把view对象添加到listView对象的头部，可以随listView一起滑动
 		mListView.addHeaderView(searchBarView); 
- 
 		ibSearch=(ImageButton)searchBarView.findViewById(R.id.ib_search);
 		ibSearch.setVisibility(View.GONE);
-		et_content=(CustomEditText)searchBarView.findViewById(R.id.et_content);
-		et_content.setHint(R.string.searchbarhint1);
-		et_content.addTextChangedListener(new SearchBarTextWatcher());
+		etContent=(CustomEditText)searchBarView.findViewById(R.id.et_content);
+		etContent.setHint(R.string.searchbarhint1);
+		etContent.addTextChangedListener(new SearchBarTextWatcher());
 
 		//获取Window窗口管理服务
 		mWindowManager = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
@@ -98,7 +98,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 			public boolean onTouch(View v, MotionEvent event) {
 				isShowOverLay=true;
 				//关闭输入框弹窗的键盘
-				getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(et_content.getWindowToken(), 0);
+				getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(etContent.getWindowToken(), 0);
 				return false;
 			}
 		});
@@ -160,7 +160,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 							mAdapter.setItemDatas(mListDataItemsFilter);
 							mListView.setAdapter(mAdapter);
 						}else{
-							getFilter().filter(et_content.getText());
+							getFilter().filter(etContent.getText());
 						}
 						isRefreshData=false;
 					}
@@ -195,7 +195,6 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 			FilterResults results = new FilterResults();
 			mListDataItemsFilter.clear();
 			if (prefix == null || prefix.length() == 0) {
-				//输入为空
 				mListDataItemsFilter.addAll(mListDataItems);
 			} else {
 				for(Map<String,String> data:mListDataItems){
@@ -206,8 +205,6 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 					name=name.toLowerCase();
 					String pre=prefix.toString().toLowerCase();
 					if(name.contains(pre)){
-						mListDataItemsFilter.add(data);
-					}else if(name.equals(pre)){
 						mListDataItemsFilter.add(data);
 					}else if(HanziToPinyin.getPinYin(name).contains(pre)){
 						mListDataItemsFilter.add(data);

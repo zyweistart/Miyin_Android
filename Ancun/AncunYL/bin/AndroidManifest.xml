@@ -130,9 +130,6 @@
             android:name=".NotarySuccessActivity"
     	    android:screenOrientation="portrait" />
         <activity
-            android:name=".NotaryListActivity"
-    	    android:screenOrientation="portrait" />
-        <activity
             android:name=".NotaryNotifyActivity"
     	    android:screenOrientation="portrait" />
         <activity

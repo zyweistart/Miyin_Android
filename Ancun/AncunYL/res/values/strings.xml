@@ -71,7 +71,6 @@
     <string name="undo_extraction_code">撤销提取</string>
     <string name="notary_request_success">申办公证</string>
     <string name="notary_notice">公证须知</string>
-    <string name="notary_list">公证机构一览表</string>
     <string name="apple_extraction_code_tip">凭提取码可在官网公开查询、验证本条通话录音，确定申请？</string>
     <string name="apply_notary_submit_tip">您确定将该录音提交至公证机构申办公证吗？</string>
     <string name="apply_notary_cancel_tip">您确定要取消该录音申办公证吗？</string>

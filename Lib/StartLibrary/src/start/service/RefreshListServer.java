@@ -103,6 +103,8 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 						AppContext.getSharedPreferences().putString(getCacheTag(), AppConstant.EMPTYSTR);
 					}
 					getItemDatas().clear();
+					this.mBaseListAdapter.setItemDatas(new ArrayList<Map<String,String>>(getItemDatas()	));
+					this.mBaseListAdapter.notifyDataSetChanged();
 				}
 			default:
 				getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_END);
