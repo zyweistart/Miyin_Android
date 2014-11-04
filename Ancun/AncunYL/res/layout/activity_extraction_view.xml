@@ -186,7 +186,7 @@
                 android:layout_marginLeft="25dip"
                 android:layout_marginRight="25dip"
                 android:layout_marginTop="30dip"
-                android:background="@drawable/selector_button_9"
+                android:background="@drawable/selector_button_7"
                 android:text="@string/undo_extraction_code"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
