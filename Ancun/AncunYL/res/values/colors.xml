@@ -7,10 +7,6 @@
 	
    	<color name="activity_gb">#f3f3f3</color>
    	<color name="bg_frame">#e7eaee</color>
-    <color name="button_1_n">#0e75d4</color>
-   	<color name="button_1_p">#bc0000</color>
-   	<color name="button_2_n">#0abad2</color>
-   	<color name="button_2_p">#fcd499</color>
    	<color name="button_3_n">#0c63b3</color>
 	<color name="button_3_p">#0e75d4</color>
 	<color name="tab_txt_p">#262d33</color>

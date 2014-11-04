@@ -15,13 +15,13 @@
         <ImageView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:src="@drawable/notary_list"/>
+	        android:src="@drawable/app_notary_list"/>
 	    
 	    <ImageView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="20.0dip"
-	        android:src="@drawable/notary_phone"/>
+	        android:src="@drawable/app_notary_phone"/>
         
     </LinearLayout>
      
