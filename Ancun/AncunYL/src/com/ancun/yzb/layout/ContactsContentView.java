@@ -16,12 +16,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -35,14 +33,15 @@ import com.ancun.yzb.adapter.ContactAdapter;
 import com.ancun.yzb.adapter.ContactAdapter.ContactViewHolder;
 
 public class ContactsContentView extends BaseScrollContent implements Filterable,OnItemClickListener {
+	
 	//是否刷新数据
 	public static Boolean isRefreshData=true;
 	
 	private FilterContact mFilter; 
-	private ListView contactListView;
+	private ListView mListView;
 	private ContactAdapter mAdapter;
-	private CustomEditText etSearch;
-	private ImageButton ib_search;
+	private CustomEditText et_content;
+	private ImageButton ibSearch;
 	private List<Map<String,String>> mListDataItems;
 	private List<Map<String,String>> mListDataItemsFilter;
 
@@ -62,27 +61,17 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 
 	public ContactsContentView(BaseActivity activity) {
 		super(activity, R.layout.module_scroll_contacts);
-		contactListView = (ListView) findViewById(R.id.contacts_listview);
-		contactListView.setOnItemClickListener(this);
-		View ContactsSearchBarView = View.inflate(activity, R.layout.module_search_bar, null);  
+		mListView = (ListView) findViewById(R.id.listview);
+		mListView.setOnItemClickListener(this);
+		View searchBarView = View.inflate(activity, R.layout.module_search_bar, null);  
 		//把view对象添加到listView对象的头部，可以随listView一起滑动
-		contactListView.addHeaderView(ContactsSearchBarView); 
+		mListView.addHeaderView(searchBarView); 
  
-		etSearch=(CustomEditText)ContactsSearchBarView.findViewById(R.id.et_search_bar_content);
-		etSearch.addTextChangedListener(new CustomTextWatcher());
-		
-		ib_search=(ImageButton)ContactsSearchBarView.findViewById(R.id.ib_search);
-		ib_search.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (getCurrentActivity().getInputMethodManager().isActive()) {
-					getCurrentActivity().getInputMethodManager().toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-				}
-				getFilter().filter(String.valueOf(etSearch.getText()));
-				//每次输入框文字变化    需要滚动屏幕才显示浮动姓
-				isShowOverLay=false;
-			}
-		});
+		ibSearch=(ImageButton)searchBarView.findViewById(R.id.ib_search);
+		ibSearch.setVisibility(View.GONE);
+		et_content=(CustomEditText)searchBarView.findViewById(R.id.et_content);
+		et_content.setHint(R.string.searchbarhint1);
+		et_content.addTextChangedListener(new SearchBarTextWatcher());
 
 		//获取Window窗口管理服务
 		mWindowManager = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
@@ -104,16 +93,16 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 			}
 
 		});
-		contactListView.setOnTouchListener(new View.OnTouchListener() {
+		mListView.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				isShowOverLay=true;
 				//关闭输入框弹窗的键盘
-				getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
+				getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(et_content.getWindowToken(), 0);
 				return false;
 			}
 		});
-		contactListView.setOnScrollListener(new OnScrollListener() {
+		mListView.setOnScrollListener(new OnScrollListener() {
 			
 			@Override  
 			public void onScroll(AbsListView view, int firstVisibleItem,int visibleItemCount, int totalItemCount) {  
@@ -169,9 +158,9 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 						if(mAdapter==null){
 							mAdapter=new ContactAdapter(getCurrentActivity());
 							mAdapter.setItemDatas(mListDataItemsFilter);
-							contactListView.setAdapter(mAdapter);
+							mListView.setAdapter(mAdapter);
 						}else{
-							getFilter().filter(etSearch.getText());
+							getFilter().filter(et_content.getText());
 						}
 						isRefreshData=false;
 					}
@@ -199,9 +188,6 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		}
 	}
 	
-	/**
-	 * 按照姓名查找 的filter类
-	 */
 	private class FilterContact extends Filter {  
 
 		@Override  
@@ -212,19 +198,19 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 				//输入为空
 				mListDataItemsFilter.addAll(mListDataItems);
 			} else {
-				for(Map<String,String> userInfo:mListDataItems){
-					String name=userInfo.get(ContactAdapter.STRNAME);
+				for(Map<String,String> data:mListDataItems){
+					String name=data.get(ContactAdapter.STRNAME);
 					if(TextUtils.isEmpty(name)){
 						continue;
 					}
 					name=name.toLowerCase();
 					String pre=prefix.toString().toLowerCase();
 					if(name.contains(pre)){
-						mListDataItemsFilter.add(userInfo);
+						mListDataItemsFilter.add(data);
 					}else if(name.equals(pre)){
-						mListDataItemsFilter.add(userInfo);
+						mListDataItemsFilter.add(data);
 					}else if(HanziToPinyin.getPinYin(name).contains(pre)){
-						mListDataItemsFilter.add(userInfo);
+						mListDataItemsFilter.add(data);
 					}
 				}
 			}
@@ -240,7 +226,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		
 	}
 	
-	private class CustomTextWatcher implements TextWatcher {
+	private class SearchBarTextWatcher implements TextWatcher {
 
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -258,13 +244,10 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		}
 		
 	}
-
-	public EditText getEtSearch() {
-		return etSearch;
-	}
 	
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+		isShowOverLay=false;
 		ContactViewHolder v=(ContactViewHolder)view.getTag();
 		v.dial_frame.setVisibility(View.VISIBLE);
 		position=position-1;

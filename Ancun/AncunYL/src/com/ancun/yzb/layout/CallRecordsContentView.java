@@ -25,7 +25,7 @@ public class CallRecordsContentView extends BaseScrollContent implements OnItemC
 
 	public CallRecordsContentView(BaseActivity activity) {
 		super(activity, R.layout.module_scroll_call_records);
-		mListview = (ListView) findViewById(R.id.recent_contacts_listview);
+		mListview = (ListView) findViewById(R.id.listview);
 		mListview.setOnItemClickListener(this);
 	}
 	
@@ -35,6 +35,7 @@ public class CallRecordsContentView extends BaseScrollContent implements OnItemC
 			public void run() {
 				
 				mListDataItems = getCurrentActivity().getRecentDaoImpl().findCallRecords();
+				
 				getCurrentActivity().runOnUiThread(new Runnable() {
 					public void run() {
 						if (mAdapter==null) {

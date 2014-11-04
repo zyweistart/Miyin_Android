@@ -3,7 +3,6 @@ package com.ancun.yzb.adapter;
 import java.util.List;
 import java.util.Map;
 
-import start.core.AppListAdapter;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View;
@@ -15,17 +14,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ancun.core.BaseActivity;
+import com.ancun.core.BaseCallListAdapter;
 import com.ancun.service.AppService;
 import com.ancun.yzb.R;
 
-public class ContactAdapter extends AppListAdapter{
+public class ContactAdapter extends BaseCallListAdapter{
 
 	public static final String STRID="id";
 	public static final String STRNAME="name";
 	public static final String STRPHONEID="phoneid";
 	public static final String STRLOOKUPKEY="LookupKey";
-	
-	private int lastPosition=-1;
 	
 	public ContactAdapter(BaseActivity activity) {
 		super(activity);
@@ -76,7 +74,7 @@ public class ContactAdapter extends AppListAdapter{
 				dial(data,2);
 			}
 		});
-		holder.dial_frame.setVisibility(lastPosition==position?View.VISIBLE:View.GONE);
+		holder.dial_frame.setVisibility(getLastPosition()==position?View.VISIBLE:View.GONE);
 		return convertView;
 	}
 	
@@ -87,15 +85,6 @@ public class ContactAdapter extends AppListAdapter{
 		public Button dial_recording;
 		public Button dial_normal;
 		
-	}
-	
-	public int getLastPosition(){
-		return lastPosition;
-	}
-	
-	public void setLastPosition(int position){
-		this.lastPosition=position;
-		this.notifyDataSetChanged();
 	}
 
 	private void dial(Map<String,String> data,final int type){

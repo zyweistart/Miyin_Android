@@ -4,6 +4,7 @@
     <string name="app_name">音证宝</string>
     <string name="app_phone">968682</string>
     <string name="app_compayname">安存科技</string>
+    <string name="app_url">http://www.968682.com</string>
     
 	<string name="back">返回</string>
 	<string name="login">登录</string>
@@ -28,6 +29,8 @@
     <string name="changepasswordsuccess">修改密码成功</string>
     <string name="next">下一步</string>
     <string name="goregister">立即注册</string>
+    <string name="searchbarhint1">请输入拼音或联系人姓名</string>
+    <string name="searchbarhint2">请输入被叫方号码</string>
     <string name="gologin">马上去登录</string>
     <string name="nohaveaccount">还没有账号？</string>
     <string name="haveaccount">已有账号</string>
@@ -82,6 +85,7 @@
     <string name="cleanrecording_success">成功清理本地所有录音文件</string>
     <string name="cleanrecording_fail">清理本地录音文件失败</string>
     <string name="press_again_exit">再按一次退出程序</string>
+    <string name="nodnowload">未下载</string>
     <string name="tip">小贴士</string>
     <string name="feedback">意见反馈</string>
     <string name="versioncheck">新版本检测</string>

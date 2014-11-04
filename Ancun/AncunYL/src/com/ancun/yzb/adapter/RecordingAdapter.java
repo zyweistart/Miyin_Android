@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import start.core.AppListAdapter;
 import start.utils.TimeUtils;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,14 +20,13 @@ import android.widget.TextView;
 
 import com.ancun.bean.ContactModel;
 import com.ancun.core.BaseActivity;
+import com.ancun.core.BaseCallListAdapter;
 import com.ancun.yzb.MainActivity;
 import com.ancun.yzb.R;
 import com.ancun.yzb.RecordedDetailActivity;
 
-public class RecordingAdapter extends AppListAdapter{
+public class RecordingAdapter extends BaseCallListAdapter{
 
-	private int selectedPosition=-1;
-	
 	public static final String RECORDED_FILENO="fileno";
 	public static final String RECORDED_TIME="begintime";
 	public static final String RECORDED_REMARK="remark";
@@ -115,9 +113,9 @@ public class RecordingAdapter extends AppListAdapter{
 		if(holder.file.exists()){
 			holder.tvDownloadStatus.setText(TimeUtils.secondConvertTime(Integer.parseInt(data.get(RECORDED_DURATION))));
 		}else{
-			holder.tvDownloadStatus.setText("未下载");
+			holder.tvDownloadStatus.setText(R.string.nodnowload);
 		}
-		if (selectedPosition == position) {
+		if (getLastPosition() == position) {
 			convertView.setBackgroundResource(R.drawable.selector_list_item_p);
 			holder.name.setTextColor(mActivity.getResources().getColor(R.color.white));
 		} else {
@@ -137,11 +135,6 @@ public class RecordingAdapter extends AppListAdapter{
 		public ImageButton btnRemark;
 		public File file;
 		public String fileno;
-	}
-	
-	public void setSelectedPosition(int position){
-		this.selectedPosition=position;
-		notifyDataSetChanged();
 	}
 	
 }

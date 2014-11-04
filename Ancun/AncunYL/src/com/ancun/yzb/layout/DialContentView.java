@@ -214,8 +214,6 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 					AppService.inAppDial(getCurrentActivity(),String.valueOf(mPhone));
 				}
 				showDigits();
-			} else {
-				getHandlerContext().makeTextShort("请输入号码后再点击拨号");
 			}
 		} else if (v.getId() == R.id.dial_clear) {
 			// 删除
@@ -223,8 +221,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 				mPhone.deleteCharAt(mPhone.length() - 1);
 				showDigits();
 			}
-		} else if (v.getId() == R.id.dial_add_contact
-				|| v.getId() == R.id.dial_add_exist_contact) {
+		} else if (v.getId() == R.id.dial_add_contact|| v.getId() == R.id.dial_add_exist_contact) {
 			Intent intent;
 			if (mPhone.length() > 0) {
 				if (v.getId() == R.id.dial_add_contact) {
@@ -241,8 +238,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 					intent.setType(ContactsContract.RawContacts.CONTENT_ITEM_TYPE);
 				}
 				intent.putExtra(android.provider.ContactsContract.Intents.Insert.PHONE,String.valueOf(mPhone));
-				intent.putExtra(
-						android.provider.ContactsContract.Intents.Insert.PHONE_TYPE,
+				intent.putExtra(android.provider.ContactsContract.Intents.Insert.PHONE_TYPE,
 						android.provider.Contacts.PhonesColumns.TYPE_MOBILE);
 				startActivity(intent);
 			}

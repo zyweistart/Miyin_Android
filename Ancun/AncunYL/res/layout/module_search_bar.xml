@@ -16,17 +16,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dip"
             android:background="@drawable/ic_search"
-            android:contentDescription="@string/empty" />
+            android:contentDescription="@string/empty"
+            android:layout_marginLeft="5.0dip" />
 
         <start.widget.CustomEditText
-            android:id="@+id/et_search_bar_content"
+            android:id="@+id/et_content"
             style="@style/edittext1"
             android:background="@color/transparent"
             android:layout_toRightOf="@id/ib_search"
-            android:layout_centerVertical="true"
-            android:hint="请输入联系人号码" />
+            android:layout_centerVertical="true" />
         
     </RelativeLayout>
 

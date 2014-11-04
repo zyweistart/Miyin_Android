@@ -53,11 +53,12 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 	private RecordingAdapter mRecordingAdapter;
 	private PlayerView playerView;
 	private ImageButton ib_search;
-	private CustomEditText et_search_bar_content;
+	private CustomEditText et_content;
 
 	public RecordingContentView(BaseActivity activity) {
 		super(activity, R.layout.module_scroll_recording);
-		et_search_bar_content=(CustomEditText)findViewById(R.id.et_search_bar_content);
+		et_content=(CustomEditText)findViewById(R.id.et_content);
+		et_content.setHint(R.string.searchbarhint2);
 		ib_search=(ImageButton)findViewById(R.id.ib_search);
 		ib_search.setOnClickListener(this);
 		
@@ -67,12 +68,12 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				if (getCurrentActivity().getInputMethodManager().isActive()) {
-					getCurrentActivity().getInputMethodManager().toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+				if(getCurrentActivity().getInputMethodManager().isActive()){
+					getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(getCurrentActivity().getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 				}
 				if (id >= 0) {
 					int i=position-1;
-					mRecordingAdapter.setSelectedPosition(i);
+					mRecordingAdapter.setLastPosition(i);
 					HolderView v=(HolderView)view.getTag();
 					if(v.file.exists()){
 						playerView.initPlayerFile(v.file.getAbsolutePath());
@@ -102,12 +103,12 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,int position, long id) {
-				if (getCurrentActivity().getInputMethodManager().isActive()) {
-					getCurrentActivity().getInputMethodManager().toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+				if(getCurrentActivity().getInputMethodManager().isActive()){
+					getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(getCurrentActivity().getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 				}
 				if (id >= 0) {
 					int i=position-1;
-					mRecordingAdapter.setSelectedPosition(i);
+					mRecordingAdapter.setLastPosition(i);
 					HolderView v=(HolderView)view.getTag();
 					final String fileno=v.fileno;
 					new AlertDialog.Builder(getCurrentActivity())
@@ -190,7 +191,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		params.put("accessid",User.ACCESSID);
 		params.put("rectype","3");
 		params.put("calltype","1");
-		params.put("oppno",String.valueOf(et_search_bar_content.getText()));
+		params.put("oppno",String.valueOf(et_content.getText()));
 		params.put("callerno","");
 		params.put("calledno","");
 		params.put("begintime","");
@@ -289,10 +290,11 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.ib_search){
-			if (getCurrentActivity().getInputMethodManager().isActive()) {
-				getCurrentActivity().getInputMethodManager().toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+			if(getCurrentActivity().getInputMethodManager().isActive()){
+				getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(getCurrentActivity().getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 			}
-			//TODO:执行搜索查询
+			mRefreshListServer.setCurrentPage(0);
+			mRefreshListServer.getCurrentListView().startLoadMore();
 		}
 	}
 }
