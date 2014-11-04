@@ -11,6 +11,7 @@
     <string name="reset_password">重置密码</string>
     <string name="accounthint">请输入账户</string>
     <string name="passwordhint">请输入密码</string>
+    <string name="newpasswordhint">请输入新密码</string>
     <string name="repasswordhint">请再次输入密码</string>
     <string name="autologinttxt">自动登录</string>
     <string name="forgetgesutepassword">忘记手势密码</string>
@@ -22,6 +23,7 @@
     <string name="pwdemptytip">密码不能为空</string>
     <string name="autocodeemptytip">验证码不能为空</string>
     <string name="twopwddifftip">二次密码输入不一致</string>
+    <string name="feedbackcontentemptytip">请输入反馈内容</string>
     <string name="usernameorpassworderrortip">用户名或密码有误</string>
     <string name="changepasswordsuccess">修改密码成功</string>
     <string name="next">下一步</string>
@@ -37,7 +39,7 @@
     <string name="callrecordeds">通话记录</string>
     <string name="contact">通讯录</string>
     <string name="recordeds">我的录音</string>
-    <string name="checknetworkconnected">网络连接异常</string>
+    <string name="checknetworkconnected">网络连接不可用，请检查网络设置</string>
     <string name="suredeleterecording">确认删除该条录音？</string>
     <string name="deleterecordinginputpasswordtip">请输入登录密码——被录音删除将进入录音回收站，如需还原或彻底删除请登录音证宝官网“我的录音-回收站”进行操作。</string>
     <string name="mobiledownloadtip">录音首次收听前需加载且需消耗一定的网络流量，当前网络环境为移动2G/3G网络，建议在Wifi环境下加载时长较长的通话录音，是否确认在当前网络模式下加载？</string>
@@ -50,7 +52,6 @@
     <string name="recording_length">录音时长</string>
     <string name="recorded_remark">录音备注</string>
     <string name="remark_edit_hint">你还没有添加备注</string>
-    <string name="edit">编辑</string>
     <string name="not_expired">不过期</string>
     <string name="view_extractioncode">查看提取码</string>
     <string name="reg_extractioncode">申请提取码</string>
@@ -75,7 +76,12 @@
     <string name="unsubscribe">退订</string>
     <string name="unsubscribe_sure">确认退订</string>
     <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.968682.com进行操作</string>
-    
+    <string name="modify_password_success_tip">密码修改成功啦，亲如此有防范风险意识真的很值得大家学习哦~</string>
+    <string name="exitlogin_sure">确认需要退出应用吗?</string>
+    <string name="cleanrecording_sure">是否删除本地所有录音缓存文件？</string>
+    <string name="cleanrecording_success">成功清理本地所有录音文件</string>
+    <string name="cleanrecording_fail">清理本地录音文件失败</string>
+    <string name="press_again_exit">再按一次退出程序</string>
     <string name="tip">小贴士</string>
     <string name="feedback">意见反馈</string>
     <string name="versioncheck">新版本检测</string>

@@ -3,6 +3,7 @@ package com.ancun.yzb;
 import start.core.AppException;
 import start.widget.ScrollLayout;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Message;
 import android.provider.Settings;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
+import com.ancun.service.AppService;
 import com.ancun.yzb.layout.CallRecordsContentView;
 import com.ancun.yzb.layout.ContactsContentView;
 import com.ancun.yzb.layout.DialContentView;
@@ -39,6 +41,9 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 	private ContactsContentView mContactsContentView;
 	private RecordingContentView mRecordingContentView;
 
+	private PhoneReceiver mPhoneReceiver;
+	private NetCheckReceiver mNetCheckReceiver;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,6 +69,22 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 		mScrollLayout.addView(mContactsContentView.getLayoutView());
 		mRecordingContentView = new RecordingContentView(this);
 		mScrollLayout.addView(mRecordingContentView.getLayoutView());
+		
+		//开启网络检测广播
+		mNetCheckReceiver=new NetCheckReceiver(this);
+        IntentFilter filter1=new IntentFilter();
+        filter1.addAction(NetCheckReceiver.NETACTION);
+        registerReceiver(mNetCheckReceiver,filter1);
+        
+        //开启电话监听广播
+        mPhoneReceiver=new PhoneReceiver(this);
+        IntentFilter filter2=new IntentFilter();
+        filter2.addAction(Intent.ACTION_NEW_OUTGOING_CALL);
+        registerReceiver(mPhoneReceiver,filter2);
+		
+		AppService.resetGesture(this);
+		AppService.checkAppUpdate(this, true);
+		
 	}
 	
 	@Override
@@ -81,6 +102,12 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 	@Override
 	protected void onDestroy() {
 		mContactsContentView.onDestroy();
+		if(mPhoneReceiver!=null){
+			unregisterReceiver(mPhoneReceiver);
+		}
+		if(mNetCheckReceiver!=null){
+			unregisterReceiver(mNetCheckReceiver);
+		}
 		super.onDestroy();
 	}
 	
@@ -88,6 +115,10 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		mRecordingContentView.onActivityResult(requestCode, resultCode, data);
+		if(resultCode==SettingActivity.RESULTQUITAPP){
+			getAppContext().currentUser().clearCacheUser();
+			goLogin(false);
+		}
 	}
 	
 	@Override
@@ -109,7 +140,9 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 			startActivity(new Intent(this, AccountActivity.class));
 		} else if (v.getId()==R.id.btn_networkconnected){
 			startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-		} 
+		} else{
+			super.onClick(v);
+		}
 	}
 
 	@Override
@@ -198,26 +231,24 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 
 				@Override
 				public void onAnimationEnd(Animation animation) {
-					//初始化页面加载数据
-//							if (currentViewIndex==0){
-//								// 跳转到拨号界面,更新消息数显示
-////								dialContent.setNoReadCount(SharedPreferencesUtils.getMsgNoReadCount(MainActivity.this));
-//							} else if (currentViewIndex == 1) {
-//								if (recentContent.isOpenRefreshData) {
-//									refreshRecentContent();
-//								}
-//							} else if (currentViewIndex == 2) {
-//								if (contactContent.isOpenRefreshData) {
-//									refreshContactContent();
-//								}
-//							} else if (currentViewIndex == 3) {
-//								//判断是否已经设置手势
-//								if (TextUtils.isEmpty(SharedPreferencesUtils.getGesturePass(MainActivity.this))) {
-//									refreshRecordingContent();
-//								}else{
-//									startActivityForResult(new Intent(MainActivity.this,LockActivity.class), 0);
-//								}
-//							}
+					if (currentViewIndex==0){
+						if(DialContentView.isRefreshData){
+							mDialContentView.loadData(true);
+						}
+					} else if (currentViewIndex == 1) {
+						if(CallRecordsContentView.isRefreshData){
+//							mCallRecordsContentView.loadData(true);
+							mCallRecordsContentView.setListDataItems(mDialContentView.getListDataItems());
+						}
+					} else if (currentViewIndex == 2) {
+						if(ContactsContentView.isRefreshData){
+							mContactsContentView.loadData(true);
+						}
+					} else if (currentViewIndex == 3) {
+						if(RecordingContentView.isRefreshData){
+							mRecordingContentView.getRefreshListServer().initLoad();
+						}
+					}
 					mLastViewIndex=currentViewIndex;
 				}
 
@@ -236,7 +267,7 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 		if (keyCode == KeyEvent.KEYCODE_BACK
 				&& event.getAction() == KeyEvent.ACTION_DOWN) {
 			if ((System.currentTimeMillis() - mLastPressTime) > 2000) {
-				getHandlerContext().makeTextShort("再按一次退出程序");
+				getHandlerContext().makeTextShort(getString(R.string.press_again_exit));
 				mLastPressTime = System.currentTimeMillis();
 			} else {
 				finish();

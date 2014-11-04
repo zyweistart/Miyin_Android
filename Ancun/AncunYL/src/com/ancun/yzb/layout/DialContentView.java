@@ -41,7 +41,8 @@ import com.ancun.service.AppService;
 import com.ancun.yzb.R;
 
 public class DialContentView extends BaseScrollContent implements Filterable,OnClickListener, OnLongClickListener, OnItemClickListener {
-
+	//是否刷新数据
+	public static Boolean isRefreshData=true;
 	/**
 	 * 拨号声音
 	 */
@@ -160,6 +161,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 		mPhone = new StringBuilder();
 
 		loadData(true);
+		
 	}
 
 	public void loadData(final Boolean flag) {
@@ -183,6 +185,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 						} else {
 							getFilter().filter(mPhone);
 						}
+						isRefreshData=false;
 					}
 				});
 
@@ -317,13 +320,9 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 			// 拨号
 			if (mPhone.length() > 0) {
 				if (v.getId() == R.id.dial_normal) {
-					Intent intent = new Intent(Intent.ACTION_CALL,
-							Uri.parse("tel:" + mPhone));
-					getCurrentActivity().startActivity(intent);
+					AppService.call(getCurrentActivity(), String.valueOf(mPhone));
 				} else {
-					// SharedPreferencesUtils.setCallType(getAppContext(), 2);
-					AppService.inAppDial(getCurrentActivity(),
-							mPhone.toString());
+					AppService.inAppDial(getCurrentActivity(),String.valueOf(mPhone));
 				}
 				showDigits();
 			} else {
@@ -460,8 +459,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
+	public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 		HolderView v = (HolderView) view.getTag();
 		dial_frame.setVisibility(View.GONE);
 		dial_show_hiden.setImageResource(R.drawable.dial_show);
@@ -472,6 +470,10 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 			lastPosition = -1;
 		}
 		adapter.notifyDataSetChanged();
+	}
+	
+	public List<RecentModel> getListDataItems(){
+		return mListDataItems;
 	}
 
 }

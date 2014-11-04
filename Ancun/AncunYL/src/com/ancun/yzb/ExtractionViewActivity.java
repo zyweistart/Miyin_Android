@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.service.User;
-import com.ancun.yzb.layout.RecordingAdapter;
+import com.ancun.yzb.adapter.RecordingAdapter;
 
 /**
  * 提取申请码

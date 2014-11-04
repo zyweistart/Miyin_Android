@@ -22,7 +22,7 @@ import com.ancun.service.User;
 public class UnsubscribeActivity extends BaseActivity {
 
 	private EditText et_pwd;
-	private Button btn_submit,btn_back;
+	private Button btn_submit,btn_return;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class UnsubscribeActivity extends BaseActivity {
 		setMainHeadTitle(getString(R.string.unsubscribe));
 		et_pwd =(EditText)findViewById(R.id.et_pwd);
 		btn_submit =(Button)findViewById(R.id.btn_submit);
-		btn_back =(Button)findViewById(R.id.btn_back);
+		btn_return =(Button)findViewById(R.id.btn_return);
 		et_pwd.addTextChangedListener(new ButtonTextWatcher(btn_submit));
     }
 
@@ -55,21 +55,24 @@ public class UnsubscribeActivity extends BaseActivity {
 				
 				@Override
 				public void run(Response response) throws AppException {
+					
 					runOnUiThread(new Runnable() {
 						
 						@Override
 						public void run() {
 							btn_submit.setVisibility(View.GONE);
-							btn_back.setVisibility(View.VISIBLE);
+							btn_return.setVisibility(View.VISIBLE);
 						}
 					});
+					
 				}
 				
 			});
-		}else if(v.getId()==R.id.btn_back){
+		}else if(v.getId()==R.id.btn_return){
 			finish();
+		}else{
+			super.onClick(v);
 		}
-		
 	}
     
 }

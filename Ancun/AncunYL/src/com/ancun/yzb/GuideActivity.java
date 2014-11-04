@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.ancun.core.BaseActivity;
+import com.ancun.yzb.adapter.GuideAdapter;
 
 /**
  * @author Start

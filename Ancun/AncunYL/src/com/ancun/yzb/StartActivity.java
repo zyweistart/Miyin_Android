@@ -3,8 +3,13 @@ package com.ancun.yzb;
 import java.io.File;
 import java.util.List;
 
+import start.core.AppContext;
 import start.utils.FileUtils;
+import start.utils.LogUtils;
 import start.utils.TimeUtils;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +19,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.LinearLayout;
 
 import com.ancun.core.BaseActivity;
+import com.ancun.core.Constant.Preferences;
 
 
 /**
@@ -45,10 +51,20 @@ public class StartActivity extends BaseActivity{
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-				goLogin(true);
-//				Intent intent=new Intent(StartActivity.this,MainActivity.class);
-//				startActivity(intent);
-//				finish();
+				try {
+					PackageInfo packInfo = getPackageManager().getPackageInfo(getPackageName(),0);
+					int curVersionCode=packInfo.versionCode;
+					if(curVersionCode>AppContext.getSharedPreferences().getInteger(Preferences.SP_CURRENTVERSIONCODE,0)){
+						startActivity(new Intent(StartActivity.this,GuideActivity.class));
+					}else{
+						startActivity(new Intent(StartActivity.this, LockActivity.class));
+					}
+					//更新当前版本号
+					AppContext.getSharedPreferences().putInteger(Preferences.SP_CURRENTVERSIONCODE, curVersionCode);
+					finish();
+				} catch (NameNotFoundException e) {
+					LogUtils.logError(e);
+				}
 			}
 			
 		});

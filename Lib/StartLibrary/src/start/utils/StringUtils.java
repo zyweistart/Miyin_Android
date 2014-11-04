@@ -108,4 +108,22 @@ public class StringUtils {
 		return sb.toString();
 	}
 	
+	/**
+	 * 号码转换，例：1 37-3887-3386转换成13738873386把有格式的转成标准号码格式
+	 * @param phone
+	 * @return
+	 */
+	public static String phoneFormat(String phone){
+		//号码转换
+		StringBuilder sbphone=new StringBuilder();
+		for(int i=0;i<phone.length();i++){
+			char c=phone.charAt(i);
+			int asnum=(int)c;
+			if(asnum>=48&&asnum<=57){
+				sbphone.append(c);
+			}
+		}
+		return sbphone.toString();
+	}
+	
 }

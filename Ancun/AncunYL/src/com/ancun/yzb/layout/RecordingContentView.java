@@ -35,11 +35,14 @@ import com.ancun.service.User;
 import com.ancun.widget.PlayerView;
 import com.ancun.yzb.R;
 import com.ancun.yzb.RecordedDetailActivity;
-import com.ancun.yzb.layout.RecordingAdapter.HolderView;
+import com.ancun.yzb.adapter.RecordingAdapter;
+import com.ancun.yzb.adapter.RecordingAdapter.HolderView;
 
 public class RecordingContentView extends BaseScrollContent implements RefreshListServerListener {
 
-	private final String DOWNLOADDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/record/";
+	public static final String RECORDINGDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/record/";
+	//是否刷新数据
+	public static Boolean isRefreshData=true;
 	
 	private XListView mListView;
 	private RefreshListServer mRefreshListServer;
@@ -155,10 +158,12 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		mRefreshListServer.setListTag("reclist");
 		mRefreshListServer.setInfoTag("recinfo");
 		mRefreshListServer.setRefreshListServerListener(this);
-
-		mRefreshListServer.initLoad();
 	}
 
+	public RefreshListServer getRefreshListServer(){
+		return mRefreshListServer;
+	}
+	
 	@Override
 	public void onLoading(final int HANDLER) {
 		HttpServer hServer = new HttpServer(Constant.URL.v4recQry,mRefreshListServer.getHandlerContext());
@@ -189,6 +194,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 			public void run(Response response) throws AppException {
 				mRefreshListServer.resolve(response);
 				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+				isRefreshData=false;
 			}
 
 		}, false);
@@ -217,7 +223,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 				});
 			}
 			
-		},DOWNLOADDIRECTORY,fileNo);
+		},RECORDINGDIRECTORY,fileNo);
 	}
 	
 	public void onPause() {

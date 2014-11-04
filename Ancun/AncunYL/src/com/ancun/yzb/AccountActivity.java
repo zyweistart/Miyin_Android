@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.service.User;
+import com.ancun.yzb.adapter.UseRecordAdapter;
 
 public class AccountActivity extends BaseActivity implements RefreshListServerListener {
 	

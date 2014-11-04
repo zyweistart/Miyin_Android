@@ -3,8 +3,6 @@ package com.ancun.yzb.layout;
 import java.util.List;
 
 import start.utils.TimeUtils;
-import android.content.Intent;
-import android.net.Uri;
 import android.provider.CallLog;
 import android.text.TextUtils;
 import android.view.View;
@@ -27,7 +25,8 @@ import com.ancun.service.AppService;
 import com.ancun.yzb.R;
 
 public class CallRecordsContentView extends BaseScrollContent implements OnItemClickListener{
-
+	//是否刷新数据
+	public static Boolean isRefreshData=true;
 	private int lastPosition=-1;
 	
 	private ListView listview;
@@ -38,10 +37,19 @@ public class CallRecordsContentView extends BaseScrollContent implements OnItemC
 		super(activity, R.layout.module_scroll_call_records);
 		listview = (ListView) findViewById(R.id.recent_contacts_listview);
 		listview.setOnItemClickListener(this);
-		
-		loadData(true);
 	}
 
+	public void setListDataItems(List<RecentModel> rms){
+		this.mListDataItems=rms;
+		if (adapter==null) {
+			adapter = new DataAdapter();
+			listview.setAdapter(adapter);
+		} else {
+			adapter.notifyDataSetChanged();
+		}
+		isRefreshData=false;
+	}
+	
 	public void loadData(final Boolean flag){
 		new Thread() {
 			
@@ -56,6 +64,7 @@ public class CallRecordsContentView extends BaseScrollContent implements OnItemC
 						} else {
 							adapter.notifyDataSetChanged();
 						}
+						isRefreshData=false;
 					}
 				});
 				
@@ -140,8 +149,7 @@ public class CallRecordsContentView extends BaseScrollContent implements OnItemC
 				@Override
 				public void onClick(View v) {
 					RecentModel recent=(RecentModel)v.getTag();
-					Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+ recent.getPhone()));
-					getCurrentActivity().startActivity(intent);
+					AppService.call(getCurrentActivity(), recent.getPhone());
 				}
 			});
 			holder.dial_frame.setVisibility(lastPosition==position?View.VISIBLE:View.GONE);

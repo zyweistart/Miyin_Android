@@ -6,9 +6,7 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -42,7 +40,9 @@ import com.ancun.service.AppService;
 import com.ancun.yzb.R;
 
 public class ContactsContentView extends BaseScrollContent implements Filterable,OnItemClickListener {
-
+	//是否刷新数据
+	public static Boolean isRefreshData=true;
+	
 	private FilterContact mFilter; 
 	private ListView contactListView;
 	private ContactAdapter adapter;
@@ -156,8 +156,6 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 			}  
 
 		});
-		
-		loadData(true);
 	}
 	
 	public void onDestroy() {
@@ -189,6 +187,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 							//每次更新listview  按照搜索框的内容从新过滤 
 							getFilter().filter(etSearch.getText());
 						}
+						isRefreshData=false;
 					}
 				});
 			};
@@ -386,11 +385,9 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 				public void onClick(DialogInterface dialog,final int which) {
 					String phone=phonearr[which];
 					if(type==1){
-//						SharedPreferencesUtils.setCallType(getContext(), 2);
 						AppService.inAppDial(getCurrentActivity(),phone);
 					}else{
-						Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+ phone));
-						getCurrentActivity().startActivity(intent);
+						AppService.call(getCurrentActivity(), phone);
 					}
 					dialog.dismiss();
 				}
@@ -399,11 +396,9 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 			//如果电话为一个则直接拔号
 			String phone=phones.get(0);
 			if(type==1){
-//				SharedPreferencesUtils.setCallType(getContext(), 2);
 				AppService.inAppDial(getCurrentActivity(),phone);
 			}else{
-				Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+ phone));
-				getCurrentActivity().startActivity(intent);
+				AppService.call(getCurrentActivity(), phone);
 			}
 		}else{
 			getHandlerContext().makeTextLong("无任何联系号码");

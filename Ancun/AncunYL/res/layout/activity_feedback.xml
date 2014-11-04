@@ -2,55 +2,104 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/activity_gb">
-    
+    android:background="@color/activity_gb"
+    android:orientation="vertical" >
+
     <include layout="@layout/module_header" />
 
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
-        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10.0dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setting_feedback_content_bg"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/et_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="3.0dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:layout_marginTop="15.0dip"
+                    android:background="@android:color/transparent"
+                    android:gravity="left|top"
+                    android:hint="请输入反馈，我们将为您不断改进"
+                    android:minLines="7"
+                    android:paddingLeft="0.0dip"
+                    android:textColor="#ff1d1d1d"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10.0dip" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50.0dip"
+                android:background="@drawable/shape_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10.0dip"
+                    android:text="您的邮箱 "
+                    android:textColor="@android:color/black"
+                    android:textSize="18.0sp" />
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="15dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="15dip"
+                    android:background="#AAAAAA" />
+
+                <EditText
+                    android:id="@+id/et_contact"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="3.0dip"
+                    android:layout_marginLeft="0.0dip"
+                    android:layout_marginRight="15.0dip"
+                    android:layout_marginTop="3.0dip"
+                    android:background="@android:color/white"
+                    android:hint="选填，以便给您回复"
+                    android:textColor="#ff1d1d1d"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10.0dip" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/button4"
+                android:enabled="false"
+                android:text="@string/sure" />
+        </LinearLayout>
         
-        <LinearLayout 
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:gravity="center_vertical|center_horizontal">
-	        <ImageView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:contentDescription="@string/empty"
-		        android:src="@drawable/about_us_logo" />
-	    </LinearLayout>
-	    
-	    <LinearLayout 
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:gravity="center_vertical|center_horizontal">
-	        <ImageView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:contentDescription="@string/empty"
-		        android:src="@drawable/about_us_contact" />
-	    </LinearLayout>
-        
-	    <LinearLayout 
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:gravity="center_vertical|center_horizontal"
-	        android:orientation="vertical">
-	        <TextView
-		        android:id="@+id/setting_about_us_version"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:gravity="center_horizontal"
-		        android:drawableTop="@drawable/about_us_time"/>
-	    </LinearLayout>
-        
-    </LinearLayout>
-    
+    </ScrollView>
+
 </LinearLayout>

@@ -1,5 +1,8 @@
 package com.ancun.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public final class Constant {
 
@@ -10,7 +13,17 @@ public final class Constant {
 
 	public static final String RESTURL = ISSYSTEMTEST ?
 			"http://192.168.0.221:8888/accore/http/HttpService":"http://account.chinacloudapp.cn:81/pwyl/http/HttpService";
-
+	/**
+	 * 需要过滤的号码
+	 */
+	public static List<String> noCall = new ArrayList<String>();
+	static {
+		noCall.add("968682");
+		noCall.add("95105856");
+		noCall.add("110");
+		noCall.add("112");
+		noCall.add("119");
+	}
 	/**
 	 * 用户接口
 	 */
@@ -99,8 +112,13 @@ public final class Constant {
 		 * 注册重置密码步骤2
 		 */
 		public static final int REGISTER_RESET_PASSWORD_STEP2=0x1120;
-		
+		/**
+		 * 网络未连接
+		 */
 		public static final int HANDLERNETCHECKMESSAGEWHATCONNECT=0x1121;
+		/**
+		 * 网络已连接
+		 */
 		public static final int HANDLERNETCHECKMESSAGEWHATNOCONNECT=0x1122;
 		
 	}
@@ -146,6 +164,8 @@ public final class Constant {
 		 * 版本最后检测日期
 		 */
 		public static final String SP_VERSION_DATA = "SP_VERSION_DATA";
+		
+		public static final String SP_CALL_DIAL = "SP_CALL_DIAL";
 		
 	}
 	

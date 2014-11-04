@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -62,16 +64,24 @@ public class UpdateApplication {
 	 */
 	public void startCheck(final boolean backgroundCheckFlag) {
 		if (NetConnectManager.isNetworkConnected(currentActivity)) {
-			HttpServer hServer=new HttpServer("", mHandlerContext);
+			HttpServer hServer=new HttpServer(Constant.URL.versioninfoGet, mHandlerContext);
+			Map<String, String> headers = new HashMap<String, String>();
+			headers.put("sign", "");
+			hServer.setHeaders(headers);
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("type", "6");
+			params.put("termtype", "4");
+			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
 				
 				@Override
 				public void run(Response response) throws AppException {
 					try {
-						final Integer minver = Integer.parseInt(response.getMapData().get("minver"));
-						final Integer nowver =Integer.parseInt(response.getMapData().get("nowver"));
-						final String description = response.getMapData().get("description");
-						final String url = response.getMapData().get("url");
+						Map<String,String> info=response.getMapData("versioninfo");
+						final Integer minver = Integer.parseInt(info.get("minverno"));
+						final Integer nowver =Integer.parseInt(info.get("maxverno"));
+						final String description = info.get("remark");
+						final String url = info.get("url");
 						PackageInfo pi=currentActivity.getPackageManager().getPackageInfo(currentActivity.getPackageName(), 0); 
 						int currentVersionCode =pi.versionCode;
 						if (minver > currentVersionCode) {
@@ -164,10 +174,8 @@ public class UpdateApplication {
 			pDialog = new ProgressDialog(currentActivity);
 			// 设置进度条风格，风格为圆形，旋转的
 			pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			// 设置ProgressDialog 标题
-			pDialog.setTitle("提示");
 			// 设置ProgressDialog提示信息
-			pDialog.setMessage("正在下载中......");
+			pDialog.setMessage(currentActivity.getString(R.string.downloading));
 			// 设置ProgressDialog标题图标
 			// pDialog.setIcon(R.drawable.img2);
 			// 设置ProgressDialog 的进度条是否不明确 false 就是不设置为不明确

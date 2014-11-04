@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.ancun.core.BaseActivity;
@@ -22,11 +21,8 @@ import com.ancun.core.Constant.Preferences;
 /**
  * @author Start   
  * @Description: 手势密码解锁
- * @ClassName: LockActivity.java   
- * @date 2014年7月23日 下午2:29:15      
- * @说明  代码版权归 杭州反盗版中心有限公司 所有
  */
-public class LockActivity extends BaseActivity implements LockPatternView.OnPatternListener,OnClickListener{
+public class LockActivity extends BaseActivity implements LockPatternView.OnPatternListener{
 
     private List<Cell> lockPattern;
     private LockPatternView lockPatternView;
@@ -115,6 +111,8 @@ public class LockActivity extends BaseActivity implements LockPatternView.OnPatt
 			goLogin(false);
 		}else if(v.getId()==R.id.txt_otheraccountlogin){
 			goLogin(false);
+		}else{
+			super.onClick(v);
 		}
 	}
     

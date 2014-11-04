@@ -136,7 +136,6 @@
                     android:id="@+id/setting_gesturesetting"
                     style="@style/setting_frame"
                     android:drawableLeft="@drawable/ic_share"
-                    android:drawableRight="@drawable/selector_ic_arrow"
                     android:text="@string/gesturesetting" />
 
                 <View
