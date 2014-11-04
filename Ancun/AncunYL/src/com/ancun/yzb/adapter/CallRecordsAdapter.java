@@ -21,6 +21,8 @@ import com.ancun.yzb.R;
 
 public class CallRecordsAdapter extends AppListAdapter{
 
+	public static final String STRID="id";
+	public static final String STRNAME="name";
 	public static final String STRSTATUS="status";
 	public static final String STRPHONE="phone";
 	public static final String STRCALLTIME="calltime";
@@ -110,6 +112,10 @@ public class CallRecordsAdapter extends AppListAdapter{
 		public LinearLayout dial_frame;
 		public Button dial_recording;
 		public Button dial_normal;
+	}
+	
+	public int getLastPosition(){
+		return lastPosition;
 	}
 	
 	public void setLastPosition(int position){

@@ -3,44 +3,40 @@ package com.ancun.yzb.layout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import start.core.AppException;
-import start.utils.TimeUtils;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
-import android.net.Uri;
 import android.os.Message;
 import android.os.Vibrator;
-import android.provider.CallLog;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ancun.bean.ContactModel;
-import com.ancun.bean.RecentModel;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.BaseScrollContent;
 import com.ancun.service.AppService;
 import com.ancun.yzb.R;
+import com.ancun.yzb.adapter.CallRecordsAdapter;
+import com.ancun.yzb.adapter.CallRecordsAdapter.HolderView;
 
 public class DialContentView extends BaseScrollContent implements Filterable,OnClickListener, OnLongClickListener, OnItemClickListener {
+	
 	//是否刷新数据
 	public static Boolean isRefreshData=true;
 	/**
@@ -66,7 +62,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 	/**
 	 * 拨打的号码字符串
 	 */
-	private StringBuilder mPhone;
+	private StringBuilder mPhone=new StringBuilder();
 	/**
 	 * 振动反馈
 	 */
@@ -84,13 +80,12 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 
 	private FilterContact mFilter;
 	private ListView listview;
-	private DataAdapter adapter;
-	private List<RecentModel> mListDataItems;
-	private List<RecentModel> mListDataItemsFilter;
+	private CallRecordsAdapter mAdapter;
+	private List<Map<String,String>> mListDataItems;
+	private List<Map<String,String>> mListDataItemsFilter;
 	private LinearLayout not_found_frame;
 	private LinearLayout dial_frame;
 	private TextView dial_content;
-	private int lastPosition = -1;
 
 	static {
 		mToneMap.put("1", ToneGenerator.TONE_DTMF_1);
@@ -157,21 +152,16 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 		dial_add_contact.setOnClickListener(this);
 		dial_add_exist_contact = (Button) findViewById(R.id.dial_add_exist_contact);
 		dial_add_exist_contact.setOnClickListener(this);
-
-		mPhone = new StringBuilder();
-
-		loadData(true);
-		
 	}
 
-	public void loadData(final Boolean flag) {
+	public void loadData() {
 		new Thread() {
 
 			public void run() {
 
 				mListDataItems = getCurrentActivity().getRecentDaoImpl().findCallRecords();
 				if (mListDataItemsFilter == null) {
-					mListDataItemsFilter = new ArrayList<RecentModel>();
+					mListDataItemsFilter = new ArrayList<Map<String,String>>();
 				} else {
 					mListDataItemsFilter.clear();
 				}
@@ -179,10 +169,11 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 
 				getCurrentActivity().runOnUiThread(new Runnable() {
 					public void run() {
-						if (flag) {
-							adapter = new DataAdapter();
-							listview.setAdapter(adapter);
-						} else {
+						if (mAdapter==null) {
+							mAdapter = new CallRecordsAdapter(getCurrentActivity());
+							mAdapter.setItemDatas(mListDataItemsFilter);
+							listview.setAdapter(mAdapter);
+						}else{
 							getFilter().filter(mPhone);
 						}
 						isRefreshData=false;
@@ -194,115 +185,13 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 		}.start();
 	}
 
-	public class DataAdapter extends BaseAdapter {
-
-		@Override
-		public int getCount() {
-			return mListDataItemsFilter.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return mListDataItemsFilter.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			HolderView holder;
-			if (convertView == null) {
-				holder = new HolderView();
-				convertView = getLayoutInflater().inflate(R.layout.lvitem_recent, null);
-				holder.call_flag = (ImageView) convertView.findViewById(R.id.iv_call_flag);
-				holder.name = (TextView) convertView.findViewById(R.id.tv_name);
-				holder.phone = (TextView) convertView.findViewById(R.id.tv_phone);
-				holder.phonem = (TextView) convertView.findViewById(R.id.tv_phone_main);
-				holder.time = (TextView) convertView.findViewById(R.id.tv_time);
-				holder.dial_frame = (LinearLayout) convertView.findViewById(R.id.dial_frame);
-				holder.dial_recording = (Button) convertView.findViewById(R.id.dial_recording);
-				holder.dial_normal = (Button) convertView.findViewById(R.id.dial_normal);
-				convertView.setTag(holder);
-			} else {
-				holder = (HolderView) convertView.getTag();
-			}
-			RecentModel recent = mListDataItemsFilter.get(position);
-			if (recent.getStatus() == CallLog.Calls.INCOMING_TYPE) {
-				// 呼入
-				holder.call_flag.setImageResource(R.drawable.ic_call_in);
-			} else if (recent.getStatus() == CallLog.Calls.OUTGOING_TYPE) {
-				// 呼出
-				holder.call_flag.setImageResource(R.drawable.ic_call_out);
-			} else {
-				// 呼入未接通
-				holder.call_flag.setImageResource(R.drawable.ic_call_noin);
-			}
-			ContactModel contactModel = getCurrentActivity()
-					.getContactDaoImpl().getContactModelByPhone(recent.getPhone());
-			if (contactModel != null
-					&& !TextUtils.isEmpty(contactModel.getName())) {
-				holder.name.setText(contactModel.getName());
-				holder.phone.setText(recent.getPhone());
-				holder.name.setVisibility(View.VISIBLE);
-				holder.phone.setVisibility(View.VISIBLE);
-				holder.phonem.setVisibility(View.GONE);
-			} else {
-				holder.phonem.setText(recent.getPhone());
-				holder.name.setVisibility(View.GONE);
-				holder.phone.setVisibility(View.GONE);
-				holder.phonem.setVisibility(View.VISIBLE);
-			}
-			holder.time.setText(TimeUtils.customerTimeConvert(recent.getCalltime()));
-			holder.dial_recording.setTag(recent);
-			holder.dial_recording.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					RecentModel recent = (RecentModel) v.getTag();
-					// SharedPreferencesUtils.setCallType(getContext(), 2);
-					AppService.inAppDial(getCurrentActivity(),
-							recent.getPhone());
-				}
-				
-			});
-			holder.dial_normal.setTag(recent);
-			holder.dial_normal.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					RecentModel recent = (RecentModel) v.getTag();
-					Intent intent = new Intent(Intent.ACTION_CALL, Uri
-							.parse("tel:" + recent.getPhone()));
-					getCurrentActivity().startActivity(intent);
-				}
-			});
-			holder.dial_frame.setVisibility(lastPosition == position ? View.VISIBLE : View.GONE);
-			return convertView;
-		}
-
-	}
-
-	private class HolderView {
-		private ImageView call_flag;
-		private TextView name;
-		private TextView phone;
-		private TextView phonem;
-		private TextView time;
-		private LinearLayout dial_frame;
-		private Button dial_recording;
-		private Button dial_normal;
-	}
-
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.dial_show_hiden) {
-			if (lastPosition != -1) {
-				lastPosition = -1;
-				adapter.notifyDataSetChanged();
+			if(mAdapter.getLastPosition()!=-1){
+				mAdapter.setLastPosition(-1);
+				mAdapter.notifyDataSetChanged();
 			}
 			dial_show_hiden.setImageResource(dial_frame.isShown() ? R.drawable.dial_show : R.drawable.dial_hidden);
 			dial_frame.setVisibility(dial_frame.isShown() ? View.GONE: View.VISIBLE);
@@ -351,9 +240,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 					intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
 					intent.setType(ContactsContract.RawContacts.CONTENT_ITEM_TYPE);
 				}
-				intent.putExtra(
-						android.provider.ContactsContract.Intents.Insert.PHONE,
-						mPhone.toString());
+				intent.putExtra(android.provider.ContactsContract.Intents.Insert.PHONE,String.valueOf(mPhone));
 				intent.putExtra(
 						android.provider.ContactsContract.Intents.Insert.PHONE_TYPE,
 						android.provider.Contacts.PhonesColumns.TYPE_MOBILE);
@@ -403,9 +290,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 		getFilter().filter(mPhone);
 		String tmpPhone = mPhone.toString();
 		if (mPhone.length() > 15) {
-			tmpPhone = mPhone
-					.subSequence(mPhone.length() - 15, mPhone.length())
-					.toString();
+			tmpPhone = mPhone.subSequence(mPhone.length() - 15, mPhone.length()).toString();
 		}
 		dial_content.setText(tmpPhone);
 	}
@@ -428,13 +313,13 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 				// 输入为空
 				mListDataItemsFilter.addAll(mListDataItems);
 			} else {
-				for (RecentModel userInfo : mListDataItems) {
-					String phone = userInfo.getPhone();
+				for (Map<String,String> data : mListDataItems) {
+					String phone = data.get(CallRecordsAdapter.STRPHONE);
 					if (TextUtils.isEmpty(phone)) {
 						continue;
 					}
 					if (phone.contains(prefix.toString())) {
-						mListDataItemsFilter.add(userInfo);
+						mListDataItemsFilter.add(data);
 					}
 				}
 			}
@@ -444,12 +329,12 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 		}
 
 		@Override
-		protected void publishResults(CharSequence constraint,
-				FilterResults results) {
+		protected void publishResults(CharSequence constraint,FilterResults results) {
 			if (mListDataItemsFilter.size() > 0) {
-				adapter.notifyDataSetChanged();
 				listview.setVisibility(View.VISIBLE);
 				not_found_frame.setVisibility(View.GONE);
+				mAdapter.setItemDatas(mListDataItemsFilter);
+				mAdapter.notifyDataSetChanged();
 			} else {
 				listview.setVisibility(View.GONE);
 				not_found_frame.setVisibility(View.VISIBLE);
@@ -461,19 +346,15 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 		HolderView v = (HolderView) view.getTag();
+		v.dial_frame.setVisibility(View.VISIBLE);
 		dial_frame.setVisibility(View.GONE);
 		dial_show_hiden.setImageResource(R.drawable.dial_show);
-		v.dial_frame.setVisibility(View.VISIBLE);
-		if (lastPosition != position) {
-			lastPosition = position;
-		} else {
-			lastPosition = -1;
+		if(mAdapter.getLastPosition()!=position){
+			mAdapter.setLastPosition(position);
+		}else{
+			mAdapter.setLastPosition(-1);
 		}
-		adapter.notifyDataSetChanged();
-	}
-	
-	public List<RecentModel> getListDataItems(){
-		return mListDataItems;
+		mAdapter.notifyDataSetChanged();
 	}
 
 }

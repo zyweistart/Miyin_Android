@@ -167,7 +167,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		}
 	}
 	
-	public void loadData(final Boolean flag){
+	public void loadData(){
 		new Thread() {
 			public void run() {
 				mListDataItems=getCurrentActivity().getContactDaoImpl().loadAllContact();
@@ -180,11 +180,10 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 				mListDataItemsFilter.addAll(mListDataItems);
 				getCurrentActivity().runOnUiThread(new Runnable() {
 					public void run() {
-						if(flag){
+						if(adapter==null){
 							adapter=new ContactAdapter();
 							contactListView.setAdapter(adapter);
 						}else{
-							//每次更新listview  按照搜索框的内容从新过滤 
 							getFilter().filter(etSearch.getText());
 						}
 						isRefreshData=false;

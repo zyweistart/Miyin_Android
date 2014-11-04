@@ -85,6 +85,8 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 		AppService.resetGesture(this);
 		AppService.checkAppUpdate(this, true);
 		
+		mDialContentView.loadData();
+		
 	}
 	
 	@Override
@@ -233,16 +235,15 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 				public void onAnimationEnd(Animation animation) {
 					if (currentViewIndex==0){
 						if(DialContentView.isRefreshData){
-							mDialContentView.loadData(true);
+							mDialContentView.loadData();
 						}
 					} else if (currentViewIndex == 1) {
 						if(CallRecordsContentView.isRefreshData){
-//							mCallRecordsContentView.loadData(true);
-							mCallRecordsContentView.setListDataItems(mDialContentView.getListDataItems());
+							mCallRecordsContentView.loadData();
 						}
 					} else if (currentViewIndex == 2) {
 						if(ContactsContentView.isRefreshData){
-							mContactsContentView.loadData(true);
+							mContactsContentView.loadData();
 						}
 					} else if (currentViewIndex == 3) {
 						if(RecordingContentView.isRefreshData){
