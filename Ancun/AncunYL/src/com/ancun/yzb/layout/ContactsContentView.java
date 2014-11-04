@@ -2,10 +2,10 @@ package com.ancun.yzb.layout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import android.app.AlertDialog;
+import start.utils.HanziToPinyin;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.text.Editable;
@@ -13,8 +13,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -22,22 +20,18 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ancun.bean.ContactModel;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.BaseScrollContent;
-import com.ancun.service.AppService;
 import com.ancun.yzb.R;
+import com.ancun.yzb.adapter.ContactAdapter;
+import com.ancun.yzb.adapter.ContactAdapter.ContactViewHolder;
 
 public class ContactsContentView extends BaseScrollContent implements Filterable,OnItemClickListener {
 	//是否刷新数据
@@ -45,13 +39,12 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 	
 	private FilterContact mFilter; 
 	private ListView contactListView;
-	private ContactAdapter adapter;
+	private ContactAdapter mAdapter;
 	private EditText etSearch;
 	private ImageButton ibSearchClean;
 	private ImageButton ibSearchBegin;
-	private List<ContactModel> mListDataItems;
-	private List<ContactModel> mListDataItemsFilter;
-	private int lastPosition=-1;
+	private List<Map<String,String>> mListDataItems;
+	private List<Map<String,String>> mListDataItemsFilter;
 
 	private boolean isShowOverLay=false;
 	//联系人滚动时浮动的字
@@ -66,11 +59,9 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 	private boolean mReady; 
 	private RemoveWindow mRemoveWindow = new RemoveWindow();
 	private Handler mHandler = new Handler();
-	private InputMethodManager mInputMethodManager;
 
 	public ContactsContentView(BaseActivity activity) {
 		super(activity, R.layout.module_scroll_contacts);
-		mInputMethodManager=(InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 		contactListView = (ListView) findViewById(R.id.contacts_listview);
 		contactListView.setOnItemClickListener(this);
 		View ContactsSearchBarView = View.inflate(activity, R.layout.module_contact_search_bar, null);  
@@ -91,8 +82,8 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 			@Override
 			public void onClick(View v) {
 				//打开软键盘
-				if (mInputMethodManager.isActive()) {
-					mInputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+				if (getCurrentActivity().getInputMethodManager().isActive()) {
+					getCurrentActivity().getInputMethodManager().toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 				}
 			}
 		});
@@ -122,7 +113,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 			public boolean onTouch(View v, MotionEvent event) {
 				isShowOverLay=true;
 				//关闭输入框弹窗的键盘
-				mInputMethodManager.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
+				getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
 				return false;
 			}
 		});
@@ -132,7 +123,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 			public void onScroll(AbsListView view, int firstVisibleItem,int visibleItemCount, int totalItemCount) {  
 				//显示姓名的第一个字
 				if (isShowOverLay&&mReady&&mListDataItemsFilter!=null&&mListDataItemsFilter.size()>0&&overlay!=null) {
-					String name=mListDataItemsFilter.get(firstVisibleItem).getName();
+					String name=mListDataItemsFilter.get(firstVisibleItem).get(ContactAdapter.STRNAME);
 					if(name!=null){
 						String firstLetter=name.substring(0, 1);
 						//当浮动字 不可见时设置其可见
@@ -171,18 +162,18 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		new Thread() {
 			public void run() {
 				mListDataItems=getCurrentActivity().getContactDaoImpl().loadAllContact();
-				//filter listview赋初值
 				if(mListDataItemsFilter==null){
-					mListDataItemsFilter=new ArrayList<ContactModel>();
+					mListDataItemsFilter=new ArrayList<Map<String,String>>();
 				}else{
 					mListDataItemsFilter.clear();
 				}
 				mListDataItemsFilter.addAll(mListDataItems);
 				getCurrentActivity().runOnUiThread(new Runnable() {
 					public void run() {
-						if(adapter==null){
-							adapter=new ContactAdapter();
-							contactListView.setAdapter(adapter);
+						if(mAdapter==null){
+							mAdapter=new ContactAdapter(getCurrentActivity());
+							mAdapter.setItemDatas(mListDataItemsFilter);
+							contactListView.setAdapter(mAdapter);
 						}else{
 							getFilter().filter(etSearch.getText());
 						}
@@ -191,90 +182,6 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 				});
 			};
 		}.start();
-	}
-	/**
-	 * 联系人适配器
-	 */
-	public class ContactAdapter extends BaseAdapter {
-
-		@Override
-		public int getCount() {
-			return mListDataItemsFilter.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return mListDataItemsFilter.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(final int position, View convertView,ViewGroup parent) {
-			ContactViewHolder holder;
-			if (convertView == null) {
-				convertView = getLayoutInflater().inflate(R.layout.lvitem_content_contact,null);
-				holder = new ContactViewHolder();
-				holder.photo = (ImageView) convertView.findViewById(R.id.contact_photo);
-				holder.name = (TextView) convertView.findViewById(R.id.contact_name_text);
-				holder.dial_frame = (LinearLayout) convertView.findViewById(R.id.dial_frame);
-				holder.dial_recording = (Button)convertView.findViewById(R.id.dial_recording);
-				holder.dial_normal = (Button)convertView.findViewById(R.id.dial_normal);
-				convertView.setTag(holder);
-			} else {
-				holder = (ContactViewHolder) convertView.getTag();
-			}
-			ContactModel info = mListDataItemsFilter.get(position);
-			holder.name.setText(info.getName());
-			if (info.getPhotoID() > 0) {
-				holder.photo.setImageBitmap(getCurrentActivity().getContactDaoImpl().loadContactPhoto(info.getId()));
-			}else{
-				holder.photo.setImageResource(R.drawable.ic_contact_head);
-			}
-			holder.dial_recording.setTag(info);
-			holder.dial_recording.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					ContactModel holder=(ContactModel)v.getTag();
-					dial(holder,1);
-				}
-			});
-			holder.dial_normal.setTag(info);
-			holder.dial_normal.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					ContactModel holder=(ContactModel)v.getTag();
-					dial(holder,2);
-				}
-			});
-			holder.dial_frame.setVisibility(lastPosition==position?View.VISIBLE:View.GONE);
-			return convertView;
-		}
-		
-	}
-	/**
-	 * 视图辅助类
-	 * @author Start
-	 */
-	public final class ContactViewHolder {
-		/**
-		 * 照片
-		 */
-		private ImageView photo;
-		/**
-		 * 姓名
-		 */
-		private TextView name;
-		
-		private LinearLayout dial_frame;
-		private Button dial_recording;
-		private Button dial_normal;
-		
 	}
 	
 	@Override  
@@ -309,8 +216,8 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 				//输入为空
 				mListDataItemsFilter.addAll(mListDataItems);
 			} else {
-				for(ContactModel userInfo:mListDataItems){
-					String name=userInfo.getName();
+				for(Map<String,String> userInfo:mListDataItems){
+					String name=userInfo.get(ContactAdapter.STRNAME);
 					if(TextUtils.isEmpty(name)){
 						continue;
 					}
@@ -320,7 +227,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 						mListDataItemsFilter.add(userInfo);
 					}else if(name.equals(pre)){
 						mListDataItemsFilter.add(userInfo);
-					}else if(userInfo.getPinyinName().contains(pre)){
+					}else if(HanziToPinyin.getPinYin(name).contains(pre)){
 						mListDataItemsFilter.add(userInfo);
 					}
 				}
@@ -332,7 +239,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 
 		@Override  
 		protected void publishResults(CharSequence constraint, FilterResults results) {
-			adapter.notifyDataSetChanged();
+			mAdapter.notifyDataSetChanged();
 		}
 		
 	}
@@ -365,43 +272,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		ContactViewHolder v=(ContactViewHolder)view.getTag();
 		v.dial_frame.setVisibility(View.VISIBLE);
 		position=position-1;
-		if(lastPosition!=position){
-			lastPosition=position;
-		}else{
-			lastPosition=-1;
-		}
-		adapter.notifyDataSetChanged();
-	}
-
-	
-	private void dial(ContactModel holder,final int type){
-		List<String>phones=getCurrentActivity().getContactDaoImpl().getContactAllPhone(holder.getLookupKey());
-		if(phones.size()>1){
-			final String[] phonearr=phones.toArray(new String[phones.size()]);
-			new AlertDialog.Builder(getCurrentActivity())
-			.setIcon(android.R.drawable.ic_dialog_info) 
-			.setSingleChoiceItems(phonearr,1,new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,final int which) {
-					String phone=phonearr[which];
-					if(type==1){
-						AppService.inAppDial(getCurrentActivity(),phone);
-					}else{
-						AppService.call(getCurrentActivity(), phone);
-					}
-					dialog.dismiss();
-				}
-			}).create().show();
-		}else if(phones.size()==1){
-			//如果电话为一个则直接拔号
-			String phone=phones.get(0);
-			if(type==1){
-				AppService.inAppDial(getCurrentActivity(),phone);
-			}else{
-				AppService.call(getCurrentActivity(), phone);
-			}
-		}else{
-			getHandlerContext().makeTextLong("无任何联系号码");
-		}
+		mAdapter.setLastPosition(position);
 	}
 	
 }

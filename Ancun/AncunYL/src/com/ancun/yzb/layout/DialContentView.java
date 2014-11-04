@@ -349,12 +349,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 		v.dial_frame.setVisibility(View.VISIBLE);
 		dial_frame.setVisibility(View.GONE);
 		dial_show_hiden.setImageResource(R.drawable.dial_show);
-		if(mAdapter.getLastPosition()!=position){
-			mAdapter.setLastPosition(position);
-		}else{
-			mAdapter.setLastPosition(-1);
-		}
-		mAdapter.notifyDataSetChanged();
+		mAdapter.setLastPosition(position);
 	}
 
 }

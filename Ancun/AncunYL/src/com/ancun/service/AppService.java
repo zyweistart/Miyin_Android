@@ -53,13 +53,10 @@ public class AppService {
 				@Override
 				public void run(Response response) throws AppException {
 					Map<String,String> info=response.getMapData("serverinfo");
-					//插入通话记录
-					activity.getRecentDaoImpl().insertCallLog(phone);
-					DialContentView.isRefreshData=true;
-					CallRecordsContentView.isRefreshData=true;
 					RecordingContentView.isRefreshData=true;
 					AppContext.getSharedPreferences().putString(Constant.Preferences.SP_CALL_DIAL,phone);
 					call(activity, info.get("serverno"));
+					activity.getRecentDaoImpl().insertCallLog(phone);
 				}
 				
 			});
@@ -68,6 +65,8 @@ public class AppService {
 	}
 	
 	public static void call(BaseActivity activity,String phone){
+		DialContentView.isRefreshData=true;
+		CallRecordsContentView.isRefreshData=true;
 		Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" +phone));
 		activity.startActivity(intent);
 	}

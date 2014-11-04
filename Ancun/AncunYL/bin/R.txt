@@ -444,6 +444,7 @@ int string myaccount 0x7f040045
 int string network_not_connected 0x7f040008
 int string newpasswordhint 0x7f04002e
 int string next 0x7f04003d
+int string nocontactphone 0x7f040081
 int string nohaveaccount 0x7f040040
 int string not_expired 0x7f040057
 int string notary_list 0x7f040067

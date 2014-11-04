@@ -58,12 +58,7 @@ public class CallRecordsContentView extends BaseScrollContent implements OnItemC
 	public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 		HolderView v=(HolderView)view.getTag();
 		v.dial_frame.setVisibility(View.VISIBLE);
-		if(mAdapter.getLastPosition()!=position){
-			mAdapter.setLastPosition(position);
-		}else{
-			mAdapter.setLastPosition(-1);
-		}
-		mAdapter.notifyDataSetChanged();
+		mAdapter.setLastPosition(position);
 	}
 	
 }

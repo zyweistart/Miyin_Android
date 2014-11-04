@@ -117,7 +117,11 @@ public class CallRecordsAdapter extends AppListAdapter{
 	}
 	
 	public void setLastPosition(int position){
-		this.lastPosition=position;
+		if(lastPosition!=position){
+			this.lastPosition=position;
+		}else{
+			this.lastPosition=-1;
+		}
 		this.notifyDataSetChanged();
 	}
 	

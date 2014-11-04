@@ -94,5 +94,6 @@
     <string name="gesturesetting">手势密码设置</string>
     <string name="gesturemodify">手势密码修改</string>
     <string name="exitlogin">退出登录</string>
+    <string name="nocontactphone">无任何联系号码</string>
     
 </resources>
