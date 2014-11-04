@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
@@ -35,6 +36,9 @@ import com.ancun.yzb.layout.RecordingContentView;
 public class AppService {
 	
 	public static void inAppDial(final BaseActivity activity,String dial){
+		if(TextUtils.isEmpty(dial)){
+			return;
+		}
 		final String phone=StringUtils.phoneFormat(dial);
 		if (Constant.noCall.contains(phone)) {
 			call(activity, phone);
@@ -65,6 +69,9 @@ public class AppService {
 	}
 	
 	public static void call(BaseActivity activity,String phone){
+		if(TextUtils.isEmpty(phone)){
+			return;
+		}
 		DialContentView.isRefreshData=true;
 		CallRecordsContentView.isRefreshData=true;
 		Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" +phone));
