@@ -159,7 +159,7 @@ int drawable selector_list_item_p 0x7f020090
 int drawable selector_recording_go_detail 0x7f020091
 int drawable seracher_boraod 0x7f020092
 int drawable shape_bg 0x7f020093
-int drawable tab_line 0x7f020094
+int drawable vertical_line 0x7f020094
 int drawable widget_playerview_media_back 0x7f020095
 int drawable widget_playerview_media_bar 0x7f020096
 int drawable widget_playerview_media_pause 0x7f020097

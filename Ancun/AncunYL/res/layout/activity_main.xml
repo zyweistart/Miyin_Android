@@ -92,7 +92,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/tab_line"
+                    android:background="@drawable/vertical_line"
                     android:contentDescription="@string/empty" />
             </RelativeLayout>
 
@@ -116,7 +116,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/tab_line"
+                    android:background="@drawable/vertical_line"
                     android:contentDescription="@string/empty" />
             </RelativeLayout>
 
@@ -140,7 +140,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/tab_line"
+                    android:background="@drawable/vertical_line"
                     android:contentDescription="@string/empty" />
             </RelativeLayout>
 
