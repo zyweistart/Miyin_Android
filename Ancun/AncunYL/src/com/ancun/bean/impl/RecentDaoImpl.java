@@ -46,7 +46,6 @@ public class RecentDaoImpl extends DBManageDao {
 			  cursor = cr.query(CallLog.Calls.CONTENT_URI, 
 					new String[] {
 					CallLog.Calls._ID,
-					CallLog.Calls.CACHED_NAME,
 					CallLog.Calls.NUMBER, 
 					CallLog.Calls.TYPE, 
 					CallLog.Calls.DATE }, 
@@ -57,17 +56,15 @@ public class RecentDaoImpl extends DBManageDao {
 				do {
 					Map<String,String> data=new HashMap<String,String>();
 					data.put(CallRecordsAdapter.STRID, String.valueOf(cursor.getInt(0)));
-					data.put(CallRecordsAdapter.STRNAME, cursor.getString(1));
-					data.put(CallRecordsAdapter.STRPHONE, StringUtils.phoneFormat(cursor.getString(2)));
-					data.put(CallRecordsAdapter.STRSTATUS, String.valueOf(cursor.getInt(3)));
-					data.put(CallRecordsAdapter.STRCALLTIME, sfd.format(new Date(Long.parseLong(cursor.getString(4)))));
+					data.put(CallRecordsAdapter.STRPHONE, StringUtils.phoneFormat(cursor.getString(1)));
+					data.put(CallRecordsAdapter.STRSTATUS, String.valueOf(cursor.getInt(2)));
+					data.put(CallRecordsAdapter.STRCALLTIME, sfd.format(new Date(Long.parseLong(cursor.getString(3)))));
 					recents.add(data);
 				} while (cursor.moveToNext());
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
+		}finally {
 			if(null!=cursor){
 				cursor.close();
 			}
@@ -75,6 +72,9 @@ public class RecentDaoImpl extends DBManageDao {
 		return recents;
 	}
 	
+	/**
+	 * 插入通话日志
+	 */
 	public void insertCallLog(final String telNum){
 		ContentResolver cr = getContext().getContentResolver();
 		Cursor mCursor = null;
@@ -96,7 +96,8 @@ public class RecentDaoImpl extends DBManageDao {
 		ContentValues values = new ContentValues(); 
 	    values.put(CallLog.Calls.NUMBER,telNum);
 	    values.put(CallLog.Calls.DATE, System.currentTimeMillis());
-	    values.put(CallLog.Calls.NEW, 1);//0已看1未看
+	    //0已看1未看
+	    values.put(CallLog.Calls.NEW, 0);
 	    values.put(CallLog.Calls.CACHED_NAME, name);
 	    //呼入:1 呼出:2
 	    values.put(CallLog.Calls.TYPE,2);

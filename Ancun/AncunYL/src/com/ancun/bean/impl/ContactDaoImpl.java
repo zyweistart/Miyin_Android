@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import start.utils.StringUtils;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -87,46 +88,43 @@ public class ContactDaoImpl extends DBManageDao {
 	 * 根据号码获取联系人信息
 	 */
 	public ContactModel getContactModelByPhone(String phone){
-//		String[] projection = {
-//				ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
-//				ContactsContract.Contacts.DISPLAY_NAME,
-//				ContactsContract.Contacts.Data.DATA1, 
-//				ContactsContract.Contacts.LOOKUP_KEY,
-//				ContactsContract.Contacts.PHOTO_ID };
-//		// 获得所有的联系人
-//		Cursor cursor=null;
-//		ContactModel mContactInfo=null;
-//		try{
-//			 cursor = getContext().getContentResolver().query(
-//					ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-//					projection, ContactsContract.Contacts.Data.DATA1+" like ?",
-//					new String[]{StringUtils.convertPhonelike(phone)},null);
-//			
-//			if(cursor.moveToFirst()) {
-//				do{
-//					String tmpPhone=cursor.getString(2);
-//					if(StringUtils.convertPhone(tmpPhone).equals(phone)){
-//						mContactInfo = new ContactModel();
-//						mContactInfo.setId(cursor.getLong(0));
-//						mContactInfo.setName(cursor.getString(1));
-//						mContactInfo.setPhone(tmpPhone);
-//						mContactInfo.setLookupKey(cursor.getString(3));
-//						mContactInfo.setPhotoID(cursor.getLong(4));
-//						break;
-//					}
-//				}while(cursor.moveToNext());
-//			}
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		finally{
-//			if(null!=cursor){
-//				cursor.close();
-//				
-//			}
-//		}
-//		return mContactInfo;
-		return null;
+		String[] projection = {
+				ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+				ContactsContract.Contacts.DISPLAY_NAME,
+				ContactsContract.Contacts.Data.DATA1, 
+				ContactsContract.Contacts.LOOKUP_KEY,
+				ContactsContract.Contacts.PHOTO_ID };
+		// 获得所有的联系人
+		Cursor cursor=null;
+		ContactModel mContactInfo=null;
+		try{
+			 cursor = getContext().getContentResolver().query(
+					ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+					projection, ContactsContract.Contacts.Data.DATA1+" like ?",
+					new String[]{phone},null);
+			if(cursor.moveToFirst()) {
+				do{
+					String tmpPhone=cursor.getString(2);
+					if(StringUtils.phoneFormat(tmpPhone).equals(phone)){
+						mContactInfo = new ContactModel();
+						mContactInfo.setId(cursor.getLong(0));
+						mContactInfo.setName(cursor.getString(1));
+						mContactInfo.setPhone(tmpPhone);
+						mContactInfo.setLookupKey(cursor.getString(3));
+						mContactInfo.setPhotoID(cursor.getLong(4));
+						break;
+					}
+				}while(cursor.moveToNext());
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally{
+			if(null!=cursor){
+				cursor.close();
+			}
+		}
+		return mContactInfo;
 	}
 	/**
 	 * 加载当前联系人头像
@@ -197,12 +195,17 @@ public class ContactDaoImpl extends DBManageDao {
                 e.printStackTrace();
             }
         }
-        String ret = null;
-        if (cursor != null && cursor.getCount() > 0 && cursor.moveToFirst()) {
-            ret = cursor.getString(1);
+        StringBuilder names=new StringBuilder();
+        if (cursor.moveToFirst()) {
+			do {
+				names.append(cursor.getString(1)+",");
+			} while (cursor.moveToNext());
+		}
+        if(names.length()>0){
+        	names.deleteCharAt(names.length()-1);
         }
         cursor.close();
-        return ret;
+        return String.valueOf(names);
     }
 	
 }

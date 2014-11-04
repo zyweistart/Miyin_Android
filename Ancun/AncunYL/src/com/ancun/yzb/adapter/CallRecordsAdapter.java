@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ancun.bean.ContactModel;
 import com.ancun.core.BaseActivity;
 import com.ancun.service.AppService;
 import com.ancun.yzb.R;
@@ -22,7 +21,6 @@ import com.ancun.yzb.R;
 public class CallRecordsAdapter extends AppListAdapter{
 
 	public static final String STRID="id";
-	public static final String STRNAME="name";
 	public static final String STRSTATUS="status";
 	public static final String STRPHONE="phone";
 	public static final String STRCALLTIME="calltime";
@@ -65,18 +63,18 @@ public class CallRecordsAdapter extends AppListAdapter{
 			//呼入未接通
 			holder.call_flag.setImageResource(R.drawable.ic_call_noin);
 		}
-		ContactModel contactModel = ((BaseActivity)mActivity).getContactDaoImpl().getContactModelByPhone(phone);
-		if(contactModel!=null&&!TextUtils.isEmpty(contactModel.getName())){
-			holder.name.setText(contactModel.getName());
-			holder.phone.setText(phone);
-			holder.name.setVisibility(View.VISIBLE);
-			holder.phone.setVisibility(View.VISIBLE);
-			holder.phonem.setVisibility(View.GONE);
-		} else {
+		String name=((BaseActivity)mActivity).getContactDaoImpl().getContactName(phone);
+		if(TextUtils.isEmpty(name)){
 			holder.phonem.setText(phone);
 			holder.name.setVisibility(View.GONE);
 			holder.phone.setVisibility(View.GONE);
 			holder.phonem.setVisibility(View.VISIBLE);
+		} else {
+			holder.name.setText(name);
+			holder.phone.setText(phone);
+			holder.name.setVisibility(View.VISIBLE);
+			holder.phone.setVisibility(View.VISIBLE);
+			holder.phonem.setVisibility(View.GONE);
 		}
 		holder.time.setText(TimeUtils.customerTimeConvert(calltime));
 		holder.dial_recording.setTag(data);
@@ -86,7 +84,7 @@ public class CallRecordsAdapter extends AppListAdapter{
 			@Override
 			public void onClick(View v) {
 				Map<String,String> data = (Map<String,String>)v.getTag();
-				AppService.inAppDial((BaseActivity)mActivity,data.get("phone"));
+				AppService.inAppDial((BaseActivity)mActivity,data.get(STRPHONE));
 			}
 		});
 		holder.dial_normal.setTag(data);
@@ -96,7 +94,7 @@ public class CallRecordsAdapter extends AppListAdapter{
 			@Override
 			public void onClick(View v) {
 				Map<String,String> data = (Map<String,String>)v.getTag();
-				AppService.call((BaseActivity)mActivity, data.get("phone"));
+				AppService.call((BaseActivity)mActivity, data.get(STRPHONE));
 			}
 		});
 		holder.dial_frame.setVisibility(lastPosition==position?View.VISIBLE:View.GONE);
