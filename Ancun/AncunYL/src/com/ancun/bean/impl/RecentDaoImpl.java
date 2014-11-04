@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import start.utils.StringUtils;
+import start.utils.TimeUtils;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,10 +29,10 @@ public class RecentDaoImpl extends DBManageDao {
 	/**
 	 * 获取外部的全部通话记录 需要android.permission.READ_CALL_LOG权限
 	 */
-	public List<Map<String,String>> findCallRecords() {
+	public List<Map<String,String>> findAllCallRecords() {
 		List<Map<String,String>> recents=new ArrayList<Map<String,String>>();
 		ContentResolver cr = getContext().getContentResolver();
-		SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sfd = new SimpleDateFormat(TimeUtils.yyyyMMddHHmmss_F);
 		StringBuilder filterName=new StringBuilder();
 		for(int i=0;i<Constant.noCall.size();i++){
 			filterName.append("?");

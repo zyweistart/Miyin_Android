@@ -34,7 +34,7 @@ public class CallRecordsContentView extends BaseScrollContent implements OnItemC
 			
 			public void run() {
 				
-				mListDataItems = getCurrentActivity().getRecentDaoImpl().findCallRecords();
+				mListDataItems = getCurrentActivity().getRecentDaoImpl().findAllCallRecords();
 				
 				getCurrentActivity().runOnUiThread(new Runnable() {
 					public void run() {

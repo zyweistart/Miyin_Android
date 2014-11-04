@@ -159,7 +159,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 
 			public void run() {
 
-				mListDataItems = getCurrentActivity().getRecentDaoImpl().findCallRecords();
+				mListDataItems = getCurrentActivity().getRecentDaoImpl().findAllCallRecords();
 				if (mListDataItemsFilter == null) {
 					mListDataItemsFilter = new ArrayList<Map<String,String>>();
 				} else {
