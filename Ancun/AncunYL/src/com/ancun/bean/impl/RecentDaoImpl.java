@@ -13,6 +13,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.CallLog;
+import android.provider.ContactsContract;
 
 import com.ancun.bean.RecentModel;
 import com.ancun.core.DBManageDao;
@@ -236,32 +237,31 @@ public class RecentDaoImpl extends DBManageDao {
 	}
 	
 	public void insertCallLog(final String telNum){
-		
-//		ContentResolver cr = getContext().getContentResolver();
-//		Cursor mCursor = null;
-//		String name =null;
-//		try {
-//			mCursor = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME}, ContactsContract.CommonDataKinds.Phone.NUMBER+" = ?", new String[]{telNum}, null);
-//			if (null != mCursor) {
-//				if(mCursor.moveToFirst()){
-//					name = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}finally{
-//			if(mCursor != null){
-//				mCursor.close();
-//			}
-//		}
-//		ContentValues values = new ContentValues(); 
-//	    values.put(CallLog.Calls.NUMBER,telNum);
-//	    values.put(CallLog.Calls.DATE, System.currentTimeMillis());
-//	    values.put(CallLog.Calls.NEW, ""+SharedPreferencesUtils.getCallType(getContext()));//0已看1未看
-//	    values.put(CallLog.Calls.CACHED_NAME, name);
-//	    //呼入:1 呼出:2
-//	    values.put(CallLog.Calls.TYPE,SharedPreferencesUtils.getCallType(getContext()));
-//	    cr.insert(CallLog.Calls.CONTENT_URI, values);
+		ContentResolver cr = getContext().getContentResolver();
+		Cursor mCursor = null;
+		String name =null;
+		try {
+			mCursor = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME}, ContactsContract.CommonDataKinds.Phone.NUMBER+" = ?", new String[]{telNum}, null);
+			if (null != mCursor) {
+				if(mCursor.moveToFirst()){
+					name = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if(mCursor != null){
+				mCursor.close();
+			}
+		}
+		ContentValues values = new ContentValues(); 
+	    values.put(CallLog.Calls.NUMBER,telNum);
+	    values.put(CallLog.Calls.DATE, System.currentTimeMillis());
+	    values.put(CallLog.Calls.NEW, 1);//0已看1未看
+	    values.put(CallLog.Calls.CACHED_NAME, name);
+	    //呼入:1 呼出:2
+	    values.put(CallLog.Calls.TYPE,2);
+	    cr.insert(CallLog.Calls.CONTENT_URI, values);
 	}
 	
 }
