@@ -42,9 +42,9 @@ public class SettingActivity extends BaseActivity {
 		Resources res=getResources();
 		ic_gesture= res.getDrawable(R.drawable.ic_gesture);
 		ic_gesture.setBounds(0, 0, ic_gesture.getMinimumWidth(), ic_gesture.getMinimumHeight());
-		img_off= res.getDrawable(R.drawable.state_off);
+		img_off= res.getDrawable(R.drawable.button_state_off);
 		img_off.setBounds(0, 0, img_off.getMinimumWidth(), img_off.getMinimumHeight());
-		img_on= res.getDrawable(R.drawable.state_no);
+		img_on= res.getDrawable(R.drawable.button_state_no);
 		img_on.setBounds(0, 0, img_on.getMinimumWidth(), img_on.getMinimumHeight());
 		String key = AppContext.getSharedPreferences().getString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
 		if (StringUtils.isEmpty(key)) {

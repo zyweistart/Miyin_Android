@@ -82,7 +82,7 @@ public class PlayerView extends LinearLayout implements OnClickListener,OnSeekBa
 				@Override
 				public void onCompletion(MediaPlayer mp) {
 					currentPosition=0;
-					player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.media_play));
+					player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.widget_playerview_media_play));
 					player_view_tv_playtime.setText(TimeUtils.convertTime(currentPosition));
 					player_view_sb_progrss.setProgress(currentPosition);
 				}
@@ -91,7 +91,7 @@ public class PlayerView extends LinearLayout implements OnClickListener,OnSeekBa
 			mMediaPlayer.start();
 			currentPosition=0;
 			int duration=mMediaPlayer.getDuration();
-			player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.media_pause));
+			player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.widget_playerview_media_pause));
 			player_view_tv_playtime.setText(TimeUtils.convertTime(currentPosition));
 			player_view_sb_progrss.setMax(duration);
 			player_view_sb_progrss.setProgress(currentPosition);
@@ -117,7 +117,7 @@ public class PlayerView extends LinearLayout implements OnClickListener,OnSeekBa
 				if(!mMediaPlayer.isPlaying()){
 					mMediaPlayer.start();
 					executeProgrss();
-					player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.media_pause));
+					player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.widget_playerview_media_pause));
 				}
 			}else{
 				player_view_sb_progrss.setProgress(0);
@@ -146,7 +146,7 @@ public class PlayerView extends LinearLayout implements OnClickListener,OnSeekBa
 				}
 				mMediaPlayer.start();
 				executeProgrss();
-				player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.media_pause));
+				player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.widget_playerview_media_pause));
 			}
 		}
 	}
@@ -157,7 +157,7 @@ public class PlayerView extends LinearLayout implements OnClickListener,OnSeekBa
 		if(mMediaPlayer!=null){
 			if(mMediaPlayer.isPlaying()){
 				mMediaPlayer.pause();
-				player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.media_play));
+				player_view_ib_player.setImageDrawable(getContext().getResources().getDrawable(R.drawable.widget_playerview_media_play));
 			}
 		}
 	}

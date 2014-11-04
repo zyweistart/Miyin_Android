@@ -24,7 +24,7 @@
                 android:layout_margin="10.0dip"
                 android:background="@null"
                 android:contentDescription="@string/empty"
-                android:src="@drawable/dial_hidden" />
+                android:src="@drawable/ic_dial_hidden" />
 
             <ImageButton
                 android:id="@+id/dial_clear"
@@ -35,7 +35,7 @@
                 android:layout_margin="10.0dip"
                 android:background="@null"
                 android:contentDescription="@string/empty"
-                android:src="@drawable/dial_clear" />
+                android:src="@drawable/ic_dial_clear" />
 
             <TextView
                 android:id="@+id/dial_content"

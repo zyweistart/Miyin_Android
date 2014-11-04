@@ -52,7 +52,7 @@ public class ContactAdapter extends BaseCallListAdapter{
 		if (phoneid > 0) {
 			holder.photo.setImageBitmap(((BaseActivity)mActivity).getContactDaoImpl().loadContactPhoto(id));
 		}else{
-			holder.photo.setImageResource(R.drawable.ic_contact_head);
+			holder.photo.setImageResource(R.drawable.ic_head);
 		}
 		holder.dial_recording.setTag(info);
 		holder.dial_recording.setOnClickListener(new OnClickListener() {

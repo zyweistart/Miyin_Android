@@ -22,7 +22,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:contentDescription="@string/empty"
-		        android:src="@drawable/ic_logo" />
+		        android:src="@drawable/app_logo" />
 	    </LinearLayout>
 	    
 	    <LinearLayout 
@@ -34,7 +34,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:contentDescription="@string/empty"
-		        android:src="@drawable/ic_contact" />
+		        android:src="@drawable/app_contact" />
 	    </LinearLayout>
         
 	    <LinearLayout 
@@ -48,7 +48,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:gravity="center_horizontal"
-		        android:drawableTop="@drawable/ic_copyright"/>
+		        android:drawableTop="@drawable/app_copyright"/>
 	    </LinearLayout>
         
     </LinearLayout>

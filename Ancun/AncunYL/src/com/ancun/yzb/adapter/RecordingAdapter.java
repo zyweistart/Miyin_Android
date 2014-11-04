@@ -79,13 +79,13 @@ public class RecordingAdapter extends BaseCallListAdapter{
 			if (contactModel.getPhotoID() > 0) {
 				holder.head.setImageBitmap(((MainActivity)mActivity).getContactDaoImpl().loadContactPhoto(contactModel.getId()));
 			}else{
-				holder.head.setImageResource(R.drawable.ic_contact_head);
+				holder.head.setImageResource(R.drawable.ic_head);
 			}
 		}else{
 			holder.name.setText(data.get("oppno"));
 			holder.name.setTag(data.get("oppno"));
 			holder.phone.setText("");
-			holder.head.setImageResource(R.drawable.ic_contact_head);
+			holder.head.setImageResource(R.drawable.ic_head);
 		}
 		holder.phone.setTag(data.get("oppno"));
 		holder.from.setText(TimeUtils.customerTimeConvert(data.get(RECORDED_TIME)));

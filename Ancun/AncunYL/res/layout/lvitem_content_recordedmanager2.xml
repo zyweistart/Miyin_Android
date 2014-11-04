@@ -11,7 +11,7 @@
         android:id="@+id/recorded_main_head_img"
         android:layout_width="65.0dip"
         android:layout_height="65.0dip"
-        android:src="@drawable/ic_contact_head"
+        android:src="@drawable/ic_head"
         android:contentDescription="@string/empty" />
     
 	<RelativeLayout

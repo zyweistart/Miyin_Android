@@ -24,7 +24,7 @@
                 android:layout_marginLeft="5dip"
                 android:contentDescription="@string/empty"
                 android:scaleType="center"
-                android:src="@drawable/logotxt" />
+                android:src="@drawable/app_logotxt" />
         </LinearLayout>
 
         <LinearLayout

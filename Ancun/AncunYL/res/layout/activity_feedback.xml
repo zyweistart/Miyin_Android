@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/setting_feedback_content_bg"
+                android:background="@drawable/bg_content"
                 android:orientation="vertical" >
 
                 <EditText

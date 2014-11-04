@@ -17,7 +17,7 @@
             android:layout_height="65.0dip"
             android:layout_gravity="center"
             android:contentDescription="@string/empty"
-            android:src="@drawable/ic_contact_head" />
+            android:src="@drawable/ic_head" />
 
         <TextView
             android:id="@+id/contact_name_text"

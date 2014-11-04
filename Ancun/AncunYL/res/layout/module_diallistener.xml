@@ -7,7 +7,7 @@
         android:id="@+id/imageView_head"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dial_window_head_bg" />
+        android:background="@drawable/bg_dial_window_head" />
 
     <ImageView
         android:id="@+id/dial_listener_btn_close"
@@ -23,7 +23,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView_head"
-        android:background="@drawable/dial_window_body_bg" >
+        android:background="@drawable/bg_dial_window_body" >
 
         <TextView
             android:id="@+id/dial_listener_text"

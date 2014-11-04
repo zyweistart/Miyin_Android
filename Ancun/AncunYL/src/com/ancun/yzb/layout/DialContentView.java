@@ -193,7 +193,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 				mAdapter.setLastPosition(-1);
 				mAdapter.notifyDataSetChanged();
 			}
-			dial_show_hiden.setImageResource(dial_frame.isShown() ? R.drawable.dial_show : R.drawable.dial_hidden);
+			dial_show_hiden.setImageResource(dial_frame.isShown() ? R.drawable.ic_dial_show : R.drawable.ic_dial_hidden);
 			dial_frame.setVisibility(dial_frame.isShown() ? View.GONE: View.VISIBLE);
 		} else if (v.getId() == R.id.dial_0 || v.getId() == R.id.dial_1
 				|| v.getId() == R.id.dial_2 || v.getId() == R.id.dial_3
@@ -344,7 +344,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 		HolderView v = (HolderView) view.getTag();
 		v.dial_frame.setVisibility(View.VISIBLE);
 		dial_frame.setVisibility(View.GONE);
-		dial_show_hiden.setImageResource(R.drawable.dial_show);
+		dial_show_hiden.setImageResource(R.drawable.ic_dial_show);
 		mAdapter.setLastPosition(position);
 	}
 
