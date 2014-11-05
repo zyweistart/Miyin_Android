@@ -26,6 +26,7 @@ public class ResetPassWordActivity  extends RegisterActivity {
 		super.onCreate(savedInstanceState);
 		setMainHeadTitle(getString(R.string.reset_password));
 		success_title.setText(R.string.reset_password_success);
+		fr_server.setVisibility(View.GONE);
 	}
 	
 	@Override

@@ -105,6 +105,9 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ServerClauseActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".RegisterActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -154,7 +157,6 @@
         <activity
             android:name=".ModifyPasswordActivity"
     	    android:screenOrientation="portrait" />
-        <!-- 手势锁 -->
         <activity
             android:name=".LockActivity"
             android:screenOrientation="portrait"/>

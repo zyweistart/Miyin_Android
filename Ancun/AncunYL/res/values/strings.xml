@@ -20,6 +20,7 @@
     <string name="getauthcode">获取校验码</string>
     <string name="regetauthcode">重新获取校验码</string>
     <string name="phoneemptytip">手机号码不能为空</string>
+    <string name="servercontenttip">请先阅读并同意《安存语录服务条款》</string>
     <string name="authcodehint">请输入校验码</string>
     <string name="pwdemptytip">密码不能为空</string>
     <string name="autocodeemptytip">验证码不能为空</string>

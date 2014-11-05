@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,7 +27,7 @@ import com.ancun.yzb.adapter.RecordingAdapter;
  * @author Start
  */
 @SuppressWarnings("deprecation")
-public class ExtractionViewActivity extends BaseActivity implements OnClickListener {
+public class ExtractionViewActivity extends BaseActivity {
 	
 	public static final int RecordedAppealTaobaoExtractionCodeResultCode=0xAC0012;
 

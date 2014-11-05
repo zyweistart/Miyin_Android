@@ -64,7 +64,7 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		mListView = (ListView) findViewById(R.id.listview);
 		mListView.setOnItemClickListener(this);
 		
-		View searchBarView = View.inflate(activity, R.layout.module_search_bar, null);  
+		View searchBarView = View.inflate(activity, R.layout.module_search_bar, null);
 		//把view对象添加到listView对象的头部，可以随listView一起滑动
 		mListView.addHeaderView(searchBarView); 
 		ibSearch=(ImageButton)searchBarView.findViewById(R.id.ib_search);

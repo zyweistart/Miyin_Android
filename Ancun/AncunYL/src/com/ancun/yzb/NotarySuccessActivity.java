@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.ancun.core.BaseActivity;
@@ -13,7 +12,7 @@ import com.ancun.core.BaseActivity;
  * 申办公证成功
  * @author Start
  */
-public class NotarySuccessActivity extends BaseActivity implements OnClickListener {
+public class NotarySuccessActivity extends BaseActivity {
 
 	private TextView btnNotaryNotify;
 

@@ -111,6 +111,8 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 	public void onClick(View v) {
 		if (activity_myaccount_btn_RightTitle == v) {
 			startActivity(new Intent(this,UnsubscribeActivity.class));
+		}else{
+			super.onClick(v);
 		}
 	}
 

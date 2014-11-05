@@ -16,7 +16,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -24,7 +23,7 @@ import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.ResultCode;
 
-public class LoginActivity extends BaseActivity implements OnClickListener {
+public class LoginActivity extends BaseActivity {
 	/**
 	 * 提示信息
 	 */

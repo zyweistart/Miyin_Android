@@ -11,11 +11,13 @@ import start.utils.MD5;
 import start.utils.StringUtils;
 import start.utils.TimeUtils;
 import start.widget.CustomEditText;
+import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,7 +30,7 @@ import com.ancun.core.Constant.Handler;
  * @author start
  *
  */
-public class RegisterActivity extends BaseActivity implements OnClickListener {
+public class RegisterActivity extends BaseActivity {
 	
 	protected String phone;
 	protected String authcode;
@@ -43,6 +45,9 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	protected LinearLayout ll_first_frame;
 	protected LinearLayout ll_second_frame;
 	protected TextView success_title;
+	protected LinearLayout fr_server;
+	protected CheckBox cb_agree;
+	protected TextView txt_servercontent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,12 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		ll_second_frame=(LinearLayout)findViewById(R.id.ll_second_frame);
 		success_title=(TextView)findViewById(R.id.success_title);
 		success_title.setText(R.string.register_success);
+		
+		fr_server=(LinearLayout)findViewById(R.id.fr_server);
+		fr_server.setVisibility(View.VISIBLE);
+		cb_agree=(CheckBox)findViewById(R.id.cb_agree);
+		txt_servercontent=(TextView)findViewById(R.id.txt_servercontent);
+		txt_servercontent.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 	}
 	
 	@Override
@@ -111,10 +122,16 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.btn_re_get_checksum){
+		if(v.getId()==R.id.txt_servercontent){
+			startActivity(new Intent(this,ServerClauseActivity.class));
+		} else if(v.getId()==R.id.btn_re_get_checksum){
 			phone=String.valueOf(et_phone.getText());
 			if(StringUtils.isEmpty(phone)){
 				getHandlerContext().makeTextLong(getString(R.string.phoneemptytip));
+				return;
+			}
+			if(!cb_agree.isChecked()){
+				getHandlerContext().makeTextLong(getString(R.string.servercontenttip));
 				return;
 			}
 			getAuthCode(1);
@@ -122,6 +139,10 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			phone=String.valueOf(et_phone.getText());
 			if(StringUtils.isEmpty(phone)){
 				getHandlerContext().makeTextLong(getString(R.string.phoneemptytip));
+				return;
+			}
+			if(!cb_agree.isChecked()){
+				getHandlerContext().makeTextLong(getString(R.string.servercontenttip));
 				return;
 			}
 			authcode=String.valueOf(et_checksum.getText());
@@ -164,6 +185,8 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			goLogin(true);
 		}else if(v.getId()==R.id.tvHaveAccount){
 			goLogin(false);
+		}else{
+			super.onClick(v);
 		}
 	}
 	
