@@ -6,6 +6,13 @@
     <string name="app_compayname">安存科技</string>
     <string name="app_url">http://www.968682.com</string>
     
+    <string name="welcomeregisterinfo1">欢迎使用音证宝！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。现在开通10月31日前不收取功能费，次月1日起正式收费，每月30元，通话费按原有资费标准收取。</string>
+    <string name="registerinfo2">注：目前只支持上海电信后付费手机</string>
+    <string name="servercontent">《安存语录服务条款》</string>
+    <string name="servercontenttip">请先阅读并同意《安存语录服务条款》</string>
+    <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.968682.com进行操作</string>
+    <string name="extraction_code_tip2">(http://www.968682.com)公开查询、下载本条通话录音；并可作为依据提交给第三方，以证明录音的真实性、可靠性和法律效力。</string>
+    
 	<string name="back">返回</string>
 	<string name="login">登录</string>
     <string name="register">注册</string>
@@ -20,7 +27,6 @@
     <string name="getauthcode">获取校验码</string>
     <string name="regetauthcode">重新获取校验码</string>
     <string name="phoneemptytip">手机号码不能为空</string>
-    <string name="servercontenttip">请先阅读并同意《安存语录服务条款》</string>
     <string name="authcodehint">请输入校验码</string>
     <string name="pwdemptytip">密码不能为空</string>
     <string name="autocodeemptytip">验证码不能为空</string>
@@ -65,7 +71,6 @@
     <string name="extraction_code">提取码</string>
     <string name="extraction_code_validity_tip">有效期至</string>
     <string name="extraction_code_tip1">凭提取码可在官网</string>
-    <string name="extraction_code_tip2">(http://www.968682.com)公开查询、下载本条通话录音；并可作为依据提交给第三方，以证明录音的真实性、可靠性和法律效力。</string>
     <string name="extraction_code_tip">温馨提醒：请妥善保管好您的录音提取码。</string>
     <string name="copy_extraction_code">复制提取码</string>
     <string name="short_message_send">以短信的形式发送</string>
@@ -78,7 +83,6 @@
     <string name="recording_remark_modify_success">录音备注修改成功</string>
     <string name="unsubscribe">退订</string>
     <string name="unsubscribe_sure">确认退订</string>
-    <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.968682.com进行操作</string>
     <string name="modify_password_success_tip">密码修改成功啦，亲如此有防范风险意识真的很值得大家学习哦~</string>
     <string name="exitlogin_sure">确认需要退出应用吗?</string>
     <string name="cleanrecording_sure">是否删除本地所有录音缓存文件？</string>

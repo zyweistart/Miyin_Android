@@ -124,7 +124,7 @@
                 <TextView
                     android:id="@+id/setting_gesturemodify"
                     style="@style/setting_frame"
-                    android:drawableLeft="@drawable/ic_gesture"
+                    android:drawableLeft="@drawable/ic_modifypwd"
                     android:drawableRight="@drawable/selector_ic_arrow"
                     android:text="@string/gesturemodify" />
             </LinearLayout>

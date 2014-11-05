@@ -3,10 +3,14 @@ package com.ancun.yzb;
 import start.core.AppConstant;
 import start.core.AppContext;
 import start.utils.GetMarketUri;
+import start.utils.LogUtils;
 import start.utils.StringUtils;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -36,6 +40,15 @@ public class SettingActivity extends BaseActivity {
 		setContentView(R.layout.activity_setting);
 		setMainHeadTitle(getString(R.string.setting));
 		
+		TextView setting_versioncheck=(TextView	)findViewById(R.id.setting_versioncheck);
+		try {
+			PackageManager packageManager = getPackageManager();
+			PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(),0);
+			setting_versioncheck.setText(getString(R.string.versioncheck)+"   v"+packInfo.versionName);
+		} catch (NameNotFoundException e) {
+			LogUtils.logError(e);
+		}
+		
 		//手势密码设置
 		setting_gesturesetting=(TextView)findViewById(R.id.setting_gesturesetting);
 		setting_gesturemodify=(TextView)findViewById(R.id.setting_gesturemodify);
@@ -49,12 +62,12 @@ public class SettingActivity extends BaseActivity {
 		String key = AppContext.getSharedPreferences().getString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
 		if (StringUtils.isEmpty(key)) {
 			gestureState=false;
-			 setting_gesturesetting.setCompoundDrawables(ic_gesture, null, img_off, null);
-			 setting_gesturemodify.setVisibility(View.GONE);
+			setting_gesturesetting.setCompoundDrawables(ic_gesture, null, img_off, null);
+			setting_gesturemodify.setVisibility(View.GONE);
 		}else{
 			gestureState=true;
-			 setting_gesturesetting.setCompoundDrawables(ic_gesture, null, img_on, null);
-			 setting_gesturemodify.setVisibility(View.VISIBLE);
+			setting_gesturesetting.setCompoundDrawables(ic_gesture, null, img_on, null);
+			setting_gesturemodify.setVisibility(View.VISIBLE);
 		}
 		
 	}

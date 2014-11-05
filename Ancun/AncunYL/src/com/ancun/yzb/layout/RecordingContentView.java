@@ -290,11 +290,16 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.ib_search){
-			if(getCurrentActivity().getInputMethodManager().isActive()){
-				getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(getCurrentActivity().getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-			}
-			mRefreshListServer.setCurrentPage(0);
-			mRefreshListServer.getCurrentListView().startLoadMore();
+			refreshData();
 		}
 	}
+	
+	public void refreshData(){
+		if(getCurrentActivity().getInputMethodManager().isActive()){
+			getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(getCurrentActivity().getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		}
+		mRefreshListServer.setCurrentPage(0);
+		mRefreshListServer.getCurrentListView().startLoadMore();
+	}
+	
 }

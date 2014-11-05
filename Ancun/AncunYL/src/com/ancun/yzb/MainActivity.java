@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 		AppService.checkAppUpdate(this, true);
 		
 		mDialContentView.loadData();
-		
+		mRecordingContentView.getRefreshListServer().initLoad();
 	}
 	
 	@Override
@@ -247,7 +247,7 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 						}
 					} else if (currentViewIndex == 3) {
 						if(RecordingContentView.isRefreshData){
-							mRecordingContentView.getRefreshListServer().initLoad();
+							mRecordingContentView.refreshData();
 						}
 					}
 					mLastViewIndex=currentViewIndex;
