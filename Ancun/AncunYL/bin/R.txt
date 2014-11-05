@@ -1,5 +1,5 @@
 int attr aspect 0x7f010000
-int color activity_gb 0x7f050003
+int color bg_activity 0x7f050003
 int color bg_frame 0x7f050004
 int color black 0x7f050001
 int color listview_bg_p 0x7f050008

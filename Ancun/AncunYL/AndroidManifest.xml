@@ -17,21 +17,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 允许应用程序发送SMS消息 -->
     <uses-permission android:name="android.permission.SEND_SMS" />
-    
-    
-    
-    
-    
-    
-    <!-- 允许应用程序使用网络进行数据交换 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 允许程序访问Wi-Fi网络状态信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
-    <!-- 允许应用程序访问设备网络状态信息 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 允许应用程序发送SMS消息 -->
-    <uses-permission android:name="android.permission.SEND_SMS" />
     <!-- 允许应用程序读取用户的联系人数据 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!-- 允许应用程序对用户联系人数据进行写入操作 -->
@@ -70,8 +55,6 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="getui.permission.GetuiService" />
     
-    
-    
     <application 
         android:name=".BaseContext"
         android:allowBackup="true"
@@ -103,16 +86,19 @@
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".ServerClauseActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".RegisterActivity"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".ResetPassWordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
@@ -150,19 +136,22 @@
     	    android:screenOrientation="portrait" />
         <activity
             android:name=".FeedbackActivity"
-    	    android:screenOrientation="portrait" />
+    	    android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".AboutusActivity"
     	    android:screenOrientation="portrait" />
         <activity
             android:name=".ModifyPasswordActivity"
-    	    android:screenOrientation="portrait" />
+    	    android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".LockActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".LockSetupActivity"
             android:screenOrientation="portrait" />
+        
     </application>
 
 </manifest>
