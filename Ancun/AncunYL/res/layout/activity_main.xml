@@ -1,33 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/bg_activity" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:gravity="center_vertical"
-        android:background="@drawable/bg_main"
-        android:padding="10.0dip" >
-
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_main">
+        
+        <ImageView
+            android:id="@+id/app_main_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:id="@+id/app_main_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:contentDescription="@string/empty"
-                android:scaleType="center"
-                android:src="@drawable/app_logotxt" />
-        </LinearLayout>
-
-        <LinearLayout
+            android:scaleType="center"
+            android:src="@drawable/app_logotxt"
+            android:contentDescription="@string/empty" />
+        
+		<LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -37,27 +30,27 @@
             <Button
                 android:id="@+id/main_btnacount"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:onClick="onClick"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
-                android:text="@string/myaccount"
-                android:textColor="#eff2f4"
+                android:padding="10dip"
                 android:textSize="18.0dip"
+                android:textColor="#eff2f4"
+                android:text="@string/myaccount"
                 android:background="@drawable/selector_button_3" />
 
             <ImageButton
                 android:id="@+id/main_ibmore"
-                android:layout_width="36dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="0dp"
-                android:contentDescription="@string/empty"
                 android:onClick="onClick"
                 android:scaleType="fitCenter"
                 android:src="@drawable/more"
-                android:background="@drawable/selector_button_3" />
+                android:background="@drawable/selector_button_3"
+                android:contentDescription="@string/empty" />
+            
         </LinearLayout>
+        
     </RelativeLayout>
 
     <RelativeLayout

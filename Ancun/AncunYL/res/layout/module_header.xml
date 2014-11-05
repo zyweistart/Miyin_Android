@@ -3,7 +3,7 @@
   	android:layout_width="match_parent" 
   	android:layout_height="45.0dip"
   	android:layout_gravity="center"
-  	android:background="#0e75d4">
+  	android:background="@color/bg_header">
     
     <Button 
         android:id="@+id/btn_back"
