@@ -13,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:onClick="onClick"
         android:layout_marginLeft="10.0dip"
-        android:background="@drawable/selector_back"/>
+        android:background="@drawable/selector_button_back"/>
     
     <TextView 
         android:id="@+id/main_head_title"

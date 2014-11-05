@@ -119,7 +119,7 @@
         <item name="android:textSize">18.0dip</item>
         <item name="android:clickable">true</item>
         <item name="android:onClick">onClick</item>
-        <item name="android:background">@drawable/selector_frame_setting</item>
+        <item name="android:background">@drawable/selector_button_2</item>
     </style>
     
 </resources>
