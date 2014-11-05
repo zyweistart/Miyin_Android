@@ -12,7 +12,7 @@ public final class Constant {
 	public static final boolean ISSYSTEMTEST =true;
 
 	public static final String RESTURL = ISSYSTEMTEST ?
-			"http://192.168.0.221:8888/accore/http/HttpService":"http://account.chinacloudapp.cn:81/pwyl/http/HttpService";
+			"http://192.168.0.223:2230/http/HttpService":"http://192.168.0.221:8888/accore/http/HttpService";
 	/**
 	 * 需要过滤的号码
 	 */
@@ -30,21 +30,17 @@ public final class Constant {
 	 */
 	public final class URL {
 		/**
-		 * 校验码获取
+		 * 短信校验码获取
 		 */
-		public static final String v4scodeGet="v4scodeGet";
+		public static final String authcodeGet="authcodeGet";
 		/**
-		 * 注册
+		 * 用户注册与密码重置
 		 */
-		public static final String v4Signup="v4Signup";
+		public static final String userSignup="userSignup";
 		/**
-		 * 密码重置
+		 * 用户登录
 		 */
-		public static final String v4pwdReset="v4pwdReset";
-		/**
-		 * 登录
-		 */
-		public static final String v4Login="v4Login";
+		public static final String ylcnuserpwdCheck="ylcnuserpwdCheck";
 		/**
 		 * 用户信息获取
 		 */

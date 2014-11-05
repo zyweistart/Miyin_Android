@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.Handler;
+import com.ancun.service.User;
 
 /**
  * 重置密码
@@ -58,18 +59,17 @@ public class ResetPassWordActivity  extends RegisterActivity {
 				getHandlerContext().makeTextLong(getString(R.string.twopwddifftip));
 				return;
 			}
-			HttpServer hServer=new HttpServer(Constant.URL.v4pwdReset, getHandlerContext());
+			HttpServer hServer=new HttpServer(Constant.URL.userSignup, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
-			headers.put("sign", "");
+			headers.put("sign", User.USER_ACCESSKEY_LOCAL);
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
-			params.put("phone",phone);
+			params.put("accessid",User.USER_ACCESSID_LOCAL);
+			params.put("userTel",phone);
 			params.put("password", MD5.md5(password));
+			params.put("type","2");
 			params.put("authcode", authcode);
-			params.put("operatesource", "9");
-			params.put("ip", "");
-			params.put("mac", "");
-			params.put("loginflag", "1");
+			params.put("signupsource", "3");
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
 				

@@ -224,6 +224,7 @@ public class DialContentView extends BaseScrollContent implements Filterable,OnC
 		} else if (v.getId() == R.id.dial_add_contact|| v.getId() == R.id.dial_add_exist_contact) {
 			Intent intent;
 			if (mPhone.length() > 0) {
+				ContactsContentView.isRefreshData=true;
 				if (v.getId() == R.id.dial_add_contact) {
 					// 新建联系人
 					intent = new Intent(Intent.ACTION_INSERT);

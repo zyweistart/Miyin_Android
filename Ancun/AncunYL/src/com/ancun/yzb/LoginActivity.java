@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.ResultCode;
+import com.ancun.service.User;
 
 public class LoginActivity extends BaseActivity {
 	/**
@@ -137,22 +138,22 @@ public class LoginActivity extends BaseActivity {
 	 * @param autoLogin  
 	 */
 	public void login(final String account,final String password,final Boolean autoLogin){
-		HttpServer hServer=new HttpServer(Constant.URL.v4Login, getHandlerContext());
+		HttpServer hServer=new HttpServer(Constant.URL.ylcnuserpwdCheck, getHandlerContext());
 		Map<String,String> headers=new HashMap<String,String>();
-		headers.put("sign", password);
+		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
-		params.put("username", account);
-		params.put("loginsource", "9");
-		params.put("ip", "");
-		params.put("mac", "");
+		params.put("sign", User.USER_ACCESSID_LOCAL);
+		params.put("userTel", account);
+		params.put("password", password);
+		params.put("type", "1");
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 			
 			@Override
 			public void run(Response response) throws AppException {
 				getAppContext().currentUser().addCacheUser(account, password, autoLogin);
-				getAppContext().currentUser().resolve(response.getMapData("v4info"));
+				getAppContext().currentUser().resolve(response.getMapData("userinfo"));
 				startActivity(new Intent(LoginActivity.this,MainActivity.class));
 				finish();
 			}

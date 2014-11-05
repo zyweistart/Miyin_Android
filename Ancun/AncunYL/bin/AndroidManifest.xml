@@ -91,14 +91,14 @@
         <activity
             android:name=".RegisterActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ServerClauseActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ResetPassWordActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
@@ -127,7 +127,7 @@
         <activity
             android:name=".UnsubscribeActivity"
     	    android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".SettingActivity"
     	    android:screenOrientation="portrait" />
@@ -137,14 +137,14 @@
         <activity
             android:name=".FeedbackActivity"
     	    android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AboutusActivity"
     	    android:screenOrientation="portrait" />
         <activity
             android:name=".ModifyPasswordActivity"
     	    android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".LockActivity"
             android:screenOrientation="portrait"/>
