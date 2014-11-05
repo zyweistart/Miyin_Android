@@ -37,7 +37,7 @@
         android:maxHeight="30dp"
         android:minHeight="30dp"
         android:paddingLeft="3dp"
-        android:progressDrawable="@drawable/seekbar_gd_style"
+        android:progressDrawable="@drawable/widget_playerview_seekbar_gd_style"
         android:thumb="@drawable/widget_playerview_media_bar" />
 
     <TextView
