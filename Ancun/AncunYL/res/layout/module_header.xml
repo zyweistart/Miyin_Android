@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/selector_back"
         android:onClick="onClick"
-        android:layout_marginLeft="10.0dip"/>
+        android:layout_marginLeft="10.0dip"
+        android:background="@drawable/selector_back"/>
     
     <TextView 
         android:id="@+id/main_head_title"

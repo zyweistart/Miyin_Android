@@ -52,8 +52,7 @@ public class LoginActivity extends BaseActivity {
 		txtResetPassword=(TextView)findViewById(R.id.txt_reset_password);
 		txtResetPassword.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		txtResetPassword.setOnClickListener(this);
-		
-		et_login_account.setText("18368013123");
+		findViewById(R.id.btn_back).setVisibility(View.GONE);
 	}
 	
 	@Override
