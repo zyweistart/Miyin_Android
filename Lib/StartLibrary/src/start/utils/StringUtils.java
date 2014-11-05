@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import android.text.TextUtils;
 import start.core.AppConstant;
 /**
  * 字符串处理类
@@ -114,6 +115,9 @@ public class StringUtils {
 	 * @return
 	 */
 	public static String phoneFormat(String phone){
+		if(TextUtils.isEmpty(phone)){
+			return AppConstant.EMPTYSTR;
+		}
 		//号码转换
 		StringBuilder sbphone=new StringBuilder();
 		for(int i=0;i<phone.length();i++){
@@ -124,6 +128,13 @@ public class StringUtils {
 			}
 		}
 		return sbphone.toString();
+	}
+	
+	public static String convertString(Object o){
+		if(o==null){
+			return AppConstant.EMPTYSTR;
+		}
+		return String.valueOf(o);
 	}
 	
 }

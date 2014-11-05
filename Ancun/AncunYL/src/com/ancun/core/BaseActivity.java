@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
-import com.ancun.bean.impl.ContactDaoImpl;
-import com.ancun.bean.impl.RecentDaoImpl;
 import com.ancun.core.Constant.ResultCode;
+import com.ancun.service.impl.ContactDaoImpl;
+import com.ancun.service.impl.RecentDaoImpl;
 import com.ancun.yzb.BaseContext;
 import com.ancun.yzb.LoginActivity;
 import com.ancun.yzb.R;
