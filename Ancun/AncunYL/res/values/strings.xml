@@ -97,9 +97,14 @@
     <string name="aboutus">关于我们</string>
     <string name="cleanrecording">清理本地录音缓存</string>
     <string name="modifypassword">修改密码</string>
-    <string name="gesturesetting">手势密码设置</string>
-    <string name="gesturemodify">手势密码修改</string>
     <string name="exitlogin">退出登录</string>
     <string name="nocontactphone">无任何联系号码</string>
-    
+     <string name="gesturestate">手势密码</string>
+    <string name="gestureset">手势设置</string>
+    <string name="agegestureset">请再绘制一次</string>
+    <string name="twogesturesetdiff">两次设置不一致请重新绘制</string>
+    <string name="gesturesetsuccess">手势密码设置成功</string>
+    <string name="changegesture">修改手势密码</string>    
+    <string name="lockpattern_recording_incorrect_too_short" >"至少连接4个点，请重试"</string>
+    <string name="lockpattern_error" >"手势密码不对"</string>
 </resources>

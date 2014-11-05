@@ -114,7 +114,7 @@
                     android:id="@+id/setting_gesturesetting"
                     style="@style/setting_frame"
                     android:drawableLeft="@drawable/ic_gesture"
-                    android:text="@string/gesturesetting" />
+                    android:text="@string/gesturestate" />
 
                 <View
                     android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                     style="@style/setting_frame"
                     android:drawableLeft="@drawable/ic_modifypwd"
                     android:drawableRight="@drawable/selector_ic_arrow"
-                    android:text="@string/gesturemodify" />
+                    android:text="@string/gestureset" />
             </LinearLayout>
 
             <View
