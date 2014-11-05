@@ -12,7 +12,9 @@ public final class Constant {
 	public static final boolean ISSYSTEMTEST =true;
 
 	public static final String RESTURL = ISSYSTEMTEST ?
-			"http://192.168.0.223:2230/http/HttpService":"http://192.168.0.221:8888/accore/http/HttpService";
+//			"http://192.168.0.65:8080/ACServiceCoreAPP/http/HttpService":
+			"http://192.168.0.223:2230/http/HttpService":
+				"http://192.168.0.221:8888/accore/http/HttpService";
 	/**
 	 * 需要过滤的号码
 	 */
@@ -52,7 +54,7 @@ public final class Constant {
 		/**
 		 * 录音查询
 		 */
-		public static final String v4recQry="v4recQry";
+		public static final String ylcnrecQry="ylcnrecQry";
 		/**
 		 * 录音信息获取
 		 */
@@ -64,7 +66,7 @@ public final class Constant {
 		/**
 		 * 录音备注修改
 		 */
-		public static final String v4recRemark ="v4recRemark";
+		public static final String ylcnrecRemark ="ylcnrecRemark";
 		/**
 		 * 录音状态变更
 		 */
@@ -72,7 +74,7 @@ public final class Constant {
 		/**
 		 * 录音提取码
 		 */
-		public static final String v4recAcccode="v4recAcccode";
+		public static final String ylcnrecAcccode="ylcnrecAcccode";
 		/**
 		 * 录音出证
 		 */
@@ -104,19 +106,19 @@ public final class Constant {
 		/**
 		 * 注册重置密码步骤1
 		 */
-		public static final int REGISTER_RESET_PASSWORD_STEP1=0x1119;
+		public static final int REGISTER_RESET_PASSWORD_STEP1=0x1119333;
 		/**
 		 * 注册重置密码步骤2
 		 */
-		public static final int REGISTER_RESET_PASSWORD_STEP2=0x1120;
+		public static final int REGISTER_RESET_PASSWORD_STEP2=0x1122230;
 		/**
 		 * 网络未连接
 		 */
-		public static final int HANDLERNETCHECKMESSAGEWHATCONNECT=0x1121;
+		public static final int HANDLERNETCHECKMESSAGEWHATCONNECT=0x112221;
 		/**
 		 * 网络已连接
 		 */
-		public static final int HANDLERNETCHECKMESSAGEWHATNOCONNECT=0x1122;
+		public static final int HANDLERNETCHECKMESSAGEWHATNOCONNECT=0x1123332;
 		
 	}
 
@@ -128,7 +130,7 @@ public final class Constant {
 		/**
 		 * 用户名或密码有误
 		 */
-		public static final int USERNAMEORPASSWORDERROR=110036;
+		public static final int USERNAMEORPASSWORDERROR=120011;
 		
 	}
 	

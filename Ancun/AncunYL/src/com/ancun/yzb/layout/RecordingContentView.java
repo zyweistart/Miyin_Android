@@ -183,25 +183,13 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 	
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer(Constant.URL.v4recQry,mRefreshListServer.getHandlerContext());
+		HttpServer hServer = new HttpServer(Constant.URL.ylcnrecQry,mRefreshListServer.getHandlerContext());
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put("sign", User.ACCESSKEY);
 		hServer.setHeaders(headers);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid",User.ACCESSID);
-		params.put("rectype","3");
-		params.put("calltype","1");
-		params.put("oppno",String.valueOf(et_content.getText()));
-		params.put("callerno","");
-		params.put("calledno","");
-		params.put("begintime","");
-		params.put("endtime","");
-		params.put("remark","");
-		params.put("durmin","");
-		params.put("durmax","");
-		params.put("licno","");
-		params.put("status","1");
-		params.put("ordersort","desc");
+		params.put("calledno",String.valueOf(et_content.getText()));
 		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);

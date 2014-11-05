@@ -95,12 +95,12 @@ public class LoginActivity extends BaseActivity {
 		if(v.getId()==R.id.btn_login){
 			String account=String.valueOf(et_login_account.getText());
 			if(StringUtils.isEmpty(account)){
-				getHandlerContext().makeTextLong("");
+				getHandlerContext().makeTextLong(getString(R.string.phoneemptytip));
 				return;
 			}
 			String password=String.valueOf(et_login_password.getText());
 			if(StringUtils.isEmpty(password)){
-				getHandlerContext().makeTextLong("");
+				getHandlerContext().makeTextLong(getString(R.string.pwdemptytip));
 				return;
 			}
 			Boolean checked=cb_login_autologin.isChecked();
@@ -120,10 +120,10 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	public void onProcessMessage(Message msg) throws AppException {
 		switch(msg.what){
-		case ResultCode.USERNAMEORPASSWORDERROR://签名不匹配或密码不正确
+		case ResultCode.USERNAMEORPASSWORDERROR:
 			getAppContext().currentUser().clearCachePassword();
 			et_login_password.setText(AppConstant.EMPTYSTR);
-			getHandlerContext().makeTextShort("用户名或密码有误");
+			getHandlerContext().makeTextShort(String.valueOf(msg.obj));
 			break;
 		default:
 			super.onProcessMessage(msg);
@@ -143,7 +143,7 @@ public class LoginActivity extends BaseActivity {
 		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
-		params.put("sign", User.USER_ACCESSID_LOCAL);
+		params.put("accessid", User.USER_ACCESSID_LOCAL);
 		params.put("userTel", account);
 		params.put("password", password);
 		params.put("type", "1");

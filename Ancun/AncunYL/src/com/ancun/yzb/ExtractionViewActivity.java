@@ -72,15 +72,14 @@ public class ExtractionViewActivity extends BaseActivity {
 	}
 	
 	public void getDataTask(final Integer status){
-		HttpServer hServer=new HttpServer(Constant.URL.v4recAcccode, getHandlerContext());
+		HttpServer hServer=new HttpServer(Constant.URL.ylcnrecAcccode, getHandlerContext());
 		Map<String,String> headers=new HashMap<String,String>();
 		headers.put("sign", User.ACCESSKEY);
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("accessid", User.ACCESSID);
-		params.put("fileno",fileno);
+		params.put("recordNo",fileno);
 		params.put("acccodeact", String.valueOf(status));
-		params.put("vtime","10");
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 			
@@ -98,7 +97,7 @@ public class ExtractionViewActivity extends BaseActivity {
 						if(status==1||status==2){
 							tv_recorded_appeal_taobao_code_url.setText(info.get("url"));
 							tv_recorded_appeal_taobao_code.setText(info.get("acccode"));
-							tv_recorded_appeal_taobao_limit_time.setText(info.get("endtime"));
+							tv_recorded_appeal_taobao_limit_time.setText(info.get("dueDateTime"));
 							resultBundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS,1);
 							Intent resultIntent=new Intent();
 							resultIntent.putExtras(resultBundle);

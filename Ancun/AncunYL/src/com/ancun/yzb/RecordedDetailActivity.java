@@ -144,13 +144,13 @@ public class RecordedDetailActivity extends BaseActivity {
  				}
  				final String remark=String.valueOf(etrecorded_remark_edit.getText());
  				//提交修改备注
- 				HttpServer hServer=new HttpServer(Constant.URL.v4recRemark, getHandlerContext());
+ 				HttpServer hServer=new HttpServer(Constant.URL.ylcnrecRemark, getHandlerContext());
  				Map<String,String> headers=new HashMap<String,String>();
  				headers.put("sign", User.ACCESSKEY);
  				hServer.setHeaders(headers);
  				Map<String,String> params=new HashMap<String,String>();
  				params.put("accessid", User.ACCESSID);
- 				params.put("fileno",fileno);
+ 				params.put("recordNo",fileno);
  				params.put("remark", remark);
  				hServer.setParams(params);
  				hServer.get(new HttpRunnable() {

@@ -51,13 +51,13 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		activity_myaccount_btn_RightTitle.setVisibility(View.VISIBLE);
 		// 当前账户
 		activity_myaccount_phone = (TextView) findViewById(R.id.activity_myaccount_phone);
-		activity_myaccount_phone.setText("当前账户："+ getAppContext().currentUser().getInfo().get("phone"));
+		activity_myaccount_phone.setText("当前账户："+ getAppContext().currentUser().getInfo().get("userTel"));
 		activity_myaccount_recordingcount = (TextView) findViewById(R.id.activity_myaccount_recordingcount);
-		activity_myaccount_recordingcount.setText("录音数量："+getAppContext().currentUser().getInfo().get("rtcount"));
+		activity_myaccount_recordingcount.setText("录音数量："+getAppContext().currentUser().getInfo().get("recordNumber"));
 		activity_myaccount_timelong = (TextView) findViewById(R.id.activity_myaccount_timelong);
-		activity_myaccount_timelong.setText("已用空间："+getAppContext().currentUser().getInfo().get("rtcount"));
+		activity_myaccount_timelong.setText("已用空间："+getAppContext().currentUser().getInfo().get("usedingStore"));
 		activity_myaccount_storageinfo = (TextView) findViewById(R.id.activity_myaccount_storageinfo);
-		activity_myaccount_storageinfo.setText("已用时长："+getAppContext().currentUser().getInfo().get("rtcount"));
+		activity_myaccount_storageinfo.setText("已用时长："+getAppContext().currentUser().getInfo().get("recordTime"));
 		
 		mListView = (XListView) findViewById(R.id.xlv_listview);
 		
@@ -74,25 +74,12 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer(Constant.URL.v4recQry,mRefreshListServer.getHandlerContext());
+		HttpServer hServer = new HttpServer(Constant.URL.ylcnrecQry,mRefreshListServer.getHandlerContext());
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put("sign", User.ACCESSKEY);
 		hServer.setHeaders(headers);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid",User.ACCESSID);
-		params.put("rectype","3");
-		params.put("calltype","1");
-		params.put("oppno","");
-		params.put("callerno","");
-		params.put("calledno","");
-		params.put("begintime","");
-		params.put("endtime","");
-		params.put("remark","");
-		params.put("durmin","");
-		params.put("durmax","");
-		params.put("licno","");
-		params.put("status","1");
-		params.put("ordersort","desc");
 		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);

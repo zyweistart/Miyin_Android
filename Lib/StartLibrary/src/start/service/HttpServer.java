@@ -153,7 +153,8 @@ public class HttpServer {
 	    	
 	    	if(mParams!=null){
 	    		for(String key:mParams.keySet()){
-	    			contentObject.put(key.toLowerCase(),mParams.get(key));
+	    			contentObject.put(key,mParams.get(key));
+//	    			contentObject.put(key.toLowerCase(),mParams.get(key));
 	    		}
 	    	}
 	    	requestObject.put("content", contentObject);
