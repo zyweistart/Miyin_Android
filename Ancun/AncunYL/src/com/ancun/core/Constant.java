@@ -17,6 +17,7 @@ public final class Constant {
 	 * 需要过滤的号码
 	 */
 	public static List<String> noCall = new ArrayList<String>();
+	
 	static {
 		noCall.add("968682");
 		noCall.add("95105856");

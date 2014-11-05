@@ -153,7 +153,7 @@ public class UpdateApplication {
 						throw AppException.io(e);
 					}
 				}
-			});
+			},!backgroundCheckFlag);
 		}else{
 			if(!backgroundCheckFlag){
 				UIHelper.goSettingNetwork(currentActivity);
