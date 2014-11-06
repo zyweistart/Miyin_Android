@@ -12,6 +12,7 @@ import start.service.HttpServer;
 import start.service.RefreshListServer;
 import start.service.RefreshListServer.RefreshListServerListener;
 import start.service.Response;
+import start.utils.MD5;
 import start.utils.NetConnectManager;
 import start.widget.CustomEditText;
 import start.widget.xlistview.XListView;
@@ -135,7 +136,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 						                        		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
 						                        		params.put("fileno", fileno);
 						                        		params.put("alteract", "1");
-//						                        		params.put("password", MD5.md5(value));
+						                        		params.put("password", MD5.md5(value));
 						                        		hServer.setParams(params);
 						                        		hServer.get(new HttpRunnable() {
 						                        			

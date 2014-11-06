@@ -162,10 +162,10 @@ public class RecordedDetailActivity extends BaseActivity {
  						
  						Intent intent=new Intent();
  						Bundle bundle=new Bundle();
- 						bundle.putString("fileno", fileno);
- 						bundle.putInt("accstatus", accstatus);
- 						bundle.putInt("cerflag", cerflag);
- 						bundle.putString("remark", remark);
+ 						bundle.putString(RecordingAdapter.RECORDED_FILENO, fileno);
+ 						bundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS, accstatus);
+ 						bundle.putInt(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
+ 						bundle.putString(RecordingAdapter.RECORDED_REMARK, remark);
  						intent.putExtras(bundle);
  						setResult(REMARKMODIFYCODE,intent);
  						getHandlerContext().makeTextLong(getString(R.string.recording_remark_modify_success));
@@ -185,7 +185,7 @@ public class RecordedDetailActivity extends BaseActivity {
 				//有效
 				intentTaobao=new Intent(this,ExtractionViewActivity.class);
 			}else{
-				bundleTaobao.putInt("appeal_type", 1);
+				bundleTaobao.putInt(ExtractionConfirmActivity.STRAPPEALTYPE, 1);
 				intentTaobao=new Intent(this,ExtractionConfirmActivity.class);
 			}
 			intentTaobao.putExtras(bundleTaobao);
@@ -194,9 +194,9 @@ public class RecordedDetailActivity extends BaseActivity {
 		case R.id.recorded_notarization_appeal:
 			//申请公证
 			Bundle bundleNotary=new Bundle();
-			bundleNotary.putInt("appeal_type", 2);
-			bundleNotary.putString("fileno", fileno);
-			bundleNotary.putInt("cerflag", cerflag);
+			bundleNotary.putInt(ExtractionConfirmActivity.STRAPPEALTYPE, 2);
+			bundleNotary.putString(RecordingAdapter.RECORDED_FILENO, fileno);
+			bundleNotary.putInt(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
 			Intent intentNotary=new Intent(this,ExtractionConfirmActivity.class);
 			intentNotary.putExtras(bundleNotary);
 			startActivityForResult(intentNotary,1);
@@ -214,37 +214,37 @@ public class RecordedDetailActivity extends BaseActivity {
 			if(bundle!=null){
 				if(TAOBAOREQUESTCODE==requestCode){
 					if(resultCode==ExtractionViewActivity.RecordedAppealTaobaoExtractionCodeResultCode){
-						accstatus=bundle.getInt("accstatus");
+						accstatus=bundle.getInt(RecordingAdapter.RECORDED_ACCSTATUS);
 						if(accstatus==1){
 							btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_lookup);
 						}else{
 							btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_request);
 						}
-						Intent intent=new Intent();
-						Bundle taobaoBundle=new Bundle();
-						taobaoBundle.putString("fileno", fileno);
-						taobaoBundle.putInt("accstatus", accstatus);
-						taobaoBundle.putInt("cerflag", cerflag);
-						taobaoBundle.putString("remark", etrecorded_remark_edit.getText().toString());
-						intent.putExtras(taobaoBundle);
-						setResult(REMARKRESULTCODE,intent);
+//						Intent intent=new Intent();
+//						Bundle taobaoBundle=new Bundle();
+//						taobaoBundle.putString(RecordingAdapter.RECORDED_FILENO, fileno);
+//						taobaoBundle.putInt(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
+//						taobaoBundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS, accstatus);
+//						taobaoBundle.putString(RecordingAdapter.RECORDED_REMARK, etrecorded_remark_edit.getText().toString());
+//						intent.putExtras(taobaoBundle);
+//						setResult(REMARKRESULTCODE,intent);
 					}
 				}else{
 					if(resultCode==3){
-						cerflag=bundle.getInt("cerflag");
+						cerflag=bundle.getInt(RecordingAdapter.RECORDED_CEFFLAG);
 						if(cerflag==1){
 							btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_request);
 						}else{
 							btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_cancel);
 						}
-						Intent intent=new Intent();
-						Bundle notaryBundle=new Bundle();
-						notaryBundle.putString("fileno", fileno);
-						notaryBundle.putInt("cerflag", cerflag);
-						notaryBundle.putInt("accstatus", accstatus);
-						notaryBundle.putString("remark", etrecorded_remark_edit.getText().toString());
-						intent.putExtras(notaryBundle);
-						setResult(REMARKRESULTCODE,intent);
+//						Intent intent=new Intent();
+//						Bundle notaryBundle=new Bundle();
+//						notaryBundle.putString(RecordingAdapter.RECORDED_FILENO, fileno);
+//						notaryBundle.putInt(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
+//						notaryBundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS, accstatus);
+//						notaryBundle.putString(RecordingAdapter.RECORDED_REMARK, etrecorded_remark_edit.getText().toString());
+//						intent.putExtras(notaryBundle);
+//						setResult(REMARKRESULTCODE,intent);
 					}
 				}
 			}

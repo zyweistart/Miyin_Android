@@ -117,15 +117,13 @@ public class User {
 		String accessid=getInfo().get("accessid");
 		if(!TextUtils.isEmpty(accessid)){
 			User.ACCESSID=accessid;
-		}else{
-			User.ACCESSID=User.USER_ACCESSID_LOCAL;
 		}
 		String accesskey=getInfo().get("accesskey");
 		if(!TextUtils.isEmpty(accesskey)){
 			User.ACCESSKEY=accesskey;
-		}else{
-			User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
 		}
+		User.ACCESSID=User.USER_ACCESSID_LOCAL;
+		User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
 	}
 	
 }

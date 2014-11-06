@@ -56,7 +56,7 @@ public class ExtractionViewActivity extends BaseActivity {
 		btn_recorded_appeal_taobao_btn_send_to_mobile.setOnClickListener(this);
 		btn_recorded_appeal_taobao_btn_cancel=(Button)findViewById(R.id.recorded_appeal_taobao_btn_cancel);
 		btn_recorded_appeal_taobao_btn_cancel.setOnClickListener(this);
-		fileno=getIntent().getExtras().getString("fileno");
+		fileno=getIntent().getExtras().getString(RecordingAdapter.RECORDED_FILENO);
 		if(fileno!=null){
 			Integer accstatus=getIntent().getExtras().getInt(RecordingAdapter.RECORDED_ACCSTATUS);
 			if(accstatus==1){
@@ -87,7 +87,7 @@ public class ExtractionViewActivity extends BaseActivity {
 			@Override
 			public void run(Response response) throws AppException {
 				
-				final Map<String,String> info=response.getMapData("acccodeinfo ");
+				final Map<String,String> info=response.getMapData("acccodeinfo");
 				
 				runOnUiThread(new Runnable() {
 					

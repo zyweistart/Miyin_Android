@@ -78,7 +78,7 @@ public class SettingActivity extends BaseActivity {
 			// 小贴士
 			startActivity(new Intent(this, TipActivity.class));
 		} else if (v.getId() == R.id.setting_feedback) {
-			// 意见反馈
+			//意见反馈
 			startActivity(new Intent(this, FeedbackActivity.class));
 		} else if (v.getId() == R.id.setting_versioncheck) {
 			// 新版本检测

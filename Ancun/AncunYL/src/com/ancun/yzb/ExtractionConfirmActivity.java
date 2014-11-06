@@ -22,6 +22,8 @@ import com.ancun.yzb.adapter.RecordingAdapter;
 
 public class ExtractionConfirmActivity extends BaseActivity {
 	
+	public static final String STRAPPEALTYPE="appeal_type";
+	
 	private ImageView ivTitle=null;
 	private TextView tvMessage=null;
 	private ImageButton ibYes,ibNo;
@@ -33,7 +35,7 @@ public class ExtractionConfirmActivity extends BaseActivity {
 		setContentView(R.layout.activity_extraction_confirm);
 		ivTitle=(ImageView)findViewById(R.id.recorded_appeal_confirm_title);
 		tvMessage=(TextView)findViewById(R.id.recorded_appeal_confirm_message);
-		final int appealType=getIntent().getExtras().getInt("appeal_type");
+		final int appealType=getIntent().getExtras().getInt(STRAPPEALTYPE);
 		final String fileno=getIntent().getExtras().getString(RecordingAdapter.RECORDED_FILENO);
 		final int cerflag=getIntent().getExtras().getInt(RecordingAdapter.RECORDED_CEFFLAG);
 		if (1==appealType) {
@@ -87,7 +89,6 @@ public class ExtractionConfirmActivity extends BaseActivity {
 							resultIntent.putExtras(resultBundle);
 							setResult(3,resultIntent);
 							finish();
-	 						
 	 					}
 	 				});
 				}

@@ -40,18 +40,21 @@
                     style="@style/setting_frame"
                     android:drawableLeft="@drawable/ic_feedback"
                     android:drawableRight="@drawable/selector_button_arrow"
-                    android:text="@string/feedback" />
+                    android:text="@string/feedback" 
+                    android:visibility="gone"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1.0dip"
-                    android:background="@color/bg_frame" />
+                    android:background="@color/bg_frame"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/setting_versioncheck"
                     style="@style/setting_frame"
                     android:drawableLeft="@drawable/ic_versioncheck"
-                    android:text="@string/versioncheck" />
+                    android:text="@string/versioncheck"
+                    android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
