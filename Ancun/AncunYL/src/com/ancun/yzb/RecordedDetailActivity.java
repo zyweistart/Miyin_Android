@@ -108,19 +108,10 @@ public class RecordedDetailActivity extends BaseActivity {
 							etrecorded_remark_edit.setText(info.get(RecordingAdapter.RECORDED_REMARK));
 							//公证标记
 							cerflag=Integer.parseInt(info.get(RecordingAdapter.RECORDED_CEFFLAG));
-							if(cerflag==1){
-								btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_request);
-							}else{
-								btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_cancel);
-							}
+							setNotaryStatus(cerflag);
 							//申请码状态
 							accstatus=Integer.parseInt(info.get(RecordingAdapter.RECORDED_ACCSTATUS));
-							if(accstatus==1){
-								btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_lookup);
-							}else{
-								btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_request);
-							}
-							
+							setExtractionStatus(accstatus);
 						}
 						
 					});
@@ -160,14 +151,6 @@ public class RecordedDetailActivity extends BaseActivity {
  					@Override
  					public void run(Response response) throws AppException {
  						
- 						Intent intent=new Intent();
- 						Bundle bundle=new Bundle();
- 						bundle.putString(RecordingAdapter.RECORDED_FILENO, fileno);
- 						bundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS, accstatus);
- 						bundle.putInt(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
- 						bundle.putString(RecordingAdapter.RECORDED_REMARK, remark);
- 						intent.putExtras(bundle);
- 						setResult(REMARKMODIFYCODE,intent);
  						getHandlerContext().makeTextLong(getString(R.string.recording_remark_modify_success));
  						
  					}
@@ -215,36 +198,12 @@ public class RecordedDetailActivity extends BaseActivity {
 				if(TAOBAOREQUESTCODE==requestCode){
 					if(resultCode==ExtractionViewActivity.RecordedAppealTaobaoExtractionCodeResultCode){
 						accstatus=bundle.getInt(RecordingAdapter.RECORDED_ACCSTATUS);
-						if(accstatus==1){
-							btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_lookup);
-						}else{
-							btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_request);
-						}
-//						Intent intent=new Intent();
-//						Bundle taobaoBundle=new Bundle();
-//						taobaoBundle.putString(RecordingAdapter.RECORDED_FILENO, fileno);
-//						taobaoBundle.putInt(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
-//						taobaoBundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS, accstatus);
-//						taobaoBundle.putString(RecordingAdapter.RECORDED_REMARK, etrecorded_remark_edit.getText().toString());
-//						intent.putExtras(taobaoBundle);
-//						setResult(REMARKRESULTCODE,intent);
+						setExtractionStatus(accstatus);
 					}
 				}else{
 					if(resultCode==3){
 						cerflag=bundle.getInt(RecordingAdapter.RECORDED_CEFFLAG);
-						if(cerflag==1){
-							btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_request);
-						}else{
-							btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_cancel);
-						}
-//						Intent intent=new Intent();
-//						Bundle notaryBundle=new Bundle();
-//						notaryBundle.putString(RecordingAdapter.RECORDED_FILENO, fileno);
-//						notaryBundle.putInt(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
-//						notaryBundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS, accstatus);
-//						notaryBundle.putString(RecordingAdapter.RECORDED_REMARK, etrecorded_remark_edit.getText().toString());
-//						intent.putExtras(notaryBundle);
-//						setResult(REMARKRESULTCODE,intent);
+						setNotaryStatus(cerflag);
 					}
 				}
 			}
@@ -265,6 +224,22 @@ public class RecordedDetailActivity extends BaseActivity {
 			etrecorded_remark_edit.setEnabled(false);
 			etrecorded_remark_edit.setBackgroundResource(R.drawable.bg_lookup);
 			btnrecorded_remark_edit_submit.setBackgroundResource(R.drawable.selector_button_edit);
+		}
+	}
+	
+	private void setNotaryStatus(int status){
+		if(status==1){
+			btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_request);
+		}else{
+			btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_cancel);
+		}
+	}
+	
+	private void setExtractionStatus(int status){
+		if(status==1){
+			btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_lookup);
+		}else{
+			btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_request);
 		}
 	}
 	
