@@ -74,7 +74,7 @@ public class PhoneReceiver extends BroadcastReceiver {
 						}
 					});
 					TextView tvMessage = (TextView) view.findViewById(R.id.dial_listener_text);
-					tvMessage.setText("您正在通过音证宝与"+SP_CALL_DIAL+"录音通话中…");
+					tvMessage.setText("您正在与"+SP_CALL_DIAL+"录音通话中…");
 					myFV = new DialFloatView(currentActivity.getAppContext());
 					myFV.addView(view);
 					// 设置LayoutParams(全局变量）相关参数

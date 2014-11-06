@@ -31,7 +31,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="感谢您选择音证宝服务！在使用本服务前，请您务必先仔细阅读本协议以下条款："
+                        android:text="感谢您选择安存语录服务！在使用本服务前，请您务必先仔细阅读本协议以下条款："
                         android:textColor="#717171" />
                 </LinearLayout>
             </LinearLayout>
@@ -64,13 +64,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1. 音证宝服务本服务，是由杭州安存网络科技有限公司（以下简称“安存”）为您提供的服务。安存将不断创新致力于向您提供最优体验，您认知并同意安存提供的服务形式和本质可不经事先通知您而不时变换；"
+                        android:text="1. 安存语录服务本服务，是由杭州安存网络科技有限公司（以下简称“安存”）为您提供的服务。安存将不断创新致力于向您提供最优体验，您认知并同意安存提供的服务形式和本质可不经事先通知您而不时变换；"
                         android:textColor="#717171" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2. 音证宝服务即安存运用在线数据保全服务系统，按照用户已同意的安存指定的服务协议条款，依据接收到的用户帐号、密码和用户指令（用户指令，包括但不限于用户手动操作所发出的指令进行相应的操作，通过互联网络为用户提供通话录音保全的服务；"
+                        android:text="2. 安存语录服务即安存运用在线数据保全服务系统，按照用户已同意的安存指定的服务协议条款，依据接收到的用户帐号、密码和用户指令（用户指令，包括但不限于用户手动操作所发出的指令进行相应的操作，通过互联网络为用户提供通话录音保全的服务；"
                         android:textColor="#717171" />
 
                     <TextView
@@ -217,7 +217,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1. 安存有权依照本协议约定方式就本协议的有关约定和/或有关服务内容进行变更，包括但不限于对通话录音保全用户按照安存规定的标准进行分级并针对不同级别的通话录音保全用户提供不同服务内容，对音证宝服务的存储空间、存储格式要求、用户账号下回收站中文件的保留时间、对保存在用户账号下的相同文件名的文件/文件夹因发生变化所产生的历史记录版本的数量、本服务的具体形式、方法等进行调整。安存将在该变更内容确定后通过本协议第（十二）条约定的方式向用户公布，一旦本协议和/或有关服务内容发生变动，安存将会在该变更内容确定后通过本协议第（十二）条约定的方式向用户公布。"
+                        android:text="1. 安存有权依照本协议约定方式就本协议的有关约定和/或有关服务内容进行变更，包括但不限于对通话录音保全用户按照安存规定的标准进行分级并针对不同级别的通话录音保全用户提供不同服务内容，对安存语录服务的存储空间、存储格式要求、用户账号下回收站中文件的保留时间、对保存在用户账号下的相同文件名的文件/文件夹因发生变化所产生的历史记录版本的数量、本服务的具体形式、方法等进行调整。安存将在该变更内容确定后通过本协议第（十二）条约定的方式向用户公布，一旦本协议和/或有关服务内容发生变动，安存将会在该变更内容确定后通过本协议第（十二）条约定的方式向用户公布。"
                         android:textColor="#717171" />
 
                     <TextView
@@ -358,7 +358,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3.1 用户可以到指定的页面，自行主动取消本服务，用户可以通过客服电话968682人工取消本服务，一旦取消成功，该用户所有与本服务相关的内容，包括但不限于通话录音保全的内容，将会被自动删除。安存强烈建议您在主动取消本服务前，自行备份相关内容。在您主动取消本服务后，安存拒绝提供任何恢复服务。"
+                        android:text="3.1 用户可以到指定的页面，自行主动取消本服务，用户可以通过客服电话95105856人工取消本服务，一旦取消成功，该用户所有与本服务相关的内容，包括但不限于通话录音保全的内容，将会被自动删除。安存强烈建议您在主动取消本服务前，自行备份相关内容。在您主动取消本服务后，安存拒绝提供任何恢复服务。"
                         android:textColor="#717171" />
 
                     <TextView
@@ -370,7 +370,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4. 除前款所述情形外，用户同意安存享有通过提前1个月以网站公告（网站：www.968682.com ）通知的方式中断或终止部分或全部本服务的权利，用户已明确知晓上述权利的授予且知晓因上述权利的行使可能给自身及其他第三方造成的直接或间接利益减损，用户在此明确表示不追究安存因行使上述单方中断或终止服务权利而可能导致的一切责任。"
+                        android:text="4. 除前款所述情形外，用户同意安存享有通过提前1个月以网站公告（网站：www.95105856.com ）通知的方式中断或终止部分或全部本服务的权利，用户已明确知晓上述权利的授予且知晓因上述权利的行使可能给自身及其他第三方造成的直接或间接利益减损，用户在此明确表示不追究安存因行使上述单方中断或终止服务权利而可能导致的一切责任。"
                         android:textColor="#717171" />
 
                     <TextView
@@ -622,7 +622,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.4 伪造安存官方网站以及任何音证宝服务以欺骗其它用户。"
+                        android:text="5.4 伪造安存官方网站以及任何安存语录服务以欺骗其它用户。"
                         android:textColor="#717171" />
 
                     <TextView
@@ -868,7 +868,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2. 客服联系方式：968682"
+                        android:text="2. 客服联系方式：95105856"
                         android:textColor="#717171" />
                 </LinearLayout>
             </LinearLayout>

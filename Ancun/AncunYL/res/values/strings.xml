@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">音证宝</string>
-    <string name="app_phone">968682</string>
+    <string name="app_name">安存语录</string>
+    <string name="app_phone">95105856</string>
     <string name="app_compayname">安存科技</string>
-    <string name="app_url">http://www.968682.com</string>
+    <string name="app_url">http://www.95105856.com</string>
     
-    <string name="welcomeregisterinfo1">欢迎使用音证宝！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。现在开通10月31日前不收取功能费，次月1日起正式收费，每月30元，通话费按原有资费标准收取。</string>
+    <string name="welcomeregisterinfo1">欢迎使用安存语录！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。现在开通10月31日前不收取功能费，次月1日起正式收费，每月30元，通话费按原有资费标准收取。</string>
     <string name="registerinfo2">注：目前只支持上海电信后付费手机</string>
     <string name="servercontent">《安存语录服务条款》</string>
     <string name="servercontenttip">请先阅读并同意《安存语录服务条款》</string>
-    <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.968682.com进行操作</string>
-    <string name="extraction_code_tip2">(http://www.968682.com)公开查询、下载本条通话录音；并可作为依据提交给第三方，以证明录音的真实性、可靠性和法律效力。</string>
+    <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.95105856.com进行操作</string>
+    <string name="extraction_code_tip2">(http://www.95105856.com)公开查询、下载本条通话录音；并可作为依据提交给第三方，以证明录音的真实性、可靠性和法律效力。</string>
+    <string name="notary_notify_tip1">申请人通过安存语录成功录制通话内容后，到表格下载区下载表格，按要求如实填写各项内容，准备好相关材料，向公证处申请办理公证。</string>
+    <string name="notary_notify_tip2">公证员结合安存语录语音保全系统，对申请公证的事项进行全面审查。</string>
+    <string name="notary_notify_tip3">从安存语录语音保全系统数据库调取需公证的录音资料。</string>
     
 	<string name="back">返回</string>
 	<string name="login">登录</string>
