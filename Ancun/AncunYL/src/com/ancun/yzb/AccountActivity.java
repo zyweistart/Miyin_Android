@@ -56,7 +56,7 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		
 		mUseRecordAdapter=new UseRecordAdapter(this);
 		mRefreshListServer = new RefreshListServer(this, mListView,mUseRecordAdapter);
-		mRefreshListServer.setCacheTag(TAG);
+		mRefreshListServer.setCacheTag(getAppContext().currentUser().getPhone()+TAG);
 		mRefreshListServer.setListTag("reclist");
 		mRefreshListServer.setInfoTag("recinfo");
 		mRefreshListServer.setRefreshListServerListener(this);

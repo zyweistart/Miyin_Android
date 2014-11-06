@@ -1,6 +1,5 @@
 package com.ancun.core;
 
-import start.core.AppContext;
 import start.core.AppException;
 import start.core.HandlerContext;
 import start.core.HandlerContext.HandleContextListener;
@@ -10,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.ancun.core.Constant.ResultCode;
+import com.ancun.yzb.BaseContext;
 
 /**
  * 主体内容区核心父类
@@ -42,8 +42,8 @@ public abstract class BaseScrollContent implements HandleContextListener {
 		return mActivity;
 	}
 	
-	public AppContext getAppContext(){
-		return getCurrentActivity().getAppContext();
+	public BaseContext getAppContext(){
+		return (BaseContext)getCurrentActivity().getAppContext();
 	}
 	
 	public View findViewById(int id) {

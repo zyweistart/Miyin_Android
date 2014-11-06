@@ -169,7 +169,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		
 		mRecordingAdapter=new RecordingAdapter(getCurrentActivity());
 		mRefreshListServer = new RefreshListServer(getCurrentActivity(), mListView,mRecordingAdapter);
-		mRefreshListServer.setCacheTag(TAG);
+		mRefreshListServer.setCacheTag(getAppContext().currentUser().getPhone()+TAG);
 		mRefreshListServer.setListTag("reclist");
 		mRefreshListServer.setInfoTag("recinfo");
 		mRefreshListServer.setRefreshListServerListener(this);
