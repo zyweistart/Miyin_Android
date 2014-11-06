@@ -49,7 +49,7 @@ public class RecordedDetailActivity extends BaseActivity {
 		super.onCreate(bundle);
 		setContentView(R.layout.activity_recording_detail);
 		setMainHeadTitle(getString(R.string.recording_detail));
-		fileno=getIntent().getExtras().getString("fileno");
+		fileno=getIntent().getExtras().getString(RecordingAdapter.RECORDED_FILENO);
 		if(fileno!=null){
 			
 			tvrecorded_remark_calling=(TextView)findViewById(R.id.recorded_remark_calling);
@@ -67,14 +67,13 @@ public class RecordedDetailActivity extends BaseActivity {
 			btnrecorded_taobao_appeal.setOnClickListener(this);
 			setRemarkEditStatus(isEdit);
 			
-			HttpServer hServer=new HttpServer(Constant.URL.v4recGet, getHandlerContext());
+			HttpServer hServer=new HttpServer(Constant.URL.ylcnrecGet, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
-			params.put("fileno",fileno);
-			params.put("status", "1");
+			params.put("recordNo",fileno);
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
 				

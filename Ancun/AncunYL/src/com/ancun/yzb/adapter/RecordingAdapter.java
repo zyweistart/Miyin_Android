@@ -9,7 +9,6 @@ import java.util.Map;
 import start.utils.TimeUtils;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,18 +19,21 @@ import android.widget.TextView;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.core.BaseCallListAdapter;
+import com.ancun.core.Constant;
 import com.ancun.yzb.MainActivity;
 import com.ancun.yzb.R;
 import com.ancun.yzb.RecordedDetailActivity;
 
 public class RecordingAdapter extends BaseCallListAdapter{
 
+	public static final String RECORDED_RECORDNO="recordNo";
+	public static final String RECORDED_CALLEDNO="calledno";
 	public static final String RECORDED_FILENO="fileno";
 	public static final String RECORDED_TIME="begintime";
 	public static final String RECORDED_REMARK="remark";
 	public static final String RECORDED_DURATION="duration";
-	public static final String RECORDED_CEFFLAG="cerflag";
 	public static final String RECORDED_ACCSTATUS="accstatus";
+	public static final String RECORDED_CEFFLAG="cerflag";
 	
 	public static final int REMARKREQUESTCODE=0xAC003;
 	
@@ -70,35 +72,36 @@ public class RecordingAdapter extends BaseCallListAdapter{
 			convertView.setTag(holder);
 		}
 		Map<String,String> data=mItemDatas.get(position);
-		Map<String,String> cdata=((MainActivity)mActivity).getContactDaoImpl().getContactByPhone(data.get("oppno"));
+		String calledno=data.get(RECORDED_CALLEDNO);
+		Map<String,String> cdata=((MainActivity)mActivity).getContactDaoImpl().getContactByPhone(calledno);
 		if(cdata!=null){
 			Long id=Long.parseLong(cdata.get(ContactAdapter.STRID));
 			String name=cdata.get(ContactAdapter.STRNAME);
 			Long phoneId=Long.parseLong(cdata.get(ContactAdapter.STRPHONEID));
 			holder.name.setTag(name);
 			holder.name.setText(name);				
-			holder.phone.setText(data.get("oppno"));
+			holder.phone.setText(calledno);
 			if (phoneId> 0) {
 				holder.head.setImageBitmap(((MainActivity)mActivity).getContactDaoImpl().loadContactPhoto(id));
 			}else{
 				holder.head.setImageResource(R.drawable.ic_head);
 			}
 		}else{
-			holder.name.setText(data.get("oppno"));
-			holder.name.setTag(data.get("oppno"));
+			holder.name.setText(calledno);
+			holder.name.setTag(calledno);
 			holder.phone.setText(R.string.empty);
 			holder.head.setImageResource(R.drawable.ic_head);
 		}
-		holder.phone.setTag(data.get("oppno"));
+		holder.phone.setTag(calledno);
 		holder.from.setText(TimeUtils.customerTimeConvert(data.get(RECORDED_TIME)));
 		holder.btnRemark.setTag(holder);
 		holder.fileno=data.get(RECORDED_FILENO);
-		holder.file=new File(Environment.getExternalStorageDirectory().getPath()+"/ancun/record/"+holder.fileno);
+		holder.file=new File(Constant.RECORDDIRECTORY+holder.fileno);
 		String recendtime=data.get("recendtime");
 		holder.tvRecendtime.setVisibility(View.GONE);
 		if(!TextUtils.isEmpty(recendtime)){
 			try {
-				SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy年MM月dd日");
+				SimpleDateFormat sdf1 = new SimpleDateFormat(TimeUtils.yyyyMMdd_C);
 				SimpleDateFormat sdf2 = new SimpleDateFormat(TimeUtils.yyyyMMddHHmmss_F);
 				Date currentDate = sdf2.parse(TimeUtils.getSysTime());
 				Date lastDate = sdf2.parse(recendtime);

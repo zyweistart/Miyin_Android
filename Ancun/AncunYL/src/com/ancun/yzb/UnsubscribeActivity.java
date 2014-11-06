@@ -43,12 +43,13 @@ public class UnsubscribeActivity extends BaseActivity {
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
-			HttpServer hServer=new HttpServer(Constant.URL.v4Canserv, getHandlerContext());
+			HttpServer hServer=new HttpServer(Constant.URL.ylTaoCancel, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
+			params.put("ownerno", getAppContext().currentUser().getPhone());
 			params.put("password", MD5.md5(password));
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {

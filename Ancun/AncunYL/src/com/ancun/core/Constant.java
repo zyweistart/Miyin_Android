@@ -3,6 +3,8 @@ package com.ancun.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Environment;
+
 
 public final class Constant {
 
@@ -15,6 +17,11 @@ public final class Constant {
 //			"http://192.168.0.65:8080/ACServiceCoreAPP/http/HttpService":
 			"http://192.168.0.223:2230/http/HttpService":
 				"http://192.168.0.221:8888/accore/http/HttpService";
+	
+	
+	public static final String RECORDDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/record/";
+	public static final String TEMPDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/temp/";
+	
 	/**
 	 * 需要过滤的号码
 	 */
@@ -58,11 +65,11 @@ public final class Constant {
 		/**
 		 * 录音信息获取
 		 */
-		public static final String v4recGet ="v4recGet ";
+		public static final String ylcnrecGet ="ylcnrecGet ";
 		/**
 		 * 录音下载
 		 */
-		public static final String v4recDown="v4recDown";
+		public static final String ylcnrecDown="ylcnrecDown";
 		/**
 		 * 录音备注修改
 		 */
@@ -70,7 +77,7 @@ public final class Constant {
 		/**
 		 * 录音状态变更
 		 */
-		public static final String v4recAlter="v4recAlter";
+		public static final String ylcnrecAlter="ylcnrecAlter";
 		/**
 		 * 录音提取码
 		 */
@@ -78,7 +85,7 @@ public final class Constant {
 		/**
 		 * 录音出证
 		 */
-		public static final String v4recCer="v4recCer";
+		public static final String ylcnrecCer="ylcnrecCer";
 		/**
 		 * 密码修改
 		 */
@@ -86,7 +93,7 @@ public final class Constant {
 		/**
 		 * 销户
 		 */
-		public static final String v4Canserv  ="v4Canserv";
+		public static final String ylTaoCancel  ="ylTaoCancel";
 		/**
 		 * 退出
 		 */

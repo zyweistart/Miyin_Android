@@ -12,7 +12,6 @@ import start.service.HttpServer;
 import start.service.RefreshListServer;
 import start.service.RefreshListServer.RefreshListServerListener;
 import start.service.Response;
-import start.utils.MD5;
 import start.utils.NetConnectManager;
 import start.widget.CustomEditText;
 import start.widget.xlistview.XListView;
@@ -20,7 +19,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -44,7 +42,6 @@ import com.ancun.yzb.adapter.RecordingAdapter.HolderView;
 
 public class RecordingContentView extends BaseScrollContent implements RefreshListServerListener,OnClickListener {
 
-	public static final String RECORDINGDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/record/";
 	//是否刷新数据
 	public static Boolean isRefreshData=true;
 	
@@ -131,15 +128,16 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 						                                	getHandlerContext().makeTextShort(getCurrentActivity().getString(R.string.pwdemptytip));
 						                                	return;
 						                                }
-						                                HttpServer hServer=new HttpServer(Constant.URL.v4recAlter, getCurrentActivity().getHandlerContext());
+						                                HttpServer hServer=new HttpServer(Constant.URL.ylcnrecAlter, getCurrentActivity().getHandlerContext());
 						                        		Map<String,String> headers=new HashMap<String,String>();
 						                        		headers.put("sign", User.ACCESSKEY);
 						                        		hServer.setHeaders(headers);
 						                        		Map<String,String> params=new HashMap<String,String>();
 						                        		params.put("accessid", User.ACCESSID);
+						                        		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
 						                        		params.put("fileno", fileno);
 						                        		params.put("alteract", "1");
-						                        		params.put("password", MD5.md5(value));
+//						                        		params.put("password", MD5.md5(value));
 						                        		hServer.setParams(params);
 						                        		hServer.get(new HttpRunnable() {
 						                        			
@@ -189,6 +187,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		hServer.setHeaders(headers);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid",User.ACCESSID);
+		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
 		params.put("calledno",String.valueOf(et_content.getText()));
 		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
@@ -206,12 +205,13 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 	}
 
 	public void download(String fileNo){
-		HttpServer hServer=new HttpServer(Constant.URL.v4recDown, getCurrentActivity().getHandlerContext());
+		HttpServer hServer=new HttpServer(Constant.URL.ylcnrecDown, getCurrentActivity().getHandlerContext());
 		Map<String,String> headers=new HashMap<String,String>();
 		headers.put("sign", User.ACCESSKEY);
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("accessid", User.ACCESSID);
+		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
 		params.put("fileno", fileNo);
 		hServer.setParams(params);
 		hServer.download(new DownloadRunnable() {
@@ -228,7 +228,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 				});
 			}
 			
-		},RECORDINGDIRECTORY,fileNo);
+		},Constant.RECORDDIRECTORY,fileNo);
 	}
 	
 	public void onPause() {

@@ -34,8 +34,8 @@ public class ExtractionConfirmActivity extends BaseActivity {
 		ivTitle=(ImageView)findViewById(R.id.recorded_appeal_confirm_title);
 		tvMessage=(TextView)findViewById(R.id.recorded_appeal_confirm_message);
 		final int appealType=getIntent().getExtras().getInt("appeal_type");
-		final String fileno=getIntent().getExtras().getString("fileno");
-		final int cerflag=getIntent().getExtras().getInt("cerflag");
+		final String fileno=getIntent().getExtras().getString(RecordingAdapter.RECORDED_FILENO);
+		final int cerflag=getIntent().getExtras().getInt(RecordingAdapter.RECORDED_CEFFLAG);
 		if (1==appealType) {
 			//申请提取码
 			ivTitle.setBackgroundResource(R.drawable.app_extracting_code_header);
@@ -58,19 +58,15 @@ public class ExtractionConfirmActivity extends BaseActivity {
 					intentTaobao.putExtras(getIntent().getExtras());
 					startActivityForResult(intentTaobao,RecordedDetailActivity.TAOBAOREQUESTCODE);
 				}else if (2==appealType) {
-					HttpServer hServer=new HttpServer(Constant.URL.v4recCer, getHandlerContext());
+					HttpServer hServer=new HttpServer(Constant.URL.ylcnrecCer, getHandlerContext());
 	 				Map<String,String> headers=new HashMap<String,String>();
 	 				headers.put("sign", User.ACCESSKEY);
 	 				hServer.setHeaders(headers);
 	 				Map<String,String> params=new HashMap<String,String>();
 	 				params.put("accessid", User.ACCESSID);
-	 				params.put(RecordingAdapter.RECORDED_FILENO,fileno);
-					//1:取消出证;2:申请出证
-					if(cerflag==1){
-						params.put(RecordingAdapter.RECORDED_CEFFLAG,"2");
-					}else{
-						params.put(RecordingAdapter.RECORDED_CEFFLAG,"1");
-					}
+	 				params.put("ownerno", getAppContext().currentUser().getPhone());
+	 				params.put("fileno",fileno);
+	 				params.put("cerflag",cerflag==1?"2":"1");
 	 				hServer.setParams(params);
 	 				hServer.get(new HttpRunnable() {
 	 					

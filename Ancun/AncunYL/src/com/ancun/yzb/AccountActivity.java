@@ -49,15 +49,21 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		activity_myaccount_btn_RightTitle = (Button) findViewById(R.id.btn_right_unsubscribe);
 		activity_myaccount_btn_RightTitle.setOnClickListener(this);
 		activity_myaccount_btn_RightTitle.setVisibility(View.VISIBLE);
+		
+		String userTel=getAppContext().currentUser().getInfo().get("userTel");
+		String recordNumber=getAppContext().currentUser().getInfo().get("recordNumber");
+		String usedingStore=getAppContext().currentUser().getInfo().get("usedingStore");
+		String recordTime=getAppContext().currentUser().getInfo().get("recordTime");
+		
 		// 当前账户
 		activity_myaccount_phone = (TextView) findViewById(R.id.activity_myaccount_phone);
-		activity_myaccount_phone.setText("当前账户："+ getAppContext().currentUser().getInfo().get("userTel"));
+		activity_myaccount_phone.setText("当前账户："+ userTel);
 		activity_myaccount_recordingcount = (TextView) findViewById(R.id.activity_myaccount_recordingcount);
-		activity_myaccount_recordingcount.setText("录音数量："+getAppContext().currentUser().getInfo().get("recordNumber"));
+		activity_myaccount_recordingcount.setText("录音数量："+recordNumber);
 		activity_myaccount_timelong = (TextView) findViewById(R.id.activity_myaccount_timelong);
-		activity_myaccount_timelong.setText("已用空间："+getAppContext().currentUser().getInfo().get("usedingStore"));
+		activity_myaccount_timelong.setText("已用空间："+usedingStore);
 		activity_myaccount_storageinfo = (TextView) findViewById(R.id.activity_myaccount_storageinfo);
-		activity_myaccount_storageinfo.setText("已用时长："+getAppContext().currentUser().getInfo().get("recordTime"));
+		activity_myaccount_storageinfo.setText("已用时长："+recordTime);
 		
 		mListView = (XListView) findViewById(R.id.xlv_listview);
 		

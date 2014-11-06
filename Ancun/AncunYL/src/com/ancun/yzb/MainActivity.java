@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
         registerReceiver(mPhoneReceiver,filter2);
 		
 		AppService.resetGesture(this);
-		AppService.checkAppUpdate(this, true);
+//		AppService.checkAppUpdate(this, true);
 		
 		mDialContentView.loadData();
 		mRecordingContentView.getRefreshListServer().initLoad();

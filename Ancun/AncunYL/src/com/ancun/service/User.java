@@ -38,6 +38,10 @@ public class User {
 		return mUser;
 	}
 	
+	public String getPhone(){
+		return getInfo().get("userTel");
+	}
+	
 	/**
 	 * 判断是否已经绑定就诊信息
 	 */
@@ -110,8 +114,10 @@ public class User {
 	public void resolve(Map<String,String> userinfo){
 		setLogin(true);
 		getInfo().putAll(userinfo);
-		User.ACCESSID=getInfo().get("accessid");
-		User.ACCESSKEY=getInfo().get("accesskey");
+//		User.ACCESSID=getInfo().get("accessid");
+//		User.ACCESSKEY=getInfo().get("accesskey");
+		User.ACCESSID=User.USER_ACCESSID_LOCAL;
+		User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
 	}
 	
 }
