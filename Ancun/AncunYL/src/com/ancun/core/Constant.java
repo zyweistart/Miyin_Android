@@ -17,10 +17,15 @@ public final class Constant {
 //			"http://192.168.0.65:8080/ACServiceCoreAPP/http/HttpService":
 			"http://192.168.0.223:2230/http/HttpService":
 				"http://192.168.0.221:8888/accore/http/HttpService";
-	
-	
-	public static final String RECORDDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/record/";
+
+	/**
+	 * 临时目录
+	 */
 	public static final String TEMPDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/temp/";
+	/**
+	 * 录音下载目录
+	 */
+	public static final String RECORDDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/record/";
 	
 	/**
 	 * 需要过滤的号码

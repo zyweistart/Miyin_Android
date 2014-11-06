@@ -36,7 +36,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
@@ -202,7 +201,7 @@ public class UpdateApplication {
 		protected File doInBackground(String... params) {
 			final String url = params[0];
 			// 主目录创建
-			File dirFile = new File(Environment.getExternalStorageDirectory().getPath() + "/ancun/tmp/");
+			File dirFile = new File(Constant.TEMPDIRECTORY);
 			if (!dirFile.exists()) {
 				dirFile.mkdirs();
 			}
