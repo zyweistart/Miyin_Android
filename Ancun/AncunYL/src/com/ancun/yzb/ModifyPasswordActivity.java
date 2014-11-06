@@ -63,12 +63,13 @@ public class ModifyPasswordActivity extends BaseActivity {
 				return;
 			}
 			final String pwd=MD5.md5(newpassword);
-			HttpServer hServer=new HttpServer(Constant.URL.v4pwdModify, getHandlerContext());
+			HttpServer hServer=new HttpServer(Constant.URL.ylcnuserpwdMod, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
+			params.put("phone", getAppContext().currentUser().getPhone());
 			params.put("passwordold", MD5.md5(password));
 			params.put("passwordnew",pwd);
 			hServer.setParams(params);

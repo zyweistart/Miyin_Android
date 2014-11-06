@@ -43,7 +43,7 @@ import com.ancun.yzb.adapter.RecordingAdapter.HolderView;
 public class RecordingContentView extends BaseScrollContent implements RefreshListServerListener,OnClickListener {
 
 	//是否刷新数据
-	public static Boolean isRefreshData=true;
+	public static Boolean isRefreshData=false;
 	
 	private XListView mListView;
 	private RefreshListServer mRefreshListServer;
@@ -100,9 +100,6 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,int position, long id) {
-				if(getCurrentActivity().getInputMethodManager().isActive()){
-					getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(getCurrentActivity().getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-				}
 				if (id >= 0) {
 					int i=position-1;
 					mRecordingAdapter.setLastPosition(i);
@@ -123,6 +120,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 
 												@Override
 												public void onClick(DialogInterface dialog,int which) {
+													getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(input.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 													 final String value = input.getText().toString();
 						                                if(TextUtils.isEmpty(value)){
 						                                	getHandlerContext().makeTextShort(getCurrentActivity().getString(R.string.pwdemptytip));
@@ -144,8 +142,9 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 						                        			@Override
 						                        			public void run(Response response) throws AppException {
 						                    					for(Map<String,String> content:mRefreshListServer.getItemDatas()){
-						        									if(fileno.equals(content.get("fileno"))){
+						        									if(fileno.equals(content.get(RecordingAdapter.RECORDED_FILENO))){
 						        										mRefreshListServer.getItemDatas().remove(content);
+						        										mRefreshListServer.getBaseListAdapter().getItemDatas().remove(content);
 						        										getCurrentActivity().runOnUiThread(new Runnable() {
 						        											@Override
 						        											public void run() {
@@ -189,6 +188,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		params.put("accessid",User.ACCESSID);
 		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
 		params.put("calledno",String.valueOf(et_content.getText()));
+		params.put("cpdelflg", "2");
 		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);

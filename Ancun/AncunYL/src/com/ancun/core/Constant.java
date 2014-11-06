@@ -53,11 +53,11 @@ public final class Constant {
 		/**
 		 * 用户信息获取
 		 */
-		public static final String v4infoGet="v4infoGet";
+		public static final String userinfoGet="userinfoGet";
 		/**
 		 * 呼叫请求
 		 */
-		public static final String v4Call  ="v4Call ";
+		public static final String phoneCall  ="phoneCall ";
 		/**
 		 * 录音查询
 		 */
@@ -89,15 +89,11 @@ public final class Constant {
 		/**
 		 * 密码修改
 		 */
-		public static final String v4pwdModify ="v4pwdModify";
+		public static final String ylcnuserpwdMod ="ylcnuserpwdMod";
 		/**
 		 * 销户
 		 */
 		public static final String ylTaoCancel  ="ylTaoCancel";
-		/**
-		 * 退出
-		 */
-		public static final String v4Logout  ="v4Logout";
 		/**
 		 * 意见反馈
 		 */

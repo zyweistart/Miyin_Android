@@ -24,46 +24,32 @@ import com.ancun.yzb.adapter.UseRecordAdapter;
 
 public class AccountActivity extends BaseActivity implements RefreshListServerListener {
 	
-	public static final int REQUESTCODEMyAccountActivity = 0;
-	public static final int RESULTREFRESHCODEMyAccountActivity = 1;
+	private Button btnUnsubscribe;
 
-	private Button activity_myaccount_btn_RightTitle;
-
-	private UseRecordAdapter mUseRecordAdapter;
-	private RefreshListServer mRefreshListServer;
+	private TextView txtPhone;
+	private TextView txtRecordingCount;
+	private TextView txtTimeLong;
+	private TextView txtStorageInfo;
 	
 	private XListView mListView;
-	private TextView activity_myaccount_phone;
-	private TextView activity_myaccount_recordingcount;
-	private TextView activity_myaccount_timelong;
-	private TextView activity_myaccount_storageinfo;
-
+	private RefreshListServer mRefreshListServer;
+	private UseRecordAdapter mUseRecordAdapter;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account);
 		setMainHeadTitle(getString(R.string.myaccount));
-		// 刷新用户信息
-//		getAppService().refreshUserInfo();
-		// 账户充值按钮
-		activity_myaccount_btn_RightTitle = (Button) findViewById(R.id.btn_right_unsubscribe);
-		activity_myaccount_btn_RightTitle.setOnClickListener(this);
-		activity_myaccount_btn_RightTitle.setVisibility(View.VISIBLE);
 		
-		String userTel=getAppContext().currentUser().getInfo().get("userTel");
-		String recordNumber=getAppContext().currentUser().getInfo().get("recordNumber");
-		String usedingStore=getAppContext().currentUser().getInfo().get("usedingStore");
-		String recordTime=getAppContext().currentUser().getInfo().get("recordTime");
+		//TODO:退订
+		btnUnsubscribe = (Button) findViewById(R.id.btn_right_unsubscribe);
+		btnUnsubscribe.setOnClickListener(this);
+//		activity_myaccount_btn_RightTitle.setVisibility(View.VISIBLE);
 		
-		// 当前账户
-		activity_myaccount_phone = (TextView) findViewById(R.id.activity_myaccount_phone);
-		activity_myaccount_phone.setText("当前账户："+ userTel);
-		activity_myaccount_recordingcount = (TextView) findViewById(R.id.activity_myaccount_recordingcount);
-		activity_myaccount_recordingcount.setText("录音数量："+recordNumber);
-		activity_myaccount_timelong = (TextView) findViewById(R.id.activity_myaccount_timelong);
-		activity_myaccount_timelong.setText("已用空间："+usedingStore);
-		activity_myaccount_storageinfo = (TextView) findViewById(R.id.activity_myaccount_storageinfo);
-		activity_myaccount_storageinfo.setText("已用时长："+recordTime);
+		txtPhone = (TextView) findViewById(R.id.activity_myaccount_phone);
+		txtRecordingCount = (TextView) findViewById(R.id.activity_myaccount_recordingcount);
+		txtTimeLong = (TextView) findViewById(R.id.activity_myaccount_timelong);
+		txtStorageInfo = (TextView) findViewById(R.id.activity_myaccount_storageinfo);
 		
 		mListView = (XListView) findViewById(R.id.xlv_listview);
 		
@@ -74,8 +60,10 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		mRefreshListServer.setInfoTag("recinfo");
 		mRefreshListServer.setRefreshListServerListener(this);
 
+		showhUserInfo();
 		mRefreshListServer.initLoad();
-
+		refreshUserInfo();
+		
 	}
 
 	@Override
@@ -86,6 +74,8 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		hServer.setHeaders(headers);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid",User.ACCESSID);
+		params.put("ownerno",getAppContext().currentUser().getPhone());
+		params.put("cpdelflg", "2");
 		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
@@ -102,11 +92,51 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 	
 	@Override
 	public void onClick(View v) {
-		if (activity_myaccount_btn_RightTitle == v) {
+		if (btnUnsubscribe == v) {
 			startActivity(new Intent(this,UnsubscribeActivity.class));
 		}else{
 			super.onClick(v);
 		}
+	}
+	
+	/**
+	 * 刷新用户信息
+	 */
+	public void refreshUserInfo(){
+		HttpServer hServer=new HttpServer(Constant.URL.userinfoGet, getHandlerContext());
+		Map<String,String> headers=new HashMap<String,String>();
+		headers.put("sign", User.ACCESSKEY);
+		hServer.setHeaders(headers);
+		Map<String,String> params=new HashMap<String,String>();
+		params.put("accessid", User.ACCESSID);
+		params.put("userTel", getAppContext().currentUser().getPhone());
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+			
+			@Override
+			public void run(Response response) throws AppException {
+				getAppContext().currentUser().resolve(response.getMapData("userinfo"));
+				runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						showhUserInfo();
+					}
+				});
+				
+			}
+			
+		});
+	}
+	
+	public void showhUserInfo(){
+		String recordNumber=getAppContext().currentUser().getInfo().get("recordNumber");
+		String usedingStore=getAppContext().currentUser().getInfo().get("usedingStore");
+		String recordTime=getAppContext().currentUser().getInfo().get("recordTime");
+		txtPhone.setText("当前账户："+ getAppContext().currentUser().getPhone());
+		txtRecordingCount.setText("录音数量："+recordNumber+"个");
+		txtTimeLong.setText("已用空间："+usedingStore);
+		txtStorageInfo.setText("已用时长："+recordTime+"秒");
 	}
 
 }

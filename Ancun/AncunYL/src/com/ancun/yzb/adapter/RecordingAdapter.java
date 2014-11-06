@@ -27,9 +27,12 @@ import com.ancun.yzb.RecordedDetailActivity;
 public class RecordingAdapter extends BaseCallListAdapter{
 
 	public static final String RECORDED_RECORDNO="recordNo";
+	public static final String RECORDED_CALLERNO="callerno";
 	public static final String RECORDED_CALLEDNO="calledno";
 	public static final String RECORDED_FILENO="fileno";
-	public static final String RECORDED_TIME="begintime";
+	public static final String RECORDED_BEGINTIME="begintime";
+	public static final String RECORDED_ENDTIME="endtime";
+	public static final String RECORDED_RECENDTIME="recendtime";
 	public static final String RECORDED_REMARK="remark";
 	public static final String RECORDED_DURATION="duration";
 	public static final String RECORDED_ACCSTATUS="accstatus";
@@ -93,7 +96,7 @@ public class RecordingAdapter extends BaseCallListAdapter{
 			holder.head.setImageResource(R.drawable.ic_head);
 		}
 		holder.phone.setTag(calledno);
-		holder.from.setText(TimeUtils.customerTimeConvert(data.get(RECORDED_TIME)));
+		holder.from.setText(TimeUtils.customerTimeConvert(data.get(RECORDED_BEGINTIME)));
 		holder.btnRemark.setTag(holder);
 		holder.fileno=data.get(RECORDED_FILENO);
 		holder.file=new File(Constant.RECORDDIRECTORY+holder.fileno);

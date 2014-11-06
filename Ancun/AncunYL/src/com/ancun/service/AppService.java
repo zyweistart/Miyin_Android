@@ -43,13 +43,13 @@ public class AppService {
 		if (Constant.noCall.contains(phone)) {
 			call(activity, phone);
 		} else {
-			HttpServer hServer=new HttpServer(Constant.URL.v4Call, activity.getHandlerContext());
+			HttpServer hServer=new HttpServer(Constant.URL.phoneCall, activity.getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
-			params.put("calltype", "1");
+			params.put("userTel", activity.getAppContext().currentUser().getPhone());
 			params.put("oppno",phone);
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
@@ -112,8 +112,9 @@ public class AppService {
 	 * 检测应用更新
 	 */
 	public static void checkAppUpdate(BaseActivity activity,Boolean status){
-		UpdateApplication updateApplication = new UpdateApplication(activity);
-		updateApplication.startCheck(status);
+		//TODO:检测应用更新
+//		UpdateApplication updateApplication = new UpdateApplication(activity);
+//		updateApplication.startCheck(status);
 	}
 
 	/**

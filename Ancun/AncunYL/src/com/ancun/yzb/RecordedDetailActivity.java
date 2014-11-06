@@ -67,13 +67,14 @@ public class RecordedDetailActivity extends BaseActivity {
 			btnrecorded_taobao_appeal.setOnClickListener(this);
 			setRemarkEditStatus(isEdit);
 			
-			HttpServer hServer=new HttpServer(Constant.URL.ylcnrecGet, getHandlerContext());
+			HttpServer hServer=new HttpServer(Constant.URL.ylcnrecQry, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
-			params.put("recordNo",fileno);
+			params.put("ownerno",getAppContext().currentUser().getPhone());
+			params.put("calledno",fileno);
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
 				
@@ -87,32 +88,33 @@ public class RecordedDetailActivity extends BaseActivity {
 						@Override
 						public void run() {
 							//主叫号码
-							tvrecorded_remark_calling.setText(info.get("callerno"));
+							tvrecorded_remark_calling.setText(info.get(RecordingAdapter.RECORDED_CALLERNO));
 							//被叫号码
-							tvrecorded_remark_called.setText(info.get("calledno"));
+							tvrecorded_remark_called.setText(info.get(RecordingAdapter.RECORDED_CALLEDNO));
 							//起始时间
-							tvrecorded_remark_start_time.setText(info.get("begintime"));
+							tvrecorded_remark_start_time.setText(info.get(RecordingAdapter.RECORDED_BEGINTIME));
 							//结束时间
-							tvrecorded_remark_end_time.setText(info.get("endtime"));
+							tvrecorded_remark_end_time.setText(info.get(RecordingAdapter.RECORDED_ENDTIME));
 							//录音失效时间
-							if(TextUtils.isEmpty(info.get("recendtime"))) {
+							String recendtime=info.get(RecordingAdapter.RECORDED_RECENDTIME);
+							if(TextUtils.isEmpty(recendtime)) {
 								recorderInvalidTime.setText(R.string.not_expired);
 							} else {
-								recorderInvalidTime.setText(info.get("recendtime"));
+								recorderInvalidTime.setText(recendtime);
 							}
 							//录音时长
-							tvrecorded_remark_length.setText(TimeUtils.secondConvertTime(Integer.parseInt((info.get("duration")))));
+							tvrecorded_remark_length.setText(TimeUtils.secondConvertTime(Integer.parseInt((info.get(RecordingAdapter.RECORDED_DURATION)))));
 							//录音备注
-							etrecorded_remark_edit.setText(info.get("remark"));
+							etrecorded_remark_edit.setText(info.get(RecordingAdapter.RECORDED_REMARK));
 							//公证标记
-							cerflag=Integer.parseInt(info.get("cerflag"));
+							cerflag=Integer.parseInt(info.get(RecordingAdapter.RECORDED_CEFFLAG));
 							if(cerflag==1){
 								btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_request);
 							}else{
 								btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_cancel);
 							}
 							//申请码状态
-							accstatus=Integer.parseInt(info.get("accstatus"));
+							accstatus=Integer.parseInt(info.get(RecordingAdapter.RECORDED_ACCSTATUS));
 							if(accstatus==1){
 								btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_lookup);
 							}else{
@@ -136,11 +138,11 @@ public class RecordedDetailActivity extends BaseActivity {
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.recorded_remark_edit_submit:
+			//关闭软键盘
+			if(getInputMethodManager().isActive()){
+				getInputMethodManager().hideSoftInputFromWindow(etrecorded_remark_edit.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+			}
 			if (isEdit) {
-				//关闭软键盘
- 				if (!getInputMethodManager().isActive()) {
- 					getInputMethodManager().hideSoftInputFromWindow(etrecorded_remark_edit.getWindowToken(), 0);
- 				}
  				final String remark=String.valueOf(etrecorded_remark_edit.getText());
  				//提交修改备注
  				HttpServer hServer=new HttpServer(Constant.URL.ylcnrecRemark, getHandlerContext());
@@ -149,7 +151,8 @@ public class RecordedDetailActivity extends BaseActivity {
  				hServer.setHeaders(headers);
  				Map<String,String> params=new HashMap<String,String>();
  				params.put("accessid", User.ACCESSID);
- 				params.put("recordNo",fileno);
+ 				params.put("ownerno",getAppContext().currentUser().getPhone());
+ 				params.put("fileno",fileno);
  				params.put("remark", remark);
  				hServer.setParams(params);
  				hServer.get(new HttpRunnable() {
@@ -169,11 +172,6 @@ public class RecordedDetailActivity extends BaseActivity {
  						
  					}
  				});
-			}else {
-				//隐藏软键盘
-				if (getInputMethodManager().isActive()) {
-					getInputMethodManager().toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-				}
 			}
 			isEdit=!isEdit;
 			setRemarkEditStatus(isEdit);
@@ -208,6 +206,7 @@ public class RecordedDetailActivity extends BaseActivity {
 				break;
 		}
 	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(data!=null){

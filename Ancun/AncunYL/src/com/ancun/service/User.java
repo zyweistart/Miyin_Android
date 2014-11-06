@@ -114,10 +114,18 @@ public class User {
 	public void resolve(Map<String,String> userinfo){
 		setLogin(true);
 		getInfo().putAll(userinfo);
-//		User.ACCESSID=getInfo().get("accessid");
-//		User.ACCESSKEY=getInfo().get("accesskey");
-		User.ACCESSID=User.USER_ACCESSID_LOCAL;
-		User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
+		String accessid=getInfo().get("accessid");
+		if(!TextUtils.isEmpty(accessid)){
+			User.ACCESSID=accessid;
+		}else{
+			User.ACCESSID=User.USER_ACCESSID_LOCAL;
+		}
+		String accesskey=getInfo().get("accesskey");
+		if(!TextUtils.isEmpty(accesskey)){
+			User.ACCESSKEY=accesskey;
+		}else{
+			User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
+		}
 	}
 	
 }
