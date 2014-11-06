@@ -14,7 +14,6 @@ public final class Constant {
 	public static final boolean ISSYSTEMTEST =true;
 
 	public static final String RESTURL = ISSYSTEMTEST ?
-//			"http://192.168.0.65:8080/ACServiceCoreAPP/http/HttpService":
 			"http://192.168.0.223:2230/http/HttpService":
 				"http://192.168.0.221:8888/accore/http/HttpService";
 
@@ -76,13 +75,13 @@ public final class Constant {
 		 */
 		public static final String ylcnrecDown="ylcnrecDown";
 		/**
-		 * 录音备注修改
-		 */
-		public static final String ylcnrecRemark ="ylcnrecRemark";
-		/**
 		 * 录音状态变更
 		 */
 		public static final String ylcnrecAlter="ylcnrecAlter";
+		/**
+		 * 录音备注修改
+		 */
+		public static final String ylcnrecRemark ="ylcnrecRemark";
 		/**
 		 * 录音提取码
 		 */

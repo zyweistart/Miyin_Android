@@ -61,7 +61,7 @@ public class LoginActivity extends BaseActivity {
 		super.onResume();
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
-			//自动登录
+			
 			if(bundle.getBoolean(BUNLE_AUTOLOGINFLAG, false)){
 				String account=getAppContext().currentUser().getCacheAccount();
 				if(StringUtils.isEmpty(account)){
