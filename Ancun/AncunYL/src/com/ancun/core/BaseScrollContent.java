@@ -2,6 +2,7 @@ package com.ancun.core;
 
 import start.core.AppException;
 import start.core.HandlerContext;
+import start.core.R;
 import start.core.HandlerContext.HandleContextListener;
 import android.content.Intent;
 import android.os.Message;
@@ -69,8 +70,11 @@ public abstract class BaseScrollContent implements HandleContextListener {
 			getCurrentActivity().goLogin(String.valueOf(msg.obj));
 			break;
 		default:
-			if(msg.obj!=null){
-				getHandlerContext().makeTextShort(String.valueOf(msg.obj));
+			Object message=msg.obj;
+			if(message!=null){
+				getHandlerContext().makeTextShort(String.valueOf(message));
+			}else{
+				getHandlerContext().makeTextShort(getCurrentActivity().getString(R.string.error_try_again));
 			}
 			break;
 		}
