@@ -9,12 +9,7 @@ import android.view.MotionEvent;
 import android.widget.EditText;
 
 /**
- * 
- * @author xuh
- * @Description: 自定义文件输入框，自带文件清除按钮
- * @ClassName: CustomEditText.java
- * @date 2013年10月24日 下午2:14:49
- * @说明 代码版权归 杭州反盗版中心有限公司 所有
+ * 自定义文件输入框，自带文件清除按钮
  */
 public class CustomEditText extends EditText {
 

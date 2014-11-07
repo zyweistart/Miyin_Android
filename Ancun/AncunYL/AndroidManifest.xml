@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ancun.yzb"
+    package="com.ancun.yl"
     android:versionCode="2014041418"
     android:versionName="2.0.3" >
 
@@ -56,7 +56,7 @@
     <uses-permission android:name="getui.permission.GetuiService" />
     
     <application 
-        android:name=".BaseContext"
+        android:name="com.ancun.yl.BaseContext"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -70,7 +70,7 @@
             android:value="WebSite" />
 
         <activity
-            android:name=".StartActivity"
+            android:name="com.ancun.yl.StartActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
@@ -80,75 +80,75 @@
         </activity>
         
         <activity
-            android:name=".GuideActivity"
+            android:name="com.ancun.yl.GuideActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.ancun.yl.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
-            android:name=".RegisterActivity"
+            android:name="com.ancun.yl.RegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ServerClauseActivity"
+            android:name="com.ancun.yl.ServerClauseActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ResetPassWordActivity"
+            android:name="com.ancun.yl.ResetPassWordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.ancun.yl.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
-            android:name=".RecordedDetailActivity"
+            android:name="com.ancun.yl.RecordedDetailActivity"
     	    android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".ExtractionConfirmActivity"
+            android:name="com.ancun.yl.ExtractionConfirmActivity"
     	    android:screenOrientation="portrait"
             android:theme="@style/Theme_Dialog_NoTitle" />
         <activity
-            android:name=".ExtractionViewActivity"
+            android:name="com.ancun.yl.ExtractionViewActivity"
     	    android:screenOrientation="portrait" />
         <activity
-            android:name=".NotarySuccessActivity"
+            android:name="com.ancun.yl.NotarySuccessActivity"
     	    android:screenOrientation="portrait" />
         <activity
-            android:name=".NotaryNotifyActivity"
+            android:name="com.ancun.yl.NotaryNotifyActivity"
     	    android:screenOrientation="portrait" />
         <activity
-            android:name=".AccountActivity"
+            android:name="com.ancun.yl.AccountActivity"
     	    android:screenOrientation="portrait" />
         <activity
-            android:name=".UnsubscribeActivity"
+            android:name="com.ancun.yl.UnsubscribeActivity"
     	    android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".SettingActivity"
+            android:name="com.ancun.yl.SettingActivity"
     	    android:screenOrientation="portrait" />
         <activity
-            android:name=".TipActivity"
+            android:name="com.ancun.yl.TipActivity"
     	    android:screenOrientation="portrait" />
         <activity
-            android:name=".FeedbackActivity"
+            android:name="com.ancun.yl.FeedbackActivity"
     	    android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".AboutusActivity"
+            android:name="com.ancun.yl.AboutusActivity"
     	    android:screenOrientation="portrait" />
         <activity
-            android:name=".ModifyPasswordActivity"
+            android:name="com.ancun.yl.ModifyPasswordActivity"
     	    android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".LockActivity"
+            android:name="com.ancun.yl.LockActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".LockSetupActivity"
+            android:name="com.ancun.yl.LockSetupActivity"
             android:screenOrientation="portrait" />
         
     </application>
