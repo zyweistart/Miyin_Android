@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import start.core.AppConstant;
-import start.core.AppContext;
 import start.core.AppException;
 import start.service.DownloadRunnable;
 import start.service.HttpRunnable;
@@ -37,6 +36,7 @@ import com.ancun.core.BaseScrollContent;
 import com.ancun.core.Constant;
 import com.ancun.service.User;
 import com.ancun.widget.PlayerView;
+import com.ancun.yzb.BaseContext;
 import com.ancun.yzb.R;
 import com.ancun.yzb.RecordedDetailActivity;
 import com.ancun.yzb.adapter.RecordingAdapter;
@@ -230,7 +230,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 				});
 			}
 			
-		},AppContext.getInstance().getDirectory(Constant.RECORDDIRECTORY),fileNo);
+		},BaseContext.getInstance().getDirectory(Constant.RECORDDIRECTORY),fileNo);
 	}
 	
 	public void onPause() {

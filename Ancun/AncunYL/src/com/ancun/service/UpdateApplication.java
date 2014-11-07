@@ -15,7 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 
 import start.core.AppConstant;
-import start.core.AppContext;
 import start.core.AppException;
 import start.core.HandlerContext;
 import start.service.HttpRunnable;
@@ -39,6 +38,7 @@ import android.os.AsyncTask;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
+import com.ancun.yzb.BaseContext;
 import com.ancun.yzb.R;
 
 /**
@@ -55,7 +55,7 @@ public class UpdateApplication {
 	public UpdateApplication(BaseActivity activity) {
 		currentActivity = activity;
 		mHandlerContext=currentActivity.getHandlerContext();
-		sharedPreferencesUtil=AppContext.getSharedPreferences();
+		sharedPreferencesUtil=BaseContext.getSharedPreferences();
 	}
 
 	/**
@@ -201,7 +201,7 @@ public class UpdateApplication {
 		protected File doInBackground(String... params) {
 			final String url = params[0];
 			// 主目录创建
-			File dirFile = new File(AppContext.getInstance().getDirectory(Constant.TEMPDIRECTORY));
+			File dirFile = new File(BaseContext.getInstance().getDirectory(Constant.TEMPDIRECTORY));
 			if (!dirFile.exists()) {
 				dirFile.mkdirs();
 			}

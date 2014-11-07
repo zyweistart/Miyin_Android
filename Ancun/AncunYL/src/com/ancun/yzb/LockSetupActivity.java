@@ -3,7 +3,6 @@ package com.ancun.yzb;
 import java.util.ArrayList;
 import java.util.List;
 
-import start.core.AppContext;
 import start.widget.LockPatternView;
 import start.widget.LockPatternView.Cell;
 import start.widget.LockPatternView.DisplayMode;
@@ -68,7 +67,7 @@ public class LockSetupActivity extends BaseActivity implements LockPatternView.O
             if (confirm) {
             	getHandlerContext().makeTextShort(getString(R.string.gesturesetsuccess));
                 lockPatternView.disableInput();
-                AppContext.getSharedPreferences().putString(Constant.Preferences.SP_LOCK_KEY_DATA, LockPatternView.patternToString(choosePattern));
+                BaseContext.getSharedPreferences().putString(Constant.Preferences.SP_LOCK_KEY_DATA, LockPatternView.patternToString(choosePattern));
                 finish();
             } else {
             	getHandlerContext().makeTextShort(getString(R.string.twogesturesetdiff));

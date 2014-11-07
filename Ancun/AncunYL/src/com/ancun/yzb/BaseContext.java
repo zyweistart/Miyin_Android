@@ -10,7 +10,7 @@ import com.ancun.service.User;
 /**
  * @author Start   
  * @Description: 全局application 
- * @ClassName: AppContext.java   
+ * @ClassName: BaseContext.java   
  * @date 2014年6月30日 上午9:08:15      
  * @说明  代码版权归 杭州反盗版中心有限公司 所有
  */

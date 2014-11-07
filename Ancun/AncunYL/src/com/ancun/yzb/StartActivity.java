@@ -3,7 +3,6 @@ package com.ancun.yzb;
 import java.io.File;
 import java.util.List;
 
-import start.core.AppContext;
 import start.utils.FileUtils;
 import start.utils.LogUtils;
 import start.utils.TimeUtils;
@@ -54,13 +53,13 @@ public class StartActivity extends BaseActivity{
 				try {
 					PackageInfo packInfo = getPackageManager().getPackageInfo(getPackageName(),0);
 					int curVersionCode=packInfo.versionCode;
-					if(curVersionCode>AppContext.getSharedPreferences().getInteger(Preferences.SP_CURRENTVERSIONCODE,0)){
+					if(curVersionCode>BaseContext.getSharedPreferences().getInteger(Preferences.SP_CURRENTVERSIONCODE,0)){
 						startActivity(new Intent(StartActivity.this,GuideActivity.class));
 					}else{
 						startActivity(new Intent(StartActivity.this, LockActivity.class));
 					}
 					//更新当前版本号
-					AppContext.getSharedPreferences().putInteger(Preferences.SP_CURRENTVERSIONCODE, curVersionCode);
+					BaseContext.getSharedPreferences().putInteger(Preferences.SP_CURRENTVERSIONCODE, curVersionCode);
 					finish();
 				} catch (NameNotFoundException e) {
 					LogUtils.logError(e);

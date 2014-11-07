@@ -3,7 +3,6 @@ package com.ancun.yzb;
 import java.util.List;
 
 import start.core.AppConstant;
-import start.core.AppContext;
 import start.utils.StringUtils;
 import start.widget.LockPatternView;
 import start.widget.LockPatternView.Cell;
@@ -32,10 +31,10 @@ public class LockActivity extends BaseActivity implements LockPatternView.OnPatt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String account=AppContext.getSharedPreferences().getString(Constant.Preferences.SP_ACCOUNT_CONTENT_DATA, AppConstant.EMPTYSTR);
-        String password=AppContext.getSharedPreferences().getString(Constant.Preferences.SP_PASSWORD_CONTENT_DATA, AppConstant.EMPTYSTR);
-        Boolean autoLogin=AppContext.getSharedPreferences().getBoolean(Preferences.SP_AUTOLOGIN_CONTENT_DATA, false);
-        String patternString = AppContext.getSharedPreferences().getString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
+        String account=BaseContext.getSharedPreferences().getString(Constant.Preferences.SP_ACCOUNT_CONTENT_DATA, AppConstant.EMPTYSTR);
+        String password=BaseContext.getSharedPreferences().getString(Constant.Preferences.SP_PASSWORD_CONTENT_DATA, AppConstant.EMPTYSTR);
+        Boolean autoLogin=BaseContext.getSharedPreferences().getBoolean(Preferences.SP_AUTOLOGIN_CONTENT_DATA, false);
+        String patternString = BaseContext.getSharedPreferences().getString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
 		if (StringUtils.isEmpty(account)||StringUtils.isEmpty(password)||StringUtils.isEmpty(patternString)||!autoLogin) {
 			goLogin(true);
             return;
@@ -107,7 +106,7 @@ public class LockActivity extends BaseActivity implements LockPatternView.OnPatt
 	public void onClick(View v) {
 		if(v.getId()==R.id.txt_forgetgesutepassword){
 			getAppContext().currentUser().clearCachePassword();
-			AppContext.getSharedPreferences().putBoolean(Preferences.SP_IS_RESET_LOCK_KEY, true);
+			BaseContext.getSharedPreferences().putBoolean(Preferences.SP_IS_RESET_LOCK_KEY, true);
 			goLogin(false);
 		}else if(v.getId()==R.id.txt_otheraccountlogin){
 			goLogin(false);

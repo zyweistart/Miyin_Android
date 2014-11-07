@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import start.core.AppContext;
 import start.core.AppException;
 import start.core.HandlerContext;
 import start.service.HttpRunnable;
@@ -22,6 +21,7 @@ import android.text.TextUtils;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.Preferences;
+import com.ancun.yzb.BaseContext;
 import com.ancun.yzb.LockSetupActivity;
 import com.ancun.yzb.R;
 import com.ancun.yzb.layout.CallRecordsContentView;
@@ -58,7 +58,7 @@ public class AppService {
 				public void run(Response response) throws AppException {
 					Map<String,String> info=response.getMapData("serverinfo");
 					RecordingContentView.isRefreshData=true;
-					AppContext.getSharedPreferences().putString(Constant.Preferences.SP_CALL_DIAL,phone);
+					BaseContext.getSharedPreferences().putString(Constant.Preferences.SP_CALL_DIAL,phone);
 					call(activity, info.get("serverno"));
 					activity.getRecentDaoImpl().insertCallLog(phone);
 				}
@@ -91,7 +91,7 @@ public class AppService {
 						pDialog.setCancelable(false);
 						pDialog.show();
 						try {
-							File dirFile = new File(AppContext.getInstance().getDirectory(Constant.RECORDDIRECTORY));
+							File dirFile = new File(BaseContext.getInstance().getDirectory(Constant.RECORDDIRECTORY));
 							if (dirFile.exists()&& dirFile.isDirectory()) {
 								File recordFiles[] = dirFile.listFiles(); // 声明目录下所有的文件// files[];
 								for (int i = 0; i < recordFiles.length; i++) {// 遍历目录下所有的文件
@@ -121,9 +121,9 @@ public class AppService {
 	 * 重置手势密码
 	 */
 	public static void resetGesture(BaseActivity activity){
-		if(AppContext.getSharedPreferences().getBoolean(Preferences.SP_IS_RESET_LOCK_KEY, false)){
+		if(BaseContext.getSharedPreferences().getBoolean(Preferences.SP_IS_RESET_LOCK_KEY, false)){
 			activity.startActivity(new Intent(activity, LockSetupActivity.class));
-			AppContext.getSharedPreferences().putBoolean(Preferences.SP_IS_RESET_LOCK_KEY, false);
+			BaseContext.getSharedPreferences().putBoolean(Preferences.SP_IS_RESET_LOCK_KEY, false);
 		}
 	}
 	

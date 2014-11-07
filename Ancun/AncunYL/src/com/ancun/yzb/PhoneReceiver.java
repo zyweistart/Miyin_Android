@@ -1,7 +1,6 @@
 package com.ancun.yzb;
 
 import start.core.AppConstant;
-import start.core.AppContext;
 import start.widget.DialFloatView;
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
@@ -37,7 +36,7 @@ public class PhoneReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(final Context context, Intent intent) {
 		if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
-			SP_CALL_DIAL = AppContext.getSharedPreferences().getString(Constant.Preferences.SP_CALL_DIAL,AppConstant.EMPTYSTR);
+			SP_CALL_DIAL = BaseContext.getSharedPreferences().getString(Constant.Preferences.SP_CALL_DIAL,AppConstant.EMPTYSTR);
 			if (!TextUtils.isEmpty(SP_CALL_DIAL)) {
 				manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
 				manager.listen(stateListener, PhoneStateListener.LISTEN_CALL_STATE);
@@ -111,7 +110,7 @@ public class PhoneReceiver extends BroadcastReceiver {
 						myFV = null;
 					}
 					//设置拨打的号码为空
-					AppContext.getSharedPreferences().putString(Constant.Preferences.SP_CALL_DIAL,AppConstant.EMPTYSTR);
+					BaseContext.getSharedPreferences().putString(Constant.Preferences.SP_CALL_DIAL,AppConstant.EMPTYSTR);
 					ActivityManager am = (ActivityManager)currentActivity.getSystemService(Context.ACTIVITY_SERVICE);
 					ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
 					if (!cn.getClassName().equals(MainActivity.class.getName())) {

@@ -1,7 +1,6 @@
 package com.ancun.yzb;
 
 import start.core.AppConstant;
-import start.core.AppContext;
 import start.utils.GetMarketUri;
 import start.utils.LogUtils;
 import start.utils.StringUtils;
@@ -59,7 +58,7 @@ public class SettingActivity extends BaseActivity {
 		img_off.setBounds(0, 0, img_off.getMinimumWidth(), img_off.getMinimumHeight());
 		img_on= res.getDrawable(R.drawable.button_state_no);
 		img_on.setBounds(0, 0, img_on.getMinimumWidth(), img_on.getMinimumHeight());
-		String key = AppContext.getSharedPreferences().getString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
+		String key = BaseContext.getSharedPreferences().getString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
 		if (StringUtils.isEmpty(key)) {
 			gestureState=false;
 			setting_gesturesetting.setCompoundDrawables(ic_gesture, null, img_off, null);
@@ -100,7 +99,7 @@ public class SettingActivity extends BaseActivity {
 			startActivity(new Intent(this, ModifyPasswordActivity.class));
 		} else if (v.getId() == R.id.setting_gesturesetting) {
 			// 手势密码设置
-			String key = AppContext.getSharedPreferences().getString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
+			String key = BaseContext.getSharedPreferences().getString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
 			if (StringUtils.isEmpty(key)) {
 				if(gestureState=!gestureState){
 					setting_gesturesetting.setCompoundDrawables(ic_gesture, null, img_on, null);
@@ -110,7 +109,7 @@ public class SettingActivity extends BaseActivity {
 				}
 			}
 			//clear old gesture password
-			AppContext.getSharedPreferences().putString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
+			BaseContext.getSharedPreferences().putString(Constant.Preferences.SP_LOCK_KEY_DATA, AppConstant.EMPTYSTR);
 			setting_gesturesetting.setCompoundDrawables(ic_gesture, null, img_off, null);
 			setting_gesturemodify.setVisibility(View.GONE);
 		} else if (v.getId() == R.id.setting_gesturemodify) {
