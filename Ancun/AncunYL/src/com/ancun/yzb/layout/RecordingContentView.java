@@ -230,7 +230,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 				});
 			}
 			
-		},BaseContext.getInstance().getDirectory(Constant.RECORDDIRECTORY),fileNo);
+		},BaseContext.getInstance().getStorageDirectory(Constant.RECORDDIRECTORY),fileNo);
 	}
 	
 	public void onPause() {

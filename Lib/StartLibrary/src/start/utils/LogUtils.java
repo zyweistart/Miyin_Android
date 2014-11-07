@@ -36,7 +36,7 @@ public class LogUtils {
 					if(!logqueue.isEmpty()) {
 						String log=logqueue.poll();
 						//日志存放路径
-						String logPath =AppContext.getInstance().getDirectory(LOG_PATH) + getTime(TimeUtils.yyyyMMdd)+ "/";
+						String logPath =AppContext.getInstance().getStorageDirectory(LOG_PATH) + getTime(TimeUtils.yyyyMMdd)+ "/";
 						//日志目录
 						File path = new File(logPath);
 						if (!path.exists()) {

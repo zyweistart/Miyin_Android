@@ -91,7 +91,7 @@ public class AppService {
 						pDialog.setCancelable(false);
 						pDialog.show();
 						try {
-							File dirFile = new File(BaseContext.getInstance().getDirectory(Constant.RECORDDIRECTORY));
+							File dirFile = new File(BaseContext.getInstance().getStorageDirectory(Constant.RECORDDIRECTORY));
 							if (dirFile.exists()&& dirFile.isDirectory()) {
 								File recordFiles[] = dirFile.listFiles(); // 声明目录下所有的文件// files[];
 								for (int i = 0; i < recordFiles.length; i++) {// 遍历目录下所有的文件

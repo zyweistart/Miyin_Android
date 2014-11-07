@@ -53,6 +53,6 @@ public abstract class AppContext extends Application {
     /**
      * 获取目录
      */
-    public abstract String getDirectory(String name);
+    public abstract String getStorageDirectory(String name);
     
 }

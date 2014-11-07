@@ -100,7 +100,7 @@ public class RecordingAdapter extends BaseCallListAdapter{
 		holder.from.setText(TimeUtils.customerTimeConvert(data.get(RECORDED_BEGINTIME)));
 		holder.btnRemark.setTag(holder);
 		holder.fileno=data.get(RECORDED_FILENO);
-		holder.file=new File(BaseContext.getInstance().getDirectory(Constant.RECORDDIRECTORY)+holder.fileno);
+		holder.file=new File(BaseContext.getInstance().getStorageDirectory(Constant.RECORDDIRECTORY)+holder.fileno);
 		String recendtime=data.get("recendtime");
 		holder.tvRecendtime.setVisibility(View.GONE);
 		if(!TextUtils.isEmpty(recendtime)){

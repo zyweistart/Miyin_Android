@@ -2,8 +2,8 @@ package com.start.medical;
 
 import start.core.AppContext;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 
-import com.start.core.Constant;
 import com.start.core.DBManageDao;
 import com.start.service.User;
 
@@ -26,16 +26,23 @@ public class BaseContext extends AppContext {
         getDBManager();
     }
     
-	@Override
+    @Override
 	public Boolean isTestEnvironmental() {
-		return Constant.ISSYSTEMTEST;
+		return true;
 	}
 
 	@Override
 	public String getServerURL() {
-		return Constant.RESTURL;
+		return isTestEnvironmental() ?
+				"http://115.238.38.126:6666/http/HttpService":
+					"http://account.chinacloudapp.cn:81/pwyl/http/HttpService";
 	}
 
+	@Override
+	public String getStorageDirectory(String name) {
+		return Environment.getExternalStorageDirectory().getPath()+"/medical/"+name+"/";
+	}
+	
 	/**
      * 获取数据库管理对象
      */
