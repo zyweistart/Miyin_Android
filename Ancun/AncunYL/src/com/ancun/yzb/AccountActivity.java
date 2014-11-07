@@ -10,6 +10,7 @@ import start.service.HttpServer;
 import start.service.RefreshListServer;
 import start.service.RefreshListServer.RefreshListServerListener;
 import start.service.Response;
+import start.utils.StringUtils;
 import start.utils.TimeUtils;
 import start.widget.xlistview.XListView;
 import android.content.Intent;
@@ -137,7 +138,7 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		txtPhone.setText("当前账户："+ getAppContext().currentUser().getPhone());
 		txtRecordingCount.setText("录音数量："+recordNumber+"个");
 		txtTimeLong.setText("已用空间："+usedingStore);
-		txtStorageInfo.setText("已用时长："+TimeUtils.secondConvertTime(Integer.parseInt(recordTime)));
+		txtStorageInfo.setText("已用时长："+TimeUtils.secondConvertTime(StringUtils.toInt(recordTime, 0)));
 	}
 
 }
