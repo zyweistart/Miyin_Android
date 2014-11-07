@@ -58,8 +58,8 @@ public class ExtractionViewActivity extends BaseActivity {
 		btn_recorded_appeal_taobao_btn_cancel.setOnClickListener(this);
 		fileno=getIntent().getExtras().getString(RecordingAdapter.RECORDED_FILENO);
 		if(fileno!=null){
-			Integer accstatus=getIntent().getExtras().getInt(RecordingAdapter.RECORDED_ACCSTATUS);
-			if(accstatus==1){
+			String accstatus=getIntent().getExtras().getString(RecordingAdapter.RECORDED_ACCSTATUS);
+			if("1".equals(accstatus)){
 				setMainHeadTitle(getString(R.string.view_extractioncode));
 				//有效
 				getDataTask(2);
@@ -99,12 +99,12 @@ public class ExtractionViewActivity extends BaseActivity {
 							tv_recorded_appeal_taobao_code_url.setText(info.get("url"));
 							tv_recorded_appeal_taobao_code.setText(info.get("acccode"));
 							tv_recorded_appeal_taobao_limit_time.setText(info.get("dueDateTime"));
-							resultBundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS,1);
+							resultBundle.putString(RecordingAdapter.RECORDED_ACCSTATUS,"1");
 							Intent resultIntent=new Intent();
 							resultIntent.putExtras(resultBundle);
 							setResult(RecordedAppealTaobaoExtractionCodeResultCode,resultIntent);
 						}else if(status==3){
-							resultBundle.putInt(RecordingAdapter.RECORDED_ACCSTATUS,2);
+							resultBundle.putString(RecordingAdapter.RECORDED_ACCSTATUS,"2");
 							Intent resultIntent=new Intent();
 							resultIntent.putExtras(resultBundle);
 							setResult(RecordedAppealTaobaoExtractionCodeResultCode,resultIntent);

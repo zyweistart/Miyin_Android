@@ -29,8 +29,8 @@ public class RecordedDetailActivity extends BaseActivity {
 	public static final int REMARKMODIFYCODE=0xAA002;
 	
 	private String fileno;
-	private Integer cerflag;
-	private Integer accstatus;
+	private String cerflag;
+	private String accstatus;
 	private Boolean isEdit = false;
 
 	private TextView tvrecorded_remark_calling;
@@ -65,23 +65,24 @@ public class RecordedDetailActivity extends BaseActivity {
 			btnrecorded_notarization_appeal.setOnClickListener(this);
 			btnrecorded_taobao_appeal=(ImageButton)findViewById(R.id.recorded_taobao_appeal);
 			btnrecorded_taobao_appeal.setOnClickListener(this);
+			
 			setRemarkEditStatus(isEdit);
 			
-			HttpServer hServer=new HttpServer(Constant.URL.ylcnrecQry, getHandlerContext());
+			HttpServer hServer=new HttpServer(Constant.URL.ylcnrecQrySingle, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
 			params.put("ownerno",getAppContext().currentUser().getPhone());
-			params.put("calledno",fileno);
+			params.put("fileno",fileno);
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
 				
 				@Override
 				public void run(Response response) throws AppException {
 					
-					final Map<String,String> info=response.getMapData("recinfo");
+					final Map<String,String> info=response.getMapData("recordinfo");
 					
 					runOnUiThread(new Runnable() {
 						
@@ -107,11 +108,9 @@ public class RecordedDetailActivity extends BaseActivity {
 							//录音备注
 							etrecorded_remark_edit.setText(info.get(RecordingAdapter.RECORDED_REMARK));
 							//公证标记
-							cerflag=Integer.parseInt(info.get(RecordingAdapter.RECORDED_CEFFLAG));
-							setNotaryStatus(cerflag);
+							setNotaryStatus(info.get(RecordingAdapter.RECORDED_CEFFLAG));
 							//申请码状态
-							accstatus=Integer.parseInt(info.get(RecordingAdapter.RECORDED_ACCSTATUS));
-							setExtractionStatus(accstatus);
+							setExtractionStatus(info.get(RecordingAdapter.RECORDED_ACCSTATUS));
 						}
 						
 					});
@@ -162,9 +161,9 @@ public class RecordedDetailActivity extends BaseActivity {
 		case R.id.recorded_taobao_appeal:
 			Bundle bundleTaobao=new Bundle();
 			bundleTaobao.putString(RecordingAdapter.RECORDED_FILENO, fileno);
-			bundleTaobao.putInt(RecordingAdapter.RECORDED_ACCSTATUS, accstatus);
+			bundleTaobao.putString(RecordingAdapter.RECORDED_ACCSTATUS, accstatus);
 			Intent intentTaobao;
-			if(accstatus==1){
+			if("1".equals(accstatus)){
 				//有效
 				intentTaobao=new Intent(this,ExtractionViewActivity.class);
 			}else{
@@ -179,7 +178,7 @@ public class RecordedDetailActivity extends BaseActivity {
 			Bundle bundleNotary=new Bundle();
 			bundleNotary.putInt(ExtractionConfirmActivity.STRAPPEALTYPE, 2);
 			bundleNotary.putString(RecordingAdapter.RECORDED_FILENO, fileno);
-			bundleNotary.putInt(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
+			bundleNotary.putString(RecordingAdapter.RECORDED_CEFFLAG, cerflag);
 			Intent intentNotary=new Intent(this,ExtractionConfirmActivity.class);
 			intentNotary.putExtras(bundleNotary);
 			startActivityForResult(intentNotary,1);
@@ -197,13 +196,11 @@ public class RecordedDetailActivity extends BaseActivity {
 			if(bundle!=null){
 				if(TAOBAOREQUESTCODE==requestCode){
 					if(resultCode==ExtractionViewActivity.RecordedAppealTaobaoExtractionCodeResultCode){
-						accstatus=bundle.getInt(RecordingAdapter.RECORDED_ACCSTATUS);
-						setExtractionStatus(accstatus);
+						setExtractionStatus(bundle.getString(RecordingAdapter.RECORDED_ACCSTATUS));
 					}
 				}else{
 					if(resultCode==3){
-						cerflag=bundle.getInt(RecordingAdapter.RECORDED_CEFFLAG);
-						setNotaryStatus(cerflag);
+						setNotaryStatus(bundle.getString(RecordingAdapter.RECORDED_CEFFLAG));
 					}
 				}
 			}
@@ -227,19 +224,25 @@ public class RecordedDetailActivity extends BaseActivity {
 		}
 	}
 	
-	private void setNotaryStatus(int status){
-		if(status==1){
-			btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_request);
+	private void setExtractionStatus(String status){
+		accstatus=status;
+		if("1".equals(accstatus)){
+			//已提取
+			btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_lookup);
 		}else{
-			btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_cancel);
+			//未提取
+			btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_request);
 		}
 	}
 	
-	private void setExtractionStatus(int status){
-		if(status==1){
-			btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_lookup);
+	private void setNotaryStatus(String status){
+		cerflag=status;
+		if("1".equals(cerflag)){
+			//已出证
+			btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_cancel);
 		}else{
-			btnrecorded_taobao_appeal.setBackgroundResource(R.drawable.selector_button_extraction_request);
+			//未出证
+			btnrecorded_notarization_appeal.setBackgroundResource(R.drawable.selector_button_notary_request);
 		}
 	}
 	

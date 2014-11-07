@@ -7,7 +7,6 @@
     <string name="app_url">http://www.95105856.com</string>
     
     <string name="welcomeregisterinfo1">欢迎使用安存语录！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。现在开通10月31日前不收取功能费，次月1日起正式收费，每月30元，通话费按原有资费标准收取。</string>
-    <string name="registerinfo2">注：目前只支持上海电信后付费手机</string>
     <string name="servercontent">《安存语录服务条款》</string>
     <string name="servercontenttip">请先阅读并同意《安存语录服务条款》</string>
     <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.95105856.com进行操作</string>

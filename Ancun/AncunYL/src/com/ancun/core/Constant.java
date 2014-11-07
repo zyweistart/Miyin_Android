@@ -61,15 +61,15 @@ public final class Constant {
 		/**
 		 * 呼叫请求
 		 */
-		public static final String phoneCall  ="phoneCall ";
+		public static final String phoneCall  ="phoneCall";
 		/**
 		 * 录音查询
 		 */
 		public static final String ylcnrecQry="ylcnrecQry";
 		/**
-		 * 录音信息获取
+		 * 录音查询-单个录音信息
 		 */
-		public static final String ylcnrecGet ="ylcnrecGet ";
+		public static final String ylcnrecQrySingle ="ylcnrecQrySingle";
 		/**
 		 * 录音下载
 		 */
@@ -170,7 +170,9 @@ public final class Constant {
 		 * 版本最后检测日期
 		 */
 		public static final String SP_VERSION_DATA = "SP_VERSION_DATA";
-		
+		/**
+		 * 呼叫请求号码
+		 */
 		public static final String SP_CALL_DIAL = "SP_CALL_DIAL";
 		
 	}

@@ -37,7 +37,7 @@ public class ExtractionConfirmActivity extends BaseActivity {
 		tvMessage=(TextView)findViewById(R.id.recorded_appeal_confirm_message);
 		final int appealType=getIntent().getExtras().getInt(STRAPPEALTYPE);
 		final String fileno=getIntent().getExtras().getString(RecordingAdapter.RECORDED_FILENO);
-		final int cerflag=getIntent().getExtras().getInt(RecordingAdapter.RECORDED_CEFFLAG);
+		final String cerflag=getIntent().getExtras().getString(RecordingAdapter.RECORDED_CEFFLAG);
 		if (1==appealType) {
 			//申请提取码
 			ivTitle.setBackgroundResource(R.drawable.app_extracting_code_header);
@@ -45,10 +45,10 @@ public class ExtractionConfirmActivity extends BaseActivity {
 		}else if (2==appealType) {
 			//申请公证
 			ivTitle.setBackgroundResource(R.drawable.app_notary_header);
-			if(cerflag==1){
-				tvMessage.setText(R.string.apply_notary_submit_tip);
-			}else if(cerflag==2){
+			if("1".equals(cerflag)){
 				tvMessage.setText(R.string.apply_notary_cancel_tip);
+			}else if("2".equals(cerflag)){
+				tvMessage.setText(R.string.apply_notary_submit_tip);
 			}
 		}
 		ibYes=(ImageButton)findViewById(R.id.recorded_appeal_confirm_yes);
@@ -68,7 +68,7 @@ public class ExtractionConfirmActivity extends BaseActivity {
 	 				params.put("accessid", User.ACCESSID);
 	 				params.put("ownerno", getAppContext().currentUser().getPhone());
 	 				params.put("fileno",fileno);
-	 				params.put("cerflag",cerflag==1?"2":"1");
+	 				params.put("cerflag","1".equals(cerflag)?"2":"1");
 	 				hServer.setParams(params);
 	 				hServer.get(new HttpRunnable() {
 	 					
@@ -77,13 +77,13 @@ public class ExtractionConfirmActivity extends BaseActivity {
 	 						
 	 						Bundle resultBundle=new Bundle();
 							resultBundle.putString(RecordingAdapter.RECORDED_FILENO, fileno);
-							if(cerflag==1){
+							if("1".equals(cerflag)){
+								resultBundle.putString(RecordingAdapter.RECORDED_CEFFLAG, "2");
+							}else{
 								Intent intentNotaryNotify=new Intent(ExtractionConfirmActivity.this,NotarySuccessActivity.class);
 								intentNotaryNotify.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 								startActivity(intentNotaryNotify);
-								resultBundle.putInt(RecordingAdapter.RECORDED_CEFFLAG, 2);
-							}else{
-								resultBundle.putInt(RecordingAdapter.RECORDED_CEFFLAG, 1);
+								resultBundle.putString(RecordingAdapter.RECORDED_CEFFLAG, "1");
 							}
 							Intent resultIntent=new Intent();
 							resultIntent.putExtras(resultBundle);
