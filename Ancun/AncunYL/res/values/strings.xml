@@ -86,6 +86,7 @@
     <string name="unsubscribe">退订</string>
     <string name="unsubscribe_sure">确认退订</string>
     <string name="modify_password_success_tip">密码修改成功啦，亲如此有防范风险意识真的很值得大家学习哦~</string>
+    <string name="modify_password_tip">密码为6-16个字符，字母加数字或符号的组合，不能单独使用字母、数字或符号</string>
     <string name="exitlogin_sure">确认需要退出应用吗?</string>
     <string name="cleanrecording_sure">是否删除本地所有录音缓存文件？</string>
     <string name="cleanrecording_success">成功清理本地所有录音文件</string>
