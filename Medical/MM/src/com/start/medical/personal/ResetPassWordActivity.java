@@ -68,7 +68,7 @@ public class ResetPassWordActivity  extends RegisterActivity {
 			params.put("mobile", phone);
 			params.put("pwd", MD5.md5(password));
 			params.put("authcode", authcode);
-			params.put("regsource", "10");
+			params.put("operatesource", "10");
 			params.put("loginflag", "1");
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {

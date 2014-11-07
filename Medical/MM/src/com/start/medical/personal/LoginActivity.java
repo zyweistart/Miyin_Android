@@ -51,7 +51,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		et_login_password=(CustomEditText)findViewById(R.id.et_login_password);
 		cb_login_autologin=(CheckBox)findViewById(R.id.cb_login_autologin);
 		
-//		et_login_account.setText("13395811012");
+		et_login_account.setText("13395811012");
 	}
 	
 	@Override
@@ -104,11 +104,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			Boolean checked=cb_login_autologin.isChecked();
 			login(account,MD5.md5(password),checked);
 		}else if(v.getId()==R.id.btn_register){
-			Intent intent=new Intent(this,RegisterActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this,RegisterActivity.class));
 		}else if(v.getId()==R.id.btn_reset_password){
-			Intent intent=new Intent(this,RegisterActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this,ResetPassWordActivity.class));
 		}else{
 			super.onClick(v);
 		}
