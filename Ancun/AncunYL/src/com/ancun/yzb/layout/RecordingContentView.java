@@ -181,6 +181,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 	
 	@Override
 	public void onLoading(final int HANDLER) {
+		isRefreshData=false;
 		HttpServer hServer = new HttpServer(Constant.URL.ylcnrecQry,mRefreshListServer.getHandlerContext());
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put("sign", User.ACCESSKEY);
@@ -199,7 +200,6 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 			public void run(Response response) throws AppException {
 				mRefreshListServer.resolve(response);
 				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
-				isRefreshData=false;
 			}
 
 		}, false);
