@@ -4,14 +4,6 @@ package com.start.core;
 public final class Constant {
 
 	/**
-	 * true:测试环境 false:正式环境
-	 */
-	public static final boolean ISSYSTEMTEST =true;
-
-	public static final String RESTURL = ISSYSTEMTEST ?
-			"http://115.238.38.126:6666/http/HttpService":"http://account.chinacloudapp.cn:81/pwyl/http/HttpService";
-
-	/**
 	 * 用户接口
 	 */
 	public final class URL {
