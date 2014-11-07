@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import start.core.AppContext;
 import start.utils.TimeUtils;
 import android.content.Intent;
 import android.os.Bundle;
@@ -99,7 +100,7 @@ public class RecordingAdapter extends BaseCallListAdapter{
 		holder.from.setText(TimeUtils.customerTimeConvert(data.get(RECORDED_BEGINTIME)));
 		holder.btnRemark.setTag(holder);
 		holder.fileno=data.get(RECORDED_FILENO);
-		holder.file=new File(Constant.RECORDDIRECTORY+holder.fileno);
+		holder.file=new File(AppContext.getInstance().getDirectory(Constant.RECORDDIRECTORY)+holder.fileno);
 		String recendtime=data.get("recendtime");
 		holder.tvRecendtime.setVisibility(View.GONE);
 		if(!TextUtils.isEmpty(recendtime)){

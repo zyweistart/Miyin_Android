@@ -201,7 +201,7 @@ public class UpdateApplication {
 		protected File doInBackground(String... params) {
 			final String url = params[0];
 			// 主目录创建
-			File dirFile = new File(Constant.TEMPDIRECTORY);
+			File dirFile = new File(AppContext.getInstance().getDirectory(Constant.TEMPDIRECTORY));
 			if (!dirFile.exists()) {
 				dirFile.mkdirs();
 			}

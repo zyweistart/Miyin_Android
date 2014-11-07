@@ -3,28 +3,17 @@ package com.ancun.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.os.Environment;
-
 
 public final class Constant {
 
 	/**
-	 * true:测试环境 false:正式环境
-	 */
-	public static final boolean ISSYSTEMTEST =true;
-
-	public static final String RESTURL = ISSYSTEMTEST ?
-			"http://192.168.0.223:2230/http/HttpService":
-				"http://192.168.0.221:8888/accore/http/HttpService";
-
-	/**
 	 * 临时目录
 	 */
-	public static final String TEMPDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/temp/";
+	public static final String TEMPDIRECTORY="temp";
 	/**
 	 * 录音下载目录
 	 */
-	public static final String RECORDDIRECTORY=Environment.getExternalStorageDirectory().getPath()+"/ancun/record/";
+	public static final String RECORDDIRECTORY="record";
 	
 	/**
 	 * 需要过滤的号码

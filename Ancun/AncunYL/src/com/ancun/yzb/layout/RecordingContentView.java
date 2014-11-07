@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import start.core.AppConstant;
+import start.core.AppContext;
 import start.core.AppException;
 import start.service.DownloadRunnable;
 import start.service.HttpRunnable;
@@ -229,7 +230,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 				});
 			}
 			
-		},Constant.RECORDDIRECTORY,fileNo);
+		},AppContext.getInstance().getDirectory(Constant.RECORDDIRECTORY),fileNo);
 	}
 	
 	public void onPause() {

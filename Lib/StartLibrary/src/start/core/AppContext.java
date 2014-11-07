@@ -50,4 +50,9 @@ public abstract class AppContext extends Application {
      */
     public abstract String getServerURL();
     
+    /**
+     * 获取目录
+     */
+    public abstract String getDirectory(String name);
+    
 }

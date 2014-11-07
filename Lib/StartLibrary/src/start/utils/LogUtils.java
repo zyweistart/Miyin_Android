@@ -18,7 +18,7 @@ public class LogUtils {
 	private final static ConcurrentLinkedQueue<String> logqueue= new ConcurrentLinkedQueue<String>();
 	private static final String INFO="INFO";
 	private static final String ERROR="ERROR";
-	private static final String LOG_PATH=Environment.getExternalStorageDirectory().getPath()+"/ancun/logs/";
+	private static final String LOG_PATH="logs";
 	private static final String LOGSUFFIX=".log";
 	private static final long LOGMAXFILESIZE=1024l*1024l*1024l;
 
@@ -36,7 +36,7 @@ public class LogUtils {
 					if(!logqueue.isEmpty()) {
 						String log=logqueue.poll();
 						//日志存放路径
-						String logPath = LOG_PATH + getTime(TimeUtils.yyyyMMdd)+ "/";
+						String logPath =AppContext.getInstance().getDirectory(LOG_PATH) + getTime(TimeUtils.yyyyMMdd)+ "/";
 						//日志目录
 						File path = new File(logPath);
 						if (!path.exists()) {

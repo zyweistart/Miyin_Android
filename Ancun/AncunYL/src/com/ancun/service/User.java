@@ -18,14 +18,8 @@ public class User {
 	public static final String USER_ACCESSKEY_LOCAL = AppContext.getInstance().isTestEnvironmental() ? 
 			"OGFlZGJiZDAzZDdkM2QyNDhiY2NhMjI2ZTMwMTJlOWE=":"MThjMDE3ZjAwMTE3NTIzNmE4OTM2ZjQ5N2M2Y2JhNDc=";
 	
-	/**
-	 * 用户登录标记
-	 */
 	private Boolean login;
 	private static User mUser;
-	/**
-	 * 用户信息
-	 */
 	private Map<String,String> info;
 	
 	private User(){}
@@ -36,17 +30,6 @@ public class User {
 			mUser.setLogin(false);
 		}
 		return mUser;
-	}
-	
-	public String getPhone(){
-		return getInfo().get("userTel");
-	}
-	
-	/**
-	 * 判断是否已经绑定就诊信息
-	 */
-	public Boolean isBind(){
-		return !TextUtils.isEmpty(getInfo().get("name"));
 	}
 	
 	/**
@@ -124,6 +107,10 @@ public class User {
 		}
 		User.ACCESSID=User.USER_ACCESSID_LOCAL;
 		User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
+	}
+	
+	public String getPhone(){
+		return getInfo().get("userTel");
 	}
 	
 }

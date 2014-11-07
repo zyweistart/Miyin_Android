@@ -19,6 +19,8 @@ import com.ancun.yzb.R;
 
 public class BaseActivity extends AppActivity {
 
+	private RecentDaoImpl mRecentDaoImpl;
+	private ContactDaoImpl mContactDaoImpl;
 	private InputMethodManager mInputMethodManager;
 	
 	public BaseContext getAppContext() {
@@ -44,9 +46,6 @@ public class BaseActivity extends AppActivity {
 		}
 	}
 	
-	private RecentDaoImpl mRecentDaoImpl;
-	private ContactDaoImpl mContactDaoImpl;
-	
 	public RecentDaoImpl getRecentDaoImpl(){
 		if(mRecentDaoImpl==null){
 			mRecentDaoImpl=new RecentDaoImpl(this);
@@ -61,21 +60,18 @@ public class BaseActivity extends AppActivity {
 		return mContactDaoImpl;
 	}
 	
-	/**
-	 * 设置导航标题
-	 */
-	public void setMainHeadTitle(String title){
-		TextView tvTitle=(TextView)findViewById(R.id.main_head_title);
-		if(tvTitle!=null){
-			tvTitle.setText(title);
-		}
-	}
-	
 	public InputMethodManager getInputMethodManager(){
 		if(mInputMethodManager==null){
 			mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		}
 		return mInputMethodManager;
+	}
+	
+	public void setMainHeadTitle(String title){
+		TextView tvTitle=(TextView)findViewById(R.id.main_head_title);
+		if(tvTitle!=null){
+			tvTitle.setText(title);
+		}
 	}
 	
 	public void goLogin(Boolean autoLogin){
