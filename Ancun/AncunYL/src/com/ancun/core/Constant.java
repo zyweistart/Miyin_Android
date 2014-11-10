@@ -21,6 +21,7 @@ public final class Constant {
 	public static List<String> noCall = new ArrayList<String>();
 	
 	static {
+		noCall.add("56559570");
 		noCall.add("968682");
 		noCall.add("95105856");
 		noCall.add("110");
