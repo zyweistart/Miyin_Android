@@ -29,8 +29,6 @@ public class User {
 			mUser=new User();
 			mUser.setLogin(false);
 		}
-		User.ACCESSID=User.USER_ACCESSID_LOCAL;
-		User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
 		return mUser;
 	}
 	
