@@ -8,6 +8,7 @@
     
     <string name="welcomeregisterinfo1">欢迎使用安存语录！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。现在开通10月31日前不收取功能费，次月1日起正式收费，每月30元，通话费按原有资费标准收取。</string>
     <string name="servercontent">《安存语录服务条款》</string>
+    <string name="serverclause">服务条款</string>
     <string name="servercontenttip">请先阅读并同意《安存语录服务条款》</string>
     <string name="unsubscribe_remark">注:所有录音自行删除后才能退订(包括回收站)可登录官网www.95105856.com进行操作</string>
     <string name="extraction_code_tip2">(http://www.95105856.com)公开查询、下载本条通话录音；并可作为依据提交给第三方，以证明录音的真实性、可靠性和法律效力。</string>
@@ -86,7 +87,7 @@
     <string name="unsubscribe">退订</string>
     <string name="unsubscribe_sure">确认退订</string>
     <string name="modify_password_success_tip">密码修改成功啦，亲如此有防范风险意识真的很值得大家学习哦~</string>
-    <string name="modify_password_tip">密码为6-16个字符，字母加数字或符号的组合，不能单独使用字母、数字或符号</string>
+    <string name="modify_password_tip">密码为6&#8211;16个字符，字母加数字或符号的组合，不能单独使用字母、数字或符号</string>
     <string name="exitlogin_sure">确认需要退出应用吗?</string>
     <string name="cleanrecording_sure">是否删除本地所有录音缓存文件？</string>
     <string name="cleanrecording_success">成功清理本地所有录音文件</string>

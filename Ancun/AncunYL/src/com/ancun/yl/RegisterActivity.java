@@ -124,7 +124,11 @@ public class RegisterActivity extends BaseActivity {
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.txt_servercontent){
-			startActivity(new Intent(this,ServerClauseActivity.class));
+			Bundle bundle=new Bundle();
+			bundle.putInt(WebPageActivity.TYPE, WebPageActivity.TYPE_SERVICE);
+			Intent intent=new Intent(this, WebPageActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
 		} else if(v.getId()==R.id.btn_re_get_checksum){
 			phone=String.valueOf(et_phone.getText());
 			if(StringUtils.isEmpty(phone)){

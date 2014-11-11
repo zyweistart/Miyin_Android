@@ -75,7 +75,11 @@ public class SettingActivity extends BaseActivity {
 	public void onClick(View v) {
 		if (v.getId() == R.id.setting_tip) {
 			// 小贴士
-			startActivity(new Intent(this, TipActivity.class));
+			Bundle bundle=new Bundle();
+			bundle.putInt(WebPageActivity.TYPE, WebPageActivity.TYPE_TIP);
+			Intent intent=new Intent(this, WebPageActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
 		} else if (v.getId() == R.id.setting_feedback) {
 			//意见反馈
 			startActivity(new Intent(this, FeedbackActivity.class));

@@ -7,6 +7,12 @@ import java.util.List;
 public final class Constant {
 
 	/**
+	 * 应用类型
+	 * unicom:中国联通
+	 * yzb:音证宝
+	 */
+	public static final String APPTYPE="yzb";
+	/**
 	 * 临时目录
 	 */
 	public static final String TEMPDIRECTORY="temp";
