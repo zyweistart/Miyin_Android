@@ -8,8 +8,8 @@ public final class Constant {
 
 	/**
 	 * 应用类型
-	 * unicom:中国联通
-	 * yzb:音证宝
+	 * 中国联通:unicom
+	 * 音证宝:yzb
 	 */
 	public static final String APPTYPE="yzb";
 	/**

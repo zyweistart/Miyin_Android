@@ -40,9 +40,6 @@ import android.os.AsyncTask;
 /**
  * @author Start   
  * @Description: 网络请求执行类
- * @ClassName: HttpServer.java   
- * @date 2014年6月27日 下午3:45:19      
- * @说明  代码版权归 杭州反盗版中心有限公司 所有
  */
 @SuppressLint("DefaultLocale")
 public class HttpServer {
