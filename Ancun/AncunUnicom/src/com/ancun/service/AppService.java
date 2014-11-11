@@ -21,12 +21,12 @@ import android.text.TextUtils;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.Preferences;
-import com.ancun.yzb.BaseContext;
-import com.ancun.yzb.LockSetupActivity;
-import com.ancun.yzb.R;
-import com.ancun.yzb.layout.CallRecordsContentView;
-import com.ancun.yzb.layout.DialContentView;
-import com.ancun.yzb.layout.RecordingContentView;
+import com.ancun.unicom.BaseContext;
+import com.ancun.unicom.LockSetupActivity;
+import com.ancun.unicom.R;
+import com.ancun.unicom.layout.CallRecordsContentView;
+import com.ancun.unicom.layout.DialContentView;
+import com.ancun.unicom.layout.RecordingContentView;
 
 /**
  * 应用服务类

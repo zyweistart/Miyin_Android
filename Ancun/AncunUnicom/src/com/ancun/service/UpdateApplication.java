@@ -38,8 +38,8 @@ import android.os.AsyncTask;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
-import com.ancun.yzb.BaseContext;
-import com.ancun.yzb.R;
+import com.ancun.unicom.BaseContext;
+import com.ancun.unicom.R;
 
 /**
  * 应用更新
