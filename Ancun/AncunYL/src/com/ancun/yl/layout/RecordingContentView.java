@@ -12,7 +12,6 @@ import start.service.HttpServer;
 import start.service.RefreshListServer;
 import start.service.RefreshListServer.RefreshListServerListener;
 import start.service.Response;
-import start.utils.MD5;
 import start.utils.NetConnectManager;
 import start.widget.CustomEditText;
 import start.widget.xlistview.XListView;
@@ -20,15 +19,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.ancun.core.BaseActivity;
@@ -112,55 +108,38 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 					.setPositiveButton(R.string.cancle, null)
 					.setNegativeButton(R.string.sure, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int whichButton) {
-							final EditText input = new EditText(getCurrentActivity());
-							input.setTransformationMethod(PasswordTransformationMethod.getInstance());
-							new AlertDialog.Builder(getCurrentActivity())  
-			                .setMessage(R.string.deleterecordinginputpasswordtip)
-			                .setView(input)  
-			                .setPositiveButton(R.string.cancle,null)
-			                .setNegativeButton(R.string.sure, new DialogInterface.OnClickListener(){
-
-												@Override
-												public void onClick(DialogInterface dialog,int which) {
-													getCurrentActivity().getInputMethodManager().hideSoftInputFromWindow(input.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-													 final String value = input.getText().toString();
-						                                if(TextUtils.isEmpty(value)){
-						                                	getHandlerContext().makeTextShort(getCurrentActivity().getString(R.string.pwdemptytip));
-						                                	return;
-						                                }
-						                                HttpServer hServer=new HttpServer(Constant.URL.ylcnrecAlter, getCurrentActivity().getHandlerContext());
-						                        		Map<String,String> headers=new HashMap<String,String>();
-						                        		headers.put("sign", User.ACCESSKEY);
-						                        		hServer.setHeaders(headers);
-						                        		Map<String,String> params=new HashMap<String,String>();
-						                        		params.put("accessid", User.ACCESSID);
-						                        		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
-						                        		params.put("fileno", fileno);
-						                        		params.put("alteract", "1");
-						                        		params.put("password", MD5.md5(value));
-						                        		hServer.setParams(params);
-						                        		hServer.get(new HttpRunnable() {
-						                        			
-						                        			@Override
-						                        			public void run(Response response) throws AppException {
-						                    					for(Map<String,String> content:mRefreshListServer.getItemDatas()){
-						        									if(fileno.equals(content.get(RecordingAdapter.RECORDED_FILENO))){
-						        										mRefreshListServer.getItemDatas().remove(content);
-						        										mRefreshListServer.getBaseListAdapter().getItemDatas().remove(content);
-						        										getCurrentActivity().runOnUiThread(new Runnable() {
-						        											@Override
-						        											public void run() {
-						        												mRecordingAdapter.notifyDataSetChanged();
-						        											}
-						        										});
-						        										break;
-						        									}
-						        								}
-						                        			}
-						                        			
-						                        		});
-												}
-			                        }).show();
+							
+							HttpServer hServer=new HttpServer(Constant.URL.ylcnrecAlter, getCurrentActivity().getHandlerContext());
+                    		Map<String,String> headers=new HashMap<String,String>();
+                    		headers.put("sign", User.ACCESSKEY);
+                    		hServer.setHeaders(headers);
+                    		Map<String,String> params=new HashMap<String,String>();
+                    		params.put("accessid", User.ACCESSID);
+                    		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
+                    		params.put("fileno", fileno);
+                    		params.put("alteract", "1");
+                    		hServer.setParams(params);
+                    		hServer.get(new HttpRunnable() {
+                    			
+                    			@Override
+                    			public void run(Response response) throws AppException {
+                					for(Map<String,String> content:mRefreshListServer.getItemDatas()){
+    									if(fileno.equals(content.get(RecordingAdapter.RECORDED_FILENO))){
+    										mRefreshListServer.getItemDatas().remove(content);
+    										mRefreshListServer.getBaseListAdapter().getItemDatas().remove(content);
+    										getCurrentActivity().runOnUiThread(new Runnable() {
+    											@Override
+    											public void run() {
+    												mRecordingAdapter.notifyDataSetChanged();
+    											}
+    										});
+    										break;
+    									}
+    								}
+                    			}
+                    			
+                    		});
+                    		
 						}
 					}).show();
 				}
