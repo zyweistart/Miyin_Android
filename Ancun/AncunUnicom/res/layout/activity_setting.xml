@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_activity" >
+
+    <include layout="@layout/module_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10.0dip" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_frame"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/setting_tip"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_tip"
+                    android:drawableRight="@drawable/selector_button_arrow"
+                    android:text="@string/tip" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dip"
+                    android:background="@color/bg_frame" />
+
+                <TextView
+                    android:id="@+id/setting_feedback"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_feedback"
+                    android:drawableRight="@drawable/selector_button_arrow"
+                    android:text="@string/feedback" 
+                    android:visibility="gone"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dip"
+                    android:background="@color/bg_frame"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/setting_versioncheck"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_versioncheck"
+                    android:text="@string/versioncheck"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dip"
+                    android:background="@color/bg_frame" />
+
+                <TextView
+                    android:id="@+id/setting_comment"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_comment"
+                    android:text="@string/comment" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dip"
+                    android:background="@color/bg_frame" />
+
+                <TextView
+                    android:id="@+id/setting_aboutus"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_aboutus"
+                    android:drawableRight="@drawable/selector_button_arrow"
+                    android:text="@string/aboutus" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10.0dip" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_frame"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/setting_cleanrecording"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_cleanrecording"
+                    android:text="@string/cleanrecording" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dip"
+                    android:background="@color/bg_frame" />
+
+                <TextView
+                    android:id="@+id/setting_modifypassword"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_modifypwd"
+                    android:drawableRight="@drawable/selector_button_arrow"
+                    android:text="@string/modifypassword" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dip"
+                    android:background="@color/bg_frame" />
+
+                <TextView
+                    android:id="@+id/setting_gesturesetting"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_gesture"
+                    android:text="@string/gesturestate" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dip"
+                    android:background="@color/bg_frame" />
+
+                <TextView
+                    android:id="@+id/setting_gesturemodify"
+                    style="@style/setting_frame"
+                    android:drawableLeft="@drawable/ic_modifypwd"
+                    android:drawableRight="@drawable/selector_button_arrow"
+                    android:text="@string/gestureset" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20.0dip" />
+
+            <Button
+                android:id="@+id/setting_exitlogin"
+                style="@style/button1"
+                android:layout_width="match_parent"
+                android:layout_height="45.0dip"
+                android:text="@string/exitlogin" />
+        </LinearLayout>
+        
+    </ScrollView>
+
+</LinearLayout>

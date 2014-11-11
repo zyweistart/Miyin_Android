@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linelayout_recorded_remark"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#e4eBeb"
+    android:orientation="vertical" >
+
+    <include layout="@layout/module_header" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbarThumbVertical="@drawable/scrollbar_handle_vertical"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="30dip"
+                android:layout_height="fill_parent" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dip"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="15dip" >
+
+                    <TextView
+                        android:id="@+id/recorded_remark_calling_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/calling"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#606060" />
+
+                    <TextView
+                        android:id="@+id/recorded_remark_calling"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/recorded_remark_calling_static"
+                        android:gravity="center"
+                        android:paddingLeft="10dip"
+                        android:singleLine="true"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#404040" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/recorded_remark_called_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/called"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#606060" />
+
+                    <TextView
+                        android:id="@+id/recorded_remark_called"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/recorded_remark_called_static"
+                        android:gravity="center"
+                        android:paddingLeft="10dip"
+                        android:singleLine="true"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#404040" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/recorded_remark_start_time_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/start_time"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#606060" />
+
+                    <TextView
+                        android:id="@+id/recorded_remark_start_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/recorded_remark_start_time_static"
+                        android:gravity="center"
+                        android:paddingLeft="10dip"
+                        android:singleLine="true"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#404040" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/recorded_remark_end_time_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/end_time"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#606060" />
+
+                    <TextView
+                        android:id="@+id/recorded_remark_end_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/recorded_remark_end_time_static"
+                        android:gravity="center"
+                        android:paddingLeft="10dip"
+                        android:singleLine="true"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#404040" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/recorded_remark_invalid_time_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/invalid_time"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#606060" />
+
+                    <TextView
+                        android:id="@+id/recorded_remark_invalid_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/recorded_remark_invalid_time_static"
+                        android:gravity="center"
+                        android:paddingLeft="10dip"
+                        android:singleLine="true"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#FF0000" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/recorded_remark_length_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/recording_length"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#606060" />
+
+                    <TextView
+                        android:id="@+id/recorded_remark_length"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/recorded_remark_length_static"
+                        android:gravity="center"
+                        android:paddingLeft="10dip"
+                        android:singleLine="true"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#404040" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/recorded_remark_edit_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="@string/recorded_remark"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="#606060" />
+
+                    <ImageButton
+                        android:id="@+id/recorded_remark_edit_submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="#00000000"
+                        android:focusable="false" />
+                </RelativeLayout>
+
+                <EditText
+                    android:id="@+id/recorded_remark_edit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="#00ffffff"
+                    android:gravity="top|left"
+                    android:hint="@string/remark_edit_hint"
+                    android:maxLines="4"
+                    android:minLines="4"
+                    android:paddingLeft="5.0dip"
+                    android:paddingRight="5.0dip"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#777777"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="30dip" >
+
+                    <ImageButton
+                        android:id="@+id/recorded_taobao_appeal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#00000000"
+                        android:focusable="false"/>
+
+                    <ImageButton
+                        android:id="@+id/recorded_notarization_appeal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:background="#00000000"
+                        android:focusable="false" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="30dip"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
