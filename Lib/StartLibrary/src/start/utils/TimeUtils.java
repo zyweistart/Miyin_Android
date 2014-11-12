@@ -1,6 +1,7 @@
 package start.utils;
 
 import android.annotation.SuppressLint;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -378,28 +379,23 @@ public class TimeUtils {
 	 * 秒转化为时间
 	 * sample:61秒转成1分1秒
 	 */
-	public static String secondConvertTime(int second){
-		int day=second/(60*60*24);
-		int h=(second%(60*60*24))/(60*60);
-		int m=((second%(60*60*24))%(60*60))/60;
-		int s=(((second%(60*60*24))%(60*60))%60)%60;
-		StringBuilder sb=new StringBuilder();
-		if(day>0){
-			sb.append(day+"天");
-			sb.append(h+"小时");
-			sb.append(m+"分");
-			sb.append(s+"秒");
-		}else if(h>0){
-			sb.append(h+"小时");
-			sb.append(m+"分");
-			sb.append(s+"秒");
-		}else if(m>0){
-			sb.append(m+"分");
-			sb.append(s+"秒");
-		}else{
-			sb.append(s+"秒");
+	public static String secondConvertTime(int s){
+		int N = s / 3600;
+		s = s % 3600;
+		int K = s / 60;
+		s = s % 60;
+		int M = s;
+		StringBuilder time=new StringBuilder();
+		if(N>0){
+			time.append(N+"时");
 		}
-		return sb.toString();
+		if(K>0){
+			time.append(K+"分");
+		}
+		if(M>0){
+			time.append(M+"秒");
+		}
+		return time.toString();
 	}
 	
 	/**

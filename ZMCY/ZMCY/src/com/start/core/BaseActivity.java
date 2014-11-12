@@ -22,9 +22,7 @@ public class BaseActivity extends AppActivity {
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.btn_back){
-			finish();
-		}
+		
 	}
 	
 	@Override
