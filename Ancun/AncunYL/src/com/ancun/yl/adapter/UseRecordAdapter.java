@@ -32,7 +32,7 @@ public class UseRecordAdapter extends AppListAdapter{
 		}
 		Map<String, String> data = mItemDatas.get(position);
 		holder.time.setText(data.get("begintime"));
-		holder.remark.setText("录音");
+		holder.remark.setText(data.get("calledno"));
 		holder.timelong.setText(TimeUtils.secondConvertTime(Integer.parseInt(data.get("duration"))));
 		return convertView;
 	}

@@ -48,6 +48,14 @@
 	       
     	</LinearLayout>
     	
+    	<Button 
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:textSize="18.0dip"
+    	    android:textColor="#9a9a9a"
+    	    android:background="@drawable/button_3_n"
+         	android:text="使用记录"/>
+    
     	<start.widget.xlistview.XListView
 	        android:id="@+id/xlv_listview"
 	        style="@style/listview1" />
