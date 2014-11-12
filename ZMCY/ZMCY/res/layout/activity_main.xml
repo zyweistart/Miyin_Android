@@ -30,32 +30,32 @@
                 android:id="@+id/txtNews"
                 style="@style/sliding_left_textview"
                 android:drawableLeft="@drawable/ic_news"
-                android:text="资讯" />
+                android:text="@string/news" />
             <TextView
                 android:id="@+id/txtResources"
                 style="@style/sliding_left_textview"
                 android:drawableLeft="@drawable/ic_resources"
-                android:text="资源"/>
+                android:text="@string/resources"/>
             <TextView
                 android:id="@+id/txtActivities"
                 style="@style/sliding_left_textview"
                 android:drawableLeft="@drawable/ic_activities"
-                android:text="活动"/>
+                android:text="@string/activities"/>
             <TextView
                 android:id="@+id/txtExperts"
                 style="@style/sliding_left_textview"
                 android:drawableLeft="@drawable/ic_experts"
-                android:text="专家"/>
+                android:text="@string/experts"/>
             <TextView
                 android:id="@+id/txtApp"
                 style="@style/sliding_left_textview"
                 android:drawableLeft="@drawable/ic_app"
-                android:text="应用"/>
+                android:text="@string/app"/>
             <TextView
                 android:id="@+id/txtMember"
                 style="@style/sliding_left_textview"
                 android:drawableLeft="@drawable/ic_member"
-                android:text="会员"/>
+                android:text="@string/member"/>
             
         </LinearLayout>
 
@@ -79,6 +79,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top" />
             </android.support.v4.view.ViewPager>
+            
+            
+            
+            
         </LinearLayout>
     </start.widget.SlidingLayout>
 

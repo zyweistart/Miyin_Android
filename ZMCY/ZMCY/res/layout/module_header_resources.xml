@@ -14,14 +14,21 @@
         android:id="@+id/main_head_1"
         android:layout_toRightOf="@id/main_head_sliding"
         style="@style/main_head_title_button"
-        android:text="传统光源"/>
+        android:text="专家列表"/>
     
     <Button 
         android:id="@+id/main_head_2"
         android:layout_toRightOf="@id/main_head_1"
         style="@style/main_head_title_button"
         android:enabled="false"
-        android:text="LED光源"/>
+        android:text="疑难解答"/>
+    
+    <Button 
+        android:id="@+id/main_head_3"
+        android:layout_toRightOf="@id/main_head_2"
+        style="@style/main_head_title_button"
+        android:enabled="false"
+        android:text="专家自荐"/>
     
     <Button 
         android:id="@+id/main_head_search"

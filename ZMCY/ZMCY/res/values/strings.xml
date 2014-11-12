@@ -2,5 +2,22 @@
 <resources>
 
     <string name="app_name">中国照明产业</string>
+    <string name="login">登录</string>
+    <string name="gotoregister">立即注册</string>
+    <string name="noaccount">没有账号?</string>
+    <string name="accounthint">邮箱/手机号</string>
+    <string name="passwordhint">请输入密码</string>
+    <string name="news">资讯</string>
+    <string name="resources">资源</string>
+    <string name="activities">活动</string>
+    <string name="experts">专家</string>
+    <string name="app">应用</string>
+    <string name="member">会员</string>
+    
+    <string name="product_normal">传统光源</string>
+    <string name="product_led">LED光源</string>
+    <string name="experts_list">专家列表</string>
+    <string name="experts_answer">专家解答</string>
+    <string name="experts_cover">专家自荐</string>
 
 </resources>

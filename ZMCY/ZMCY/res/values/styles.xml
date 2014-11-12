@@ -17,7 +17,7 @@
         <item name="android:layout_height">50.0dip</item>
         <item name="android:gravity">center</item>
         <item name="android:onClick">onClick</item>
-        <item name="android:padding">10.0dip</item>
+        <item name="android:padding">5.0dip</item>
         <item name="android:textSize">18.0dip</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/selector_button_1</item>

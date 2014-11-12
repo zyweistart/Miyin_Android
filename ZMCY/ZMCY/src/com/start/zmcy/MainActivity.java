@@ -9,6 +9,7 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.start.core.BaseFragment;
 import com.start.core.BaseFragmentActivity;
@@ -23,15 +24,29 @@ public class MainActivity  extends BaseFragmentActivity implements OnClickListen
 
     private SlidingLayout mSlidingLayout;
     
+    private TextView txtNews;
+    private TextView txtResources;
+    private TextView txtActivities;
+    private TextView txtExperts;
+    private TextView txtApp;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setMainHeadTitle(getString(R.string.app_name));
         
+        txtNews = (TextView)findViewById(R.id.txtNews);
+        txtResources = (TextView)findViewById(R.id.txtResources);
+        txtActivities = (TextView)findViewById(R.id.txtActivities);
+        txtExperts = (TextView)findViewById(R.id.txtExperts);
+        txtApp = (TextView)findViewById(R.id.txtApp);
+        
+        setSlidingLeftButtonEnabled(0);
+        
         ViewPager vp = (ViewPager)findViewById(R.id.mViewPager);
         mSlidingLayout = (SlidingLayout) findViewById(R.id.main_slidingLayout);
-		mSlidingLayout.setScrollEvent(vp);
+//		mSlidingLayout.setScrollEvent(vp);
         PagerTabStrip mPagerTabStrip = (PagerTabStrip)findViewById(R.id.mPagerTabStrip);
         mPagerTabStrip.setTextColor(getResources().getColor(R.color.new_title));
 		mPagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.new_title));
@@ -74,17 +89,30 @@ public class MainActivity  extends BaseFragmentActivity implements OnClickListen
 			}
 		}else if(v.getId()==R.id.txtNews){
 			//新闻
+			setSlidingLeftButtonEnabled(0);
 		}else if(v.getId()==R.id.txtResources){
 			//资源
+			setSlidingLeftButtonEnabled(1);
 		}else if(v.getId()==R.id.txtActivities){
 			//活动
+			setSlidingLeftButtonEnabled(2);
 		}else if(v.getId()==R.id.txtExperts){
 			//专家
+			setSlidingLeftButtonEnabled(3);
 		}else if(v.getId()==R.id.txtApp){
 			//应用 
+			setSlidingLeftButtonEnabled(4);
 		}else if(v.getId()==R.id.txtMember){
 			//会员
 		}
+	}
+	
+	public void setSlidingLeftButtonEnabled(int index){
+		txtNews.setEnabled(index==0?false:true);
+		txtResources.setEnabled(index==1?false:true);
+		txtActivities.setEnabled(index==2?false:true);
+		txtExperts.setEnabled(index==3?false:true);
+		txtApp.setEnabled(index==4?false:true);
 	}
     
 }
