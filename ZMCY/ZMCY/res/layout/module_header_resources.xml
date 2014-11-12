@@ -10,30 +10,23 @@
         android:layout_alignParentLeft="true"
         android:background="@drawable/selector_button_header_sliding"/>
     
-    <TextView 
-        android:id="@+id/main_head_title"
+    <Button 
+        android:id="@+id/main_head_1"
         android:layout_toRightOf="@id/main_head_sliding"
-        style="@style/main_head_title"
-        android:text="@string/app_name"/>
+        style="@style/main_head_title_button"
+        android:text="传统光源"/>
     
     <Button 
-        android:id="@+id/main_head_login"
-        style="@style/main_head_button"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/selector_button_header_login"/>
+        android:id="@+id/main_head_2"
+        android:layout_toRightOf="@id/main_head_1"
+        style="@style/main_head_title_button"
+        android:enabled="false"
+        android:text="LED光源"/>
     
     <Button 
         android:id="@+id/main_head_search"
         style="@style/main_head_button"
         android:layout_alignParentRight="true"
-        android:background="@drawable/selector_button_header_search"
-        android:visibility="gone"/>
-    
-    <Button 
-        android:id="@+id/main_head_more"
-        style="@style/main_head_button"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/selector_button_header_more"
-        android:visibility="gone"/>
+        android:background="@drawable/selector_button_header_search"/>
    	
 </RelativeLayout>

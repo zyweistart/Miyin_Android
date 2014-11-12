@@ -100,7 +100,21 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
-        
+        <activity
+            android:name=".ResourceActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ActivitiesActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ExpertsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AppActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MemberActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -5,7 +5,8 @@
     <color name="black">#000000</color>
 	<color name="transparent">#00000000</color>
    	<color name="bg_activity">#f3f3f3</color>
-   	<color name="bg_header">#0e75d4</color>
-   	<color name="bg_frame">#e7eaee</color>
+   	<color name="bg_header">#005dde</color>
+   	<color name="new_title">#005dde</color>
+   	<color name="new_title_bg">#dcdddf</color>
 	
 </resources>

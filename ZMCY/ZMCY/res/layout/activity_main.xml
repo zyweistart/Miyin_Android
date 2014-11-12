@@ -1,23 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_activity" >
-    
-    <include layout="@layout/module_header" />
+    android:orientation="vertical" >
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/mViewPager"
+    <include layout="@layout/module_header_resources" />
+
+    <start.widget.SlidingLayout
+        android:id="@+id/main_slidingLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        
-        <android.support.v4.view.PagerTabStrip    
-            android:id="@+id/mPagerTabStrip"    
-            android:layout_width="wrap_content"    
-            android:layout_height="wrap_content"    
-            android:layout_gravity="top"/>
-        
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"
+        android:background="@color/bg_activity" >
+
+        <LinearLayout
+            android:id="@+id/main_menu"
+            android:layout_width="200.0dip"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20.0dip" />
+
+            <TextView
+                android:id="@+id/txtNews"
+                style="@style/sliding_left_textview"
+                android:drawableLeft="@drawable/ic_news"
+                android:text="资讯" />
+            <TextView
+                android:id="@+id/txtResources"
+                style="@style/sliding_left_textview"
+                android:drawableLeft="@drawable/ic_resources"
+                android:text="资源"/>
+            <TextView
+                android:id="@+id/txtActivities"
+                style="@style/sliding_left_textview"
+                android:drawableLeft="@drawable/ic_activities"
+                android:text="活动"/>
+            <TextView
+                android:id="@+id/txtExperts"
+                style="@style/sliding_left_textview"
+                android:drawableLeft="@drawable/ic_experts"
+                android:text="专家"/>
+            <TextView
+                android:id="@+id/txtApp"
+                style="@style/sliding_left_textview"
+                android:drawableLeft="@drawable/ic_app"
+                android:text="应用"/>
+            <TextView
+                android:id="@+id/txtMember"
+                style="@style/sliding_left_textview"
+                android:drawableLeft="@drawable/ic_member"
+                android:text="会员"/>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/main_content"
+            android:layout_width="320.0dip"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/bg_activity"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/mViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <android.support.v4.view.PagerTabStrip
+                    android:id="@+id/mPagerTabStrip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top" />
+            </android.support.v4.view.ViewPager>
+        </LinearLayout>
+    </start.widget.SlidingLayout>
 
 </LinearLayout>
