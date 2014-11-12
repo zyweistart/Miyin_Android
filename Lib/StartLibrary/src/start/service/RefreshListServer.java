@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import start.core.AppContext;
-import start.core.AppException;
 import start.core.AppActivity;
-import start.core.AppListAdapter;
 import start.core.AppConstant;
-import start.core.HandlerContext;
 import start.core.AppConstant.Handler;
 import start.core.AppConstant.ResultCode;
+import start.core.AppContext;
+import start.core.AppException;
+import start.core.AppListAdapter;
+import start.core.HandlerContext;
 import start.core.HandlerContext.HandleContextListener;
 import start.utils.TimeUtils;
 import start.widget.xlistview.XListView;
@@ -21,7 +21,7 @@ import android.text.TextUtils;
 
 public class RefreshListServer implements IXListViewListener,HandleContextListener {
 
-	private Boolean isDataLoadDone;
+	private Boolean isDataLoadDone,isHideLoadMore;
 	private int mCurrentPage;
 	private String cacheTag;
 	private AppActivity mActivity;
@@ -86,7 +86,13 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 			case Handler.LOAD_END_MORE_DATA:
 				if(isDataLoadDone){
 					//数据加载完毕
+					this.mCurrentListView.setPullLoadEnable(false);
 				}else{
+					if(isHideLoadMore){
+						this.mCurrentListView.setPullLoadEnable(false);
+					}else{
+						this.mCurrentListView.setPullLoadEnable(true);
+					}
 					this.mBaseListAdapter.setItemDatas(new ArrayList<Map<String,String>>(getItemDatas()	));
 					this.mBaseListAdapter.notifyDataSetChanged();
 				}
@@ -138,9 +144,13 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 			getItemDatas().clear();
 		}
 		int temp=Integer.parseInt(response.getPageInfoMapData().get("currentpage"));
-		isDataLoadDone=(temp==getCurrentPage());
+		isHideLoadMore=isDataLoadDone=(temp==getCurrentPage());
 		setCurrentPage(temp);
-		getItemDatas().addAll(response.getListMapData(listTag,infoTag));
+		List<Map<String,String>> datas=response.getListMapData(listTag,infoTag);
+		getItemDatas().addAll(datas);
+		if(!isDataLoadDone){
+			isHideLoadMore=datas.size()<Integer.parseInt(response.getPageInfoMapData().get("pagesize"));
+		}
 	}
 	
 	public interface RefreshListServerListener{
