@@ -28,8 +28,10 @@ public final class Constant {
 	
 	static {
 		noCall.add("56559570");
+		noCall.add("021968682");
 		noCall.add("968682");
 		noCall.add("95105856");
+		noCall.add("95105857");
 		noCall.add("110");
 		noCall.add("112");
 		noCall.add("119");

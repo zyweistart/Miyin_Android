@@ -32,8 +32,8 @@ public final class R {
 		public static final int xlistview_header_time = 0x7f0700a1;
 	}
 	public static final class layout {
-		public static final int widget_xlistview_footer = 0x7f030021;
-		public static final int widget_xlistview_header = 0x7f030022;
+		public static final int widget_xlistview_footer = 0x7f030020;
+		public static final int widget_xlistview_header = 0x7f030021;
 	}
 	public static final class string {
 		public static final int app_error = 0x7f04000f;

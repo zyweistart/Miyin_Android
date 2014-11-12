@@ -1,5 +1,7 @@
 package com.ancun.yl;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +51,9 @@ public class RegisterActivity extends BaseActivity {
 	protected LinearLayout fr_server;
 	protected CheckBox cb_agree;
 	protected TextView txt_servercontent;
+	protected TextView txt_tip;
+	
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,10 @@ public class RegisterActivity extends BaseActivity {
 		cb_agree=(CheckBox)findViewById(R.id.cb_agree);
 		txt_servercontent=(TextView)findViewById(R.id.txt_servercontent);
 		txt_servercontent.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+		
+		txt_tip=(TextView)findViewById(R.id.txttip);
+		setBillingText();
+		txt_tip.setVisibility(View.VISIBLE);
 	}
 	
 	@Override
@@ -215,6 +224,28 @@ public class RegisterActivity extends BaseActivity {
 			}
 			
 		});
+	}
+	
+	/**
+	 * 设置计费文案
+	 */
+	public void setBillingText(){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year=calendar.get(Calendar.YEAR);
+		int month=calendar.get(Calendar.MONTH)+1;
+		int day=calendar.get(Calendar.DATE);
+		if(day<10){
+			//1<R<10 次月1号扣费
+			day=TimeUtils.getLastDayOfMonth(calendar.getTime());
+		}else{
+			//10<=R<=月底 次次月1号扣费
+			calendar.set(Calendar.MONTH, month);
+			year=calendar.get(Calendar.YEAR);
+			month=calendar.get(Calendar.MONTH)+1;
+			day=TimeUtils.getLastDayOfMonth(calendar.getTime());
+		}
+		txt_tip.setText("欢迎使用"+getString(R.string.app_name)+"！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。现在开通"+year+"年"+month+"月"+day+"日前不收取功能费，次月1日起正式收费，每月30元，通话费按原有资费标准收取。");
 	}
 	
 }

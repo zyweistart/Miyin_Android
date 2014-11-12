@@ -28,6 +28,7 @@ public class ResetPassWordActivity  extends RegisterActivity {
 		setMainHeadTitle(getString(R.string.reset_password));
 		success_title.setText(R.string.reset_password_success);
 		fr_server.setVisibility(View.GONE);
+		txt_tip.setVisibility(View.GONE);
 	}
 	
 	@Override

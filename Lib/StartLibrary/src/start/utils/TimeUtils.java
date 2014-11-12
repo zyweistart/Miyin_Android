@@ -401,6 +401,16 @@ public class TimeUtils {
 		}
 		return sb.toString();
 	}
+	
+	/**
+	 * 获取当月的最后天数
+	 */
+	public static int getLastDayOfMonth(Date date) {
+		Calendar cDay1 = Calendar.getInstance();
+		cDay1.setTime(date);
+		return cDay1.getActualMaximum(Calendar.DAY_OF_MONTH);
+	}
+	
 	/**
 	 * 获取当前月的天数
 	 * @return
