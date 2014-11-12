@@ -245,7 +245,7 @@ public class RegisterActivity extends BaseActivity {
 			month=calendar.get(Calendar.MONTH)+1;
 			day=TimeUtils.getLastDayOfMonth(calendar.getTime());
 		}
-		txt_tip.setText("欢迎使用"+getString(R.string.app_name)+"！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。现在开通"+year+"年"+month+"月"+day+"日前不收取功能费，次月1日起正式收费，每月30元，通话费按原有资费标准收取。");
+		txt_tip.setText(StringUtils.ToDBC("欢迎使用"+getString(R.string.app_name)+"！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。现在开通"+year+"年"+month+"月"+day+"日前不收取功能费，次月1日起正式收费，每月30元，通话费按原有资费标准收取。"));
 	}
 	
 }
