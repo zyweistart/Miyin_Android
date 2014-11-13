@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import start.widget.SlidingLayout;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
@@ -41,7 +42,6 @@ public class MainActivity  extends BaseFragmentActivity implements OnClickListen
         txtActivities = (TextView)findViewById(R.id.txtActivities);
         txtExperts = (TextView)findViewById(R.id.txtExperts);
         txtApp = (TextView)findViewById(R.id.txtApp);
-        
         setSlidingLeftButtonEnabled(0);
         
         ViewPager vp = (ViewPager)findViewById(R.id.mViewPager);
@@ -87,18 +87,21 @@ public class MainActivity  extends BaseFragmentActivity implements OnClickListen
 			} else {
 				mSlidingLayout.scrollToLeftLayout();
 			}
-		}else if(v.getId()==R.id.txtNews){
-			//新闻
 		}else if(v.getId()==R.id.txtResources){
 			//资源
+			startActivity(new Intent(this,ResourceActivity.class));
 		}else if(v.getId()==R.id.txtActivities){
 			//活动
+			startActivity(new Intent(this,ActivitiesActivity.class));
 		}else if(v.getId()==R.id.txtExperts){
 			//专家
+			startActivity(new Intent(this,ExpertsActivity.class));
 		}else if(v.getId()==R.id.txtApp){
 			//应用 
+			startActivity(new Intent(this,AppActivity.class));
 		}else if(v.getId()==R.id.txtMember){
 			//会员
+			startActivity(new Intent(this,MemberActivity.class));
 		}
 	}
 	

@@ -16,6 +16,8 @@
     
     <string name="product_normal">传统光源</string>
     <string name="product_led">LED光源</string>
+    <string name="activities_mall">商城</string>
+    <string name="activities_exhibition">展会</string>
     <string name="experts_list">专家列表</string>
     <string name="experts_answer">专家解答</string>
     <string name="experts_cover">专家自荐</string>
