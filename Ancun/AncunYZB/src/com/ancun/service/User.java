@@ -7,7 +7,7 @@ import start.core.AppConstant;
 import android.text.TextUtils;
 
 import com.ancun.core.Constant.Preferences;
-import com.ancun.yzb.BaseContext;
+import com.ancun.shyzb.BaseContext;
 
 public class User {
 

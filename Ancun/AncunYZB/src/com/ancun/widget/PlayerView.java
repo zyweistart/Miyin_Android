@@ -22,7 +22,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import com.ancun.yzb.R;
+import com.ancun.shyzb.R;
 
 /**
  * 播放器
