@@ -101,6 +101,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
+            android:name=".SearchRecordedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme_Dialog_NoTitle" />
+        <activity
             android:name=".RecordedDetailActivity"
     	    android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>

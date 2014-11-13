@@ -85,6 +85,7 @@
     <string name="apply_notary_submit_tip">您确定将该录音提交至公证机构申办公证吗？</string>
     <string name="apply_notary_cancel_tip">您确定要取消该录音申办公证吗？</string>
     <string name="recording_remark_modify_success">录音备注修改成功</string>
+    <string name="advanced_search">高级搜索</string>
     <string name="unsubscribe">退订</string>
     <string name="unsubscribe_sure">确认退订</string>
     <string name="modify_password_success_tip">密码修改成功啦，亲如此有防范风险意识真的很值得大家学习哦~</string>

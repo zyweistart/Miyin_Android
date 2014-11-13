@@ -22,7 +22,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,7 +36,6 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 	//是否刷新数据
 	public static Boolean isRefreshData=true;
 	
-	private ImageButton ibSearch;
 	private CustomEditText etContent;
 	private FilterContact mFilter; 
 	private ListView mListView;
@@ -67,8 +65,6 @@ public class ContactsContentView extends BaseScrollContent implements Filterable
 		View searchBarView = View.inflate(activity, R.layout.module_search_bar, null);
 		//把view对象添加到listView对象的头部，可以随listView一起滑动
 		mListView.addHeaderView(searchBarView); 
-		ibSearch=(ImageButton)searchBarView.findViewById(R.id.ib_search);
-		ibSearch.setVisibility(View.GONE);
 		etContent=(CustomEditText)searchBarView.findViewById(R.id.et_content);
 		etContent.setHint(R.string.searchbarhint1);
 		etContent.addTextChangedListener(new SearchBarTextWatcher());

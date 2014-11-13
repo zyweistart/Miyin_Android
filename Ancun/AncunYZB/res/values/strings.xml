@@ -38,6 +38,7 @@
     <string name="usernameorpassworderrortip">用户名或密码有误</string>
     <string name="changepasswordsuccess">修改密码成功</string>
     <string name="next">下一步</string>
+    <string name="advanced_search">高级搜索</string>
     <string name="goregister">立即注册</string>
     <string name="searchbarhint1">请输入拼音或联系人姓名</string>
     <string name="searchbarhint2">请输入被叫方号码</string>
