@@ -5,7 +5,7 @@
     android:background="@color/bg_header_n" >
 
     <Button
-        android:id="@+id/main_head_sliding"
+        android:id="@+id/main_head_back"
         style="@style/main_head_button"
         android:layout_alignParentLeft="true"
         android:background="@drawable/selector_button_header_sliding" />
@@ -36,6 +36,7 @@
         android:id="@+id/main_head_search"
         style="@style/main_head_button"
         android:layout_alignParentRight="true"
-        android:background="@drawable/selector_button_header_search" />
+        android:background="@drawable/selector_button_header_search"
+        android:visibility="gone"/>
 
 </RelativeLayout>

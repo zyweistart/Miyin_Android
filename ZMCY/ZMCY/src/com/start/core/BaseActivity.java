@@ -22,7 +22,9 @@ public class BaseActivity extends AppActivity {
 
 	@Override
 	public void onClick(View v) {
-		
+		if(v.getId()==R.id.main_head_back){
+			finish();
+		}
 	}
 	
 	@Override
