@@ -59,13 +59,15 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1.0dip"
-                    android:background="@color/bg_frame" />
+                    android:background="@color/bg_frame"
+                    android:visibility="gone"  />
 
                 <TextView
                     android:id="@+id/setting_comment"
                     style="@style/setting_frame"
                     android:drawableLeft="@drawable/ic_comment"
-                    android:text="@string/comment" />
+                    android:text="@string/comment"
+                    android:visibility="gone"  />
 
                 <View
                     android:layout_width="match_parent"
