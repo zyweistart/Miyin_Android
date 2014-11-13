@@ -1,5 +1,7 @@
 package com.start.zmcy.adapter;
 
+import java.util.Map;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 		} else {
 			holder = (HolderView) convertView.getTag();
 		}
+		Map<String,Object> data=mItemDatas.get(position);
 		holder.listitem_main_title.setText("楞dlsk困要要");
 		return convertView;
 	}

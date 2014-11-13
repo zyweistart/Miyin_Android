@@ -1,0 +1,45 @@
+{
+    "response": {
+        "info": {
+            "code": "100000",
+            "msg": "成功"
+        },
+        "content": {
+            "pageinfo": {
+                "totalcount": 5,
+                "totalpage": 1,
+                "pagesize": 8,
+                "currentpage": 1
+            },
+            "newslist": [
+                {
+                    "newsinfo": {
+                        "recordno": "记录编号0",
+                        "newslist": [
+                            {
+                                "newsinfo": {
+                                    "recordno": "子记录编号1"
+                                }
+                            },
+                            {
+                                "newsinfo": {
+                                    "recordno": "子记录编号1"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "newsinfo": {
+                        "recordno": "记录编号1"
+                    }
+                },
+                {
+                    "newsinfo": {
+                        "recordno": "记录编号2"
+                    }
+                }
+            ]
+        }
+    }
+}
