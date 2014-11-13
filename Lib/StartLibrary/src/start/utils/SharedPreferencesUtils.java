@@ -28,6 +28,20 @@ public class SharedPreferencesUtils {
 		SharedPreferencesUtils.dbName = dbName;
 	}
 
+	public void putLong(String key, Long value) {
+		SharedPreferences preferences = context.getSharedPreferences(dbName,
+				Context.MODE_PRIVATE);
+		Editor editor = preferences.edit();
+		editor.putLong(key, value);
+		editor.commit();
+	}
+
+	public Long getLong(String key, Long defValue) {
+		SharedPreferences preferences = context.getSharedPreferences(dbName,
+				Context.MODE_PRIVATE);
+		return preferences.getLong(key, defValue);
+	}
+	
 	public void putInteger(String key, Integer value) {
 		SharedPreferences preferences = context.getSharedPreferences(dbName,
 				Context.MODE_PRIVATE);
