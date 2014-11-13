@@ -115,6 +115,24 @@
         <activity
             android:name=".MemberActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".CollectActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".FollowActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".BindSharedActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PushSettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AboutUsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

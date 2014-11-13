@@ -21,8 +21,15 @@ public class MemberActivity extends BaseActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.txt_gotologin){
-			Intent intent=new Intent(this,LoginActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(this,LoginActivity.class));
+		}else if(v.getId()==R.id.txtSigin){
+			getHandlerContext().makeTextLong("签到");
+		}else if(v.getId()==R.id.txtCollect){
+			startActivity(new Intent(this,CollectActivity.class));
+		}else if(v.getId()==R.id.txtFollow){
+			startActivity(new Intent(this,FollowActivity.class));
+		}else if(v.getId()==R.id.txtSetting){
+			startActivity(new Intent(this,SettingActivity.class));
 		}else{
 			super.onClick(v);
 		}

@@ -45,6 +45,12 @@
         <item name="android:background">@drawable/selector_button_sliding_left_textview</item>
     </style>
     
+    <style name="line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1.0dip</item>
+        <item name="android:background">@drawable/bm_dottedline</item>
+    </style>
+    
     <style name="edittext1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">45.0dip</item>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
+    <include layout="@layout/module_header_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20.0dip" />
+
+    <TextView
+        android:id="@+id/txtBindShared"
+        style="@style/sliding_left_textview"
+        android:drawableLeft="@drawable/ic_bindshared"
+        android:drawableRight="@drawable/ic_arrow"
+        android:text="@string/bindshared" />
+
+    <View style="@style/line" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20.0dip" />
+
+    <TextView
+        android:id="@+id/txtSizeSetting"
+        style="@style/sliding_left_textview"
+        android:drawableLeft="@drawable/ic_sizesetting"
+        android:text="@string/sizesetting" />
+
+    <View style="@style/line" />
+
+    <TextView
+        android:id="@+id/txtPushSetting"
+        style="@style/sliding_left_textview"
+        android:drawableLeft="@drawable/ic_pushsetting"
+        android:drawableRight="@drawable/ic_arrow"
+        android:text="@string/pushsetting" />
+
+    <View style="@style/line" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20.0dip" />
+
+    <TextView
+        android:id="@+id/txtCleanCache"
+        style="@style/sliding_left_textview"
+        android:drawableLeft="@drawable/ic_cleancache"
+        android:text="@string/cleancache" />
+
+    <View style="@style/line" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20.0dip" />
+
+    <TextView
+        android:id="@+id/txtVersion"
+        style="@style/sliding_left_textview"
+        android:layout_alignParentLeft="true"
+        android:drawableLeft="@drawable/ic_version"
+        android:text="@string/version" />
+
+    <View style="@style/line" />
+
+    <TextView
+        android:id="@+id/txtAboutus"
+        style="@style/sliding_left_textview"
+        android:drawableLeft="@drawable/ic_aboutus"
+        android:drawableRight="@drawable/ic_arrow"
+        android:text="@string/aboutus" />
+
+    <View style="@style/line" />
+
+</LinearLayout>

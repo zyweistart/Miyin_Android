@@ -23,5 +23,17 @@
     <string name="experts_list">专家列表</string>
     <string name="experts_answer">专家解答</string>
     <string name="experts_cover">专家自荐</string>
+    
+    <string name="signin">签到</string>
+    <string name="collect">收藏</string>
+    <string name="follow">关注</string>
+    <string name="setting">设置</string>
+    
+    <string name="bindshared">分享绑定</string>
+    <string name="sizesetting">字号设置</string>
+    <string name="pushsetting">推送设置</string>
+    <string name="cleancache">清理缓存</string>
+    <string name="version">版本检测</string>
+    <string name="aboutus">关于我们</string>
 
 </resources>
