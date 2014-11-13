@@ -149,7 +149,9 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 		List<Map<String,String>> datas=response.getListMapData(listTag,infoTag);
 		getItemDatas().addAll(datas);
 		if(!isDataLoadDone){
-			isHideLoadMore=datas.size()<Integer.parseInt(response.getPageInfoMapData().get("pagesize"));
+			if(!getItemDatas().isEmpty()){
+				isHideLoadMore=datas.size()<Integer.parseInt(response.getPageInfoMapData().get("pagesize"));
+			}
 		}
 	}
 	
