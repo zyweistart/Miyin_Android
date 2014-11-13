@@ -5,21 +5,21 @@
     android:background="@color/bg_header_n" >
 
     <Button
-        android:id="@+id/main_head_back"
+        android:id="@+id/head_back"
         style="@style/main_head_button"
         android:layout_alignParentLeft="true"
         android:background="@drawable/selector_button_header_back" />
 
     <TextView 
-        android:id="@+id/main_head_title"
-        android:layout_toRightOf="@id/main_head_back"
+        android:id="@+id/head_title"
+        android:layout_toRightOf="@id/head_back"
         style="@style/main_head_title"
         android:layout_centerInParent="true"
         android:drawableLeft="@null"
         android:text="@string/app_name"/>
 
     <Button
-        android:id="@+id/main_head_search"
+        android:id="@+id/head_search"
         style="@style/main_head_button"
         android:layout_alignParentRight="true"
         android:background="@drawable/selector_button_header_search"

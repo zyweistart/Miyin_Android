@@ -22,7 +22,7 @@ public class BaseActivity extends AppActivity {
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.main_head_back){
+		if(v.getId()==R.id.head_back){
 			finish();
 		}
 	}
@@ -47,7 +47,7 @@ public class BaseActivity extends AppActivity {
 	}
 	
 	public void setMainHeadTitle(String title){
-		TextView tvTitle=(TextView)findViewById(R.id.main_head_title);
+		TextView tvTitle=(TextView)findViewById(R.id.head_title);
 		if(tvTitle!=null){
 			tvTitle.setText(title);
 		}

@@ -21,13 +21,13 @@ public class ExpertsActivity extends BaseActivity{
 		setContentView(R.layout.activity_experts);
 		setMainHeadTitle(getString(R.string.experts));
 		
-		main_head_1=(Button)findViewById(R.id.main_head_1);
+		main_head_1=(Button)findViewById(R.id.head_1);
 		main_head_1.setText(getString(R.string.experts_list));
 		main_head_1.setVisibility(View.VISIBLE);
-		main_head_2=(Button)findViewById(R.id.main_head_2);
+		main_head_2=(Button)findViewById(R.id.head_2);
 		main_head_2.setText(getString(R.string.experts_answer));
 		main_head_2.setVisibility(View.VISIBLE);
-		main_head_3=(Button)findViewById(R.id.main_head_3);
+		main_head_3=(Button)findViewById(R.id.head_3);
 		main_head_3.setText(getString(R.string.experts_cover));
 		main_head_3.setVisibility(View.VISIBLE);
 		setHeadButtonEnabled(0);
@@ -36,13 +36,13 @@ public class ExpertsActivity extends BaseActivity{
 	
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.main_head_1){
+		if(v.getId()==R.id.head_1){
 			//专家列表
 			setHeadButtonEnabled(0);
-		}else if(v.getId()==R.id.main_head_2){
+		}else if(v.getId()==R.id.head_2){
 			//专家解答
 			setHeadButtonEnabled(1);
-		}else if(v.getId()==R.id.main_head_3){
+		}else if(v.getId()==R.id.head_3){
 			//专家自荐
 			setHeadButtonEnabled(2);
 		}else{

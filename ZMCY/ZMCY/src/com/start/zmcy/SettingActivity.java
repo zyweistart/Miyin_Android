@@ -24,9 +24,11 @@ public class SettingActivity extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setting);
 		setMainHeadTitle(getString(R.string.setting));
+		
 		mTxtSizeSetting=(TextView)findViewById(R.id.txtSizeSetting);
-		mTxtSizeSetting.setText(getString(R.string.sizesetting)+"   中");
 		mTxtVersion=(TextView)findViewById(R.id.txtVersion);
+		
+		mTxtSizeSetting.setText(getString(R.string.sizesetting)+"   中");
 		try {
 			PackageManager packageManager = getPackageManager();
 			PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(),0);
@@ -50,6 +52,8 @@ public class SettingActivity extends BaseActivity{
 			getHandlerContext().makeTextLong("版本检测");
 		}else if(v.getId()==R.id.txtAboutus){
 			startActivity(new Intent(this,AboutUsActivity.class));
+		}else{
+			super.onClick(v);
 		}
 	}
 	

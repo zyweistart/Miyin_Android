@@ -5,32 +5,32 @@
   	android:background="@color/bg_header_n">
     
     <Button 
-        android:id="@+id/main_head_sliding"
+        android:id="@+id/head_sliding"
         style="@style/main_head_button"
         android:layout_alignParentLeft="true"
         android:background="@drawable/selector_button_header_sliding"/>
     
     <TextView 
-        android:id="@+id/main_head_title"
-        android:layout_toRightOf="@id/main_head_sliding"
+        android:id="@+id/head_title"
+        android:layout_toRightOf="@id/head_sliding"
         style="@style/main_head_title"
         android:text="@string/app_name"/>
     
     <Button 
-        android:id="@+id/main_head_login"
+        android:id="@+id/head_login"
         style="@style/main_head_button"
         android:layout_alignParentRight="true"
         android:background="@drawable/selector_button_header_login"/>
     
     <Button 
-        android:id="@+id/main_head_search"
+        android:id="@+id/head_search"
         style="@style/main_head_button"
         android:layout_alignParentRight="true"
         android:background="@drawable/selector_button_header_search"
         android:visibility="gone"/>
     
     <Button 
-        android:id="@+id/main_head_more"
+        android:id="@+id/head_more"
         style="@style/main_head_button"
         android:layout_alignParentRight="true"
         android:background="@drawable/selector_button_header_more"

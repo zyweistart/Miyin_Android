@@ -8,7 +8,7 @@ import android.widget.TextView;
 public class BaseFragmentActivity extends FragmentActivity {
 	
 	public void setMainHeadTitle(String title){
-		TextView tvTitle=(TextView)findViewById(R.id.main_head_title);
+		TextView tvTitle=(TextView)findViewById(R.id.head_title);
 		if(tvTitle!=null){
 			tvTitle.setText(title);
 		}

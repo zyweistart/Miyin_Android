@@ -20,10 +20,10 @@ public class ResourceActivity extends BaseActivity{
 		setContentView(R.layout.activity_resource);
 		setMainHeadTitle(getString(R.string.resources));
 		
-		main_head_1=(Button)findViewById(R.id.main_head_1);
+		main_head_1=(Button)findViewById(R.id.head_1);
 		main_head_1.setText(getString(R.string.product_normal));
 		main_head_1.setVisibility(View.VISIBLE);
-		main_head_2=(Button)findViewById(R.id.main_head_2);
+		main_head_2=(Button)findViewById(R.id.head_2);
 		main_head_2.setText(getString(R.string.product_led));
 		main_head_2.setVisibility(View.VISIBLE);
 		setHeadButtonEnabled(0);
@@ -32,9 +32,9 @@ public class ResourceActivity extends BaseActivity{
 	
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.main_head_1){
+		if(v.getId()==R.id.head_1){
 			setHeadButtonEnabled(0);
-		}else if(v.getId()==R.id.main_head_2){
+		}else if(v.getId()==R.id.head_2){
 			setHeadButtonEnabled(1);
 		}else{
 			super.onClick(v);

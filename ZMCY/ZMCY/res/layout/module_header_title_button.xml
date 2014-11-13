@@ -5,7 +5,7 @@
     android:background="@color/bg_header_n" >
 
     <Button
-        android:id="@+id/main_head_back"
+        android:id="@+id/head_back"
         style="@style/main_head_button"
         android:layout_alignParentLeft="true"
         android:background="@drawable/selector_button_header_sliding" />
@@ -14,26 +14,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" 
-        android:layout_toRightOf="@id/main_head_back">
+        android:layout_toRightOf="@id/head_back">
 
         <Button
-            android:id="@+id/main_head_1"
+            android:id="@+id/head_1"
             style="@style/main_head_title_button"
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/main_head_2"
+            android:id="@+id/head_2"
             style="@style/main_head_title_button"
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/main_head_3"
+            android:id="@+id/head_3"
             style="@style/main_head_title_button"
             android:visibility="gone" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/main_head_search"
+        android:id="@+id/head_search"
         style="@style/main_head_button"
         android:layout_alignParentRight="true"
         android:background="@drawable/selector_button_header_search"

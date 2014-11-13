@@ -20,19 +20,12 @@ import com.start.service.bean.NewsCategory;
 import com.start.zmcy.adapter.ContentFragmentPagerAdapter;
 import com.start.zmcy.content.NewsContentFragment;
 
-public class MainActivity extends BaseFragmentActivity implements
-		OnClickListener {
+public class MainActivity extends BaseFragmentActivity implements OnClickListener {
 
 	List<BaseFragment> nBaseFragments = new ArrayList<BaseFragment>();
 
 	private ScrollView mMainMenu;
-
-	private TextView txtNews;
-	private TextView txtResources;
-	private TextView txtActivities;
-	private TextView txtExperts;
-	private TextView txtApp;
-
+	private TextView txtNews,txtResources,txtActivities,txtExperts,txtApp;
 	private TranslateAnimation mShowAction, mHiddenAction;
 
 	@Override
@@ -85,23 +78,22 @@ public class MainActivity extends BaseFragmentActivity implements
 		vp.setAdapter(new ContentFragmentPagerAdapter(
 				getSupportFragmentManager(), nBaseFragments));
 
-		//显示动画
-		mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+		//显示动画从左向右滑
+		mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, -1.0f,
 				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-				-1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+				0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
 		mShowAction.setDuration(500);
 
-		//隐藏动画
-		mHiddenAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
-				0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-				-1.0f);
+		//隐藏动画从右向左滑
+		mHiddenAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF,0.0f, 
+				Animation.RELATIVE_TO_SELF, -1.0f,Animation.RELATIVE_TO_SELF, 
+				0.0f, Animation.RELATIVE_TO_SELF,0.0f);
 		mHiddenAction.setDuration(500);
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.main_head_sliding) {
+		if (v.getId() == R.id.head_sliding) {
 			if (mMainMenu.isShown()) {
 				mMainMenu.startAnimation(mHiddenAction);   
 				mMainMenu.setVisibility(View.GONE);
@@ -109,7 +101,7 @@ public class MainActivity extends BaseFragmentActivity implements
 				mMainMenu.startAnimation(mShowAction);   
 				mMainMenu.setVisibility(View.VISIBLE);
 			}
-		} else if (v.getId() == R.id.main_head_login) {
+		} else if (v.getId() == R.id.head_login) {
 			// 登录
 			startActivity(new Intent(this, LoginActivity.class));
 		} else if (v.getId() == R.id.txtResources) {

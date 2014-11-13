@@ -15,7 +15,7 @@
         android:id="@+id/txtBindShared"
         style="@style/sliding_left_textview"
         android:drawableLeft="@drawable/ic_bindshared"
-        android:drawableRight="@drawable/ic_arrow"
+        android:drawableRight="@drawable/ic_arrow_right"
         android:text="@string/bindshared" />
 
     <View style="@style/line" />
@@ -36,7 +36,7 @@
         android:id="@+id/txtPushSetting"
         style="@style/sliding_left_textview"
         android:drawableLeft="@drawable/ic_pushsetting"
-        android:drawableRight="@drawable/ic_arrow"
+        android:drawableRight="@drawable/ic_arrow_right"
         android:text="@string/pushsetting" />
 
     <View style="@style/line" />
@@ -70,7 +70,7 @@
         android:id="@+id/txtAboutus"
         style="@style/sliding_left_textview"
         android:drawableLeft="@drawable/ic_aboutus"
-        android:drawableRight="@drawable/ic_arrow"
+        android:drawableRight="@drawable/ic_arrow_right"
         android:text="@string/aboutus" />
 
     <View style="@style/line" />

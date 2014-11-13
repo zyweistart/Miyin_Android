@@ -20,7 +20,7 @@ public class MemberActivity extends BaseActivity{
 	
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.txt_gotologin){
+		if(v.getId()==R.id.txt_account_info){
 			startActivity(new Intent(this,LoginActivity.class));
 		}else if(v.getId()==R.id.txtSigin){
 			getHandlerContext().makeTextLong("签到");
