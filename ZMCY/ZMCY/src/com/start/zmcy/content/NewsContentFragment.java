@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.start.core.BaseFragment;
 import com.start.service.bean.NewsCategory;
 import com.start.zmcy.R;
+import com.start.zmcy.adapter.NewsBannerAdapter;
 
 public class NewsContentFragment  extends BaseFragment {
 
