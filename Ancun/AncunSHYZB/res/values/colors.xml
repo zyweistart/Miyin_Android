@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+   	<color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+	<color name="transparent">#00000000</color>
+   	<color name="bg_activity">#f3f3f3</color>
+   	<color name="bg_header">#0e75d4</color>
+   	<color name="bg_frame">#e7eaee</color>
+	<color name="tab_txt_p">#262d33</color>
+    <color name="tab_bar_s">#262d33</color>
+    <color name="tab_bar_n">#596067</color>
+    <color name="listview_bg_p">#0e75d4</color>
+	
+</resources>

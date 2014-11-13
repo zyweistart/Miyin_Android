@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_width="match_parent" 
+  	android:layout_height="45.0dip"
+  	android:layout_gravity="center"
+  	android:background="@color/bg_header">
+    
+    <Button 
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="onClick"
+        android:layout_marginLeft="10.0dip"
+        android:background="@drawable/selector_button_back"/>
+    
+    <TextView 
+        android:id="@+id/main_head_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+        android:textSize="25.0dip"
+        android:textColor="@color/white"/>
+    
+    <Button 
+        android:id="@+id/btn_right_unsubscribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/selector_button_unsubscribe"
+        android:layout_marginRight="10.0dip"
+        android:visibility="gone"/>
+   	
+</RelativeLayout>
