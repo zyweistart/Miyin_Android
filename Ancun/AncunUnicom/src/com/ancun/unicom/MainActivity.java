@@ -86,8 +86,6 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 		AppService.checkAppUpdate(this, true);
 		
 		mDialContentView.loadData();
-		//首次会加载网络数据再次打开会加载缓存数据
-		mRecordingContentView.getRefreshListServer().initLoad();
 	}
 	
 	@Override
@@ -247,7 +245,11 @@ public class MainActivity extends BaseActivity implements ScrollLayout.OnViewCha
 							mContactsContentView.loadData();
 						}
 					} else if (currentViewIndex == 3) {
-						if(RecordingContentView.isRefreshData){
+						if(RecordingContentView.initRefreshData){
+							//首次会加载网络数据再次打开会加载缓存数据
+							mRecordingContentView.getRefreshListServer().initLoad();
+							RecordingContentView.initRefreshData=false;
+						}else if(RecordingContentView.isRefreshData){
 							mRecordingContentView.refreshData();
 						}
 					}

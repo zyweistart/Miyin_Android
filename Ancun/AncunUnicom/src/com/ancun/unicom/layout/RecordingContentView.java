@@ -56,6 +56,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 	private String searchContentEndDay=AppConstant.EMPTYSTR;
 	
 	//是否刷新数据
+	public static Boolean initRefreshData=true;
 	public static Boolean isRefreshData=false;
 	
 	private XListView mListView;
@@ -204,6 +205,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 			params.put("remark",searchContentRemark);
 		}
 		params.put("cpdelflg", "2");
+		params.put("ordersort","desc");
 		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
