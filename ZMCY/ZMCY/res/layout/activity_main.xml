@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include layout="@layout/module_header_resources" />
+    <include layout="@layout/module_header" />
 
     <start.widget.SlidingLayout
         android:id="@+id/main_slidingLayout"
@@ -79,9 +79,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top" />
             </android.support.v4.view.ViewPager>
-            
-            
-            
             
         </LinearLayout>
     </start.widget.SlidingLayout>

@@ -89,19 +89,14 @@ public class MainActivity  extends BaseFragmentActivity implements OnClickListen
 			}
 		}else if(v.getId()==R.id.txtNews){
 			//新闻
-			setSlidingLeftButtonEnabled(0);
 		}else if(v.getId()==R.id.txtResources){
 			//资源
-			setSlidingLeftButtonEnabled(1);
 		}else if(v.getId()==R.id.txtActivities){
 			//活动
-			setSlidingLeftButtonEnabled(2);
 		}else if(v.getId()==R.id.txtExperts){
 			//专家
-			setSlidingLeftButtonEnabled(3);
 		}else if(v.getId()==R.id.txtApp){
 			//应用 
-			setSlidingLeftButtonEnabled(4);
 		}else if(v.getId()==R.id.txtMember){
 			//会员
 		}

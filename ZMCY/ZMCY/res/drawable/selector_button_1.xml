@@ -5,9 +5,22 @@
             <solid Android:color="@color/bg_header"/>
         </shape>
     </item>
-    <item Android:state_enabled="true">
+    <item Android:state_enabled="true" Android:state_pressed="true">
+        <shape>
+            <solid Android:color="#004ebb"/>
+        </shape>
+    </item>
+    <item Android:state_enabled="true" Android:state_pressed="false">
         <shape>
             <solid Android:color="#004ebb"/>
         </shape>
     </item>
 </selector>
+
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false" android:drawable="@drawable/button_10_p" />
+    <item android:state_pressed="true" android:state_enabled="true" android:drawable="@drawable/button_10_p" />
+    <item android:state_pressed="false" android:state_enabled="true" android:drawable="@drawable/button_10_n" />
+</selector>
+
