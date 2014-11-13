@@ -1,19 +1,36 @@
 package com.start.zmcy;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import start.core.AppConstant;
+import start.core.AppException;
+import start.widget.xlistview.XListView;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 
 import com.start.core.BaseActivity;
+import com.start.service.HttpRunnable;
+import com.start.service.HttpServer;
+import com.start.service.RefreshListServer;
+import com.start.service.RefreshListServer.RefreshListServerListener;
+import com.start.service.Response;
+import com.start.service.User;
+import com.start.zmcy.adapter.ExpertsListAdapter;
 
 /**
  * 专家
  */
-public class ExpertsActivity extends BaseActivity{
+public class ExpertsActivity extends BaseActivity implements RefreshListServerListener{
 	
 	private Button main_head_1;
 	private Button main_head_2;
 	private Button main_head_3;
+	private XListView mListView;
+	private RefreshListServer mRefreshListServer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +49,22 @@ public class ExpertsActivity extends BaseActivity{
 		main_head_3.setVisibility(View.VISIBLE);
 		setHeadButtonEnabled(0);
 		
+		
+		mListView = (XListView) findViewById(R.id.xlv_listview);
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				
+			}
+		});
+		mRefreshListServer = new RefreshListServer(this, mListView,new ExpertsListAdapter(this));
+		mRefreshListServer.setCacheTag(TAG);
+		mRefreshListServer.setListTag("newslist");
+		mRefreshListServer.setInfoTag("newsinfo");
+		mRefreshListServer.setRefreshListServerListener(this);
+
+		mRefreshListServer.initLoad();
  	}
 	
 	@Override
@@ -54,6 +87,32 @@ public class ExpertsActivity extends BaseActivity{
 		main_head_1.setEnabled(index==0?false:true);
 		main_head_2.setEnabled(index==1?false:true);
 		main_head_3.setEnabled(index==2?false:true);
+	}
+	
+	@Override
+	public void onLoading(final int HANDLER) {
+		HttpServer hServer = new HttpServer("htinfonewsQuery",mRefreshListServer.getHandlerContext());
+		Map<String,String> headers=new HashMap<String,String>();
+		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+		hServer.setHeaders(headers);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("accessid", User.USER_ACCESSID_LOCAL);
+		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
+		params.put("type", AppConstant.EMPTYSTR);
+		params.put("title", AppConstant.EMPTYSTR);
+		params.put("content", AppConstant.EMPTYSTR);
+		params.put("ordersort", AppConstant.EMPTYSTR);
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) throws AppException {
+				mRefreshListServer.resolve(response);
+				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+			}
+
+		}, false);
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import start.core.AppConstant;
+import start.core.AppContext;
 import android.text.TextUtils;
 
 import com.start.core.Constant.Preferences;
@@ -13,10 +14,11 @@ public class User {
 
 	public static String ACCESSID = AppConstant.EMPTYSTR;
 	public static String ACCESSKEY = AppConstant.EMPTYSTR;
-	public static final String USER_ACCESSID_LOCAL = BaseContext.getInstance().isTestEnvironmental() ? 
-			"987f1b8d52b7b4a0b2de095e831e5abc":"4a069ace58ba0918a3aa11b62b472b9e";
-	public static final String USER_ACCESSKEY_LOCAL = BaseContext.getInstance().isTestEnvironmental() ? 
-			"OGFlZGJiZDAzZDdkM2QyNDhiY2NhMjI2ZTMwMTJlOWE=":"MThjMDE3ZjAwMTE3NTIzNmE4OTM2ZjQ5N2M2Y2JhNDc=";
+	public static final String USER_ACCESSID_LOCAL = AppContext.getInstance().isTestEnvironmental() ? 
+			"1cbaaa4c6e667f169e2630f871cb57cd":"3c075d12a568dbc5be68902f99c24393";
+	public static final String USER_ACCESSKEY_LOCAL =AppContext.getInstance().isTestEnvironmental() ? 
+			"MjAwOTAwMWFlYjUyNmU1MDY1NDNlMzU3MGM1NmFjOTk=":"MDY4YmVmMDM2NGM0ODliMGVhYmQ1MDI1NzE5YzQwOWI=";
+	
 	
 	private Boolean login;
 	private static User mUser;

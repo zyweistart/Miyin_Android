@@ -23,7 +23,7 @@ public class BaseContext extends AppContext {
         getDBManager();
     }
     
-	@Override
+    @Override
 	public Boolean isTestEnvironmental() {
 		return true;
 	}
@@ -31,8 +31,8 @@ public class BaseContext extends AppContext {
 	@Override
 	public String getServerURL() {
 		return isTestEnvironmental() ?
-				"http://192.168.0.223:2230/http/HttpService":
-					"http://192.168.0.221:8888/accore/http/HttpService";
+				"http://115.238.38.126:6666/http/HttpService":
+					"http://account.chinacloudapp.cn:81/pwyl/http/HttpService";
 	}
 	
 	@Override
