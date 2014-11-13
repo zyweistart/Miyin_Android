@@ -36,44 +36,88 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10.0dip"
             android:background="@drawable/selector_button_1"
             android:onClick="onClick"
-            android:textSize="16.0dip" 
+            android:padding="10.0dip"
+            android:text="@string/login"
             android:textColor="@color/white"
-            android:text="@string/login"/>
+            android:textSize="16.0dip" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20.0dip" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16.0dip"
+                android:textColor="#969696"
+                android:text="或用以下账号登录"/>
+            
+        </LinearLayout>
         
         <View
             android:layout_width="match_parent"
-            android:layout_height="10.0dip" />
+            android:layout_height="20.0dip" />
         
-        <RelativeLayout 
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            
-            <View 
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_qq"
+                android:onClick="onClick" />
+
+            <View
                 android:id="@+id/vcenter"
                 android:layout_width="50.0dip"
-                android:layout_height="1.0dip"
-                android:layout_centerInParent="true"/>
+                android:layout_height="1.0dip"/>
             
             <Button
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:background="@drawable/ic_qq"
-	            android:layout_toLeftOf="@id/vcenter"
-	            android:onClick="onClick"/>
-            
-            <Button
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:background="@drawable/ic_wexin"
-	            android:layout_toRightOf="@id/vcenter"
-	            android:onClick="onClick"/>
-            
-        </RelativeLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_wexin"
+                android:onClick="onClick" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20.0dip" />
         
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16.0dip"
+                android:textColor="#969696"
+                android:text="@string/noaccount"/>
+            
+            <TextView
+                android:id="@+id/txtRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16.0dip"
+                android:textColor="#6890e8"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:text="@string/gotoregister"/>
+            
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

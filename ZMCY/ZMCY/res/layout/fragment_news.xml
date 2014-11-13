@@ -2,12 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_activity"  >
-    
-    <TextView 
-        android:id="@+id/txtname"
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
+    <start.widget.StartViewPager
+        android:id="@+id/news_banner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    
+        android:layout_height="150.0dip" />
+
+    <TextView
+        style="@style/sliding_left_textview"
+        android:drawableLeft="@drawable/ic_news"
+        android:text="@string/news" />
+
 </LinearLayout>

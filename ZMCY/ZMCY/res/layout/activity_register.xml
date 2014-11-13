@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
+    <include layout="@layout/module_header_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10.0dip" >
+
+        <start.widget.CustomEditText
+            android:id="@+id/et_register_account"
+            style="@style/edittext1"
+            android:hint="@string/accounthint" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10.0dip" />
+
+        <start.widget.CustomEditText
+            android:id="@+id/et_register_password"
+            style="@style/edittext1"
+            android:hint="@string/passwordhint"
+            android:inputType="textPassword" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10.0dip" />
+
+         <start.widget.CustomEditText
+            android:id="@+id/et_register_repassword"
+            style="@style/edittext1"
+            android:hint="@string/passwordhint"
+            android:inputType="textPassword" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10.0dip" />
+        
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_1"
+            android:onClick="onClick"
+            android:padding="10.0dip"
+            android:textSize="16.0dip" 
+            android:textColor="@color/white"
+            android:text="@string/gotoregister"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20.0dip" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16.0dip"
+                android:textColor="#969696"
+                android:text="或用以下账号登录"/>
+            
+        </LinearLayout>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20.0dip" />
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_qq"
+                android:onClick="onClick" />
+
+            <View
+                android:id="@+id/vcenter"
+                android:layout_width="50.0dip"
+                android:layout_height="1.0dip"/>
+            
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_wexin"
+                android:onClick="onClick" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

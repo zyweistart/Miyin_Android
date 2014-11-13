@@ -54,28 +54,28 @@ public class MainActivity  extends BaseFragmentActivity implements OnClickListen
        
         NewsCategory nc=new NewsCategory();
 		nc.setTitle("头条");
-        nBaseFragments.add(new NewsContentFragment(nc));
+        nBaseFragments.add(new NewsContentFragment(this,nc));
 		nc=new NewsCategory();
 		nc.setTitle("资讯");
-        nBaseFragments.add(new NewsContentFragment(nc));
+        nBaseFragments.add(new NewsContentFragment(this,nc));
         nc=new NewsCategory();
 		nc.setTitle("会讯");
-        nBaseFragments.add(new NewsContentFragment(nc));
+        nBaseFragments.add(new NewsContentFragment(this,nc));
         nc=new NewsCategory();
 		nc.setTitle("政策法规");
-        nBaseFragments.add(new NewsContentFragment(nc));
+        nBaseFragments.add(new NewsContentFragment(this,nc));
         nc=new NewsCategory();
 		nc.setTitle("标准检测");
-        nBaseFragments.add(new NewsContentFragment(nc));
+        nBaseFragments.add(new NewsContentFragment(this,nc));
 		nc=new NewsCategory();
 		nc.setTitle("国内展");
-        nBaseFragments.add(new NewsContentFragment(nc));
+        nBaseFragments.add(new NewsContentFragment(this,nc));
 		nc=new NewsCategory();
 		nc.setTitle("国外展");
-        nBaseFragments.add(new NewsContentFragment(nc));
+        nBaseFragments.add(new NewsContentFragment(this,nc));
 		nc=new NewsCategory();
 		nc.setTitle("工程招标");
-        nBaseFragments.add(new NewsContentFragment(nc));
+        nBaseFragments.add(new NewsContentFragment(this,nc));
         vp.setAdapter(new ContentFragmentPagerAdapter(getSupportFragmentManager(),nBaseFragments));
     }
 
@@ -87,6 +87,9 @@ public class MainActivity  extends BaseFragmentActivity implements OnClickListen
 			} else {
 				mSlidingLayout.scrollToLeftLayout();
 			}
+		}else if(v.getId()==R.id.main_head_login){
+			//登录
+			startActivity(new Intent(this,LoginActivity.class));
 		}else if(v.getId()==R.id.txtResources){
 			//资源
 			startActivity(new Intent(this,ResourceActivity.class));

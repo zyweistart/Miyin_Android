@@ -5,6 +5,7 @@ import start.core.AppException;
 import start.utils.MD5;
 import start.utils.StringUtils;
 import start.widget.CustomEditText;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
@@ -26,7 +27,6 @@ public class LoginActivity extends BaseActivity{
 	
 	private CustomEditText et_login_account;
 	private CustomEditText et_login_password;
-//	private CheckBox cb_login_autologin;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class LoginActivity extends BaseActivity{
 		setMainHeadTitle(getString(R.string.login));
 		et_login_account=(CustomEditText)findViewById(R.id.et_login_account);
 		et_login_password=(CustomEditText)findViewById(R.id.et_login_password);
-//		cb_login_autologin=(CheckBox)findViewById(R.id.cb_login_autologin);
 	}
 	
 	@Override
@@ -51,7 +50,6 @@ public class LoginActivity extends BaseActivity{
 				}
 				et_login_account.setText(account);
 				Boolean autoLogin=getAppContext().currentUser().getCacheAutoLogin();
-//				cb_login_autologin.setChecked(autoLogin);
 				if(autoLogin){
 					String password=getAppContext().currentUser().getCachePassword();
 					if(StringUtils.isEmpty(password)){
@@ -85,14 +83,10 @@ public class LoginActivity extends BaseActivity{
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
-//			Boolean checked=cb_login_autologin.isChecked();
 			login(account,MD5.md5(password),true);
-//		}else if(v.getId()==R.id.txt_register){
-//			Intent intent=new Intent(this,RegisterActivity.class);
-//			startActivity(intent);
-//		}else if(v.getId()==R.id.txt_reset_password){
-//			Intent intent=new Intent(this,ResetPassWordActivity.class);
-//			startActivity(intent);
+		}else if(v.getId()==R.id.txtRegister){
+			Intent intent=new Intent(this,RegisterActivity.class);
+			startActivity(intent);
 		}else{
 			super.onClick(v);
 		}

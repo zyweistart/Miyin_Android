@@ -3,6 +3,7 @@
 
     <string name="app_name">中国照明产业</string>
     <string name="login">登录</string>
+    <string name="registernewuser">注册新用户</string>
     <string name="gotologin">立即登录</string>
     <string name="gotoregister">立即注册</string>
     <string name="noaccount">没有账号?</string>

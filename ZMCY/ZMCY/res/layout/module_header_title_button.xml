@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" 
-        android:layout_centerInParent="true">
+        android:layout_toRightOf="@id/main_head_back">
 
         <Button
             android:id="@+id/main_head_1"
