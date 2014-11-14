@@ -28,7 +28,7 @@ public class BaseContext extends AppContext {
     
 	@Override
 	public Boolean isTestEnvironmental() {
-		return false;
+		return true;
 	}
 
 	@Override

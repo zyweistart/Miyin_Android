@@ -35,11 +35,15 @@ public class ExpertsQuestionAdapter extends AppListAdapter{
 		if (convertView == null) {
 			convertView = mActivity.getLayoutInflater().inflate(R.layout.listitem_experts_question, null);
 			holder = new HolderView();
+			holder.question_title = (TextView)convertView.findViewById(R.id.question_title);
+			holder.question_description = (TextView)convertView.findViewById(R.id.question_description);
 			convertView.setTag(holder);
 		} else {
 			holder = (HolderView) convertView.getTag();
 		}
-		Map<String,Object> data=mItemDatas.get(position);
+//		Map<String,Object> data=mItemDatas.get(position);
+		holder.question_title.setText("");
+		holder.question_description.setText("");
 		return convertView;
 	}
 	

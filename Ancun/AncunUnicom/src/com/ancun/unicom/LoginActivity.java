@@ -106,7 +106,7 @@ public class LoginActivity extends BaseActivity {
 			Boolean checked=cb_login_autologin.isChecked();
 			login(account,MD5.md5(password),checked);
 		}else if(v.getId()==R.id.txt_register){
-			Intent intent=new Intent(this,RegisterActivity.class);
+			Intent intent=new Intent(this,Register1Activity.class);
 			startActivity(intent);
 		}else if(v.getId()==R.id.txt_reset_password){
 			Intent intent=new Intent(this,ResetPassWordActivity.class);
