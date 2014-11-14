@@ -19,12 +19,14 @@
                         "bannerlist": [
                             {
                                 "bannerinfo": {
-                                    "recordno": "子记录编号1"
+                                    "recordno": "子记录编号1",
+                        			"url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
                                 }
                             },
                             {
                                 "bannerinfo": {
-                                    "recordno": "子记录编号1"
+                                    "recordno": "子记录编号1",
+                        			"url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
                                 }
                             }
                         ]
@@ -33,49 +35,57 @@
                 {
                     "newsinfo": {
                         "recordno": "第2条",
-                        "type":"2"
+                        "type":"2",
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
                     }
                 },
                 {
                     "newsinfo": {
                         "recordno": "第3条",
-                        "type":"2"
+                        "type":"2",
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_2.png"
                     }
                 },
                 {
                     "newsinfo": {
                         "recordno": "第4条",
-                        "type":"3"
+                        "type":"3",
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_3.png"
                     }
                 },
                 {
                     "newsinfo": {
                         "recordno": "第5条",
-                        "type":"2"
+                        "type":"2",
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_4.png"
                     }
                 },
                 {
                     "newsinfo": {
                         "recordno": "第6条",
-                        "type":"2"
+                        "type":"2",
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_5.png"
                     }
                 },
                 {
                     "newsinfo": {
                         "recordno": "第7条",
-                        "type":"2"
+                        "type":"2",
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
                     }
                 },
                 {
                     "newsinfo": {
                         "recordno": "第8条",
-                        "type":"2"
+                        "type":"2",
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_2.png"
                     }
                 },
                 {
                     "newsinfo": {
                         "recordno": "第9条",
-                        "type":"2"
+                        "type":"2",
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_3.png"
                     }
                 }
             ]

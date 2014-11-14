@@ -3,6 +3,7 @@ package com.ancun.service;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import start.core.AppException;
 import start.core.HandlerContext;
@@ -125,6 +126,28 @@ public class AppService {
 			activity.startActivity(new Intent(activity, LockSetupActivity.class));
 			BaseContext.getSharedPreferences().putBoolean(Preferences.SP_IS_RESET_LOCK_KEY, false);
 		}
+	}
+	
+	/**
+	 * 密码规则检测
+	 */
+	public static boolean passwordCheck(String password){
+		if(TextUtils.isEmpty(password)){
+			return false;
+		}
+		if(password.length()<6||password.length()>16){
+			return false;
+		}
+		//不能全为数字
+		Pattern pattern = Pattern.compile("[0-9]*"); 
+	    if(pattern.matcher(password).matches()){
+	    	return false;
+	    }
+	    //不能全为字母
+	    if(password.matches("^[a-zA-Z]*")){
+	    	return false;
+	    }
+		return true;
 	}
 	
 }

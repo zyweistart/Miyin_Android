@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.Handler;
+import com.ancun.service.AppService;
 import com.ancun.service.User;
 
 /**
@@ -171,6 +172,10 @@ public class RegisterActivity extends BaseActivity {
 			}
 			if(!password.equals(String.valueOf(et_setting_repassword.getText()))){
 				getHandlerContext().makeTextLong(getString(R.string.twopwddifftip));
+				return;
+			}
+			if(!AppService.passwordCheck(password)){
+				getHandlerContext().makeTextLong(getString(R.string.passwordformaterror));
 				return;
 			}
 			HttpServer hServer=new HttpServer(Constant.URL.userSignup, getHandlerContext());

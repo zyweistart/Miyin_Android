@@ -18,6 +18,7 @@ import android.widget.EditText;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
+import com.ancun.service.AppService;
 import com.ancun.service.ButtonTextWatcher;
 import com.ancun.service.User;
 
@@ -60,6 +61,10 @@ public class ModifyPasswordActivity extends BaseActivity {
 				et_new_pwd.setText(R.string.empty);
 				et_new_repwd.setText(R.string.empty);
 				getHandlerContext().makeTextLong(getString(R.string.twopwddifftip));
+				return;
+			}
+			if(!AppService.passwordCheck(newpassword)){
+				getHandlerContext().makeTextLong(getString(R.string.passwordformaterror));
 				return;
 			}
 			final String pwd=MD5.md5(newpassword);

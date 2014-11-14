@@ -35,6 +35,7 @@
     <string name="pwdemptytip">密码不能为空</string>
     <string name="autocodeemptytip">验证码不能为空</string>
     <string name="twopwddifftip">二次密码输入不一致</string>
+    <string name="passwordformaterror">密码格式不正确</string>
     <string name="feedbackcontentemptytip">请输入反馈内容</string>
     <string name="usernameorpassworderrortip">用户名或密码有误</string>
     <string name="changepasswordsuccess">修改密码成功</string>

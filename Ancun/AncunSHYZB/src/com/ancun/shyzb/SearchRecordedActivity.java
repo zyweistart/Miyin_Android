@@ -3,6 +3,8 @@ package com.ancun.shyzb;
 import java.util.Calendar;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -121,6 +123,22 @@ public class SearchRecordedActivity extends BaseActivity{
 				}
 				
 			}, startYear, startMonth-1,startDay);
+			dialog.setCancelable(true);
+			dialog.setCanceledOnTouchOutside(true);
+			dialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancle),
+	                new DialogInterface.OnClickListener() {
+	                    @Override
+	                    public void onClick(DialogInterface dialog, int which) {
+	                    	etStartDay.setText("");
+	                    }
+	                });
+			dialog.setOnCancelListener(new OnCancelListener() {
+				
+				@Override
+				public void onCancel(DialogInterface dialog) {
+					etStartDay.setText("");
+				}
+			});
 			dialog.show();
 		}else if(v.getId()==R.id.search_content_btn_endday){
 			DatePickerDialog dialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -148,6 +166,22 @@ public class SearchRecordedActivity extends BaseActivity{
 					etEndDay.setText(getDateDisplayFormat(endYear,endMonth,endDay,"-"));
 				}
 			}, endYear, endMonth-1,endDay);
+			dialog.setCancelable(true);
+			dialog.setCanceledOnTouchOutside(true);
+			dialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancle),
+	                new DialogInterface.OnClickListener() {
+	                    @Override
+	                    public void onClick(DialogInterface dialog, int which) {
+	                    	etEndDay.setText("");
+	                    }
+	                });
+			dialog.setOnCancelListener(new OnCancelListener() {
+				
+				@Override
+				public void onCancel(DialogInterface dialog) {
+					etEndDay.setText("");
+				}
+			});
 			dialog.show();
 		}else if(v.getId()==R.id.search_content_btnSearch){
 			
