@@ -1,74 +1,72 @@
 package com.start.zmcy.content;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import start.widget.StartViewPager;
-import android.app.Activity;
+import start.core.AppConstant;
+import start.core.AppException;
+import start.widget.xlistview.XListView;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.start.core.BaseFragment;
+import com.start.core.BaseFragmentActivity;
+import com.start.service.HttpRunnable;
+import com.start.service.HttpServer;
+import com.start.service.RefreshListServer;
+import com.start.service.RefreshListServer.RefreshListServerListener;
+import com.start.service.Response;
+import com.start.service.User;
 import com.start.service.bean.NewsCategory;
 import com.start.zmcy.R;
-import com.start.zmcy.adapter.NewsBannerAdapter;
+import com.start.zmcy.adapter.ExpertsListAdapter;
 
-public class NewsContentFragment  extends BaseFragment {
+public class NewsContentFragment  extends BaseFragment implements RefreshListServerListener {
 
-	private List<ImageView> imageViews;
-	
-	private int[] imageResId = new int[] {
-			R.drawable.default_banner_1,
-			R.drawable.default_banner_2,
-			R.drawable.default_banner_3,
-			R.drawable.default_banner_4,
-			R.drawable.default_banner_5 };
-	
-	private Activity mActivity;
 	private NewsCategory mCategory;
-	private View mCurrentView;
-	private StartViewPager mBannerPager;
-	private NewsBannerAdapter mNewsBannerAdapter;
+	private BaseFragmentActivity mActivity;
 	
-    public NewsContentFragment(Activity activity,NewsCategory category){
+	private View mCurrentView;
+	private XListView mListView;
+	private RefreshListServer mRefreshListServer;
+	
+    public NewsContentFragment(BaseFragmentActivity activity,NewsCategory category){
     	super();
     	this.mActivity=activity;
     	this.mCategory=category;
     	setTitle(this.mCategory.getTitle());
-    	imageViews = new ArrayList<ImageView>();
-		for (int i = 0; i < imageResId.length; i++) {
-			ImageView imageView = new ImageView(this.mActivity);
-			imageView.setImageResource(imageResId[i]);
-			imageViews.add(imageView);
-		}
     }
     
     @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		LayoutInflater inflater = getActivity().getLayoutInflater();
-		mCurrentView = inflater.inflate(R.layout.fragment_news,(ViewGroup)getActivity().findViewById(R.id.mViewPager), false);
-		mBannerPager=(StartViewPager)mCurrentView.findViewById(R.id.news_banner);
-		mBannerPager.setOffscreenPageLimit(imageResId.length);
-		mNewsBannerAdapter=new NewsBannerAdapter(this.mActivity);
-		mNewsBannerAdapter.setItemDatas(imageViews);
-		mBannerPager.setAdapter(mNewsBannerAdapter);
+		mCurrentView = inflater.inflate(R.layout.fragment_news,null);
+		
+		mListView = (XListView)mCurrentView.findViewById(R.id.xlv_listview);
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				
+			}
+		});
+		mRefreshListServer = new RefreshListServer(mActivity,mActivity.getHandlerContext(), mListView,new ExpertsListAdapter(mActivity));
+		mRefreshListServer.setCacheTag("NewsContentFragment");
+		mRefreshListServer.setListTag("newslist");
+		mRefreshListServer.setInfoTag("newsinfo");
+		mRefreshListServer.setRefreshListServerListener(this);
+
+		mRefreshListServer.initLoad();
+		
 	}
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//		if(mCurrentView==null){
-//			mCurrentView=inflater.inflate(R.layout.fragment_news, null);
-////			mCurrentView=inflater.inflate(R.layout.fragment_news, container, false);
-//			mBannerPager=(StartViewPager)mCurrentView.findViewById(R.id.news_banner);
-//			mBannerPager.setOffscreenPageLimit(imageResId.length);
-//			mNewsBannerAdapter=new NewsBannerAdapter(this.mActivity);
-//			mNewsBannerAdapter.setItemDatas(imageViews);
-//			mBannerPager.setAdapter(mNewsBannerAdapter);
-//        }
 		//缓存的rootView需要判断是否已经被加过parent,如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
         ViewGroup parent = (ViewGroup)mCurrentView.getParent();
         if (parent != null) {
@@ -76,5 +74,31 @@ public class NewsContentFragment  extends BaseFragment {
         }
         return mCurrentView;
     }
+	
+	@Override
+	public void onLoading(final int HANDLER) {
+		HttpServer hServer = new HttpServer("htinfonewsQuery",mRefreshListServer.getHandlerContext());
+		Map<String,String> headers=new HashMap<String,String>();
+		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+		hServer.setHeaders(headers);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("accessid", User.USER_ACCESSID_LOCAL);
+		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
+		params.put("type", AppConstant.EMPTYSTR);
+		params.put("title", AppConstant.EMPTYSTR);
+		params.put("content", AppConstant.EMPTYSTR);
+		params.put("ordersort", AppConstant.EMPTYSTR);
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) throws AppException {
+				mRefreshListServer.resolve(response);
+				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+			}
+
+		}, false);
+	}
     
 }

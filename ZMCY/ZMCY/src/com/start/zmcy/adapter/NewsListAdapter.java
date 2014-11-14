@@ -22,9 +22,9 @@ import android.widget.TextView;
 import com.start.service.AppListAdapter;
 import com.start.zmcy.R;
 
-public class ExpertsListAdapter extends AppListAdapter{
+public class NewsListAdapter extends AppListAdapter{
 
-	public ExpertsListAdapter(Activity activity) {
+	public NewsListAdapter(Activity activity) {
 		super(activity);
 	}
 

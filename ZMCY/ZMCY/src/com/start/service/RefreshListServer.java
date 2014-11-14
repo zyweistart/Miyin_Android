@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import start.core.AppActivity;
 import start.core.AppConstant;
 import start.core.AppConstant.Handler;
 import start.core.AppConstant.ResultCode;
@@ -15,6 +14,7 @@ import start.core.HandlerContext.HandleContextListener;
 import start.utils.TimeUtils;
 import start.widget.xlistview.XListView;
 import start.widget.xlistview.XListView.IXListViewListener;
+import android.content.Context;
 import android.os.Message;
 import android.text.TextUtils;
 
@@ -23,16 +23,18 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	private Boolean isDataLoadDone,isHideLoadMore;
 	private int mCurrentPage;
 	private String cacheTag;
-	private AppActivity mActivity;
+	private Context mContext;
 	private XListView mCurrentListView;
+	private HandlerContext mExternalHandlerContext;
 	private HandlerContext mHandlerContext;
 	private RefreshListServerListener mRefreshListServerListener;
 	private AppListAdapter mBaseListAdapter;
 	private List<Map<String,Object>> mItemDatas = new ArrayList<Map<String,Object>>();
 	private String listTag,infoTag;
 	
-	public RefreshListServer(AppActivity activity,XListView listView,AppListAdapter listAdapter){
-		this.mActivity=activity;
+	public RefreshListServer(Context activity,HandlerContext handlerContext,XListView listView,AppListAdapter listAdapter){
+		this.mContext=activity;
+		this.mExternalHandlerContext=handlerContext;
 		this.mCurrentListView=listView;
 		this.mCurrentListView.setXListViewListener(this);
 		this.mCurrentListView.setPullRefreshEnable(true);
@@ -117,7 +119,9 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 				Message message=new Message();
 				message.what=msg.what;
 				message.obj=msg.obj;
-				mActivity.getHandlerContext().getHandler().sendMessage(message);
+				if(mExternalHandlerContext!=null){
+					mExternalHandlerContext.getHandler().sendMessage(message);
+				}
 				break;
 		}
 	}
@@ -189,7 +193,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 
 	public HandlerContext getHandlerContext() {
 		if(mHandlerContext==null){
-			mHandlerContext=new HandlerContext(this.mActivity);
+			mHandlerContext=new HandlerContext(this.mContext);
 			mHandlerContext.setListener(this);
 		}
 		return mHandlerContext;

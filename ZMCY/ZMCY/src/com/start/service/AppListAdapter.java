@@ -3,7 +3,7 @@ package com.start.service;
 import java.util.List;
 import java.util.Map;
 
-import start.core.AppActivity;
+import android.app.Activity;
 import android.widget.BaseAdapter;
 
 /**
@@ -15,10 +15,10 @@ import android.widget.BaseAdapter;
  */
 public abstract class AppListAdapter extends BaseAdapter {
 
-	protected AppActivity mActivity;
+	protected Activity mActivity;
 	protected List<Map<String,Object>> mItemDatas;
 	
-	public AppListAdapter(AppActivity activity){
+	public AppListAdapter(Activity activity){
 		this.mActivity=activity;
 	}
 	

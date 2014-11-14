@@ -49,7 +49,6 @@ public class ExpertsActivity extends BaseActivity implements RefreshListServerLi
 		main_head_3.setVisibility(View.VISIBLE);
 		setHeadButtonEnabled(0);
 		
-		
 		mListView = (XListView) findViewById(R.id.xlv_listview);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -58,7 +57,7 @@ public class ExpertsActivity extends BaseActivity implements RefreshListServerLi
 				
 			}
 		});
-		mRefreshListServer = new RefreshListServer(this, mListView,new ExpertsListAdapter(this));
+		mRefreshListServer = new RefreshListServer(this,getHandlerContext(), mListView,new ExpertsListAdapter(this));
 		mRefreshListServer.setCacheTag(TAG);
 		mRefreshListServer.setListTag("newslist");
 		mRefreshListServer.setInfoTag("newsinfo");
