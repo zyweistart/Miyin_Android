@@ -11,6 +11,7 @@
     <string name="accounthint">邮箱/手机号</string>
     <string name="passwordhint">请输入密码</string>
     <string name="news">资讯</string>
+    <string name="newsdetail">照明产业新闻</string>
     <string name="resources">资源</string>
     <string name="activities">活动</string>
     <string name="experts">专家</string>
@@ -41,5 +42,9 @@
     <string name="cleancache">清理缓存</string>
     <string name="version">版本检测</string>
     <string name="aboutus">关于我们</string>
+    
+    <string name="cleanfile_sure">是否删除本地所有缓存文件？</string>
+    <string name="cleanfile_success">成功清理本地所有文件</string>
+    <string name="cleanfile_fail">清理本地文件失败</string>
 
 </resources>

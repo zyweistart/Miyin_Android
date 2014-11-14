@@ -42,8 +42,8 @@ public class ExpertsQuestionAdapter extends AppListAdapter{
 			holder = (HolderView) convertView.getTag();
 		}
 //		Map<String,Object> data=mItemDatas.get(position);
-		holder.question_title.setText("");
-		holder.question_description.setText("");
+		holder.question_title.setText("fjlskafjl7932874932ldkjfl jdls 在jlsj困困要 ");
+		holder.question_description.setText("困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困");
 		return convertView;
 	}
 	

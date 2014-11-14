@@ -24,5 +24,22 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/selector_button_header_search"
         android:visibility="gone" />
+    
+    <Button
+        android:id="@+id/head_more"
+        style="@style/main_head_button"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/selector_button_header_more"
+        android:visibility="gone" />
 
+    <TextView 
+        android:id="@+id/head_child_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/head_more"
+        android:textSize="16.0dip"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
+    
 </RelativeLayout>

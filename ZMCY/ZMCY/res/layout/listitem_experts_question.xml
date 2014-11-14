@@ -14,18 +14,18 @@
         android:singleLine="true"
         android:ellipsize="end"
         android:textColor="#333333"
-        android:textSize="16.0dip"
-        android:text="请问LED灯具不亮什么问题?" />
+        android:textSize="16.0dip"/>
     
     <TextView
         android:id="@+id/question_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10.0dip"
+        android:drawableLeft="@drawable/ic_reply"
+        android:drawablePadding="5.0dip"
         android:ellipsize="end"
         android:maxLines="3"
         android:textColor="#adadad"
-        android:textSize="16.0dip"
-        android:text="请问LED灯具不请问LED灯具不亮什么问题?请问LED灯具不亮什么问题?请问LED灯具不亮什么问题?请问LED灯具不亮什么问题?亮什么问题?请问LED灯具不亮什么问题?请问LED灯具不亮什么问题?请问LED灯具不亮什么问题?请问LED灯具不亮什么问题?" />
+        android:textSize="16.0dip"/>
 
 </LinearLayout>

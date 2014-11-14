@@ -161,9 +161,9 @@ public final class Constant {
 		 */
 		public static final String SP_VERSION_DATA = "SP_VERSION_DATA";
 		/**
-		 * 呼叫请求号码
+		 * 字体设置
 		 */
-		public static final String SP_CALL_DIAL = "SP_CALL_DIAL";
+		public static final String SP_SIZE_SETTING = "SP_SIZE_SETTING";
 		
 	}
 	

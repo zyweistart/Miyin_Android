@@ -6,6 +6,7 @@ import java.util.Map;
 import start.core.AppConstant;
 import start.core.AppException;
 import start.widget.xlistview.XListView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,10 @@ import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
 import com.start.service.User;
 import com.start.service.bean.NewsCategory;
+import com.start.zmcy.NewsDetailActivity;
 import com.start.zmcy.R;
 import com.start.zmcy.adapter.NewsListAdapter;
+import com.start.zmcy.adapter.NewsListAdapter.HolderView;
 
 public class NewsContentFragment  extends BaseFragment implements RefreshListServerListener {
 
@@ -52,8 +55,15 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				
+				HolderView hv=(HolderView)view.getTag();
+				int i=hv.position;
+				Bundle bundle=new Bundle();
+				bundle.putString(NewsDetailActivity.NEWSID, i+"");
+				Intent intent=new Intent(mActivity,NewsDetailActivity.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
 			}
+			
 		});
 		mRefreshListServer = new RefreshListServer(mActivity,mActivity.getHandlerContext(), mListView,new NewsListAdapter(mActivity));
 		mRefreshListServer.setCacheTag("NewsContentFragment");

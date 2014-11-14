@@ -104,17 +104,17 @@ public class NewsListAdapter extends AppListAdapter{
 		return convertView;
 	}
 	
-	private class HolderView {
-		private int position;
+	public class HolderView {
+		public int position;
 		
-		private LinearLayout news_item;
-		private RelativeLayout advertising_item;
+		public LinearLayout news_item;
+		public RelativeLayout advertising_item;
 		
-		private StartViewPager startViewPager;
-		private ImageView news_pic;
-		private TextView news_title;
-		private TextView news_description;
-		private ImageView advertising_close;
+		public StartViewPager startViewPager;
+		public ImageView news_pic;
+		public TextView news_title;
+		public TextView news_description;
+		public ImageView advertising_close;
 	}
 	
 	public void setItemVisibility(HolderView holder,int index){
