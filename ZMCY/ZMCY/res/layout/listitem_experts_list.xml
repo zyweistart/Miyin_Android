@@ -2,14 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="vertical" >
 
-    <TextView
-	        android:id="@+id/listitem_child_title"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="15.0dip"
-	        android:textColor="#c3c3c3"/>
+    <start.widget.StartViewPager
+        android:id="@+id/news_banner"
+        android:layout_width="match_parent"
+        android:layout_height="150.0dip" />
+
+    <LinearLayout
+        android:id="@+id/experts_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/listitem_child_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#c3c3c3"
+            android:textSize="15.0dip" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/advertising_item"
+        android:layout_width="match_parent"
+        android:layout_height="150.0dip"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/news_advertising"
+            android:layout_width="match_parent"
+            android:layout_height="150.0dip"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/empty" />
+        
+    </RelativeLayout>
 
 </LinearLayout>

@@ -6,7 +6,7 @@
         },
         "content": {
             "pageinfo": {
-                "totalcount": 5,
+                "totalcount": 4,
                 "totalpage": 1,
                 "pagesize": 8,
                 "currentpage": 1
@@ -14,15 +14,16 @@
             "newslist": [
                 {
                     "newsinfo": {
-                        "recordno": "记录编号0",
-                        "newslist": [
+                        "recordno": "第1条",
+                        "type":"1",
+                        "bannerlist": [
                             {
-                                "newsinfo": {
+                                "bannerinfo": {
                                     "recordno": "子记录编号1"
                                 }
                             },
                             {
-                                "newsinfo": {
+                                "bannerinfo": {
                                     "recordno": "子记录编号1"
                                 }
                             }
@@ -31,12 +32,20 @@
                 },
                 {
                     "newsinfo": {
-                        "recordno": "记录编号1"
+                        "recordno": "第2条",
+                        "type":"2"
                     }
                 },
                 {
                     "newsinfo": {
-                        "recordno": "记录编号2"
+                        "recordno": "第3条",
+                        "type":"2"
+                    }
+                },
+                {
+                    "newsinfo": {
+                        "recordno": "第4条",
+                        "type":"3"
                     }
                 }
             ]
