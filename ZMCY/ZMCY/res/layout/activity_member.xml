@@ -41,7 +41,7 @@
     <TextView
         android:id="@+id/txtSigin"
         style="@style/sliding_left_textview"
-        android:drawableLeft="@drawable/ic_member"
+        android:drawableLeft="@drawable/ic_sigin"
         android:text="@string/signin" />
 
     <View style="@style/line" />
@@ -49,7 +49,7 @@
     <TextView
         android:id="@+id/txtCollect"
         style="@style/sliding_left_textview"
-        android:drawableLeft="@drawable/ic_member"
+        android:drawableLeft="@drawable/ic_collect"
         android:drawableRight="@drawable/ic_arrow_right"
         android:text="@string/collect" />
 
@@ -58,7 +58,7 @@
     <TextView
         android:id="@+id/txtFollow"
         style="@style/sliding_left_textview"
-        android:drawableLeft="@drawable/ic_member"
+        android:drawableLeft="@drawable/ic_follow"
         android:drawableRight="@drawable/ic_arrow_right"
         android:text="@string/follow" />
 

@@ -18,8 +18,6 @@
         android:drawableRight="@drawable/ic_arrow_right"
         android:text="@string/bindshared" />
 
-    <View style="@style/line" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="20.0dip" />
@@ -38,8 +36,6 @@
         android:drawableLeft="@drawable/ic_pushsetting"
         android:drawableRight="@drawable/ic_arrow_right"
         android:text="@string/pushsetting" />
-
-    <View style="@style/line" />
 
     <View
         android:layout_width="match_parent"
@@ -72,7 +68,5 @@
         android:drawableLeft="@drawable/ic_aboutus"
         android:drawableRight="@drawable/ic_arrow_right"
         android:text="@string/aboutus" />
-
-    <View style="@style/line" />
 
 </LinearLayout>

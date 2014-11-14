@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/experts_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100.0dip"
+            android:layout_height="100.0dip"
             android:contentDescription="@string/empty" />
 
         <LinearLayout
