@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
@@ -36,13 +35,11 @@ public class ExpertsListAdapter extends AppListAdapter{
 			holder = new HolderView();
 			holder.startViewPager = (StartViewPager) convertView.findViewById(R.id.banner_item);
 			holder.experts_item = (LinearLayout) convertView.findViewById(R.id.experts_item);
-			holder.advertising_item = (RelativeLayout) convertView.findViewById(R.id.advertising_item);
 			holder.experts_head = (ImageView) convertView.findViewById(R.id.experts_head);
 			holder.experts_name = (TextView) convertView.findViewById(R.id.experts_name);
 			holder.experts_pro = (TextView) convertView.findViewById(R.id.experts_pro);
 			holder.experts_description = (TextView) convertView.findViewById(R.id.experts_description);
 			holder.experts_consultation = (Button) convertView.findViewById(R.id.experts_consultation);
-			holder.advertising_close = (ImageView) convertView.findViewById(R.id.advertising_close);
 			convertView.setTag(holder);
 		} else {
 			holder = (HolderView) convertView.getTag();
@@ -50,7 +47,6 @@ public class ExpertsListAdapter extends AppListAdapter{
 		Map<String,Object> data=mItemDatas.get(position);
 		String type=String.valueOf(data.get("type"));
 		String recordno=String.valueOf(data.get("recordno"));
-		holder.position=position;
 		if("1".equals(type)){
 			setItemVisibility(holder,1);
 			try {
@@ -85,7 +81,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if("2".equals(type)){
+		}else if("2".equals(type)||"3".equals(type)){
 			setItemVisibility(holder,2);
 			holder.experts_head.setBackgroundResource(R.drawable.experts_default);
 			holder.experts_name.setText("魏大侠"+recordno);
@@ -98,42 +94,23 @@ public class ExpertsListAdapter extends AppListAdapter{
 					
 				}
 			});
-		}else if("3".equals(type)){
-			setItemVisibility(holder,3);
-			holder.advertising_item.setBackgroundResource(R.drawable.default_banner_5);
-			holder.advertising_close.setTag(holder);
-			holder.advertising_close.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					HolderView hv=(HolderView)v.getTag();
-					getItemDatas().remove(hv.position);
-					notifyDataSetChanged();
-				}
-			});
 		}
 		return convertView;
 	}
 	
 	private class HolderView {
-		private int position;
-		
 		private LinearLayout experts_item;
-		private RelativeLayout advertising_item;
-		
 		private StartViewPager startViewPager;
 		private ImageView experts_head;
 		private TextView experts_name;
 		private TextView experts_pro;
 		private TextView experts_description;
 		private Button experts_consultation;
-		private ImageView advertising_close;
 	}
 	
 	public void setItemVisibility(HolderView holder,int index){
 		holder.startViewPager.setVisibility(index==1?View.VISIBLE:View.GONE);
 		holder.experts_item.setVisibility(index==2?View.VISIBLE:View.GONE);
-		holder.advertising_item .setVisibility(index==3?View.VISIBLE:View.GONE);
 	}
 	
 }

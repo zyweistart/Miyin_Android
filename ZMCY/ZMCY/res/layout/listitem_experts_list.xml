@@ -84,19 +84,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/advertising_item"
-        android:layout_width="match_parent"
-        android:layout_height="150.0dip"
-        android:clickable="true" >
-
-        <ImageView
-            android:id="@+id/advertising_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/ic_input_clear"
-            android:contentDescription="@string/empty" />
-    </RelativeLayout>
-
 </LinearLayout>

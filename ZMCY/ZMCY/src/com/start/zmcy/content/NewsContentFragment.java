@@ -23,7 +23,7 @@ import com.start.service.Response;
 import com.start.service.User;
 import com.start.service.bean.NewsCategory;
 import com.start.zmcy.R;
-import com.start.zmcy.adapter.ExpertsListAdapter;
+import com.start.zmcy.adapter.NewsListAdapter;
 
 public class NewsContentFragment  extends BaseFragment implements RefreshListServerListener {
 
@@ -55,7 +55,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 				
 			}
 		});
-		mRefreshListServer = new RefreshListServer(mActivity,mActivity.getHandlerContext(), mListView,new ExpertsListAdapter(mActivity));
+		mRefreshListServer = new RefreshListServer(mActivity,mActivity.getHandlerContext(), mListView,new NewsListAdapter(mActivity));
 		mRefreshListServer.setCacheTag("NewsContentFragment");
 		mRefreshListServer.setListTag("newslist");
 		mRefreshListServer.setInfoTag("newsinfo");

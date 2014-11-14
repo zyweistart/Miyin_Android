@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <start.widget.StartViewPager
-        android:id="@+id/news_banner"
+        android:id="@+id/banner_item"
         android:layout_width="match_parent"
         android:layout_height="150.0dip" />
 
@@ -16,15 +16,14 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="10.0dip"
+        android:padding="5.0dip"
         android:visibility="gone" >
 
         <ImageView
             android:id="@+id/news_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/empty"
-            android:src="@drawable/ic_wexin" />
+            android:contentDescription="@string/empty"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -38,9 +37,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="要skl果园果园查轻歌曼舞轻歌曼舞困s"
                 android:textColor="@color/black"
-                android:textSize="18.0dip" />
+                android:textSize="16.0dip" />
 
             <TextView
                 android:id="@+id/news_description"
@@ -48,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s"
                 android:textColor="#e5e5e5"
                 android:textSize="16.0dip" />
         </LinearLayout>
@@ -58,13 +55,14 @@
         android:id="@+id/advertising_item"
         android:layout_width="match_parent"
         android:layout_height="150.0dip"
-        android:orientation="vertical" >
+        android:clickable="true" >
 
         <ImageView
-            android:id="@+id/news_advertising"
-            android:layout_width="match_parent"
-            android:layout_height="150.0dip"
-            android:layout_centerInParent="true"
+            android:id="@+id/advertising_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_input_clear"
             android:contentDescription="@string/empty" />
     </RelativeLayout>
 
