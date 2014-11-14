@@ -39,6 +39,7 @@
                     android:id="@+id/txtNews"
                     style="@style/sliding_left_textview"
                     android:drawableLeft="@drawable/ic_news"
+                    android:enabled="false"
                     android:text="@string/news" />
 
                 <TextView

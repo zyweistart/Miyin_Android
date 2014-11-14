@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.start.core.BaseFragment;
 import com.start.core.BaseFragmentActivity;
@@ -25,7 +24,6 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	List<BaseFragment> nBaseFragments = new ArrayList<BaseFragment>();
 
 	private ScrollView mMainMenu;
-	private TextView txtNews,txtResources,txtActivities,txtExperts,txtApp;
 	private TranslateAnimation mShowAction, mHiddenAction;
 
 	@Override
@@ -35,13 +33,6 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		setMainHeadTitle(getString(R.string.app_name));
 
 		mMainMenu = (ScrollView) findViewById(R.id.main_menu);
-
-		txtNews = (TextView) findViewById(R.id.txtNews);
-		txtResources = (TextView) findViewById(R.id.txtResources);
-		txtActivities = (TextView) findViewById(R.id.txtActivities);
-		txtExperts = (TextView) findViewById(R.id.txtExperts);
-		txtApp = (TextView) findViewById(R.id.txtApp);
-		setSlidingLeftButtonEnabled(0);
 
 		PagerTabStrip mPagerTabStrip = (PagerTabStrip) findViewById(R.id.mPagerTabStrip);
 		mPagerTabStrip.setTextColor(getResources().getColor(R.color.new_title));
@@ -75,8 +66,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		nc.setTitle("工程招标");
 		nBaseFragments.add(new NewsContentFragment(this, nc));
 		ViewPager vp = (ViewPager) findViewById(R.id.mViewPager);
-		vp.setAdapter(new ContentFragmentPagerAdapter(
-				getSupportFragmentManager(), nBaseFragments));
+		vp.setAdapter(new ContentFragmentPagerAdapter(getSupportFragmentManager(), nBaseFragments));
 
 		//显示动画从左向右滑
 		mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, -1.0f,
@@ -120,14 +110,6 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			// 会员
 			startActivity(new Intent(this, MemberActivity.class));
 		}
-	}
-
-	public void setSlidingLeftButtonEnabled(int index) {
-		txtNews.setEnabled(index == 0 ? false : true);
-		txtResources.setEnabled(index == 1 ? false : true);
-		txtActivities.setEnabled(index == 2 ? false : true);
-		txtExperts.setEnabled(index == 3 ? false : true);
-		txtApp.setEnabled(index == 4 ? false : true);
 	}
 
 }

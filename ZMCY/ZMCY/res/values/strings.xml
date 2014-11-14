@@ -16,6 +16,7 @@
     <string name="experts">专家</string>
     <string name="app">应用推荐</string>
     <string name="member">会员</string>
+    <string name="consultation">咨询</string>
     
     <string name="product_normal">传统光源</string>
     <string name="product_led">LED光源</string>

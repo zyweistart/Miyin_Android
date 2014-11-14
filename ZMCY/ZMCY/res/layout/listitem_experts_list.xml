@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/selector_listview_item"
     android:orientation="vertical" >
 
     <start.widget.StartViewPager
-        android:id="@+id/news_banner"
+        android:id="@+id/banner_item"
         android:layout_width="match_parent"
         android:layout_height="150.0dip" />
 
@@ -13,29 +14,89 @@
         android:id="@+id/experts_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5.0dip" >
 
-        <TextView
-            android:id="@+id/listitem_child_title"
+        <ImageView
+            android:id="@+id/experts_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#c3c3c3"
-            android:textSize="15.0dip" />
+            android:contentDescription="@string/empty" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/experts_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="16.0dip" />
+
+                    <TextView
+                        android:id="@+id/experts_pro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="#646464"
+                        android:textSize="16.0dip" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/experts_consultation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/selector_button_1"
+                    android:padding="5.0dip"
+                    android:text="@string/consultation"
+                    android:textColor="@color/white"
+                    android:textSize="16.0dip" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/experts_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="#e5e5e5"
+                android:textSize="16.0dip" />
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/advertising_item"
         android:layout_width="match_parent"
         android:layout_height="150.0dip"
-        android:orientation="vertical" >
+        android:clickable="true" >
 
         <ImageView
-            android:id="@+id/news_advertising"
-            android:layout_width="match_parent"
-            android:layout_height="150.0dip"
-            android:layout_centerInParent="true"
+            android:id="@+id/advertising_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_input_clear"
             android:contentDescription="@string/empty" />
-        
     </RelativeLayout>
 
 </LinearLayout>
