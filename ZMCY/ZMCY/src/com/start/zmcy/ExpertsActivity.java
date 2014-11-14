@@ -20,6 +20,7 @@ import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
 import com.start.service.User;
 import com.start.zmcy.adapter.ExpertsListAdapter;
+import com.start.zmcy.adapter.ExpertsQuestionAdapter;
 
 /**
  * 专家
@@ -29,8 +30,14 @@ public class ExpertsActivity extends BaseActivity implements RefreshListServerLi
 	private Button main_head_1;
 	private Button main_head_2;
 	private Button main_head_3;
+	
 	private XListView mListView;
 	private RefreshListServer mRefreshListServer;
+	
+	private XListView mQuestionListView;
+	private RefreshListServer mQuestionRefreshListServer;
+	
+	private int type=1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,16 +70,35 @@ public class ExpertsActivity extends BaseActivity implements RefreshListServerLi
 		mRefreshListServer.setInfoTag("newsinfo");
 		mRefreshListServer.setRefreshListServerListener(this);
 
+		mQuestionListView = (XListView) findViewById(R.id.xlv_listview_question);
+		mQuestionListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				
+			}
+		});
+		mQuestionRefreshListServer = new RefreshListServer(this,getHandlerContext(), mQuestionListView,new ExpertsQuestionAdapter(this));
+		mQuestionRefreshListServer.setCacheTag(TAG);
+		mQuestionRefreshListServer.setListTag("newslist");
+		mQuestionRefreshListServer.setInfoTag("newsinfo");
+		mQuestionRefreshListServer.setRefreshListServerListener(this);
+
 		mRefreshListServer.initLoad();
+		mQuestionRefreshListServer.initLoad();
  	}
 	
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.head_1){
 			//专家列表
+			mListView.setVisibility(View.VISIBLE);
+			mQuestionListView.setVisibility(View.GONE);
 			setHeadButtonEnabled(0);
 		}else if(v.getId()==R.id.head_2){
 			//专家解答
+			mListView.setVisibility(View.GONE);
+			mQuestionListView.setVisibility(View.VISIBLE);
 			setHeadButtonEnabled(1);
 		}else if(v.getId()==R.id.head_3){
 			//专家自荐
@@ -88,27 +114,27 @@ public class ExpertsActivity extends BaseActivity implements RefreshListServerLi
 		main_head_3.setEnabled(index==2?false:true);
 	}
 	
+	public RefreshListServer getRefreshListServer(){
+		return type==1?mRefreshListServer:mQuestionRefreshListServer;
+	}
+	
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer("htinfonewsQuery",mRefreshListServer.getHandlerContext());
+		HttpServer hServer = new HttpServer("htinfonewsQuery",getRefreshListServer().getHandlerContext());
 		Map<String,String> headers=new HashMap<String,String>();
 		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
 		hServer.setHeaders(headers);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid", User.USER_ACCESSID_LOCAL);
-		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+		params.put("currentpage",String.valueOf(getRefreshListServer().getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
-		params.put("type", AppConstant.EMPTYSTR);
-		params.put("title", AppConstant.EMPTYSTR);
-		params.put("content", AppConstant.EMPTYSTR);
-		params.put("ordersort", AppConstant.EMPTYSTR);
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 
 			@Override
 			public void run(Response response) throws AppException {
-				mRefreshListServer.resolve(response);
-				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+				getRefreshListServer().resolve(response);
+				getRefreshListServer().getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
 			}
 
 		}, false);

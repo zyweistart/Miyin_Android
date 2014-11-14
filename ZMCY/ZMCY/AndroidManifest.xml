@@ -110,6 +110,9 @@
             android:name=".ExpertsActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".ConsultationActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".AppActivity"
             android:screenOrientation="portrait"/>
         <activity

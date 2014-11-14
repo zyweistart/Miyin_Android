@@ -20,7 +20,7 @@
 	<string name="login">登录</string>
     <string name="register">注册</string>
     <string name="reset_password">重置密码</string>
-    <string name="accounthint">请输入账户</string>
+    <string name="accounthint">请输入手机号码</string>
     <string name="passwordhint">请输入密码</string>
     <string name="newpasswordhint">请输入新密码</string>
     <string name="repasswordhint">请再次输入密码</string>

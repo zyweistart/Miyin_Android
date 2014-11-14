@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import start.widget.StartViewPager;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
+import com.start.zmcy.ConsultationActivity;
 import com.start.zmcy.R;
 
 public class ExpertsListAdapter extends AppListAdapter{
@@ -91,7 +93,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 				
 				@Override
 				public void onClick(View v) {
-					
+					mActivity.startActivity(new Intent(mActivity,ConsultationActivity.class));
 				}
 			});
 		}

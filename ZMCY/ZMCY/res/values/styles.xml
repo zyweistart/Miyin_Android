@@ -46,6 +46,33 @@
         <item name="android:background">@drawable/selector_button_sliding_left_textview</item>
     </style>
     
+    <style name="member_function_button1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10.0dip</item>
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#c5c5c5</item>
+        <item name="android:drawablePadding">5.0dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/selector_button_sliding_left_textview</item>
+    </style>
+    
+    <style name="member_function_button2">
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">10.0dip</item>
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#808aa5</item>
+        <item name="android:drawablePadding">5.0dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/selector_listview_item</item>
+    </style>
+    
     <style name="listview1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

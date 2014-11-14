@@ -11,4 +11,9 @@
         android:id="@+id/xlv_listview"
         style="@style/listview1"/>
     
+    <start.widget.xlistview.XListView
+        android:id="@+id/xlv_listview_question"
+        style="@style/listview1"
+        android:visibility="gone"/>
+    
 </LinearLayout>

@@ -28,6 +28,14 @@ public class MemberActivity extends BaseActivity{
 			startActivity(new Intent(this,CollectActivity.class));
 		}else if(v.getId()==R.id.txtFollow){
 			startActivity(new Intent(this,FollowActivity.class));
+		}else if(v.getId()==R.id.txtOffLine){
+			getHandlerContext().makeTextLong("离线阅读");
+		}else if(v.getId()==R.id.txtMode){
+			getHandlerContext().makeTextLong("夜间模式");
+		}else if(v.getId()==R.id.txtTextMode){
+			getHandlerContext().makeTextLong("文字模式");
+		}else if(v.getId()==R.id.txtSearch){
+			getHandlerContext().makeTextLong("搜索");
 		}else if(v.getId()==R.id.txtSetting){
 			startActivity(new Intent(this,SettingActivity.class));
 		}else{
