@@ -3,6 +3,7 @@ package com.start.zmcy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 
@@ -11,23 +12,59 @@ import com.start.core.BaseActivity;
  */
 public class MemberActivity extends BaseActivity{
 	
+	private TextView txt_account_info;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_member);
 		setMainHeadTitle(getString(R.string.member));
+		txt_account_info=(TextView)findViewById(R.id.txt_account_info);
  	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		loginStatusText();
+	}
+	
+	public void loginStatusText(){
+		if(getAppContext().currentUser().isLogin()){
+			txt_account_info.setText(R.string.exitlogin);
+		}else{
+			txt_account_info.setText(R.string.gotologin);
+		}
+	}
 	
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.txt_account_info){
-			startActivity(new Intent(this,LoginActivity.class));
+			if(getAppContext().currentUser().isLogin()){
+				getAppContext().currentUser().clearCacheUser();
+				loginStatusText();
+			}else{
+				getAppContext().getCacheActivity().setIntent(new Intent(this,MemberActivity.class));
+				startActivity(new Intent(this,LoginActivity.class));
+			}
 		}else if(v.getId()==R.id.txtSigin){
-			getHandlerContext().makeTextLong("签到");
+			if(!getAppContext().currentUser().isLogin()){
+				goLogin(new Intent(this,MemberActivity.class),getString(R.string.nologin));
+				return;
+			}
 		}else if(v.getId()==R.id.txtCollect){
+			Intent intent=new Intent(this,CollectActivity.class);
+			if(!getAppContext().currentUser().isLogin()){
+				goLogin(intent,getString(R.string.nologin));
+				return;
+			}
 			startActivity(new Intent(this,CollectActivity.class));
 		}else if(v.getId()==R.id.txtFollow){
-			startActivity(new Intent(this,FollowActivity.class));
+			Intent intent=new Intent(this,FollowActivity.class);
+			if(!getAppContext().currentUser().isLogin()){
+				goLogin(intent,getString(R.string.nologin));
+				return;
+			}
+			startActivity(intent);
 		}else if(v.getId()==R.id.txtOffLine){
 			getHandlerContext().makeTextLong("离线阅读");
 		}else if(v.getId()==R.id.txtMode){

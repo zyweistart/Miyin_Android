@@ -93,7 +93,12 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			}
 		} else if (v.getId() == R.id.head_login) {
 			// 登录
-			startActivity(new Intent(this, LoginActivity.class));
+			if(getAppContext().currentUser().isLogin()){
+				startActivity(new Intent(this, MemberActivity.class));
+			}else{
+				getAppContext().getCacheActivity().setIntent(new Intent(this,MainActivity.class));
+				startActivity(new Intent(this, LoginActivity.class));
+			}
 		} else if (v.getId() == R.id.txtResources) {
 			// 资源
 			startActivity(new Intent(this, ResourceActivity.class));

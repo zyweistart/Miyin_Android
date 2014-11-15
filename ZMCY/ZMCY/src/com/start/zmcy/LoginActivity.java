@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.start.core.BaseActivity;
 import com.start.core.Constant.ResultCode;
@@ -114,6 +115,13 @@ public class LoginActivity extends BaseActivity{
 	 * @param autoLogin  
 	 */
 	public void login(final String account,final String password,final Boolean autoLogin){
-		
+		if(getInputMethodManager().isActive()){
+			getInputMethodManager().hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		}
+		getAppContext().currentUser().setLogin(true);
+		if(getAppContext().getCacheActivity().isGotoActivity()){
+			getAppContext().getCacheActivity().startActivity(this);
+			finish();
+		}
 	}
 }

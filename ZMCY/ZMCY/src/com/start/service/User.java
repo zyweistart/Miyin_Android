@@ -5,7 +5,6 @@ import java.util.Map;
 
 import start.core.AppConstant;
 import start.core.AppContext;
-import android.text.TextUtils;
 
 import com.start.core.Constant.Preferences;
 import com.start.zmcy.BaseContext;
@@ -99,14 +98,6 @@ public class User {
 	public void resolve(Map<String,String> userinfo){
 		setLogin(true);
 		getInfo().putAll(userinfo);
-		String accessid=getInfo().get("accessid");
-		if(!TextUtils.isEmpty(accessid)){
-			User.ACCESSID=accessid;
-		}
-		String accesskey=getInfo().get("accesskey");
-		if(!TextUtils.isEmpty(accesskey)){
-			User.ACCESSKEY=accesskey;
-		}
 	}
 	
 }

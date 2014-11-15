@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16.0dip"
                 android:textColor="#969696"
-                android:text="或用以下账号登录"/>
+                android:text="-------或用以下账号登录-------"/>
             
         </LinearLayout>
         

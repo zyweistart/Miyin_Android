@@ -67,7 +67,7 @@ public abstract class BaseScrollContent implements HandleContextListener {
 	public void onProcessMessage(Message msg) throws AppException {
 		switch(msg.what){
 		case ResultCode.NOLOGIN:
-			getCurrentActivity().goLogin(String.valueOf(msg.obj));
+			getCurrentActivity().goLogin(null,String.valueOf(msg.obj));
 			break;
 		default:
 			Object message=msg.obj;

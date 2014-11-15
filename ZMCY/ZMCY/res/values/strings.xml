@@ -6,8 +6,10 @@
     <string name="back">返回</string>
     <string name="registernewuser">注册新用户</string>
     <string name="gotologin">立即登录</string>
+    <string name="exitlogin">退出登录</string>
     <string name="gotoregister">立即注册</string>
     <string name="noaccount">没有账号?</string>
+    <string name="nologin">您还没有登录</string>
     <string name="accounthint">邮箱/手机号</string>
     <string name="passwordhint">请输入密码</string>
     <string name="news">资讯</string>
@@ -15,7 +17,7 @@
     <string name="resources">资源</string>
     <string name="activities">活动</string>
     <string name="experts">专家</string>
-    <string name="app">应用推荐</string>
+    <string name="app">应用</string>
     <string name="member">会员</string>
     <string name="consultation">咨询</string>
     

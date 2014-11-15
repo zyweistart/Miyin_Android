@@ -120,6 +120,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".MemberActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".CollectActivity"

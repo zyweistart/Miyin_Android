@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.widget.TextView;
 
+import com.start.zmcy.BaseContext;
 import com.start.zmcy.R;
 
 public class BaseFragmentActivity extends FragmentActivity implements HandleContextListener{
@@ -21,6 +22,10 @@ public class BaseFragmentActivity extends FragmentActivity implements HandleCont
 			mHandlerContext.setListener(this);
 		}
 		return mHandlerContext;
+	}
+	
+	public BaseContext getAppContext() {
+		return (BaseContext)BaseContext.getInstance();
 	}
 	
 	@Override
