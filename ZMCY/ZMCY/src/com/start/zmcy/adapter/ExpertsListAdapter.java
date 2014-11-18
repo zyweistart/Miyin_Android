@@ -34,7 +34,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 	public ExpertsListAdapter(Activity activity) {
 		super(activity);
 		this.mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner));
-		this.mExpertsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.experts_default));
+		this.mExpertsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_experts));
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 			setItemVisibility(holder,2);
 			String url=String.valueOf(data.get("url"));
 			if(TextUtils.isEmpty(url)){
-				holder.experts_head.setBackgroundResource(R.drawable.experts_default);
+				holder.experts_head.setBackgroundResource(R.drawable.default_experts);
 			}else{
 				mExpertsBitmapManager.loadBitmap(url, holder.experts_head);
 			}
