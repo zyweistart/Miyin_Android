@@ -1,26 +1,11 @@
 package com.start.zmcy.adapter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import start.widget.StartViewPager;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
-import com.start.zmcy.ConsultationActivity;
 import com.start.zmcy.R;
 
 public class ExpertsQuestionAdapter extends AppListAdapter{

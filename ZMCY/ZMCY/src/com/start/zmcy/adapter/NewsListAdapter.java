@@ -31,7 +31,7 @@ public class NewsListAdapter extends AppListAdapter{
 	
 	public NewsListAdapter(Activity activity) {
 		super(activity);
-		this.mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner_5));
+		this.mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner_1));
 		this.mNewsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.news_default));
 	}
 
@@ -101,7 +101,7 @@ public class NewsListAdapter extends AppListAdapter{
 			
 			String url=String.valueOf(data.get("url"));
 			if(TextUtils.isEmpty(url)){
-				holder.advertising_item.setBackgroundResource(R.drawable.default_banner_5);
+				holder.advertising_item.setBackgroundResource(R.drawable.default_banner_1);
 			}else{
 				ImageView iv=new ImageView(mActivity);
 				mBannerBitmapManager.loadBitmap(url, iv);

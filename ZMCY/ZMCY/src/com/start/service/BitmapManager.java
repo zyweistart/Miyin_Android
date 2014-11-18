@@ -15,7 +15,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.ProtocolVersion;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.CoreProtocolPNames;
@@ -197,8 +197,8 @@ public class BitmapManager {
 				client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, protocolVersion);
 				client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, AppConstant.ENCODE);
 				client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,30*1000);
-				HttpPost post = new HttpPost(url);
-				HttpResponse response=client.execute(post);
+				HttpGet get = new HttpGet(url);
+				HttpResponse response=client.execute(get);
 				int statusCode = response.getStatusLine().getStatusCode();
 				if (statusCode != HttpStatus.SC_OK) {
 					throw AppException.http(statusCode);

@@ -332,7 +332,7 @@ public class ImageUtils {
 	 * 
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unused" })
 	public static String getLatestImage(Activity context) {
 		String latestImage = null;
 		String[] items = { MediaStore.Images.Media._ID,
@@ -601,6 +601,7 @@ public class ImageUtils {
 	 * @param bitmap
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	public static Drawable bitmapToDrawable(Bitmap bitmap) {
 		Drawable drawable = new BitmapDrawable(bitmap);
 		return drawable;
