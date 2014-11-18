@@ -1,8 +1,13 @@
 package com.ancun.unicom;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import start.core.AppException;
+import start.service.HttpRunnable;
+import start.service.HttpServer;
+import start.service.Response;
 import start.utils.MD5;
 import start.utils.StringUtils;
 import start.utils.TimeUtils;
@@ -24,8 +29,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ancun.core.BaseActivity;
+import com.ancun.core.Constant;
 import com.ancun.core.Constant.Handler;
 import com.ancun.service.AppService;
+import com.ancun.service.User;
 
 /**
  * 注册
@@ -34,11 +41,14 @@ import com.ancun.service.AppService;
  *         您申请的联通宽带公司的安存语录1业务（10元/月），请直接回复Y生效。
  *         您已成功定制联通宽带公司(10655598301)的安存语录1业务，发送tdac1到10655598301退订业务，查询热线10010。
  */
+@SuppressWarnings("deprecation")
 public class Register1Activity extends BaseActivity {
 
 	private static final String MESSAGE1="您申请的联通宽带公司的安存语录1业务（10元/月），请直接回复Y生效。";
 	private static final String MESSAGE2="您已成功定制联通宽带公司(10655598301)的安存语录1业务，发送tdac1到10655598301退订业务，查询热线10010。";
-	
+	private static final String MESSAGE3="【安存网络】您正在免费注册安存语录—全国首个录音公证电话，验证码：";
+	private static final String MESSAGE4="，请及时输入。如非本人操作，请致电95105856。";
+	private String checksum;
 	protected String phone;
 	protected String authcode;
 	protected String password;
@@ -59,6 +69,7 @@ public class Register1Activity extends BaseActivity {
 	protected LinearLayout fr_server;
 	protected CheckBox cb_agree;
 	protected TextView txt_servercontent;
+	private TextView txt_tip;
 	
 	private SMSRecever mSMSRecever;
 	
@@ -89,6 +100,9 @@ public class Register1Activity extends BaseActivity {
 		txt_servercontent = (TextView) findViewById(R.id.txt_servercontent);
 		txt_servercontent.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		
+		txt_tip=(TextView)findViewById(R.id.txttip);
+		setBillingText();
+		txt_tip.setVisibility(View.VISIBLE);
 		
 		mSMSRecever=new SMSRecever();
         IntentFilter filter2=new IntentFilter();
@@ -168,8 +182,6 @@ public class Register1Activity extends BaseActivity {
 				return;
 			}
 			getAuthCode(1);
-			// TODO:发送ac1至10655598301
-			// sendMessage("10655598301","ac1");
 		} else if (v.getId() == R.id.btn_zre_get_checksum) {
 			getAuthCode(1);
 		} else if (v.getId() == R.id.btn_submit_checksum) {
@@ -179,11 +191,16 @@ public class Register1Activity extends BaseActivity {
 						getString(R.string.autocodeemptytip));
 				return;
 			}
+			if(!authcode.equals(checksum)){
+				getHandlerContext().makeTextLong("验证码不正确");
+				return;
+			}
 			mPDialog = new ProgressDialog(this);
 			mPDialog.setMessage(getString(R.string.wait));
 			mPDialog.setIndeterminate(true);
 			mPDialog.setCancelable(false);
 			mPDialog.show();
+			sendMessage("10655598301","ac1");
 		} else if (v.getId() == R.id.btn_next) {
 			password = String.valueOf(et_setting_password.getText());
 			if (StringUtils.isEmpty(password)) {
@@ -202,29 +219,23 @@ public class Register1Activity extends BaseActivity {
 						getString(R.string.passwordformaterror));
 				return;
 			}
-			// HttpServer hServer=new HttpServer(Constant.URL.userSignup,
-			// getHandlerContext());
-			// Map<String,String> headers=new HashMap<String,String>();
-			// headers.put("sign", User.USER_ACCESSKEY_LOCAL);
-			// hServer.setHeaders(headers);
-			// Map<String,String> params=new HashMap<String,String>();
-			// params.put("accessid",User.USER_ACCESSID_LOCAL);
-			// params.put("userTel",phone);
-			// params.put("password", MD5.md5(password));
-			// params.put("type","1");
-			// params.put("authcode", authcode);
-			// params.put("signupsource", "3");
-			// hServer.setParams(params);
-			// hServer.get(new HttpRunnable() {
-			//
-			// @Override
-			// public void run(Response response) {
-			// getHandlerContext().getHandler().sendEmptyMessage(Handler.REGISTER_RESET_PASSWORD_STEP2);
-			// }
-			//
-			// });
-			getHandlerContext().getHandler().sendEmptyMessage(
-					Handler.REGISTER_RESET_PASSWORD_STEP2);
+			HttpServer hServer = new HttpServer("ylcnuserPwdSet_app",getHandlerContext());
+			Map<String, String> headers = new HashMap<String, String>();
+			headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+			hServer.setHeaders(headers);
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("accessid", User.USER_ACCESSID_LOCAL);
+			params.put("phone", phone);
+			params.put("password", MD5.md5(password));
+			hServer.setParams(params);
+			hServer.get(new HttpRunnable() {
+
+				@Override
+				public void run(Response response) {
+					getHandlerContext().getHandler().sendEmptyMessage(Handler.REGISTER_RESET_PASSWORD_STEP2);
+				}
+
+			});
 		} else if (v.getId() == R.id.btn_done) {
 			getAppContext().currentUser().addCacheUser(phone,
 					MD5.md5(password), true);
@@ -240,29 +251,25 @@ public class Register1Activity extends BaseActivity {
 	 * 获取验证码
 	 */
 	public void getAuthCode(int type) {
-		// HttpServer hServer=new HttpServer(Constant.URL.authcodeGet,
-		// getHandlerContext());
-		// Map<String,String> headers=new HashMap<String,String>();
-		// headers.put("sign", User.USER_ACCESSKEY_LOCAL);
-		// hServer.setHeaders(headers);
-		// Map<String,String> params=new HashMap<String,String>();
-		// params.put("accessid",User.USER_ACCESSID_LOCAL);
-		// params.put("userTel", phone);
-		// params.put("actype", String.valueOf(type));
-		// hServer.setParams(params);
-		// hServer.get(new HttpRunnable() {
-		//
-		// @Override
-		// public void run(Response response) {
-		// getHandlerContext().getHandler().sendEmptyMessage(Handler.REGISTER_RESET_PASSWORD_STEP1);
-		// }
-		//
-		// });
-		getHandlerContext().getHandler().sendEmptyMessage(
-				Handler.REGISTER_RESET_PASSWORD_STEP1);
+		HttpServer hServer = new HttpServer(Constant.URL.authcodeGet,getHandlerContext());
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+		hServer.setHeaders(headers);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("accessid", User.USER_ACCESSID_LOCAL);
+		params.put("userTel", phone);
+		params.put("actype", String.valueOf(type));
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) {
+				getHandlerContext().getHandler().sendEmptyMessage(Handler.REGISTER_RESET_PASSWORD_STEP1);
+			}
+
+		});
 	}
 
-	@SuppressWarnings("deprecation")
 	public void sendMessage(String phone, String message) {
 		// 直接调用短信接口发短信
 		SmsManager smsManager = SmsManager.getDefault();
@@ -271,10 +278,17 @@ public class Register1Activity extends BaseActivity {
 			smsManager.sendTextMessage(phone, null, text, null, null);
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		if(mSMSRecever!=null){
+			unregisterReceiver(mSMSRecever);
+		}
+		super.onDestroy();
+	}
 
 	public class SMSRecever extends BroadcastReceiver {
 
-		@SuppressWarnings("deprecation")
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// 获取到短信
@@ -282,7 +296,7 @@ public class Register1Activity extends BaseActivity {
 			for (Object object : obj) {
 				SmsMessage sm = SmsMessage.createFromPdu((byte[]) object);
 				// 得到信息内容
-				String str = sm.getMessageBody();
+				final String str = sm.getMessageBody();
 				//得到手机地址
 				if(MESSAGE1.equals(str)){
 					String address = sm.getOriginatingAddress();
@@ -291,18 +305,37 @@ public class Register1Activity extends BaseActivity {
 				}else if(MESSAGE2.equals(str)){
 					runOnUiThread(new Runnable() {
 						public void run() {
+							ll_code_frame.setVisibility(View.GONE);
+							ll_password_frame.setVisibility(View.VISIBLE);
 							if(mPDialog!=null){
 								mPDialog.dismiss();
 							}
-							ll_code_frame.setVisibility(View.GONE);
-							ll_password_frame.setVisibility(View.VISIBLE);
 						}
 					});
 					abortBroadcast();
+				}else{
+					if(str.contains(MESSAGE3)&&str.contains(MESSAGE4)){
+				    	
+				    	runOnUiThread(new Runnable() {
+							public void run() {
+								checksum=str.substring(33,39);
+								et_checksum.setText(checksum);
+							}
+				    	});
+				    	
+				    }
 				}
 			}
 		}
 
+	}
+	
+	/**
+	 * 设置计费文案
+	 */
+	public void setBillingText(){
+		String content="欢迎使用"+getString(R.string.app_name)+"！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。功能费每月10元，通话费按原有资费标准收取。";
+		txt_tip.setText(StringUtils.ToDBC(content));
 	}
 
 }
