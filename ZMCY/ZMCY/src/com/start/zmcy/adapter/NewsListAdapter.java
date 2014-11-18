@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import start.widget.StartViewPager;
+import start.widget.StartViewPager.OnSingleTouchListener;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.start.service.AppListAdapter;
 import com.start.service.BitmapManager;
 import com.start.zmcy.R;
+import com.start.zmcy.content.NewsContentFragment;
 
 public class NewsListAdapter extends AppListAdapter{
 
@@ -55,8 +57,8 @@ public class NewsListAdapter extends AppListAdapter{
 		}
 		Map<String,Object> data=mItemDatas.get(position);
 		String type=String.valueOf(data.get("type"));
-//		String recordno=String.valueOf(data.get("recordno"));
 		holder.position=position;
+		holder.recordno=String.valueOf(data.get("recordno"));
 		if("1".equals(type)){
 			setItemVisibility(holder,1);
 			try {
@@ -75,14 +77,26 @@ public class NewsListAdapter extends AppListAdapter{
 				List<ImageView> imageViews= new ArrayList<ImageView>();
 				for (int i = 0; i < mListMapData.size(); i++) {
 					ImageView imageView = new ImageView(this.mActivity);
+					BannerHolder bh=new BannerHolder();
+					bh.recordno=String.valueOf(mListMapData.get(i).get("recordno"));
 					String url=mListMapData.get(i).get("url");
 					mBannerBitmapManager.loadBitmap(url, imageView);
+					imageView.setTag(bh);
 					imageViews.add(imageView);
 				}
 				holder.startViewPager.setOffscreenPageLimit(mListMapData.size());
 				NewsBannerAdapter mNewsBannerAdapter=new NewsBannerAdapter(this.mActivity);
 				mNewsBannerAdapter.setItemDatas(imageViews);
 				holder.startViewPager.setAdapter(mNewsBannerAdapter);
+				holder.startViewPager.setOnSingleTouchListener(new OnSingleTouchListener() {
+					
+					@Override
+					public void onSingleTouch(View view) {
+						BannerHolder hv=(BannerHolder)view.getTag();
+						NewsContentFragment.gotoNews(mActivity,hv.recordno);
+					}
+					
+				});
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -107,6 +121,18 @@ public class NewsListAdapter extends AppListAdapter{
 				mBannerBitmapManager.loadBitmap(url, iv);
 				holder.advertising_item.setBackgroundDrawable(iv.getDrawable());
 			}
+			holder.advertising_item.setTag(holder);
+			holder.advertising_item.setClickable(true);
+			holder.advertising_item.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					HolderView hv=(HolderView)v.getTag();
+					NewsContentFragment.gotoNews(mActivity,hv.recordno);
+				}
+				
+			});
+			
 			holder.advertising_close.setTag(holder);
 			holder.advertising_close.setOnClickListener(new OnClickListener() {
 				
@@ -121,8 +147,13 @@ public class NewsListAdapter extends AppListAdapter{
 		return convertView;
 	}
 	
+	public class BannerHolder{
+		public String recordno;
+	}
+	
 	public class HolderView {
 		public int position;
+		public String recordno;
 		
 		public LinearLayout news_item;
 		public RelativeLayout advertising_item;

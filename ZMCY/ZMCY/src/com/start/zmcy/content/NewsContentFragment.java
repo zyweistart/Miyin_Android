@@ -6,6 +6,7 @@ import java.util.Map;
 import start.core.AppConstant;
 import start.core.AppException;
 import start.widget.xlistview.XListView;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -56,12 +57,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				HolderView hv=(HolderView)view.getTag();
-				int i=hv.position;
-				Bundle bundle=new Bundle();
-				bundle.putString(NewsDetailActivity.NEWSID, i+"");
-				Intent intent=new Intent(mActivity,NewsDetailActivity.class);
-				intent.putExtras(bundle);
-				startActivity(intent);
+				NewsContentFragment.gotoNews(mActivity,hv.recordno);
 			}
 			
 		});
@@ -111,4 +107,12 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 		}, false);
 	}
     
+	public static void gotoNews(Activity activity,String recordno){
+		Bundle bundle=new Bundle();
+		bundle.putString(NewsDetailActivity.NEWSID, recordno);
+		Intent intent=new Intent(activity,NewsDetailActivity.class);
+		intent.putExtras(bundle);
+		activity.startActivity(intent);
+	}
+	
 }

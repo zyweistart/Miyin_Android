@@ -56,7 +56,7 @@
                         "type":"2",
                         "title":"魏大侠",
                         "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
-                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/news_01.jpg"
                     }
                 },
                 {
@@ -65,7 +65,7 @@
                         "type":"2",
                         "title":"魏大侠",
                         "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
-                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_2.png"
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/news_02.jpg"
                     }
                 },
                 {
@@ -81,7 +81,7 @@
                         "type":"2",
                         "title":"魏大侠",
                         "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
-                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_4.png"
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/news_02.jpg"
                     }
                 },
                 {
@@ -90,7 +90,7 @@
                         "type":"2",
                         "title":"魏大侠",
                         "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
-                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_5.png"
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/news_03.jpg"
                     }
                 },
                 {
@@ -99,7 +99,7 @@
                         "type":"2",
                         "title":"魏大侠",
                         "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
-                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/news_01.jpg"
                     }
                 },
                 {
@@ -108,7 +108,7 @@
                         "type":"2",
                         "title":"魏大侠",
                         "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
-                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_2.png"
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/news_02.jpg"
                     }
                 },
                 {
@@ -117,7 +117,7 @@
                         "type":"2",
                         "title":"魏大侠",
                         "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
-                        "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_3.png"
+                        "url":"http://img3.epanshi.com/4661/upload/xinfang/news_03.jpg"
                     }
                 }
             ]

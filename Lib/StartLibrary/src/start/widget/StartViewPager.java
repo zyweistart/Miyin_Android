@@ -5,6 +5,7 @@ import android.graphics.PointF;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
 public class StartViewPager extends ViewPager {
 
@@ -51,7 +52,7 @@ public class StartViewPager extends ViewPager {
 			// 在up时判断是否按下和松手的坐标为一个点
 			// 如果是一个点，将执行点击事件，这是我自己写的点击事件，而不是onclick
 			if (downP.x == curP.x && downP.y == curP.y) {
-				onSingleTouch();
+				onSingleTouch(getChildAt(getCurrentItem()));
 				return true;
 			}
 		}
@@ -62,14 +63,14 @@ public class StartViewPager extends ViewPager {
 	/**
 	 * 单击
 	 */
-	public void onSingleTouch() {
+	public void onSingleTouch(View view) {
 		if (onSingleTouchListener != null) {
-			onSingleTouchListener.onSingleTouch();
+			onSingleTouchListener.onSingleTouch(view);
 		}
 	}
 
 	public interface OnSingleTouchListener {
-		public void onSingleTouch();
+		public void onSingleTouch(View view);
 	}
 
 	public void setOnSingleTouchListener(OnSingleTouchListener onSingleTouchListener) {
