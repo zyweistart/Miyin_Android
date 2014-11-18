@@ -25,8 +25,26 @@
                             },
                             {
                                 "bannerinfo": {
-                                    "recordno": "子记录编号1",
-                        			"url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
+                                    "recordno": "子记录编号2",
+                        			"url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_2.png"
+                                }
+                            },
+                            {
+                                "bannerinfo": {
+                                    "recordno": "子记录编号3",
+                        			"url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_3.png"
+                                }
+                            },
+                            {
+                                "bannerinfo": {
+                                    "recordno": "子记录编号4",
+                        			"url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_4.png"
+                                }
+                            },
+                            {
+                                "bannerinfo": {
+                                    "recordno": "子记录编号5",
+                        			"url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_5.png"
                                 }
                             }
                         ]
@@ -36,6 +54,8 @@
                     "newsinfo": {
                         "recordno": "第2条",
                         "type":"2",
+                        "title":"魏大侠",
+                        "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
                         "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
                     }
                 },
@@ -43,6 +63,8 @@
                     "newsinfo": {
                         "recordno": "第3条",
                         "type":"2",
+                        "title":"魏大侠",
+                        "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
                         "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_2.png"
                     }
                 },
@@ -57,6 +79,8 @@
                     "newsinfo": {
                         "recordno": "第5条",
                         "type":"2",
+                        "title":"魏大侠",
+                        "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
                         "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_4.png"
                     }
                 },
@@ -64,6 +88,8 @@
                     "newsinfo": {
                         "recordno": "第6条",
                         "type":"2",
+                        "title":"魏大侠",
+                        "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
                         "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_5.png"
                     }
                 },
@@ -71,6 +97,8 @@
                     "newsinfo": {
                         "recordno": "第7条",
                         "type":"2",
+                        "title":"魏大侠",
+                        "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
                         "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_1.png"
                     }
                 },
@@ -78,6 +106,8 @@
                     "newsinfo": {
                         "recordno": "第8条",
                         "type":"2",
+                        "title":"魏大侠",
+                        "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
                         "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_2.png"
                     }
                 },
@@ -85,6 +115,8 @@
                     "newsinfo": {
                         "recordno": "第9条",
                         "type":"2",
+                        "title":"魏大侠",
+                        "description":"要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s",
                         "url":"http://img3.epanshi.com/4661/upload/xinfang/default_banner_3.png"
                     }
                 }

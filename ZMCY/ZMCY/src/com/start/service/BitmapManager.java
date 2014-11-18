@@ -21,7 +21,6 @@ import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.CoreProtocolPNames;
 
 import start.core.AppConstant;
-import start.core.AppContext;
 import start.core.AppException;
 import start.utils.FileUtils;
 import android.graphics.Bitmap;

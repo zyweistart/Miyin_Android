@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import start.widget.StartViewPager;
 import android.app.Activity;
+import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -19,14 +21,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
+import com.start.service.BitmapManager;
 import com.start.zmcy.R;
 
 public class NewsListAdapter extends AppListAdapter{
 
+	private BitmapManager mBannerBitmapManager;
+	private BitmapManager mNewsBitmapManager;
+	
 	public NewsListAdapter(Activity activity) {
 		super(activity);
+		this.mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner_5));
+		this.mNewsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.news_default));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		HolderView holder;
@@ -46,7 +55,7 @@ public class NewsListAdapter extends AppListAdapter{
 		}
 		Map<String,Object> data=mItemDatas.get(position);
 		String type=String.valueOf(data.get("type"));
-		String recordno=String.valueOf(data.get("recordno"));
+//		String recordno=String.valueOf(data.get("recordno"));
 		holder.position=position;
 		if("1".equals(type)){
 			setItemVisibility(holder,1);
@@ -64,18 +73,13 @@ public class NewsListAdapter extends AppListAdapter{
 					mListMapData.add(datas);
 				}
 				List<ImageView> imageViews= new ArrayList<ImageView>();
-				int[] imageResId = new int[] {
-						R.drawable.default_banner_1,
-						R.drawable.default_banner_2,
-						R.drawable.default_banner_3,
-						R.drawable.default_banner_4,
-						R.drawable.default_banner_5 };
-				for (int i = 0; i < imageResId.length; i++) {
+				for (int i = 0; i < mListMapData.size(); i++) {
 					ImageView imageView = new ImageView(this.mActivity);
-					imageView.setImageResource(imageResId[i]);
+					String url=mListMapData.get(i).get("url");
+					mBannerBitmapManager.loadBitmap(url, imageView);
 					imageViews.add(imageView);
 				}
-				holder.startViewPager.setOffscreenPageLimit(imageResId.length);
+				holder.startViewPager.setOffscreenPageLimit(mListMapData.size());
 				NewsBannerAdapter mNewsBannerAdapter=new NewsBannerAdapter(this.mActivity);
 				mNewsBannerAdapter.setItemDatas(imageViews);
 				holder.startViewPager.setAdapter(mNewsBannerAdapter);
@@ -84,12 +88,25 @@ public class NewsListAdapter extends AppListAdapter{
 			}
 		}else if("2".equals(type)){
 			setItemVisibility(holder,2);
-			holder.news_pic.setBackgroundResource(R.drawable.news_default);
-			holder.news_title.setText("魏大侠"+recordno);
-			holder.news_description.setText("要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s要skl果园果园查轻歌曼舞轻歌曼舞困s");
+			String url=String.valueOf(data.get("url"));
+			if(TextUtils.isEmpty(url)){
+				holder.news_pic.setBackgroundResource(R.drawable.news_default);
+			}else{
+				mNewsBitmapManager.loadBitmap(url, holder.news_pic);
+			}
+			holder.news_title.setText(String.valueOf(data.get("title")));
+			holder.news_description.setText(String.valueOf(data.get("description")));
 		}else if("3".equals(type)){
 			setItemVisibility(holder,3);
-			holder.advertising_item.setBackgroundResource(R.drawable.default_banner_5);
+			
+			String url=String.valueOf(data.get("url"));
+			if(TextUtils.isEmpty(url)){
+				holder.advertising_item.setBackgroundResource(R.drawable.default_banner_5);
+			}else{
+				ImageView iv=new ImageView(mActivity);
+				mBannerBitmapManager.loadBitmap(url, iv);
+				holder.advertising_item.setBackgroundDrawable(iv.getDrawable());
+			}
 			holder.advertising_close.setTag(holder);
 			holder.advertising_close.setOnClickListener(new OnClickListener() {
 				

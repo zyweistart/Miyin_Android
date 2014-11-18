@@ -10,8 +10,9 @@
     <string name="gotoregister">立即注册</string>
     <string name="noaccount">没有账号?</string>
     <string name="nologin">您还没有登录</string>
-    <string name="accounthint">邮箱/手机号</string>
+    <string name="accounthint">请输入账号</string>
     <string name="passwordhint">请输入密码</string>
+    <string name="passworddiffhint">两次密码不一致</string>
     <string name="news">资讯</string>
     <string name="newsdetail">照明产业新闻</string>
     <string name="resources">资源</string>
