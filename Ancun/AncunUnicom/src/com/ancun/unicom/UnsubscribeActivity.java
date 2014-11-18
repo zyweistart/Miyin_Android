@@ -1,8 +1,15 @@
 package com.ancun.unicom;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import start.core.AppException;
 import start.core.AppManager;
+import start.service.HttpRunnable;
+import start.service.HttpServer;
+import start.service.Response;
+import start.utils.MD5;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,7 +24,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.ancun.core.BaseActivity;
+import com.ancun.core.Constant;
 import com.ancun.service.ButtonTextWatcher;
+import com.ancun.service.User;
 
 @SuppressWarnings("deprecation")
 public class UnsubscribeActivity extends BaseActivity {
@@ -54,38 +63,45 @@ public class UnsubscribeActivity extends BaseActivity {
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
-//			HttpServer hServer=new HttpServer(Constant.URL.ylTaoCancel, getHandlerContext());
-//			Map<String,String> headers=new HashMap<String,String>();
-//			headers.put("sign", User.ACCESSKEY);
-//			hServer.setHeaders(headers);
-//			Map<String,String> params=new HashMap<String,String>();
-//			params.put("accessid", User.ACCESSID);
-//			params.put("ownerno", getAppContext().currentUser().getPhone());
+			HttpServer hServer=new HttpServer("unicomWebSmsCancel", getHandlerContext());
+			Map<String,String> headers=new HashMap<String,String>();
+			headers.put("sign", User.ACCESSKEY);
+			hServer.setHeaders(headers);
+			Map<String,String> params=new HashMap<String,String>();
+			params.put("accessid", User.ACCESSID);
+			params.put("phone", getAppContext().currentUser().getPhone());
 //			params.put("password", MD5.md5(password));
-//			hServer.setParams(params);
-//			hServer.get(new HttpRunnable() {
-//				
-//				@Override
-//				public void run(Response response) throws AppException {
-//					
-//					runOnUiThread(new Runnable() {
-//						
-//						@Override
-//						public void run() {
+			hServer.setParams(params);
+			hServer.get(new HttpRunnable() {
+				
+				@Override
+				public void run(Response response) throws AppException {
+					
+					runOnUiThread(new Runnable() {
+						
+						@Override
+						public void run() {
 //							btn_submit.setVisibility(View.GONE);
 //							btn_return.setVisibility(View.VISIBLE);
-//						}
-//					});
-//					
-//				}
-//				
-//			});
-			mPDialog = new ProgressDialog(this);
-			mPDialog.setMessage(getString(R.string.wait));
-			mPDialog.setIndeterminate(true);
-			mPDialog.setCancelable(false);
-			mPDialog.show();
-			sendMessage("10655598301","tdac1");
+							
+							mPDialog = new ProgressDialog(UnsubscribeActivity.this);
+							mPDialog.setMessage(getString(R.string.wait));
+							mPDialog.setIndeterminate(true);
+							mPDialog.setCancelable(false);
+							mPDialog.show();
+							
+						}
+					});
+					
+				}
+				
+			});
+//			mPDialog = new ProgressDialog(this);
+//			mPDialog.setMessage(getString(R.string.wait));
+//			mPDialog.setIndeterminate(true);
+//			mPDialog.setCancelable(false);
+//			mPDialog.show();
+//			sendMessage("10655598301","tdac1");
 		}else if(v.getId()==R.id.btn_return){
 			AppManager.getInstance().finishAllActivity();
 		}else{
@@ -131,6 +147,7 @@ public class UnsubscribeActivity extends BaseActivity {
 								mPDialog.dismiss();
 								mPDialog=null;
 							}
+							getAppContext().currentUser().clearCacheUser();
 							getHandlerContext().makeTextLong("退订成功");
 						}
 					});

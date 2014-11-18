@@ -46,8 +46,8 @@ public class Register1Activity extends BaseActivity {
 
 	private static final String MESSAGE1="您申请的联通宽带公司的安存语录1业务（10元/月），请直接回复Y生效。";
 	private static final String MESSAGE2="您已成功定制联通宽带公司(10655598301)的安存语录1业务，发送tdac1到10655598301退订业务，查询热线10010。";
-	private static final String MESSAGE3="【安存网络】您正在免费注册安存语录—全国首个录音公证电话，验证码：";
-	private static final String MESSAGE4="，请及时输入。如非本人操作，请致电95105856。";
+	private static final String MESSAGE3="【安存网络】用户注册，您正在免费注册安存语录全国首个录音公证电话，验证码";
+	private static final String MESSAGE4="请及时输入。如非本人操作，请致电95105857";
 	private String checksum;
 	protected String phone;
 	protected String authcode;
@@ -181,7 +181,8 @@ public class Register1Activity extends BaseActivity {
 						getString(R.string.servercontenttip));
 				return;
 			}
-			getAuthCode(1);
+			unicomWebOpen(phone);
+//			getAuthCode(1);
 		} else if (v.getId() == R.id.btn_zre_get_checksum) {
 			getAuthCode(1);
 		} else if (v.getId() == R.id.btn_submit_checksum) {
@@ -269,6 +270,35 @@ public class Register1Activity extends BaseActivity {
 
 		});
 	}
+	
+	public void unicomWebOpen(String p) {
+		HttpServer hServer = new HttpServer("unicomWebSmsOpen",getHandlerContext());
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+		hServer.setHeaders(headers);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("accessid", User.USER_ACCESSID_LOCAL);
+		params.put("phone", p);
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) {
+				runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						mPDialog = new ProgressDialog(Register1Activity.this);
+						mPDialog.setMessage(getString(R.string.wait));
+						mPDialog.setIndeterminate(true);
+						mPDialog.setCancelable(false);
+						mPDialog.show();
+					}
+				});
+			}
+
+		});
+	}
 
 	public void sendMessage(String phone, String message) {
 		// 直接调用短信接口发短信
@@ -305,7 +335,8 @@ public class Register1Activity extends BaseActivity {
 				}else if(MESSAGE2.equals(str)){
 					runOnUiThread(new Runnable() {
 						public void run() {
-							ll_code_frame.setVisibility(View.GONE);
+							ll_first_frame.setVisibility(View.GONE);
+//							ll_code_frame.setVisibility(View.GONE);
 							ll_password_frame.setVisibility(View.VISIBLE);
 							if(mPDialog!=null){
 								mPDialog.dismiss();
@@ -318,7 +349,7 @@ public class Register1Activity extends BaseActivity {
 				    	
 				    	runOnUiThread(new Runnable() {
 							public void run() {
-								checksum=str.substring(33,39);
+								checksum=str.substring(MESSAGE3.length(),MESSAGE3.length()+6);
 								et_checksum.setText(checksum);
 							}
 				    	});
