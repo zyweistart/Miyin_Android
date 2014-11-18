@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
+import com.igexin.sdk.PushManager;
 import com.start.core.BaseFragment;
 import com.start.core.BaseFragmentActivity;
 import com.start.service.bean.NewsCategory;
@@ -79,6 +80,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 				Animation.RELATIVE_TO_SELF, -1.0f,Animation.RELATIVE_TO_SELF, 
 				0.0f, Animation.RELATIVE_TO_SELF,0.0f);
 		mHiddenAction.setDuration(500);
+		
+		PushManager.getInstance().initialize(this.getApplicationContext());
 	}
 
 	@Override

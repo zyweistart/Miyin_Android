@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import com.igexin.sdk.PushManager;
 import com.start.core.Constant.ResultCode;
 import com.start.zmcy.BaseContext;
 import com.start.zmcy.LoginActivity;
@@ -23,6 +24,12 @@ public class BaseActivity extends AppActivity {
 		return (BaseContext)BaseContext.getInstance();
 	}
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		PushManager.getInstance().initialize(this.getApplicationContext());
+	}
+	
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.head_back){
