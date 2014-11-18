@@ -33,7 +33,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 	
 	public ExpertsListAdapter(Activity activity) {
 		super(activity);
-		this.mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner_1));
+		this.mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner));
 		this.mExpertsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.experts_default));
 	}
 
