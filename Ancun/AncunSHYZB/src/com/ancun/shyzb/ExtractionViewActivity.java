@@ -79,7 +79,7 @@ public class ExtractionViewActivity extends BaseActivity {
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("accessid", User.ACCESSID);
 		params.put("ownerno",getAppContext().currentUser().getPhone());
-		params.put("fileno",fileno);
+		params.put(RecordingAdapter.RECORDED_FILENO,fileno);
 		params.put("acccodeact", String.valueOf(status));
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {

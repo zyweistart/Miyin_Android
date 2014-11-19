@@ -137,7 +137,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
                     		Map<String,String> params=new HashMap<String,String>();
                     		params.put("accessid", User.ACCESSID);
                     		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
-                    		params.put("fileno", fileno);
+                    		params.put(RecordingAdapter.RECORDED_FILENO, fileno);
                     		params.put("alteract", "1");
                     		hServer.setParams(params);
                     		hServer.get(new HttpRunnable() {
@@ -228,7 +228,7 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("accessid", User.ACCESSID);
 		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
-		params.put("fileno", fileNo);
+		params.put(RecordingAdapter.RECORDED_FILENO, fileNo);
 		hServer.setParams(params);
 		hServer.download(new DownloadRunnable() {
 			

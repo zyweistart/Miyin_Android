@@ -75,7 +75,7 @@ public class RecordedDetailActivity extends BaseActivity {
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
 			params.put("ownerno",getAppContext().currentUser().getPhone());
-			params.put("fileno",fileno);
+			params.put(RecordingAdapter.RECORDED_FILENO,fileno);
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
 				
@@ -142,7 +142,7 @@ public class RecordedDetailActivity extends BaseActivity {
  				Map<String,String> params=new HashMap<String,String>();
  				params.put("accessid", User.ACCESSID);
  				params.put("ownerno",getAppContext().currentUser().getPhone());
- 				params.put("fileno",fileno);
+ 				params.put(RecordingAdapter.RECORDED_FILENO,fileno);
  				params.put("remark", remark);
  				hServer.setParams(params);
  				hServer.get(new HttpRunnable() {
