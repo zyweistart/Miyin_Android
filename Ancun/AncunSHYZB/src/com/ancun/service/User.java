@@ -29,8 +29,6 @@ public class User {
 			mUser=new User();
 			mUser.setLogin(false);
 		}
-		User.ACCESSID=User.USER_ACCESSID_LOCAL;
-		User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
 		return mUser;
 	}
 	
@@ -99,11 +97,11 @@ public class User {
 	public void resolve(Map<String,String> userinfo){
 		setLogin(true);
 		getInfo().putAll(userinfo);
-		String accessid=getInfo().get("accessid");
+		String accessid=getInfo().get("accessId");
 		if(!TextUtils.isEmpty(accessid)){
 			User.ACCESSID=accessid;
 		}
-		String accesskey=getInfo().get("accesskey");
+		String accesskey=getInfo().get("accessKey");
 		if(!TextUtils.isEmpty(accesskey)){
 			User.ACCESSKEY=accesskey;
 		}

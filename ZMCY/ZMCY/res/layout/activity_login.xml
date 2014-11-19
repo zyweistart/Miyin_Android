@@ -73,6 +73,7 @@
             android:layout_gravity="center">
 
             <Button
+                android:id="@+id/qq_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_qq"
@@ -84,6 +85,7 @@
                 android:layout_height="1.0dip"/>
             
             <Button
+                android:id="@+id/wx_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_wexin"

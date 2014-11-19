@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import start.core.AppConstant;
 import start.core.AppException;
 import start.service.HttpRunnable;
 import start.service.HttpServer;
@@ -27,7 +28,6 @@ import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.Handler;
 import com.ancun.service.AppService;
-import com.ancun.service.User;
 
 /**
  * 注册
@@ -180,10 +180,9 @@ public class RegisterActivity extends BaseActivity {
 			}
 			HttpServer hServer=new HttpServer(Constant.URL.userSignup, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
-			headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+			headers.put("sign", AppConstant.EMPTYSTR);
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
-			params.put("accessid",User.USER_ACCESSID_LOCAL);
 			params.put("userTel",phone);
 			params.put("password", MD5.md5(password));
 			params.put("type","1");
@@ -214,10 +213,9 @@ public class RegisterActivity extends BaseActivity {
 	public void getAuthCode(int type){
 		HttpServer hServer=new HttpServer(Constant.URL.authcodeGet, getHandlerContext());
 		Map<String,String> headers=new HashMap<String,String>();
-		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+		headers.put("sign", AppConstant.EMPTYSTR);
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
-		params.put("accessid",User.USER_ACCESSID_LOCAL);
 		params.put("userTel", phone);
 		params.put("actype", String.valueOf(type));
 		hServer.setParams(params);

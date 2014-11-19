@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.start.core.BaseActivity;
 import com.start.core.Constant.ResultCode;
+import com.start.service.SocialService;
 
 
 public class LoginActivity extends BaseActivity{
@@ -85,6 +86,10 @@ public class LoginActivity extends BaseActivity{
 				return;
 			}
 			login(account,MD5.md5(password),true);
+		}else if(v.getId()==R.id.qq_login){
+			SocialService.socialQQLogin(this);
+		}else if(v.getId()==R.id.wx_login){
+			SocialService.socialWexinLogin(this);
 		}else if(v.getId()==R.id.txtRegister){
 			Intent intent=new Intent(this,RegisterActivity.class);
 			startActivity(intent);

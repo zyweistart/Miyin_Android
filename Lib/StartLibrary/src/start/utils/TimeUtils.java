@@ -395,6 +395,9 @@ public class TimeUtils {
 		if(M>0){
 			time.append(M+"秒");
 		}
+		if(time.toString().isEmpty()){
+			time.append("0秒");
+		}
 		return time.toString();
 	}
 	
