@@ -30,7 +30,8 @@ public class SocialService {
 	private static final String QQAPPID = "100424468";
 	private static final String QQAPPSECRET = "c7394704798a158208a74ab60104f0ba";
 
-	public static UMSocialService socialShare(Activity activity,String shareContent, String shareMedia) {
+	public static UMSocialService socialShare(Activity activity,
+			String shareContent, String shareMedia) {
 		UMSocialService mController = UMServiceFactory
 				.getUMSocialService("com.umeng.share");
 		// 添加微信平台
@@ -68,87 +69,31 @@ public class SocialService {
 	}
 
 	public static void socialWexinLogin(final Activity activity) {
-		final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.login");
+		final UMSocialService mController = UMServiceFactory
+				.getUMSocialService("com.umeng.login");
 		// 添加微信平台
 		UMWXHandler wxHandler = new UMWXHandler(activity, WXAPPID, WXAPPSECRET);
 		wxHandler.addToSocialSDK();
 
 		mController.doOauthVerify(activity, SHARE_MEDIA.WEIXIN,
 				new UMAuthListener() {
-			
+
 					@Override
 					public void onStart(SHARE_MEDIA platform) {
-						Toast.makeText(activity, "授权开始", Toast.LENGTH_SHORT).show();
-					}
-
-					@Override
-					public void onError(SocializeException e,SHARE_MEDIA platform) {
-						Toast.makeText(activity, "授权错误", Toast.LENGTH_SHORT).show();
-					}
-
-					@Override
-					public void onComplete(Bundle value, SHARE_MEDIA platform) {
-						Toast.makeText(activity, "授权完成", Toast.LENGTH_SHORT).show();
-						// 获取相关授权信息
-						mController.getPlatformInfo(activity,
-								SHARE_MEDIA.WEIXIN, new UMDataListener() {
-									@Override
-									public void onStart() {
-										Toast.makeText(activity, "获取平台数据开始...",Toast.LENGTH_SHORT).show();
-									}
-
-									@Override
-									public void onComplete(int status,
-											Map<String, Object> info) {
-										if (status == 200 && info != null) {
-											StringBuilder sb = new StringBuilder();
-											Set<String> keys = info.keySet();
-											for (String key : keys) {
-												sb.append(key+ "="+ info.get(key).toString()+ "\r\n");
-											}
-											Log.d("TestData", sb.toString());
-										} else {
-											Log.d("TestData", "发生错误：" + status);
-										}
-									}
-								});
-					}
-
-					@Override
-					public void onCancel(SHARE_MEDIA platform) {
-						Toast.makeText(activity, "授权取消", Toast.LENGTH_SHORT).show();
-					}
-					
-				});
-	}
-
-	public static void socialQQLogin(final Activity activity) {
-		final UMSocialService mController = UMServiceFactory
-				.getUMSocialService("com.umeng.login");
-		// 添加QQ平台
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, QQAPPID,
-				QQAPPSECRET);
-		qqSsoHandler.addToSocialSDK();
-
-		mController.doOauthVerify(activity, SHARE_MEDIA.QQ,
-				new UMAuthListener() {
-					@Override
-					public void onStart(SHARE_MEDIA platform) {
-						Toast.makeText(activity, "授权开始", Toast.LENGTH_SHORT).show();
+						// 授权开始
 					}
 
 					@Override
 					public void onError(SocializeException e,
 							SHARE_MEDIA platform) {
-						Toast.makeText(activity, "授权错误", Toast.LENGTH_SHORT).show();
+						// 授权错误
 					}
 
 					@Override
 					public void onComplete(Bundle value, SHARE_MEDIA platform) {
-						Toast.makeText(activity, "授权完成", Toast.LENGTH_SHORT).show();
-						// 获取相关授权信息
-						mController.getPlatformInfo(activity, SHARE_MEDIA.QQ,
-								new UMDataListener() {
+						// 授权完成,获取相关授权信息
+						mController.getPlatformInfo(activity,
+								SHARE_MEDIA.WEIXIN, new UMDataListener() {
 									@Override
 									public void onStart() {
 										Toast.makeText(activity, "获取平台数据开始...",
@@ -178,11 +123,68 @@ public class SocialService {
 
 					@Override
 					public void onCancel(SHARE_MEDIA platform) {
-						Toast.makeText(activity, "授权取消", Toast.LENGTH_SHORT)
-								.show();
+						//授权取消
 					}
 
 				});
+	}
+
+	public static void socialQQLogin(final Activity activity) {
+		final UMSocialService mController = UMServiceFactory
+				.getUMSocialService("com.umeng.login");
+		// 添加QQ平台
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, QQAPPID,
+				QQAPPSECRET);
+		qqSsoHandler.addToSocialSDK();
+
+		mController.doOauthVerify(activity, SHARE_MEDIA.QQ,
+
+		new UMAuthListener() {
+			@Override
+			public void onStart(SHARE_MEDIA platform) {
+				// 授权开始
+			}
+
+			@Override
+			public void onError(SocializeException e, SHARE_MEDIA platform) {
+				// 授权错误
+			}
+
+			@Override
+			public void onComplete(Bundle value, SHARE_MEDIA platform) {
+				// 授权完成,获取相关授权信息
+				mController.getPlatformInfo(activity, SHARE_MEDIA.QQ,
+						new UMDataListener() {
+							@Override
+							public void onStart() {
+								// 获取平台数据开始
+							}
+
+							@Override
+							public void onComplete(int status,
+									Map<String, Object> info) {
+								if (status == 200 && info != null) {
+									StringBuilder sb = new StringBuilder();
+									Set<String> keys = info.keySet();
+									for (String key : keys) {
+										sb.append(key + "="
+												+ info.get(key).toString()
+												+ "\r\n");
+									}
+									Log.d("TestData", sb.toString());
+								} else {
+									Log.d("TestData", "发生错误：" + status);
+								}
+							}
+						});
+			}
+
+			@Override
+			public void onCancel(SHARE_MEDIA platform) {
+				// 授权取消
+			}
+
+		});
 	}
 
 }

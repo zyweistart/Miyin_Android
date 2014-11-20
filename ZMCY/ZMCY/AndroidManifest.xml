@@ -123,6 +123,12 @@
             android:name=".FollowActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".NewsSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewsListActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".SettingActivity"
             android:screenOrientation="portrait" />
         <activity

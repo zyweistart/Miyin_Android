@@ -164,6 +164,10 @@ public final class Constant {
 		 * 字体设置
 		 */
 		public static final String SP_SIZE_SETTING = "SP_SIZE_SETTING";
+		/**
+		 * 阅读模式 日间，夜间
+		 */
+		public static final String SP_READ_MODE = "SP_READ_MODE";
 		
 	}
 	

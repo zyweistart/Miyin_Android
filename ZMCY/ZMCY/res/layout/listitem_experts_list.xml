@@ -62,15 +62,10 @@
 
                 <Button
                     android:id="@+id/experts_consultation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/selector_button_1"
-                    android:padding="5.0dip"
-                    android:text="@string/consultation"
-                    android:textColor="@color/white"
-                    android:textSize="16.0dip" />
+                   	style="@style/button1"
+                    android:text="@string/consultation"/>
             </RelativeLayout>
 
             <TextView

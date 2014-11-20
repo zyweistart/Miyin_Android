@@ -34,7 +34,8 @@
     <string name="collect">收藏</string>
     <string name="follow">关注</string>
     <string name="offline">离线阅读</string>
-    <string name="mode">夜间模式</string>
+    <string name="daymode">白天模式</string>
+    <string name="nightmode">夜间模式</string>
     <string name="textmode">文字模式</string>
     <string name="search">新闻搜索</string>
     <string name="setting">设置</string>
@@ -49,5 +50,7 @@
     <string name="cleanfile_sure">是否删除本地所有缓存文件？</string>
     <string name="cleanfile_success">成功清理本地所有文件</string>
     <string name="cleanfile_fail">清理本地文件失败</string>
+    <string name="searchkeyshint">请输入关键词</string>
+    <string name="hotsearch">热门搜索</string>
 
 </resources>

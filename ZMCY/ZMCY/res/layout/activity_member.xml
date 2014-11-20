@@ -84,7 +84,7 @@
 		        android:id="@+id/txtMode"
 		        style="@style/member_function_button2"
 		        android:drawableTop="@drawable/ic_mode"
-		        android:text="@string/mode" />
+		        android:text="@string/nightmode" />
 	        <TextView
 		        android:id="@+id/txtTextMode"
 		        style="@style/member_function_button2"
