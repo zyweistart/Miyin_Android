@@ -186,7 +186,7 @@ public class HttpServer {
 		client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, protocolVersion);
 		client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, AppConstant.ENCODE);
 		// 设置超时时间为30秒
-		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,30*1000);
+		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,10*1000);
 		HttpPost post = new HttpPost(AppContext.getInstance().getServerURL());
 		try {
 			post.addHeader("format", "json");

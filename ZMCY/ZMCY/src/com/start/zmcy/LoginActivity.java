@@ -1,5 +1,8 @@
 package com.start.zmcy;
 
+import java.util.Map;
+import java.util.Set;
+
 import start.core.AppConstant;
 import start.core.AppException;
 import start.utils.MD5;
@@ -8,10 +11,12 @@ import start.widget.CustomEditText;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.start.core.BaseActivity;
+import com.start.core.Constant.Handler;
 import com.start.core.Constant.ResultCode;
 import com.start.service.SocialService;
 
@@ -37,11 +42,7 @@ public class LoginActivity extends BaseActivity{
 		setMainHeadTitle(getString(R.string.login));
 		et_login_account=(CustomEditText)findViewById(R.id.et_login_account);
 		et_login_password=(CustomEditText)findViewById(R.id.et_login_password);
-	}
-	
-	@Override
-	public void onResume() {
-		super.onResume();
+		
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
 			
@@ -99,6 +100,7 @@ public class LoginActivity extends BaseActivity{
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onProcessMessage(Message msg) throws AppException {
 		switch(msg.what){
@@ -106,6 +108,21 @@ public class LoginActivity extends BaseActivity{
 			getAppContext().currentUser().clearCachePassword();
 			et_login_password.setText(AppConstant.EMPTYSTR);
 			getHandlerContext().makeTextShort(String.valueOf(msg.obj));
+			break;
+		case Handler.HANDLERTHIRDPARTYLANDINGQQ:
+			//QQ登陆
+		case Handler.HANDLERTHIRDPARTYLANDINGWX:
+			//WX登陆
+			Map<String,Object> info=(Map<String,Object>)msg.obj;
+			StringBuilder sb = new StringBuilder();
+			Set<String> keys = info.keySet();
+			for (String key : keys) {
+				sb.append(key + "="+ info.get(key).toString()+ "\r\n");
+			}
+			Log.d("TestData", sb.toString());
+			getHandlerContext().makeTextLong(sb.toString());
+			//TODO:模拟登陆注册 
+			this.loginSuccess();
 			break;
 		default:
 			super.onProcessMessage(msg);

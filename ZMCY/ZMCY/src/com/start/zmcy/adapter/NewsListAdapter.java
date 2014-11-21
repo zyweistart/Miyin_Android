@@ -28,13 +28,26 @@ import com.start.zmcy.content.NewsContentFragment;
 
 public class NewsListAdapter extends AppListAdapter{
 
-	private BitmapManager mBannerBitmapManager;
-	private BitmapManager mNewsBitmapManager;
+	
+	public static final String TYPE="type";
+	public static final String TITLE="title";
+	public static final String DESCRIPTION="description";
+	public static final String RECORDNO="recordno";
+	public static final String IMAGEURL="url";
+	public static final String BANNERLIST="bannerlist";
+	public static final String BANNERINFO="bannerinfo";
+	
+	private static BitmapManager mBannerBitmapManager;
+	private static BitmapManager mNewsBitmapManager;
 	
 	public NewsListAdapter(Activity activity) {
 		super(activity);
-		this.mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner));
-		this.mNewsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_news));
+		if(mBannerBitmapManager ==null){
+			mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner));
+		}
+		if(mNewsBitmapManager==null){
+			mNewsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_news));
+		}
 	}
 
 	@SuppressWarnings("deprecation")
@@ -56,16 +69,17 @@ public class NewsListAdapter extends AppListAdapter{
 			holder = (HolderView) convertView.getTag();
 		}
 		Map<String,Object> data=mItemDatas.get(position);
-		String type=String.valueOf(data.get("type"));
+		String type=String.valueOf(data.get(TYPE));
 		holder.position=position;
-		holder.recordno=String.valueOf(data.get("recordno"));
+		holder.recordno=String.valueOf(data.get(RECORDNO));
 		if("1".equals(type)){
+			//BANNER
 			setItemVisibility(holder,1);
 			try {
-				JSONArray listo=(JSONArray)data.get("bannerlist");
+				JSONArray listo=(JSONArray)data.get(BANNERLIST);
 				List<Map<String,String>>mListMapData=new ArrayList<Map<String,String>>();
 				for(int i=0;i<listo.length();i++){
-					JSONObject current = listo.getJSONObject(i).getJSONObject("bannerinfo");
+					JSONObject current = listo.getJSONObject(i).getJSONObject(BANNERINFO);
 					Map<String,String> datas=new HashMap<String,String>();
 					JSONArray names=current.names();
 					for(int j=0;j<names.length();j++){
@@ -78,8 +92,8 @@ public class NewsListAdapter extends AppListAdapter{
 				for (int i = 0; i < mListMapData.size(); i++) {
 					ImageView imageView = new ImageView(this.mActivity);
 					BannerHolder bh=new BannerHolder();
-					bh.recordno=String.valueOf(mListMapData.get(i).get("recordno"));
-					String url=mListMapData.get(i).get("url");
+					bh.recordno=String.valueOf(mListMapData.get(i).get(RECORDNO));
+					String url=mListMapData.get(i).get(IMAGEURL);
 					mBannerBitmapManager.loadBitmap(url, imageView);
 					imageView.setTag(bh);
 					imageViews.add(imageView);
@@ -101,19 +115,21 @@ public class NewsListAdapter extends AppListAdapter{
 				e.printStackTrace();
 			}
 		}else if("2".equals(type)){
+			//News
 			setItemVisibility(holder,2);
-			String url=String.valueOf(data.get("url"));
+			String url=String.valueOf(data.get(IMAGEURL));
 			if(TextUtils.isEmpty(url)){
 				holder.news_pic.setBackgroundResource(R.drawable.default_news);
 			}else{
 				mNewsBitmapManager.loadBitmap(url, holder.news_pic);
 			}
-			holder.news_title.setText(String.valueOf(data.get("title")));
-			holder.news_description.setText(String.valueOf(data.get("description")));
+			holder.news_title.setText(String.valueOf(data.get(TITLE)));
+			holder.news_description.setText(String.valueOf(data.get(DESCRIPTION)));
 		}else if("3".equals(type)){
+			//Advertising
 			setItemVisibility(holder,3);
 			
-			String url=String.valueOf(data.get("url"));
+			String url=String.valueOf(data.get(IMAGEURL));
 			if(TextUtils.isEmpty(url)){
 				holder.advertising_item.setBackgroundResource(R.drawable.default_banner);
 			}else{
@@ -148,12 +164,11 @@ public class NewsListAdapter extends AppListAdapter{
 	}
 	
 	public class BannerHolder{
+		public int position;
 		public String recordno;
 	}
 	
-	public class HolderView {
-		public int position;
-		public String recordno;
+	public class HolderView extends BannerHolder {
 		
 		public LinearLayout news_item;
 		public RelativeLayout advertising_item;

@@ -56,8 +56,12 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				HolderView hv=(HolderView)view.getTag();
-				NewsContentFragment.gotoNews(mActivity,hv.recordno);
+				if(id>0){
+					HolderView hv=(HolderView)view.getTag();
+					NewsContentFragment.gotoNews(mActivity,hv.recordno);
+				}else{
+					mRefreshListServer.getCurrentListView().startLoadMore();
+				}
 			}
 			
 		});

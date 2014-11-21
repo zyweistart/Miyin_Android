@@ -1,14 +1,14 @@
 package com.start.service;
 
 import java.util.Map;
-import java.util.Set;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
+import com.start.core.BaseActivity;
+import com.start.core.Constant.Handler;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -28,8 +28,8 @@ public class SocialService {
 	private static final String WXAPPID = "wx967daebe835fbeac";
 	private static final String WXAPPSECRET = "5fa9e68ca3970e87a1f83e563c8dcbce";
 	//QQ
-	private static final String QQAPPID = "1103513265";
-	private static final String QQAPPKEY = "vE1TEWN5S4QQwzpx";
+	private static final String QQAPPID = "100424468";
+	private static final String QQAPPKEY = "c7394704798a158208a74ab60104f0ba";
 
 	public static UMSocialService socialShare(Activity activity,
 			String shareContent, String shareMedia) {
@@ -71,7 +71,7 @@ public class SocialService {
 		return mController;
 	}
 
-	public static void socialWexinLogin(final Activity activity) {
+	public static void socialWexinLogin(final BaseActivity activity) {
 		final UMSocialService mController = UMServiceFactory
 				.getUMSocialService("com.umeng.login");
 		// 添加微信平台
@@ -87,38 +87,26 @@ public class SocialService {
 					}
 
 					@Override
-					public void onError(SocializeException e,
-							SHARE_MEDIA platform) {
+					public void onError(SocializeException e,SHARE_MEDIA platform) {
 						// 授权错误
 					}
 
 					@Override
 					public void onComplete(Bundle value, SHARE_MEDIA platform) {
 						// 授权完成,获取相关授权信息
-						mController.getPlatformInfo(activity,
-								SHARE_MEDIA.WEIXIN, new UMDataListener() {
+						mController.getPlatformInfo(activity,SHARE_MEDIA.WEIXIN, new UMDataListener() {
 									@Override
 									public void onStart() {
-										Toast.makeText(activity, "获取平台数据开始...",
-												Toast.LENGTH_SHORT).show();
+										// 获取平台数据开始
 									}
 
 									@Override
-									public void onComplete(int status,
-											Map<String, Object> info) {
+									public void onComplete(int status,Map<String, Object> info) {
 										if (status == 200 && info != null) {
-											StringBuilder sb = new StringBuilder();
-											Set<String> keys = info.keySet();
-											for (String key : keys) {
-												sb.append(key
-														+ "="
-														+ info.get(key)
-																.toString()
-														+ "\r\n");
-											}
-											Log.d("TestData", sb.toString());
-										} else {
-											Log.d("TestData", "发生错误：" + status);
+											Message message=new Message();
+											message.what=Handler.HANDLERTHIRDPARTYLANDINGWX;
+											message.obj=info;
+											activity.getHandlerContext().sendMessage(message);
 										}
 									}
 								});
@@ -132,7 +120,7 @@ public class SocialService {
 				});
 	}
 
-	public static void socialQQLogin(final Activity activity) {
+	public static void socialQQLogin(final BaseActivity activity) {
 		final UMSocialService mController = UMServiceFactory
 				.getUMSocialService("com.umeng.login");
 		// 添加QQ平台
@@ -141,45 +129,37 @@ public class SocialService {
 		qqSsoHandler.addToSocialSDK();
 
 		mController.doOauthVerify(activity, SHARE_MEDIA.QQ,
-
-		new UMAuthListener() {
-			@Override
-			public void onStart(SHARE_MEDIA platform) {
-				// 授权开始
-			}
-
-			@Override
-			public void onError(SocializeException e, SHARE_MEDIA platform) {
-				// 授权错误
-			}
-
-			@Override
-			public void onComplete(Bundle value, SHARE_MEDIA platform) {
-				// 授权完成,获取相关授权信息
-				mController.getPlatformInfo(activity, SHARE_MEDIA.QQ,
-						new UMDataListener() {
-							@Override
-							public void onStart() {
-								// 获取平台数据开始
-							}
-
-							@Override
-							public void onComplete(int status,
-									Map<String, Object> info) {
-								if (status == 200 && info != null) {
-									StringBuilder sb = new StringBuilder();
-									Set<String> keys = info.keySet();
-									for (String key : keys) {
-										sb.append(key + "="
-												+ info.get(key).toString()
-												+ "\r\n");
-									}
-									Log.d("TestData", sb.toString());
-								} else {
-									Log.d("TestData", "发生错误：" + status);
+			new UMAuthListener() {
+				@Override
+				public void onStart(SHARE_MEDIA platform) {
+					// 授权开始
+				}
+	
+				@Override
+				public void onError(SocializeException e, SHARE_MEDIA platform) {
+					// 授权错误
+				}
+	
+				@Override
+				public void onComplete(Bundle value, SHARE_MEDIA platform) {
+					// 授权完成,获取相关授权信息
+					mController.getPlatformInfo(activity, SHARE_MEDIA.QQ,
+							new UMDataListener() {
+								@Override
+								public void onStart() {
+									// 获取平台数据开始
 								}
-							}
-						});
+	
+								@Override
+								public void onComplete(int status,Map<String, Object> info) {
+									if (status == 200 && info != null) {
+										Message message=new Message();
+										message.what=Handler.HANDLERTHIRDPARTYLANDINGQQ;
+										message.obj=info;
+										activity.getHandlerContext().sendMessage(message);
+									}
+								}
+							});
 			}
 
 			@Override

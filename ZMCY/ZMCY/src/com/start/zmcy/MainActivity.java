@@ -1,7 +1,9 @@
 package com.start.zmcy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,11 +24,23 @@ import com.start.zmcy.content.NewsContentFragment;
 
 public class MainActivity extends BaseFragmentActivity implements OnClickListener {
 
-	List<BaseFragment> nBaseFragments = new ArrayList<BaseFragment>();
+	private static Map<String,String> mNewsCategoryes=new HashMap<String,String>();
+	private List<BaseFragment> nBaseFragments = new ArrayList<BaseFragment>();
 
 	private ScrollView mMainMenu;
 	private TranslateAnimation mShowAction, mHiddenAction;
 
+	static{
+		mNewsCategoryes.put("1", "头条");
+		mNewsCategoryes.put("2", "资讯");
+		mNewsCategoryes.put("3", "会讯");
+		mNewsCategoryes.put("4", "政策法规");
+		mNewsCategoryes.put("5", "标准检测");
+		mNewsCategoryes.put("6", "国内展");
+		mNewsCategoryes.put("7", "国外展");
+		mNewsCategoryes.put("8", "工程招标");
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,31 +55,13 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 				R.color.new_title));
 		mPagerTabStrip.setBackgroundColor(getResources().getColor(
 				R.color.new_title_bg));
-
-		NewsCategory nc = new NewsCategory();
-		nc.setTitle("头条");
-		nBaseFragments.add(new NewsContentFragment(this, nc));
-		nc = new NewsCategory();
-		nc.setTitle("资讯");
-		nBaseFragments.add(new NewsContentFragment(this, nc));
-		nc = new NewsCategory();
-		nc.setTitle("会讯");
-		nBaseFragments.add(new NewsContentFragment(this, nc));
-		nc = new NewsCategory();
-		nc.setTitle("政策法规");
-		nBaseFragments.add(new NewsContentFragment(this, nc));
-		nc = new NewsCategory();
-		nc.setTitle("标准检测");
-		nBaseFragments.add(new NewsContentFragment(this, nc));
-		nc = new NewsCategory();
-		nc.setTitle("国内展");
-		nBaseFragments.add(new NewsContentFragment(this, nc));
-		nc = new NewsCategory();
-		nc.setTitle("国外展");
-		nBaseFragments.add(new NewsContentFragment(this, nc));
-		nc = new NewsCategory();
-		nc.setTitle("工程招标");
-		nBaseFragments.add(new NewsContentFragment(this, nc));
+		
+		for(String key : mNewsCategoryes.keySet()){
+			NewsCategory nc=new NewsCategory();
+			nc.setKey(key);
+			nc.setTitle(mNewsCategoryes.get(key));
+			nBaseFragments.add(new NewsContentFragment(this, nc));
+		}
 		ViewPager vp = (ViewPager) findViewById(R.id.mViewPager);
 		vp.setAdapter(new ContentFragmentPagerAdapter(getSupportFragmentManager(), nBaseFragments));
 

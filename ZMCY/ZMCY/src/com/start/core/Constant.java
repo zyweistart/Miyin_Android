@@ -116,6 +116,14 @@ public final class Constant {
 		 * 网络已连接
 		 */
 		public static final int HANDLERNETCHECKMESSAGEWHATNOCONNECT=0x1123332;
+		/**
+		 * 第三方QQ登陆
+		 */
+		public static final int HANDLERTHIRDPARTYLANDINGQQ=0x1123334;
+		/**
+		 * 第三方微信登陆
+		 */
+		public static final int HANDLERTHIRDPARTYLANDINGWX=0x1123335;
 		
 	}
 
