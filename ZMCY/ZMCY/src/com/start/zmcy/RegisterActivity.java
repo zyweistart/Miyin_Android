@@ -10,6 +10,8 @@ import com.start.core.BaseActivity;
 
 public class RegisterActivity extends BaseActivity{
 	
+	public static final int LOGINSUCCESS=255;
+	
 	private CustomEditText et_register_account;
 	private CustomEditText et_register_password;
 	private CustomEditText et_register_repassword;
@@ -31,11 +33,11 @@ public class RegisterActivity extends BaseActivity{
 			String account=String.valueOf(et_register_account.getText());
 			String password=String.valueOf(et_register_password.getText());
 			String rePassword=String.valueOf(et_register_repassword.getText());
-			if(!TextUtils.isEmpty(account)){
+			if(TextUtils.isEmpty(account)){
 				getHandlerContext().makeTextLong(getString(R.string.accounthint));
 				return;
 			}
-			if(!TextUtils.isEmpty(password)){
+			if(TextUtils.isEmpty(password)){
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
@@ -44,9 +46,15 @@ public class RegisterActivity extends BaseActivity{
 				return;
 			}
 			//TODO:注册动作
+			registerSuccess();
 		}else{
 			super.onClick(v);
 		}
+	}
+	
+	public void registerSuccess(){
+		setResult(LOGINSUCCESS);
+		finish();
 	}
 	
 }

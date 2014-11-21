@@ -92,7 +92,7 @@ public class LoginActivity extends BaseActivity{
 			SocialService.socialWexinLogin(this);
 		}else if(v.getId()==R.id.txtRegister){
 			Intent intent=new Intent(this,RegisterActivity.class);
-			startActivity(intent);
+			startActivityForResult(intent, 0);
 		}else{
 			super.onClick(v);
 		}
@@ -113,6 +113,14 @@ public class LoginActivity extends BaseActivity{
 		}
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode==RegisterActivity.LOGINSUCCESS){
+			this.loginSuccess();
+		}
+	}
+
 	/**
 	 * 登录
 	 * @param account
@@ -120,6 +128,14 @@ public class LoginActivity extends BaseActivity{
 	 * @param autoLogin  
 	 */
 	public void login(final String account,final String password,final Boolean autoLogin){
+		getAppContext().currentUser().addCacheUser(account, password, autoLogin);
+		this.loginSuccess();
+	}
+	
+	/**
+	 * 登陆成功
+	 */
+	public void loginSuccess(){
 		if(getInputMethodManager().isActive()){
 			getInputMethodManager().hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 		}
@@ -129,4 +145,5 @@ public class LoginActivity extends BaseActivity{
 			finish();
 		}
 	}
+	
 }

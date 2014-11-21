@@ -24,11 +24,12 @@ import com.umeng.socialize.weixin.controller.UMWXHandler;
 
 public class SocialService {
 
+	//微信
 	private static final String WXAPPID = "wx967daebe835fbeac";
 	private static final String WXAPPSECRET = "5fa9e68ca3970e87a1f83e563c8dcbce";
-
-	private static final String QQAPPID = "100424468";
-	private static final String QQAPPSECRET = "c7394704798a158208a74ab60104f0ba";
+	//QQ
+	private static final String QQAPPID = "1103513265";
+	private static final String QQAPPKEY = "vE1TEWN5S4QQwzpx";
 
 	public static UMSocialService socialShare(Activity activity,
 			String shareContent, String shareMedia) {
@@ -44,11 +45,11 @@ public class SocialService {
 		wxCircleHandler.addToSocialSDK();
 		// 添加QQ
 		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, QQAPPID,
-				QQAPPSECRET);
+				QQAPPKEY);
 		qqSsoHandler.addToSocialSDK();
 		// 添加QQ空间
 		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity,
-				QQAPPID, QQAPPSECRET);
+				QQAPPID, QQAPPKEY);
 		qZoneSsoHandler.addToSocialSDK();
 		// 设置新浪SSO handler
 		mController.getConfig().setSsoHandler(new SinaSsoHandler());
@@ -60,11 +61,13 @@ public class SocialService {
 			// 设置分享图片, 参数2为图片的url地址
 			mController.setShareMedia(new UMImage(activity, shareMedia));
 		}
+		mController.getConfig().setPlatformOrder(SHARE_MEDIA.WEIXIN,
+				SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE,
+				SHARE_MEDIA.SINA, SHARE_MEDIA.TENCENT);
 		// 设置需要移除的分享平台
-		// mSocialService.mController.getConfig().removePlatform(
-		// SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,
-		// SHARE_MEDIA.QZONE,SHARE_MEDIA.QQ,
-		// SHARE_MEDIA.SINA,SHARE_MEDIA.TENCENT);
+//		mController.getConfig().removePlatform(SHARE_MEDIA.WEIXIN,
+//				SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QZONE, SHARE_MEDIA.QQ,
+//				SHARE_MEDIA.SINA, SHARE_MEDIA.TENCENT);
 		return mController;
 	}
 
@@ -134,7 +137,7 @@ public class SocialService {
 				.getUMSocialService("com.umeng.login");
 		// 添加QQ平台
 		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, QQAPPID,
-				QQAPPSECRET);
+				QQAPPKEY);
 		qqSsoHandler.addToSocialSDK();
 
 		mController.doOauthVerify(activity, SHARE_MEDIA.QQ,

@@ -9,14 +9,16 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="20.0dip" />
+        android:layout_height="20.0dip"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/txtBindShared"
         style="@style/sliding_left_textview"
         android:drawableLeft="@drawable/ic_bindshared"
         android:drawableRight="@drawable/ic_arrow_right"
-        android:text="@string/bindshared" />
+        android:text="@string/bindshared"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"
@@ -56,7 +58,6 @@
     <TextView
         android:id="@+id/txtVersion"
         style="@style/sliding_left_textview"
-        android:layout_alignParentLeft="true"
         android:drawableLeft="@drawable/ic_version"
         android:text="@string/version" />
 

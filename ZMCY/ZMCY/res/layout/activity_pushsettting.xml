@@ -7,29 +7,22 @@
     
     <include layout="@layout/module_header_title" />
      
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16.0dip"
+        android:textColor="#999999"
+        android:gravity="center"
+        android:layout_margin="10.0dip"
+        android:text="关门后，将不会收到对应频道的新闻推送"/>
+    
     <TextView
         android:id="@+id/txt1"
         style="@style/sliding_left_textview"
-        android:drawableLeft="@drawable/ic_cleancache"
         android:drawableRight="@drawable/button_state_no"
-        android:text="@string/pushsetting" />
+        android:text="头条" />
 
     <View style="@style/line" />
 
-    <TextView
-        android:id="@+id/txt2"
-        style="@style/sliding_left_textview"
-        android:drawableLeft="@drawable/ic_cleancache"
-        android:drawableRight="@drawable/button_state_no"
-        android:text="@string/cleancache" />
-
-    <View style="@style/line" />
-    
-    <TextView
-        android:id="@+id/txt3"
-        style="@style/sliding_left_textview"
-        android:drawableLeft="@drawable/ic_cleancache"
-        android:drawableRight="@drawable/button_state_off"
-        android:text="@string/cleancache" />
     
 </LinearLayout>
