@@ -7,6 +7,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import com.start.core.BaseActivity;
+import com.start.core.Config;
 
 /**
  * 活动
@@ -52,8 +53,8 @@ public class ActivitiesActivity extends BaseActivity {
 		});
 
 		setHeadButtonEnabled(0);
-		mWebView1.loadUrl("http://www.360.cn");
-		mWebView2.loadUrl("http://www.163.com");
+		mWebView1.loadUrl(Config.MallURL);
+		mWebView2.loadUrl(Config.ExhibitionURL);
 		
 	}
 

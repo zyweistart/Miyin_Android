@@ -8,6 +8,7 @@ import android.os.Message;
 import android.text.TextUtils;
 
 import com.start.core.BaseActivity;
+import com.start.core.Config;
 import com.start.core.Constant.Handler;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -24,32 +25,25 @@ import com.umeng.socialize.weixin.controller.UMWXHandler;
 
 public class SocialService {
 
-	//微信
-	private static final String WXAPPID = "wx967daebe835fbeac";
-	private static final String WXAPPSECRET = "5fa9e68ca3970e87a1f83e563c8dcbce";
-	//QQ
-	private static final String QQAPPID = "100424468";
-	private static final String QQAPPKEY = "c7394704798a158208a74ab60104f0ba";
-
 	public static UMSocialService socialShare(Activity activity,
 			String shareContent, String shareMedia) {
 		UMSocialService mController = UMServiceFactory
 				.getUMSocialService("com.umeng.share");
 		// 添加微信平台
-		UMWXHandler wxHandler = new UMWXHandler(activity, WXAPPID, WXAPPSECRET);
+		UMWXHandler wxHandler = new UMWXHandler(activity, Config.WXAPPID, Config.WXAPPSECRET);
 		wxHandler.addToSocialSDK();
 		// 添加微信朋友圈
-		UMWXHandler wxCircleHandler = new UMWXHandler(activity, WXAPPID,
-				WXAPPSECRET);
+		UMWXHandler wxCircleHandler = new UMWXHandler(activity, Config.WXAPPID,
+				Config.WXAPPSECRET);
 		wxCircleHandler.setToCircle(true);
 		wxCircleHandler.addToSocialSDK();
 		// 添加QQ
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, QQAPPID,
-				QQAPPKEY);
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, Config.QQAPPID,
+				Config.QQAPPKEY);
 		qqSsoHandler.addToSocialSDK();
 		// 添加QQ空间
 		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity,
-				QQAPPID, QQAPPKEY);
+				Config.QQAPPID, Config.QQAPPKEY);
 		qZoneSsoHandler.addToSocialSDK();
 		// 设置新浪SSO handler
 		mController.getConfig().setSsoHandler(new SinaSsoHandler());
@@ -75,7 +69,7 @@ public class SocialService {
 		final UMSocialService mController = UMServiceFactory
 				.getUMSocialService("com.umeng.login");
 		// 添加微信平台
-		UMWXHandler wxHandler = new UMWXHandler(activity, WXAPPID, WXAPPSECRET);
+		UMWXHandler wxHandler = new UMWXHandler(activity, Config.WXAPPID, Config.WXAPPSECRET);
 		wxHandler.addToSocialSDK();
 
 		mController.doOauthVerify(activity, SHARE_MEDIA.WEIXIN,
@@ -124,8 +118,8 @@ public class SocialService {
 		final UMSocialService mController = UMServiceFactory
 				.getUMSocialService("com.umeng.login");
 		// 添加QQ平台
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, QQAPPID,
-				QQAPPKEY);
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, Config.QQAPPID,
+				Config.QQAPPKEY);
 		qqSsoHandler.addToSocialSDK();
 
 		mController.doOauthVerify(activity, SHARE_MEDIA.QQ,

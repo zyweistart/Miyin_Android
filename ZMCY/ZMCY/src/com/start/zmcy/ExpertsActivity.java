@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 
 import com.start.core.BaseActivity;
+import com.start.core.Config;
 import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
@@ -106,7 +107,7 @@ public class ExpertsActivity extends BaseActivity implements
 				return true;
 			}
 		});
-		mWebView.loadUrl("http://www.qq.com");
+		mWebView.loadUrl(Config.EXPERTSURL);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.start.core.BaseActivity;
+import com.start.core.Config;
 
 /**
  * 应用 
@@ -28,6 +29,6 @@ public class AppActivity extends BaseActivity{
 				return true;
 			}
 		});
-		mWebView.loadUrl("http://www.qq.com");
+		mWebView.loadUrl(Config.APPURL);
  	}
 }
