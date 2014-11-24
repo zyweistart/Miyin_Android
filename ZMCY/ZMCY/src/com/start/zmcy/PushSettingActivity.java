@@ -1,6 +1,5 @@
 package com.start.zmcy;
 
-import start.core.AppConstant;
 import start.core.AppContext;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.igexin.sdk.PushManager;
 import com.start.core.BaseActivity;
 import com.start.core.Constant.Preferences;
 
@@ -35,12 +35,13 @@ public class PushSettingActivity extends BaseActivity{
 		txt1=(TextView)findViewById(R.id.txt1);
 		txt1.setCompoundDrawables(null, null, img_on, null);
 		
-		String getuiClientId=AppContext.getSharedPreferences().getString(Preferences.SP_GETUICLIENTID, AppConstant.EMPTYSTR);
+		String getuiClientId=AppContext.getSharedPreferences().getString(Preferences.SP_GETUICLIENTID, 
+				PushManager.getInstance().getClientid(this));
 		if(TextUtils.isEmpty(getuiClientId))	{
 			finish();
 		}
 		
-		getHandlerContext().makeTextLong("个推客户端ID"+getuiClientId);
+		getHandlerContext().makeTextLong("clientid:"+getuiClientId);
 		
  	}
 	
