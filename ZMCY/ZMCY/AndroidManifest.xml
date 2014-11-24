@@ -202,14 +202,13 @@
         
 		<!-- 个推第三方应用内接收透传消息 -->
 		<receiver
-		    android:name="com.start.zmcy.PushNewsReceiver"
+		    android:name=".GetuiPushReceiver"
 		    android:exported="false" >
 		    <intent-filter>
 		        <!-- 替换为action android:name="com.igexin.sdk.action.第三方应用APPID" -->
 		        <action android:name="com.igexin.sdk.action.tJlUqeDHOLAaWgL44bQPs3" />
 		        </intent-filter>
 		</receiver>
-        
         <!-- 配置SDK核心服务 -->
         <service
             android:name="com.igexin.sdk.PushService"
