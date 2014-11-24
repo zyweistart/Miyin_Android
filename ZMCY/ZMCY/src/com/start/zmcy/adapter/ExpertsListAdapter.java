@@ -28,13 +28,25 @@ import com.start.zmcy.R;
 
 public class ExpertsListAdapter extends AppListAdapter{
 
-	private BitmapManager mBannerBitmapManager;
-	private BitmapManager mExpertsBitmapManager;
+	public static final String TYPE="type";
+	public static final String TITLE="title";
+	public static final String DESCRIPTION="description";
+	public static final String RECORDNO="recordno";
+	public static final String IMAGEURL="url";
+	public static final String BANNERLIST="bannerlist";
+	public static final String BANNERINFO="bannerinfo";
+	
+	private static BitmapManager mBannerBitmapManager;
+	private static BitmapManager mExpertsBitmapManager;
 	
 	public ExpertsListAdapter(Activity activity) {
 		super(activity);
-		this.mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner));
-		this.mExpertsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_experts));
+		if(mBannerBitmapManager ==null){
+			mBannerBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_banner));
+		}
+		if(mExpertsBitmapManager==null){
+			mExpertsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_experts));
+		}
 	}
 
 	@Override
@@ -55,15 +67,15 @@ public class ExpertsListAdapter extends AppListAdapter{
 			holder = (HolderView) convertView.getTag();
 		}
 		Map<String,Object> data=mItemDatas.get(position);
-		String type=String.valueOf(data.get("type"));
-//		String recordno=String.valueOf(data.get("recordno"));
+		String type=String.valueOf(data.get(TYPE));
+//		String recordno=String.valueOf(data.get(RECORDNO));
 		if("1".equals(type)){
 			setItemVisibility(holder,1);
 			try {
-				JSONArray listo=(JSONArray)data.get("bannerlist");
+				JSONArray listo=(JSONArray)data.get(BANNERLIST);
 				List<Map<String,String>>mListMapData=new ArrayList<Map<String,String>>();
 				for(int i=0;i<listo.length();i++){
-					JSONObject current = listo.getJSONObject(i).getJSONObject("bannerinfo");
+					JSONObject current = listo.getJSONObject(i).getJSONObject(BANNERINFO);
 					Map<String,String> datas=new HashMap<String,String>();
 					JSONArray names=current.names();
 					for(int j=0;j<names.length();j++){
@@ -75,7 +87,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 				List<ImageView> imageViews= new ArrayList<ImageView>();
 				for (int i = 0; i < mListMapData.size(); i++) {
 					ImageView imageView = new ImageView(this.mActivity);
-					String url=mListMapData.get(i).get("url");
+					String url=mListMapData.get(i).get(IMAGEURL);
 					mBannerBitmapManager.loadBitmap(url, imageView);
 					imageViews.add(imageView);
 				}
@@ -88,15 +100,15 @@ public class ExpertsListAdapter extends AppListAdapter{
 			}
 		}else if("2".equals(type)||"3".equals(type)){
 			setItemVisibility(holder,2);
-			String url=String.valueOf(data.get("url"));
+			String url=String.valueOf(data.get(IMAGEURL));
 			if(TextUtils.isEmpty(url)){
 				holder.experts_head.setBackgroundResource(R.drawable.default_experts);
 			}else{
 				mExpertsBitmapManager.loadBitmap(url, holder.experts_head);
 			}
-			holder.experts_name.setText(String.valueOf(data.get("title")));
+			holder.experts_name.setText(String.valueOf(data.get(TITLE)));
 			holder.experts_pro.setText("研究院");
-			holder.experts_description.setText(String.valueOf(data.get("description")));
+			holder.experts_description.setText(String.valueOf(data.get(DESCRIPTION)));
 			holder.experts_consultation.setOnClickListener(new OnClickListener() {
 				
 				@Override

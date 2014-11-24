@@ -1,11 +1,19 @@
 package com.start.zmcy;
 
+import java.util.Map;
+import java.util.Set;
+
+import start.core.AppException;
 import start.widget.CustomEditText;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 
 import com.start.core.BaseActivity;
+import com.start.core.Constant.Handler;
+import com.start.service.SocialService;
 
 
 public class RegisterActivity extends BaseActivity{
@@ -27,6 +35,30 @@ public class RegisterActivity extends BaseActivity{
 		
  	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void onProcessMessage(Message msg) throws AppException {
+		switch(msg.what){
+		case Handler.HANDLERTHIRDPARTYLANDINGQQ:
+			//QQ登陆
+		case Handler.HANDLERTHIRDPARTYLANDINGWX:
+			//WX登陆
+			Map<String,Object> info=(Map<String,Object>)msg.obj;
+			Set<String> keys = info.keySet();
+			Bundle bundle=new Bundle();
+			for (String key : keys) {
+				bundle.putString(key, String.valueOf(info.get(key)));
+			}
+			Intent intent=new Intent();
+			intent.putExtras(bundle);
+			registerSuccess(intent);
+			break;
+		default:
+			super.onProcessMessage(msg);
+			break;
+		}
+	}
+	
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_register){
@@ -46,14 +78,18 @@ public class RegisterActivity extends BaseActivity{
 				return;
 			}
 			//TODO:注册动作
-			registerSuccess();
+			registerSuccess(null);
+		}else if(v.getId()==R.id.qq_login){
+			SocialService.socialQQLogin(this);
+		}else if(v.getId()==R.id.wx_login){
+			SocialService.socialWexinLogin(this);
 		}else{
 			super.onClick(v);
 		}
 	}
 	
-	public void registerSuccess(){
-		setResult(LOGINSUCCESS);
+	public void registerSuccess(Intent intent){
+		setResult(LOGINSUCCESS,intent);
 		finish();
 	}
 	

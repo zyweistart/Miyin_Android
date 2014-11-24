@@ -6,6 +6,7 @@ import java.util.Map;
 import start.core.AppConstant;
 import start.core.AppException;
 import start.widget.xlistview.XListView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -31,6 +32,8 @@ import com.start.zmcy.adapter.ExpertsQuestionAdapter;
 public class ExpertsActivity extends BaseActivity implements
 		RefreshListServerListener {
 
+	public static final String OPEN_TYPE="OPEN_TYPE";
+	
 	private Button main_head_1;
 	private Button main_head_2;
 	private Button main_head_3;
@@ -60,7 +63,7 @@ public class ExpertsActivity extends BaseActivity implements
 		main_head_3 = (Button) findViewById(R.id.head_3);
 		main_head_3.setText(getString(R.string.experts_cover));
 		main_head_3.setVisibility(View.VISIBLE);
-		setHeadButtonEnabled(0);
+		
 
 		mListView = (XListView) findViewById(R.id.xlv_listview);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -97,9 +100,6 @@ public class ExpertsActivity extends BaseActivity implements
 
 		mWebView = (WebView) findViewById(R.id.wvcontent);
 
-		mRefreshListServer.initLoad();
-		mQuestionRefreshListServer.initLoad();
-
 		mWebView.setWebViewClient(new WebViewClient() {
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				// 重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
@@ -107,7 +107,20 @@ public class ExpertsActivity extends BaseActivity implements
 				return true;
 			}
 		});
+		
+		mRefreshListServer.initLoad();
+		mQuestionRefreshListServer.initLoad();
 		mWebView.loadUrl(Config.EXPERTSURL);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Bundle bundle=getIntent().getExtras();
+		if(bundle!=null){
+			type=bundle.getInt(OPEN_TYPE,type);
+		}
+		setHeadButtonEnabled(type);
 	}
 
 	@Override
@@ -115,49 +128,56 @@ public class ExpertsActivity extends BaseActivity implements
 		if (v.getId() == R.id.head_1) {
 			// 专家列表
 			type = 1;
-			mListView.setVisibility(View.VISIBLE);
-			mQuestionListView.setVisibility(View.GONE);
-			mWebView.setVisibility(View.GONE);
-			setHeadButtonEnabled(0);
+			setHeadButtonEnabled(type);
 		} else if (v.getId() == R.id.head_2) {
 			// 专家解答
-			type = 2;
-			mListView.setVisibility(View.GONE);
-			mQuestionListView.setVisibility(View.VISIBLE);
-			mWebView.setVisibility(View.GONE);
-			setHeadButtonEnabled(1);
+			if(getAppContext().currentUser().isLogin()){
+				type = 2;
+				setHeadButtonEnabled(type);
+			}else{
+				Bundle bundle=new Bundle();
+				bundle.putInt(OPEN_TYPE, 2);
+				Intent intent=new Intent(this,ExpertsActivity.class);
+				intent.putExtras(bundle);
+				goLogin(intent,getString(R.string.nologin));
+			}
 		} else if (v.getId() == R.id.head_3) {
 			// 专家自荐
-			mListView.setVisibility(View.GONE);
-			mQuestionListView.setVisibility(View.GONE);
-			mWebView.setVisibility(View.VISIBLE);
-			setHeadButtonEnabled(2);
+			type=3;
+			setHeadButtonEnabled(type);
 		} else {
 			super.onClick(v);
 		}
 	}
 
 	public void setHeadButtonEnabled(int index) {
-		main_head_1.setEnabled(index == 0 ? false : true);
-		main_head_2.setEnabled(index == 1 ? false : true);
-		main_head_3.setEnabled(index == 2 ? false : true);
+		main_head_1.setEnabled(index == 1 ? false : true);
+		main_head_2.setEnabled(index == 2 ? false : true);
+		main_head_3.setEnabled(index == 3 ? false : true);
+		mListView.setVisibility(!main_head_1.isEnabled() ?View.VISIBLE:View.GONE);
+		mQuestionListView.setVisibility(!main_head_2.isEnabled() ?View.VISIBLE:View.GONE);
+		mWebView.setVisibility(!main_head_3.isEnabled()?View.VISIBLE:View.GONE);
 	}
 
 	public RefreshListServer getRefreshListServer() {
-		return type == 1 ? mRefreshListServer : mQuestionRefreshListServer;
+		if(type==1){
+			return mRefreshListServer;
+		}else if(type==2){
+			return mQuestionRefreshListServer;
+		}else{
+			return null;
+		}
 	}
 
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer("htinfonewsQuery",
-				getRefreshListServer().getHandlerContext());
+		HttpServer hServer = new HttpServer("htinfonewsQuery",getRefreshListServer().getHandlerContext());
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
 		hServer.setHeaders(headers);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid", User.USER_ACCESSID_LOCAL);
-		params.put("currentpage",
-				String.valueOf(getRefreshListServer().getCurrentPage() + 1));
+		params.put("currentpage",String.valueOf(getRefreshListServer().getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
@@ -165,8 +185,7 @@ public class ExpertsActivity extends BaseActivity implements
 			@Override
 			public void run(Response response) throws AppException {
 				getRefreshListServer().resolve(response);
-				getRefreshListServer().getHandlerContext().getHandler()
-						.sendEmptyMessage(HANDLER);
+				getRefreshListServer().getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
 			}
 
 		}, false);

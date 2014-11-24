@@ -105,6 +105,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ExpertsActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ConsultationActivity"
