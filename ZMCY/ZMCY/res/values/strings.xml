@@ -52,5 +52,13 @@
     <string name="cleanfile_fail">清理本地文件失败</string>
     <string name="searchkeyshint">请输入关键词</string>
     <string name="hotsearch">热门搜索</string>
-
+    
+	<string-array name="fontsizetype">
+        <item>标准</item>
+        <item>中</item>
+        <item>大</item>
+        <item>特大</item>
+        <item>小</item>
+    </string-array>
+    
 </resources>

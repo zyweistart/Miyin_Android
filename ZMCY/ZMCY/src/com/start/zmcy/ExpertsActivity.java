@@ -32,7 +32,7 @@ import com.start.zmcy.adapter.ExpertsQuestionAdapter;
 public class ExpertsActivity extends BaseActivity implements
 		RefreshListServerListener {
 
-	public static final String OPEN_TYPE="OPEN_TYPE";
+	public static final int REQUEST_LOGIN_CODE=111;
 	
 	private Button main_head_1;
 	private Button main_head_2;
@@ -108,19 +108,10 @@ public class ExpertsActivity extends BaseActivity implements
 			}
 		});
 		
-		mRefreshListServer.initLoad();
-		mQuestionRefreshListServer.initLoad();
-		mWebView.loadUrl(Config.EXPERTSURL);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		Bundle bundle=getIntent().getExtras();
-		if(bundle!=null){
-			type=bundle.getInt(OPEN_TYPE,type);
-		}
 		setHeadButtonEnabled(type);
+		
+		mRefreshListServer.initLoad();
+		mWebView.loadUrl(Config.EXPERTSURL);
 	}
 
 	@Override
@@ -135,11 +126,7 @@ public class ExpertsActivity extends BaseActivity implements
 				type = 2;
 				setHeadButtonEnabled(type);
 			}else{
-				Bundle bundle=new Bundle();
-				bundle.putInt(OPEN_TYPE, 2);
-				Intent intent=new Intent(this,ExpertsActivity.class);
-				intent.putExtras(bundle);
-				goLogin(intent,getString(R.string.nologin));
+				goLoginResult(REQUEST_LOGIN_CODE,getString(R.string.nologin));
 			}
 		} else if (v.getId() == R.id.head_3) {
 			// 专家自荐
@@ -147,6 +134,18 @@ public class ExpertsActivity extends BaseActivity implements
 			setHeadButtonEnabled(type);
 		} else {
 			super.onClick(v);
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==REQUEST_LOGIN_CODE){
+			if(resultCode==LoginActivity.RESULT_LOGIN_SUCCESS){
+				type=2;
+				setHeadButtonEnabled(type);
+				mQuestionRefreshListServer.initLoad();
+			}
 		}
 	}
 

@@ -3,11 +3,14 @@ package com.start.core;
 import start.core.AppException;
 import start.core.HandlerContext;
 import start.core.HandlerContext.HandleContextListener;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.widget.TextView;
 
 import com.start.zmcy.BaseContext;
+import com.start.zmcy.LoginActivity;
 import com.start.zmcy.R;
 
 public class BaseFragmentActivity extends FragmentActivity implements HandleContextListener{
@@ -47,6 +50,15 @@ public class BaseFragmentActivity extends FragmentActivity implements HandleCont
 		if(tvTitle!=null){
 			tvTitle.setText(title);
 		}
+	}
+	
+	public void goLoginResult(int requestCode,String message){
+		getAppContext().currentUser().clearCachePassword();
+		Bundle bundle=new Bundle();
+		bundle.putString(LoginActivity.BUNLE_MESSAGE, message);
+		Intent intent=new Intent(this,LoginActivity.class);
+		intent.putExtras(bundle);
+		startActivityForResult(intent,requestCode);
 	}
 	
 }

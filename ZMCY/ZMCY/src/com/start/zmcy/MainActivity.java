@@ -24,6 +24,8 @@ import com.start.zmcy.content.NewsContentFragment;
 
 public class MainActivity extends BaseFragmentActivity implements OnClickListener {
 
+	public static final int REQUEST_LOGIN_CODE=111;
+	
 	private static Map<String,String> mNewsCategoryes=new HashMap<String,String>();
 	private List<BaseFragment> nBaseFragments = new ArrayList<BaseFragment>();
 
@@ -51,10 +53,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
 		PagerTabStrip mPagerTabStrip = (PagerTabStrip) findViewById(R.id.mPagerTabStrip);
 		mPagerTabStrip.setTextColor(getResources().getColor(R.color.new_title));
-		mPagerTabStrip.setTabIndicatorColor(getResources().getColor(
-				R.color.new_title));
-		mPagerTabStrip.setBackgroundColor(getResources().getColor(
-				R.color.new_title_bg));
+		mPagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.new_title));
+		mPagerTabStrip.setBackgroundColor(getResources().getColor(R.color.new_title_bg));
 		
 		for(String key : mNewsCategoryes.keySet()){
 			NewsCategory nc=new NewsCategory();
@@ -95,8 +95,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			if(getAppContext().currentUser().isLogin()){
 				startActivity(new Intent(this, MemberActivity.class));
 			}else{
-				getAppContext().getCacheActivity().setIntent(new Intent(this,MainActivity.class));
-				startActivity(new Intent(this, LoginActivity.class));
+				goLoginResult(REQUEST_LOGIN_CODE,getString(R.string.nologin));
 			}
 		} else if (v.getId() == R.id.txtResources) {
 			// 资源
@@ -113,6 +112,16 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		} else if (v.getId() == R.id.txtMember) {
 			// 会员
 			startActivity(new Intent(this, MemberActivity.class));
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==REQUEST_LOGIN_CODE){
+			if(resultCode==LoginActivity.RESULT_LOGIN_SUCCESS){
+				
+			}
 		}
 	}
 

@@ -2,7 +2,9 @@ package com.start.service;
 
 import java.util.Map;
 
+import start.core.R;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -66,6 +68,12 @@ public class SocialService {
 	}
 
 	public static void socialWexinLogin(final BaseActivity activity) {
+		final ProgressDialog mPDialog = new ProgressDialog(activity);
+		mPDialog.setMessage(activity.getString(R.string.wait));
+		mPDialog.setIndeterminate(true);
+		mPDialog.setCancelable(false);
+		mPDialog.show();
+		
 		final UMSocialService mController = UMServiceFactory
 				.getUMSocialService("com.umeng.login");
 		// 添加微信平台
@@ -83,6 +91,7 @@ public class SocialService {
 					@Override
 					public void onError(SocializeException e,SHARE_MEDIA platform) {
 						// 授权错误
+						mPDialog.dismiss();
 					}
 
 					@Override
@@ -101,6 +110,7 @@ public class SocialService {
 											message.what=Handler.HANDLERTHIRDPARTYLANDINGWX;
 											message.obj=info;
 											activity.getHandlerContext().sendMessage(message);
+											mPDialog.dismiss();
 										}
 									}
 								});
@@ -109,12 +119,19 @@ public class SocialService {
 					@Override
 					public void onCancel(SHARE_MEDIA platform) {
 						//授权取消
+						mPDialog.dismiss();
 					}
 
 				});
 	}
 
 	public static void socialQQLogin(final BaseActivity activity) {
+		final ProgressDialog mPDialog = new ProgressDialog(activity);
+		mPDialog.setMessage(activity.getString(R.string.wait));
+		mPDialog.setIndeterminate(true);
+		mPDialog.setCancelable(false);
+		mPDialog.show();
+		
 		final UMSocialService mController = UMServiceFactory
 				.getUMSocialService("com.umeng.login");
 		// 添加QQ平台
@@ -132,6 +149,7 @@ public class SocialService {
 				@Override
 				public void onError(SocializeException e, SHARE_MEDIA platform) {
 					// 授权错误
+					mPDialog.dismiss();
 				}
 	
 				@Override
@@ -151,6 +169,7 @@ public class SocialService {
 										message.what=Handler.HANDLERTHIRDPARTYLANDINGQQ;
 										message.obj=info;
 										activity.getHandlerContext().sendMessage(message);
+										mPDialog.dismiss();
 									}
 								}
 							});
@@ -159,6 +178,7 @@ public class SocialService {
 			@Override
 			public void onCancel(SHARE_MEDIA platform) {
 				// 授权取消
+				mPDialog.dismiss();
 			}
 
 		});

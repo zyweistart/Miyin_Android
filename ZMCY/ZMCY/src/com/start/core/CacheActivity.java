@@ -10,14 +10,14 @@ public class CacheActivity {
 	public void setIntent(Intent intent) {
 		this.mIntent = intent;
 	}
-
-	public void startActivity(Activity activity){
-		activity.startActivity(mIntent);
-		mIntent=null;
-	}
 	
 	public boolean isGotoActivity(){
 		return mIntent!=null;
+	}
+	
+	public void startActivity(Activity activity){
+		activity.startActivity(mIntent);
+		mIntent=null;
 	}
 	
 }

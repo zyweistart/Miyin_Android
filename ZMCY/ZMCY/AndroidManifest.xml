@@ -78,7 +78,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -91,7 +90,6 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -105,7 +103,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ExpertsActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ConsultationActivity"

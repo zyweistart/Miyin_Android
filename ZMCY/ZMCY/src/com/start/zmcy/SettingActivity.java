@@ -26,18 +26,20 @@ public class SettingActivity extends BaseActivity {
 	private TextView mTxtSizeSetting;
 	private TextView mTxtVersion;
 
-	private String[] size = { "标准","中", "大", "特大", "小" };
+	private String[] mFontSizeType;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setting);
 		setMainHeadTitle(getString(R.string.setting));
-
+		
+		mFontSizeType=getResources().getStringArray(R.array.fontsizetype);
+		
 		mTxtSizeSetting = (TextView) findViewById(R.id.txtSizeSetting);
 		mTxtVersion = (TextView) findViewById(R.id.txtVersion);
 
-		mTxtSizeSetting.setText(getString(R.string.sizesetting) + "   " + size[AppContext.getSharedPreferences().getInteger(Preferences.SP_SIZE_SETTING, 0)]);
+		mTxtSizeSetting.setText(getString(R.string.sizesetting) + "   " + mFontSizeType[AppContext.getSharedPreferences().getInteger(Preferences.SP_SIZE_SETTING, 0)]);
 		try {
 			PackageManager packageManager = getPackageManager();
 			PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(), 0);
@@ -52,12 +54,12 @@ public class SettingActivity extends BaseActivity {
 		if (v.getId() == R.id.txtBindShared) {
 			startActivity(new Intent(this, BindSharedActivity.class));
 		} else if (v.getId() == R.id.txtSizeSetting) {
-			new AlertDialog.Builder(this).setSingleChoiceItems(size, AppContext.getSharedPreferences().getInteger(Preferences.SP_SIZE_SETTING, 0),
+			new AlertDialog.Builder(this).setSingleChoiceItems(mFontSizeType, AppContext.getSharedPreferences().getInteger(Preferences.SP_SIZE_SETTING, 0),
 					new DialogInterface.OnClickListener() {
 
 						public void onClick(DialogInterface dialog, int which) {
 							AppContext.getSharedPreferences().putInteger(Preferences.SP_SIZE_SETTING, which);
-							mTxtSizeSetting.setText(getString(R.string.sizesetting)+ "   " + size[which]);
+							mTxtSizeSetting.setText(getString(R.string.sizesetting)+ "   " + mFontSizeType[which]);
 							dialog.dismiss();
 						}
 					}).show();

@@ -85,4 +85,13 @@ public class BaseActivity extends AppActivity {
 		}
 	}
 	
+	public void goLoginResult(int requestCode,String message){
+		getAppContext().currentUser().clearCachePassword();
+		Bundle bundle=new Bundle();
+		bundle.putString(LoginActivity.BUNLE_MESSAGE, message);
+		Intent intent=new Intent(this,LoginActivity.class);
+		intent.putExtras(bundle);
+		startActivityForResult(intent,requestCode);
+	}
+	
 }

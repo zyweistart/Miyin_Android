@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import start.core.AppException;
+import start.utils.MD5;
 import start.widget.CustomEditText;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,12 @@ import com.start.service.SocialService;
 public class RegisterActivity extends BaseActivity{
 	
 	public static final int LOGINSUCCESS=255;
+	public static final String REGISTERTYPE="REGISTERTYPE";
+	public static final String REGISTERTYPE_WX="REGISTERTYPE_WX";
+	public static final String REGISTERTYPE_QQ="REGISTERTYPE_QQ";
+	public static final String REGISTERTYPE_ACCOUNT="REGISTERTYPE_ACCOUNT";
+	public static final String STR_ACCOUNT="STR_ACCOUNT";
+	public static final String STR_PASSWORD="STR_PASSWORD";
 	
 	private CustomEditText et_register_account;
 	private CustomEditText et_register_password;
@@ -38,24 +45,27 @@ public class RegisterActivity extends BaseActivity{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onProcessMessage(Message msg) throws AppException {
-		switch(msg.what){
-		case Handler.HANDLERTHIRDPARTYLANDINGQQ:
-			//QQ登陆
-		case Handler.HANDLERTHIRDPARTYLANDINGWX:
-			//WX登陆
+		int what=msg.what;
+		if(what==Handler.HANDLERTHIRDPARTYLANDINGQQ||
+				what==Handler.HANDLERTHIRDPARTYLANDINGWX){
+			Bundle bundle=new Bundle();
+			if(what==Handler.HANDLERTHIRDPARTYLANDINGQQ){
+				//QQ登陆
+				bundle.putString(REGISTERTYPE, REGISTERTYPE_QQ);
+			}else{
+				//WX登陆
+				bundle.putString(REGISTERTYPE, REGISTERTYPE_WX);
+			}
 			Map<String,Object> info=(Map<String,Object>)msg.obj;
 			Set<String> keys = info.keySet();
-			Bundle bundle=new Bundle();
 			for (String key : keys) {
 				bundle.putString(key, String.valueOf(info.get(key)));
 			}
 			Intent intent=new Intent();
 			intent.putExtras(bundle);
 			registerSuccess(intent);
-			break;
-		default:
+		}else{
 			super.onProcessMessage(msg);
-			break;
 		}
 	}
 	
@@ -78,7 +88,13 @@ public class RegisterActivity extends BaseActivity{
 				return;
 			}
 			//TODO:注册动作
-			registerSuccess(null);
+			Bundle bundle=new Bundle();
+			bundle.putString(STR_ACCOUNT, account);
+			bundle.putString(STR_PASSWORD, MD5.md5(password));
+			bundle.putString(REGISTERTYPE, REGISTERTYPE_ACCOUNT);
+			Intent intent=new Intent();
+			intent.putExtras(bundle);
+			registerSuccess(intent);
 		}else if(v.getId()==R.id.qq_login){
 			SocialService.socialQQLogin(this);
 		}else if(v.getId()==R.id.wx_login){

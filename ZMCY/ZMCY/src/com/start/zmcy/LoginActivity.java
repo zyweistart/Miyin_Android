@@ -11,7 +11,6 @@ import start.widget.CustomEditText;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -22,6 +21,11 @@ import com.start.service.SocialService;
 
 
 public class LoginActivity extends BaseActivity{
+	
+	public static final int RESULT_LOGIN_SUCCESS=222;
+	
+	public static final int QQ_LOGIN=1;
+	public static final int WX_LOGIN=2;
 	
 	/**
 	 * 提示信息
@@ -111,18 +115,10 @@ public class LoginActivity extends BaseActivity{
 			break;
 		case Handler.HANDLERTHIRDPARTYLANDINGQQ:
 			//QQ登陆
+			this.registerLogin(QQ_LOGIN,(Map<String,Object>)msg.obj);
 		case Handler.HANDLERTHIRDPARTYLANDINGWX:
 			//WX登陆
-			Map<String,Object> info=(Map<String,Object>)msg.obj;
-			StringBuilder sb = new StringBuilder();
-			Set<String> keys = info.keySet();
-			for (String key : keys) {
-				sb.append(key + "="+ info.get(key).toString()+ "\r\n");
-			}
-			Log.d("TestData", sb.toString());
-			getHandlerContext().makeTextLong(sb.toString());
-			//TODO:模拟登陆注册 
-			this.loginSuccess();
+			this.registerLogin(WX_LOGIN,(Map<String,Object>)msg.obj);
 			break;
 		default:
 			super.onProcessMessage(msg);
@@ -134,7 +130,17 @@ public class LoginActivity extends BaseActivity{
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if(resultCode==RegisterActivity.LOGINSUCCESS){
-			this.loginSuccess();
+			Bundle bundle=data.getExtras();
+			String type=bundle.getString(RegisterActivity.REGISTERTYPE);
+			if(RegisterActivity.REGISTERTYPE_ACCOUNT.equals(type)){
+				String account=bundle.getString(RegisterActivity.STR_ACCOUNT);
+				String password=bundle.getString(RegisterActivity.STR_PASSWORD);
+				login(account, password, true);
+			}else if(RegisterActivity.REGISTERTYPE_QQ.equals(type)){
+				this.registerLogin(QQ_LOGIN,bundle);
+			}else if(RegisterActivity.REGISTERTYPE_WX.equals(type)){
+				this.registerLogin(WX_LOGIN,bundle);
+			}
 		}
 	}
 
@@ -144,23 +150,46 @@ public class LoginActivity extends BaseActivity{
 	 * @param password MD5加密后的密码
 	 * @param autoLogin  
 	 */
-	public void login(final String account,final String password,final Boolean autoLogin){
-		getAppContext().currentUser().addCacheUser(account, password, autoLogin);
-		this.loginSuccess();
+	private void login(final String account,final String password,final Boolean autoLogin){
+		this.loginSuccess(account,password,autoLogin);
+	}
+	
+	/**
+	 * 注册登录
+	 * @param loginType登录类型1:QQ 2:WX
+	 */
+	private void registerLogin(int loginType,Map<String,Object> info){
+		Bundle bundle=new Bundle();
+		Set<String> keys = info.keySet();
+		for (String key : keys) {
+			bundle.putString(key, String.valueOf(info.get(key)));
+		}
+		registerLogin(loginType, bundle);
+	}
+	
+	/**
+	 * 注册登录
+	 * @param loginType登录类型1:QQ 2:WX
+	 */
+	private void registerLogin(int loginType,Bundle data){
+		this.loginSuccess("","",true);
 	}
 	
 	/**
 	 * 登陆成功
 	 */
-	public void loginSuccess(){
+	private void loginSuccess(String account,String password,Boolean autoLogin){
+		getAppContext().currentUser().addCacheUser(account, password, autoLogin);
 		if(getInputMethodManager().isActive()){
 			getInputMethodManager().hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 		getAppContext().currentUser().setLogin(true);
 		if(getAppContext().getCacheActivity().isGotoActivity()){
 			getAppContext().getCacheActivity().startActivity(this);
-			finish();
+		}else{
+			setResult(RESULT_LOGIN_SUCCESS);
 		}
+		finish();
 	}
 	
 }
