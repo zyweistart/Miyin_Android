@@ -50,7 +50,7 @@ public class LoginActivity extends BaseActivity{
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
 			
-			if(bundle.getBoolean(BUNLE_AUTOLOGINFLAG, false)){
+			if(bundle.getBoolean(BUNLE_AUTOLOGINFLAG)){
 				String account=getAppContext().currentUser().getCacheAccount();
 				if(StringUtils.isEmpty(account)){
 					return;
@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity{
 				}
 			}else{
 				
-				String message=bundle.getString(BUNLE_MESSAGE,AppConstant.EMPTYSTR);
+				String message=bundle.getString(BUNLE_MESSAGE);
 				if(!StringUtils.isEmpty(message)){
 					getHandlerContext().makeTextLong(message);
 					return;
