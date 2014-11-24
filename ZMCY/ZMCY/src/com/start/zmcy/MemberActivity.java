@@ -62,7 +62,7 @@ public class MemberActivity extends BaseActivity{
 				goLogin(intent,getString(R.string.nologin));
 				return;
 			}
-			startActivity(new Intent(this,CollectActivity.class));
+			startActivity(intent);
 		}else if(v.getId()==R.id.txtFollow){
 			Intent intent=new Intent(this,FollowActivity.class);
 			if(!getAppContext().currentUser().isLogin()){

@@ -86,6 +86,10 @@ public final class Constant {
 		 * 阅读模式 日间，夜间
 		 */
 		public static final String SP_READ_MODE = "SP_READ_MODE";
+		/**
+		 * 个推Clientid
+		 */
+		public static final String SP_GETUICLIENTID = "SP_GETUICLIENTID";
 		
 	}
 	

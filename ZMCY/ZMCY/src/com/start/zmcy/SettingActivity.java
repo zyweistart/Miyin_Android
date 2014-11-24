@@ -64,7 +64,12 @@ public class SettingActivity extends BaseActivity {
 						}
 					}).show();
 		} else if (v.getId() == R.id.txtPushSetting) {
-			startActivity(new Intent(this, PushSettingActivity.class));
+			Intent intent=new Intent(this,PushSettingActivity.class);
+			if(!getAppContext().currentUser().isLogin()){
+				goLogin(intent,getString(R.string.nologin));
+				return;
+			}
+			startActivity(intent);
 		} else if (v.getId() == R.id.txtCleanCache) {
 			new AlertDialog.Builder(this)
 			.setMessage(R.string.cleanfile_sure)
