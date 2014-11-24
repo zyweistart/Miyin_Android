@@ -1,7 +1,7 @@
 package com.start.zmcy;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +26,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
 	public static final int REQUEST_LOGIN_CODE=111;
 	
-	private static Map<String,String> mNewsCategoryes=new HashMap<String,String>();
+	private static Map<String,String> mNewsCategoryes=new LinkedHashMap<String,String>();
 	private List<BaseFragment> nBaseFragments = new ArrayList<BaseFragment>();
 
 	private ScrollView mMainMenu;
