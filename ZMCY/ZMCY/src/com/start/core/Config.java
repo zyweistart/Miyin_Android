@@ -8,8 +8,8 @@ public class Config {
 	public static final String FormalURL="http://account.chinacloudapp.cn:81/pwyl/http/HttpService";
 	
 	// 微信
-	public static final String WXAPPID = "wx967daebe835fbeac";
-	public static final String WXAPPSECRET = "5fa9e68ca3970e87a1f83e563c8dcbce";
+	public static final String WXAPPID = "wxffa3cdeb705edd48";
+	public static final String WXAPPSECRET = "930bb8937c42109377e73bea7b92f88c";
 	// QQ
 	public static final String QQAPPID = "100424468";
 	public static final String QQAPPKEY = "c7394704798a158208a74ab60104f0ba";

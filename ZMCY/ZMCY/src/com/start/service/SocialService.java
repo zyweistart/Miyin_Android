@@ -68,24 +68,25 @@ public class SocialService {
 	}
 
 	public static void socialWexinLogin(final BaseActivity activity) {
-		final ProgressDialog mPDialog = new ProgressDialog(activity);
-		mPDialog.setMessage(activity.getString(R.string.wait));
-		mPDialog.setIndeterminate(true);
-		mPDialog.setCancelable(false);
-		mPDialog.show();
 		
-		final UMSocialService mController = UMServiceFactory
-				.getUMSocialService("com.umeng.login");
+		final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.login");
 		// 添加微信平台
 		UMWXHandler wxHandler = new UMWXHandler(activity, Config.WXAPPID, Config.WXAPPSECRET);
 		wxHandler.addToSocialSDK();
 
 		mController.doOauthVerify(activity, SHARE_MEDIA.WEIXIN,
 				new UMAuthListener() {
-
+			
+					private ProgressDialog mPDialog;
+					
 					@Override
 					public void onStart(SHARE_MEDIA platform) {
 						// 授权开始
+						mPDialog = new ProgressDialog(activity);
+						mPDialog.setMessage(activity.getString(R.string.wait));
+						mPDialog.setIndeterminate(true);
+						mPDialog.setCancelable(false);
+						mPDialog.show();
 					}
 
 					@Override
@@ -126,24 +127,24 @@ public class SocialService {
 	}
 
 	public static void socialQQLogin(final BaseActivity activity) {
-		final ProgressDialog mPDialog = new ProgressDialog(activity);
-		mPDialog.setMessage(activity.getString(R.string.wait));
-		mPDialog.setIndeterminate(true);
-		mPDialog.setCancelable(false);
-		mPDialog.show();
-		
-		final UMSocialService mController = UMServiceFactory
-				.getUMSocialService("com.umeng.login");
+		final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.login");
 		// 添加QQ平台
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, Config.QQAPPID,
-				Config.QQAPPKEY);
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, Config.QQAPPID,Config.QQAPPKEY);
 		qqSsoHandler.addToSocialSDK();
 
 		mController.doOauthVerify(activity, SHARE_MEDIA.QQ,
 			new UMAuthListener() {
+			
+				private ProgressDialog mPDialog;
+			
 				@Override
 				public void onStart(SHARE_MEDIA platform) {
 					// 授权开始
+					mPDialog = new ProgressDialog(activity);
+					mPDialog.setMessage(activity.getString(R.string.wait));
+					mPDialog.setIndeterminate(true);
+					mPDialog.setCancelable(false);
+					mPDialog.show();
 				}
 	
 				@Override
