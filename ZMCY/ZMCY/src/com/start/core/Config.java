@@ -3,7 +3,7 @@ package com.start.core;
 public class Config {
 
 	//测试地址
-	public static final String TestURL="http://api.miyindesign.com/Ajax/API/%s.html?signature=%s&timestamp=%s&nonce=%s";
+	public static final String TestURL="http://api.020leader.com/Ajax/API/%s.html?signature=%s&timestamp=%s&nonce=%s";
 	//正式地址
 	public static final String FormalURL="http://api.miyindesign.com/Ajax/API/%s.html?signature=%s&timestamp=%s&nonce=%s";
 	//请求的Token
