@@ -1,14 +1,16 @@
 package com.start.service;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.ProtocolVersion;
@@ -29,16 +31,16 @@ import start.core.AppException;
 import start.core.HandlerContext;
 import start.core.R;
 import start.service.UIHelper;
-import start.utils.MD5;
 import start.utils.NetConnectManager;
 import start.utils.StringUtils;
-import start.utils.TimeUtils;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
+
+import com.start.core.Config;
 
 /**
  * @author Start   
@@ -95,17 +97,17 @@ public class HttpServer {
 					try{
 						HttpResponse httpResponse=getResponse(setBuildRequestContent());
 						Response response=new Response(httpResponse);
-						try {
-							BufferedReader in = new BufferedReader(new InputStreamReader(mContext.getAssets().open("testjson.txt")));
-							String line =null;
-							StringBuffer buffer = new StringBuffer();
-							while ((line = in.readLine()) != null) {
-								buffer.append(line);
-							}
-							response.setResponseString(buffer.toString());
-						} catch (Exception e) {
-							throw AppException.http(e);
-						}
+//						try {
+//							BufferedReader in = new BufferedReader(new InputStreamReader(mContext.getAssets().open("testjson.txt")));
+//							String line =null;
+//							StringBuffer buffer = new StringBuffer();
+//							while ((line = in.readLine()) != null) {
+//								buffer.append(line);
+//							}
+//							response.setResponseString(buffer.toString());
+//						} catch (Exception e) {
+//							throw AppException.http(e);
+//						}
 						response.resolveJson();
 						if(ResultCode.SUCCESS.equals(response.getCode())){
 							runnable.run(response);
@@ -143,9 +145,9 @@ public class HttpServer {
 		if(mHeaders==null){
 			mHeaders=new HashMap<String,String>();
 		}
-		mHeaders.put("sign",AppConstant.EMPTYSTR.equals(mHeaders.get("sign"))?
-				MD5.md5(requestContent):
-					StringUtils.signatureHmacSHA1(MD5.md5(requestContent),mHeaders.get("sign")));
+//		mHeaders.put("sign",AppConstant.EMPTYSTR.equals(mHeaders.get("sign"))?
+//				MD5.md5(requestContent):
+//					StringUtils.signatureHmacSHA1(MD5.md5(requestContent),mHeaders.get("sign")));
 		return requestContent;
 	}
 	
@@ -153,25 +155,32 @@ public class HttpServer {
 	 * 生成请求内容
 	 */
 	public String buildRequestContentByStringJson() throws AppException{
-		JSONObject commonObject = new JSONObject();
+//		JSONObject commonObject = new JSONObject();
 		JSONObject contentObject = new JSONObject();
-		JSONObject requestObject = new JSONObject();
-		JSONObject mainObject = new JSONObject();
+//		JSONObject requestObject = new JSONObject();
+//		JSONObject mainObject = new JSONObject();
 	    try {
-	    	commonObject.put("action",mUrl);
-	    	commonObject.put("reqtime",TimeUtils.getSysTimeLong());
-	    	requestObject.put("common", commonObject);
-	    	
-	    	if(mParams!=null){
+//	    	commonObject.put("action",mUrl);
+//	    	commonObject.put("reqtime",TimeUtils.getSysTimeLong());
+//	    	requestObject.put("common", commonObject);
+//	    	
+//	    	if(mParams!=null){
+//	    		for(String key:mParams.keySet()){
+//	    			contentObject.put(key,mParams.get(key));
+////	    			contentObject.put(key.toLowerCase(),mParams.get(key));
+//	    		}
+//	    	}
+//	    	requestObject.put("content", contentObject);
+//	    	
+//	    	mainObject.put("request", requestObject);
+//			return mainObject.toString();
+			if(mParams!=null){
 	    		for(String key:mParams.keySet()){
 	    			contentObject.put(key,mParams.get(key));
 //	    			contentObject.put(key.toLowerCase(),mParams.get(key));
 	    		}
 	    	}
-	    	requestObject.put("content", contentObject);
-	    	
-	    	mainObject.put("request", requestObject);
-			return mainObject.toString();
+			return contentObject.toString();
 		} catch (JSONException e) {
 			throw AppException.json(e);
 		}  
@@ -186,8 +195,18 @@ public class HttpServer {
 		client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, protocolVersion);
 		client.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, AppConstant.ENCODE);
 		// 设置超时时间为30秒
-		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,10*1000);
-		HttpPost post = new HttpPost(AppContext.getInstance().getServerURL());
+		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,30*1000);
+		//时间戳
+		String timestamp=String.valueOf(System.currentTimeMillis());
+		//随机数
+		String nonce=String.valueOf(new Random().nextInt(1000));
+		//组合成数组
+		String[] arrs={Config.ACCESS_TOKEN,timestamp,nonce};
+		//升序排列
+		Arrays.sort(arrs);
+		String signature=arrs[0]+arrs[1]+arrs[2];
+		String url=String.format(AppContext.getInstance().getServerURL(), this.mUrl,SHA1(signature),timestamp,nonce);
+		HttpPost post = new HttpPost(url);
 		try {
 			post.addHeader("format", "json");
 			post.addHeader("reqlength", StringUtils.encode(String.valueOf(requestContent.getBytes(AppConstant.ENCODE).length)));
@@ -337,5 +356,32 @@ public class HttpServer {
 		}
 		
 	}
+	
+	public String SHA1(String inStr) {
+        MessageDigest md = null;
+        String outStr = null;
+        try {
+            md = MessageDigest.getInstance("SHA-1");     //选择SHA-1，也可以选择MD5
+            byte[] digest = md.digest(inStr.getBytes());       //返回的是byet[]，要转化为String存储比较方便
+            outStr = bytetoString(digest);
+        }catch(NoSuchAlgorithmException nsae) {
+            nsae.printStackTrace();
+        }
+        return outStr;
+    }
+	
+	public String bytetoString(byte[] digest) {
+        String str = "";
+        String tempStr = "";
+        for (int i = 1; i < digest.length; i++) {
+            tempStr = (Integer.toHexString(digest[i] & 0xff));
+            if (tempStr.length() == 1) {
+                str = str + "0" + tempStr;
+            } else {
+                str = str + tempStr;
+            }
+        }
+        return str.toLowerCase();
+    }
 	
 }

@@ -22,7 +22,6 @@ import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
 import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
-import com.start.service.User;
 import com.start.service.bean.NewsCategory;
 import com.start.zmcy.NewsDetailActivity;
 import com.start.zmcy.R;
@@ -87,18 +86,11 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 	
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer("htinfonewsQuery",mRefreshListServer.getHandlerContext());
-		Map<String,String> headers=new HashMap<String,String>();
-		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
-		hServer.setHeaders(headers);
+		HttpServer hServer = new HttpServer("GetListPage",mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("accessid", User.USER_ACCESSID_LOCAL);
+		params.put("classId", "11,12");
 		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
-		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
-		params.put("type", AppConstant.EMPTYSTR);
-		params.put("title", AppConstant.EMPTYSTR);
-		params.put("content", AppConstant.EMPTYSTR);
-		params.put("ordersort", AppConstant.EMPTYSTR);
+		params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 
