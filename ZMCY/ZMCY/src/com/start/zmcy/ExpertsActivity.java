@@ -77,8 +77,6 @@ public class ExpertsActivity extends BaseActivity implements
 		mRefreshListServer = new RefreshListServer(this, getHandlerContext(),
 				mListView, new ExpertsListAdapter(this));
 		mRefreshListServer.setCacheTag(TAG);
-		mRefreshListServer.setListTag("newslist");
-		mRefreshListServer.setInfoTag("newsinfo");
 		mRefreshListServer.setRefreshListServerListener(this);
 
 		mQuestionListView = (XListView) findViewById(R.id.xlv_listview_question);
@@ -94,8 +92,6 @@ public class ExpertsActivity extends BaseActivity implements
 				getHandlerContext(), mQuestionListView,
 				new ExpertsQuestionAdapter(this));
 		mQuestionRefreshListServer.setCacheTag(TAG);
-		mQuestionRefreshListServer.setListTag("newslist");
-		mQuestionRefreshListServer.setInfoTag("newsinfo");
 		mQuestionRefreshListServer.setRefreshListServerListener(this);
 
 		mWebView = (WebView) findViewById(R.id.wvcontent);

@@ -49,8 +49,6 @@ public class NewsListActivity extends BaseActivity implements RefreshListServerL
 		});
 		mRefreshListServer = new RefreshListServer(this,getHandlerContext(), mListView,new NewsListAdapter(this));
 		mRefreshListServer.setCacheTag("NewsContentFragment");
-		mRefreshListServer.setListTag("newslist");
-		mRefreshListServer.setInfoTag("newsinfo");
 		mRefreshListServer.setRefreshListServerListener(this);
 
 		mRefreshListServer.initLoad();

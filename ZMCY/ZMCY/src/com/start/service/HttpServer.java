@@ -24,7 +24,6 @@ import org.json.JSONObject;
 
 import start.core.AppConstant;
 import start.core.AppConstant.Handler;
-import start.core.AppConstant.ResultCode;
 import start.core.AppContext;
 import start.core.AppException;
 import start.core.HandlerContext;
@@ -97,7 +96,7 @@ public class HttpServer {
 						HttpResponse httpResponse=getResponse(setBuildRequestContent());
 						Response response=new Response(httpResponse);
 						response.resolveJson();
-						if(ResultCode.SUCCESS.equals(response.getCode())){
+						if(Response.SUCCESS.equals(response.getCode())){
 							runnable.run(response);
 						}else{
 							mHandler.sendMessage(StringUtils.toInt(response.getCode()),response.getMsg());

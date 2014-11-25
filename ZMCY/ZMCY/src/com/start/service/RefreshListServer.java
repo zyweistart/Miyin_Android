@@ -19,6 +19,9 @@ import android.os.Message;
 import android.text.TextUtils;
 
 public class RefreshListServer implements IXListViewListener,HandleContextListener {
+	
+	public static final String CURRENTPAGE="PageIndex";
+	public static final String PAGESIZE="Size";
 
 	private Boolean isDataLoadDone,isHideLoadMore;
 	private int mCurrentPage;
@@ -30,7 +33,6 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	private RefreshListServerListener mRefreshListServerListener;
 	private AppListAdapter mBaseListAdapter;
 	private List<Map<String,Object>> mItemDatas = new ArrayList<Map<String,Object>>();
-	private String listTag,infoTag;
 	
 	public RefreshListServer(Context activity,HandlerContext handlerContext,XListView listView,AppListAdapter listAdapter){
 		this.mContext=activity;
@@ -146,14 +148,14 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 			}
 			getItemDatas().clear();
 		}
-		int temp=Integer.parseInt(response.getPageInfoMapData().get("currentpage"));
+		int temp=Integer.parseInt(String.valueOf(response.getData(CURRENTPAGE)));
 		isHideLoadMore=isDataLoadDone=(temp==getCurrentPage());
 		setCurrentPage(temp);
-		List<Map<String,Object>> datas=response.getListMapData(listTag,infoTag);
+		List<Map<String,Object>> datas=response.getListMapData();
 		getItemDatas().addAll(datas);
 		if(!isDataLoadDone){
 			if(!getItemDatas().isEmpty()){
-				isHideLoadMore=datas.size()<Integer.parseInt(response.getPageInfoMapData().get("pagesize"));
+				isHideLoadMore=datas.size()<Integer.parseInt(String.valueOf(response.getData(PAGESIZE)));
 			}
 		}
 	}
@@ -209,14 +211,6 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 
 	public AppListAdapter getBaseListAdapter() {
 		return mBaseListAdapter;
-	}
-
-	public void setListTag(String listTag) {
-		this.listTag = listTag;
-	}
-
-	public void setInfoTag(String infoTag) {
-		this.infoTag = infoTag;
 	}
 	
 }
