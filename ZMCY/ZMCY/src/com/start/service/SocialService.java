@@ -111,8 +111,8 @@ public class SocialService {
 											message.what=Handler.HANDLERTHIRDPARTYLANDINGWX;
 											message.obj=info;
 											activity.getHandlerContext().sendMessage(message);
-											mPDialog.dismiss();
 										}
+										mPDialog.dismiss();
 									}
 								});
 					}
@@ -170,8 +170,8 @@ public class SocialService {
 										message.what=Handler.HANDLERTHIRDPARTYLANDINGQQ;
 										message.obj=info;
 										activity.getHandlerContext().sendMessage(message);
-										mPDialog.dismiss();
 									}
+									mPDialog.dismiss();
 								}
 							});
 			}
