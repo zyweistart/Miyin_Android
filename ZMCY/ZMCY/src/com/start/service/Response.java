@@ -1,8 +1,6 @@
 package com.start.service;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -269,16 +267,12 @@ public class Response {
 	/**
 	 * 请求并获取响应的字符串数据
 	 */
-	@SuppressWarnings("resource")
 	public String getResponseString() throws AppException {
 		if(responseString==null){
 			try {
-//				BufferedReader in = new BufferedReader(new InputStreamReader(getInputStream()));
-				String file="file:///android_asset/testjson.txt";
-				InputStreamReader inputReader = new InputStreamReader(new FileInputStream(new File(file)));
-				BufferedReader in = new BufferedReader(inputReader);
 				String line =null;
 				StringBuffer buffer = new StringBuffer();
+				BufferedReader in = new BufferedReader(new InputStreamReader(getInputStream()));
 				while ((line = in.readLine()) != null) {
 					buffer.append(line);
 				}
