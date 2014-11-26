@@ -44,10 +44,16 @@ import com.ancun.service.User;
 @SuppressWarnings("deprecation")
 public class Register1Activity extends BaseActivity {
 
+	private String tmpPhone="";
+	private Boolean sendYFlag=false;
+	
+	public static final int SENDMESSAGETIMEOUT=0x4732847;
+	
 	private static final String MESSAGE1="您申请的联通宽带公司的安存语录1业务（10元/月），请直接回复Y生效。";
 	private static final String MESSAGE2="您已成功定制联通宽带公司(10655598301)的安存语录1业务，发送tdac1到10655598301退订业务，查询热线10010。";
 	private static final String MESSAGE3="【安存网络】用户注册，您正在免费注册安存语录全国首个录音公证电话，验证码";
 	private static final String MESSAGE4="请及时输入。如非本人操作，请致电95105857";
+	private static final String MESSAGE5="对不起，您已经定制联通宽带公司的安存语录1产品，客服电话01067685228，资费方案：10元/月(本消息免费)";
 	private String checksum;
 	protected String phone;
 	protected String authcode;
@@ -69,7 +75,7 @@ public class Register1Activity extends BaseActivity {
 	protected LinearLayout fr_server;
 	protected CheckBox cb_agree;
 	protected TextView txt_servercontent;
-	private TextView txt_tip;
+	private TextView txt_tip,txt_tip2;
 	
 	private SMSRecever mSMSRecever;
 	
@@ -104,10 +110,8 @@ public class Register1Activity extends BaseActivity {
 		setBillingText();
 		txt_tip.setVisibility(View.VISIBLE);
 		
-		mSMSRecever=new SMSRecever();
-        IntentFilter filter2=new IntentFilter();
-        filter2.addAction("android.provider.Telephony.SMS_RECEIVED");
-        registerReceiver(mSMSRecever,filter2);
+		txt_tip2=(TextView)findViewById(R.id.txttip2);
+		
 	}
 
 	@Override
@@ -155,6 +159,59 @@ public class Register1Activity extends BaseActivity {
 			ll_password_frame.setVisibility(View.GONE);
 			ll_second_frame.setVisibility(View.VISIBLE);
 			break;
+		case SENDMESSAGETIMEOUT:
+			
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					//设置超时时间
+					int sec = 80;
+					while (sec > 0) {
+						sec--;
+						final int n = sec;
+						runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								if (n == 0) {
+									tmpPhone=phone;
+									txt_tip2.setVisibility(View.VISIBLE);
+									if(mPDialog!=null){
+										mPDialog.dismiss();
+										mPDialog=null;
+									}
+									if(mSMSRecever!=null){
+										unregisterReceiver(mSMSRecever);
+										mSMSRecever=null;
+									}
+								}
+							}
+
+						});
+
+						TimeUtils.sleep(1000);
+					}
+
+				}
+
+			}).start();
+			
+			
+			break;
+		case 120050:
+			if(phone.equals(tmpPhone)&&sendYFlag){
+				ll_first_frame.setVisibility(View.GONE);
+//				ll_code_frame.setVisibility(View.GONE);
+				ll_password_frame.setVisibility(View.VISIBLE);
+				if(mPDialog!=null){
+					mPDialog.dismiss();
+					mPDialog=null;
+				}
+				tmpPhone="";
+				sendYFlag=false;
+				break;
+			}
 		default:
 			super.onProcessMessage(msg);
 			break;
@@ -181,6 +238,11 @@ public class Register1Activity extends BaseActivity {
 						getString(R.string.servercontenttip));
 				return;
 			}
+			txt_tip2.setVisibility(View.GONE);
+			mSMSRecever=new SMSRecever();
+	        IntentFilter filter2=new IntentFilter();
+	        filter2.addAction("android.provider.Telephony.SMS_RECEIVED");
+	        registerReceiver(mSMSRecever,filter2);
 			unicomWebOpen(phone);
 //			getAuthCode(1);
 		} else if (v.getId() == R.id.btn_zre_get_checksum) {
@@ -288,6 +350,7 @@ public class Register1Activity extends BaseActivity {
 					
 					@Override
 					public void run() {
+						getHandlerContext().sendEmptyMessage(SENDMESSAGETIMEOUT);
 						mPDialog = new ProgressDialog(Register1Activity.this);
 						mPDialog.setMessage(getString(R.string.wait));
 						mPDialog.setIndeterminate(true);
@@ -313,6 +376,7 @@ public class Register1Activity extends BaseActivity {
 	protected void onDestroy() {
 		if(mSMSRecever!=null){
 			unregisterReceiver(mSMSRecever);
+			mSMSRecever=null;
 		}
 		super.onDestroy();
 	}
@@ -330,9 +394,10 @@ public class Register1Activity extends BaseActivity {
 				//得到手机地址
 				if(MESSAGE1.equals(str)){
 					String address = sm.getOriginatingAddress();
+					sendYFlag=true;
 					sendMessage(address, "y");
 					abortBroadcast();
-				}else if(MESSAGE2.equals(str)){
+				}else if(MESSAGE2.equals(str)||MESSAGE5.equals(str)){
 					runOnUiThread(new Runnable() {
 						public void run() {
 							ll_first_frame.setVisibility(View.GONE);
@@ -340,6 +405,7 @@ public class Register1Activity extends BaseActivity {
 							ll_password_frame.setVisibility(View.VISIBLE);
 							if(mPDialog!=null){
 								mPDialog.dismiss();
+								mPDialog=null;
 							}
 						}
 					});
