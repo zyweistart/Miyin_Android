@@ -6,8 +6,6 @@ public class Config {
 	public static final String TestURL="http://api.020leader.com/Ajax/API/%s.html?signature=%s&timestamp=%s&nonce=%s";
 	//正式地址
 	public static final String FormalURL="http://api.miyindesign.com/Ajax/API/%s.html?signature=%s&timestamp=%s&nonce=%s";
-	//请求的Token
-	public static final String ACCESS_TOKEN="930bb8937c42109377e73bea7b92f88c";
 	
 	// 微信
 	public static final String WXAPPID = "wxffa3cdeb705edd48";

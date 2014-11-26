@@ -38,8 +38,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
 
-import com.start.core.Config;
-
 /**
  * @author Start   
  * @Description: 网络请求执行类
@@ -188,7 +186,7 @@ public class HttpServer {
 		//随机数
 		String nonce=String.valueOf(new Random().nextInt(1000));
 		//组合成数组
-		String[] arrs={Config.ACCESS_TOKEN,timestamp,nonce};
+		String[] arrs={User.USER_ACCESSKEY_LOCAL,timestamp,nonce};
 		//升序排列
 		Arrays.sort(arrs);
 		String signature= DigestUtils.shaHex(arrs[0]+arrs[1]+arrs[2]);
