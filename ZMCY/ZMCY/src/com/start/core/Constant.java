@@ -13,6 +13,7 @@ public final class Constant {
 	 * 用户接口
 	 */
 	public final class URL {
+		public static final String GetListALL="GetListALL";
 		//登录
 		//注册
 		//第三方应用注册登录(微信，QQ)
