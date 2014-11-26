@@ -20,9 +20,6 @@ import android.text.TextUtils;
 
 public class RefreshListServer implements IXListViewListener,HandleContextListener {
 	
-	public static final String CURRENTPAGE="PageIndex";
-	public static final String PAGESIZE="Size";
-
 	private Boolean isDataLoadDone,isHideLoadMore;
 	private int mCurrentPage;
 	private String cacheTag;
@@ -148,14 +145,14 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 			}
 			getItemDatas().clear();
 		}
-		int temp=Integer.parseInt(String.valueOf(response.getData(CURRENTPAGE)));
+		int temp=Integer.parseInt(String.valueOf(response.getData(Response.CURRENTPAGE)));
 		isHideLoadMore=isDataLoadDone=(temp==getCurrentPage());
 		setCurrentPage(temp);
 		List<Map<String,Object>> datas=response.getListMapData();
 		getItemDatas().addAll(datas);
 		if(!isDataLoadDone){
 			if(!getItemDatas().isEmpty()){
-				isHideLoadMore=datas.size()<Integer.parseInt(String.valueOf(response.getData(PAGESIZE)));
+				isHideLoadMore=datas.size()<Integer.parseInt(String.valueOf(response.getData(Response.PAGESIZE)));
 			}
 		}
 	}

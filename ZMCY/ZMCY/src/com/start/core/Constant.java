@@ -13,7 +13,20 @@ public final class Constant {
 	 * 用户接口
 	 */
 	public final class URL {
-		
+		//登录
+		//注册
+		//第三方应用注册登录(微信，QQ)
+		//收藏列表
+		//关注列表
+		//签到接口
+		//资讯列表接口
+		//专家列表接口
+		//专家咨询接口
+		//专家解答列表接口
+		//推送设置
+		//推送当前设置状态获取
+		//资讯搜索
+		//版本检测接口
 	}
 	
 	public final class Handler {
