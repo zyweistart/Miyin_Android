@@ -1,5 +1,6 @@
 package com.start.zmcy;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,6 +18,9 @@ import android.view.inputmethod.InputMethodManager;
 import com.start.core.BaseActivity;
 import com.start.core.Constant.Handler;
 import com.start.core.Constant.ResultCode;
+import com.start.service.HttpRunnable;
+import com.start.service.HttpServer;
+import com.start.service.Response;
 import com.start.service.SocialService;
 
 
@@ -151,7 +155,19 @@ public class LoginActivity extends BaseActivity{
 	 * @param autoLogin  
 	 */
 	private void login(final String account,final String password,final Boolean autoLogin){
-		this.loginSuccess(account,password,autoLogin);
+		HttpServer hServer = new HttpServer("GetInfo",getHandlerContext());
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("classId", "10");
+		params.put("Id", "1");
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) throws AppException {
+				loginSuccess(account,password,autoLogin);
+			}
+
+		});
 	}
 	
 	/**
