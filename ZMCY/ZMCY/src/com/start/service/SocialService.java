@@ -74,6 +74,11 @@ public class SocialService {
 		UMWXHandler wxHandler = new UMWXHandler(activity, Config.WXAPPID, Config.WXAPPSECRET);
 		wxHandler.addToSocialSDK();
 
+		if(!wxHandler.getWXApi().isWXAppInstalled()){
+			activity.getHandlerContext().makeTextLong("你还没有安装微信哦");
+			return;
+		}
+		
 		mController.doOauthVerify(activity, SHARE_MEDIA.WEIXIN,
 				new UMAuthListener() {
 			
