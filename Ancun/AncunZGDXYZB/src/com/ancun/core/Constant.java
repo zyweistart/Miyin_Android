@@ -9,9 +9,10 @@ public final class Constant {
 	/**
 	 * 应用类型
 	 * 中国联通:unicom
-	 * 音证宝:yzb
+	 * 上海音证宝:shyzb
+	 * 中国电信音证宝:zgdxyzb
 	 */
-	public static final String APPTYPE="unicom";
+	public static final String APPTYPE="zgdxyzb";
 	/**
 	 * 临时目录
 	 */
