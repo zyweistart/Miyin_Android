@@ -14,9 +14,9 @@ public class User {
 	public static String ACCESSID = AppConstant.EMPTYSTR;
 	public static String ACCESSKEY = AppConstant.EMPTYSTR;
 	public static final String USER_ACCESSID_LOCAL = BaseContext.getInstance().isTestEnvironmental() ? 
-			"987f1b8d52b7b4a0b2de095e831e5abc":"c82699c277b48fc755654d08cd93e328";
+			"987f1b8d52b7b4a0b2de095e831e5abc":"8268bc124b3d40b8b8a26725d64f8727";
 	public static final String USER_ACCESSKEY_LOCAL = BaseContext.getInstance().isTestEnvironmental() ? 
-			"OGFlZGJiZDAzZDdkM2QyNDhiY2NhMjI2ZTMwMTJlOWE=":"YzgyNjk5YzI3N2I0OGZjNzU1NjU0ZDA4Y2Q5M2UzMjg=";
+			"OGFlZGJiZDAzZDdkM2QyNDhiY2NhMjI2ZTMwMTJlOWE=":"T0RJMk9HSmpNVEkwWWpOa05EQmlPR0k0WVRJMk56STFaRFkwWmpnM01qYyUzRA==";
 	
 	private Boolean login;
 	private static User mUser;
