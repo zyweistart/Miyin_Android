@@ -21,7 +21,7 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.text.TextUtils;
 
 import com.ancun.core.DBManageDao;
-import com.ancun.shyzb.adapter.ContactAdapter;
+import com.ancun.unicom.adapter.ContactAdapter;
 
 public class ContactDaoImpl extends DBManageDao {
 

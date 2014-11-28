@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ancun.shyzb"
-    android:versionCode="2014041418"
+    package="com.ancun.unicom"
+    android:versionCode="2014111318"
     android:versionName="2.0.3" >
 
     <uses-sdk
@@ -87,6 +87,10 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".Register1Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".RegisterActivity"
             android:screenOrientation="portrait"

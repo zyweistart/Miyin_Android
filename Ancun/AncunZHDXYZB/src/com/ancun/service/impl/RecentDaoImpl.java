@@ -18,7 +18,7 @@ import android.provider.ContactsContract;
 
 import com.ancun.core.Constant;
 import com.ancun.core.DBManageDao;
-import com.ancun.shyzb.adapter.CallRecordsAdapter;
+import com.ancun.unicom.adapter.CallRecordsAdapter;
 
 public class RecentDaoImpl extends DBManageDao {
 

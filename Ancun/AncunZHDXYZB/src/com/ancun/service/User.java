@@ -7,7 +7,7 @@ import start.core.AppConstant;
 import android.text.TextUtils;
 
 import com.ancun.core.Constant.Preferences;
-import com.ancun.shyzb.BaseContext;
+import com.ancun.unicom.BaseContext;
 
 public class User {
 
@@ -29,6 +29,8 @@ public class User {
 			mUser=new User();
 			mUser.setLogin(false);
 		}
+		User.ACCESSID=User.USER_ACCESSID_LOCAL;
+		User.ACCESSKEY=User.USER_ACCESSKEY_LOCAL;
 		return mUser;
 	}
 	
@@ -97,11 +99,11 @@ public class User {
 	public void resolve(Map<String,String> userinfo){
 		setLogin(true);
 		getInfo().putAll(userinfo);
-		String accessid=getInfo().get("accessId");
+		String accessid=getInfo().get("accessid");
 		if(!TextUtils.isEmpty(accessid)){
 			User.ACCESSID=accessid;
 		}
-		String accesskey=getInfo().get("accessKey");
+		String accesskey=getInfo().get("accesskey");
 		if(!TextUtils.isEmpty(accesskey)){
 			User.ACCESSKEY=accesskey;
 		}

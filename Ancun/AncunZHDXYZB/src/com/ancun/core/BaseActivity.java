@@ -13,9 +13,9 @@ import android.widget.TextView;
 import com.ancun.core.Constant.ResultCode;
 import com.ancun.service.impl.ContactDaoImpl;
 import com.ancun.service.impl.RecentDaoImpl;
-import com.ancun.shyzb.BaseContext;
-import com.ancun.shyzb.LoginActivity;
-import com.ancun.shyzb.R;
+import com.ancun.unicom.BaseContext;
+import com.ancun.unicom.LoginActivity;
+import com.ancun.unicom.R;
 
 public class BaseActivity extends AppActivity {
 

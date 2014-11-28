@@ -11,7 +11,7 @@ public final class Constant {
 	 * 中国联通:unicom
 	 * 音证宝:yzb
 	 */
-	public static final String APPTYPE="yzb";
+	public static final String APPTYPE="unicom";
 	/**
 	 * 临时目录
 	 */
