@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="custom_rules" default="debug">
+    
+	<!-- 修改的配置文件 -->
+	<property name="app.file.manifest" value="AndroidManifest.xml"/>
+	<property name="app.file.manifest.bak" value="AndroidManifest_bak.xml"/>
+
+	<tstamp>
+			<format property="var.time" pattern="yyyyMMddHH" locale="en" />
+	</tstamp>
+	
+    <target name="-pre-build">
+        <!-- 把原配置文件先进行备份然后进行文字替换 -->
+        <copy file="${app.file.manifest}" tofile="${app.file.manifest.bak}" overwrite="true"/>
+		<replace file ="${app.file.manifest}" 
+		    token="android:versionCode=&quot;${version.code}&quot;" 
+		    value="android:versionCode=&quot;${var.time}&quot;" 
+		    encoding="UTF-8"/>
+		<replace file ="${app.file.manifest}" 
+		    token="android:value=&quot;${apk.market}&quot;" 
+		    value="android:value=&quot;${apk-market}&quot;" 
+		    encoding="UTF-8"/>
+    </target>
+
+    <!-- Basic Ant + SDK check -->
+    <target name="-post-build">
+		<!-- <echo>out.final.file: ${out.final.file}.</echo> -->
+		<!-- 生成输出到目标文件中 -->
+		<copy file="${out.final.file}" tofile="${app.build.path}\${ant.project.name}\current\${ant.project.name}-${apk-market}.apk" overwrite="true"/>
+		<!-- 生成输出到历史文件中 -->
+		<copy file="${out.final.file}" tofile="${app.build.path}\${ant.project.name}\history\${var.time}\${ant.project.name}-${apk-market}-${var.time}.apk" overwrite="true"/>
+		<!-- 还原配置文件 -->
+		<copy file="${app.file.manifest.bak}" tofile="${app.file.manifest}" overwrite="true"/>
+		<!-- 删除备份配置文件 -->
+		<delete file="${app.file.manifest.bak}" />
+		<echo>生成成功</echo>
+		<echo>当前版本号：${var.time}</echo>
+		<echo>当前所属渠道编号：${apk-market}</echo>
+		<echo>APK路径：${app.build.path}/${ant.project.name}/current/${ant.project.name}-${apk-market}.apk</echo>
+    </target>
+
+    <!-- Basic Ant + SDK check -->
+    <target name="debug">
+         <echo>custom_rules debug</echo>
+    </target>
+    
+    <taskdef name="foreach" classname="net.sf.antcontrib.logic.ForEach" />
+    
+	<!-- 调用该目标方法生成全部 -->
+	<target name="start_release"> 
+	    <!-- 如果生成失败，调用下面语句清理项目，或者执行菜单Project->Clean...
+	    <antcall target="clean" />
+	    <echo>项目清理完成，开始生成</echo> -->
+	   <foreach target="release" list="${app.channel}" param="apk-market" delimiter=";"/> 
+	</target>
+    
+</project>

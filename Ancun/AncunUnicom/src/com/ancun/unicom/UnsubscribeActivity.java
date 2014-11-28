@@ -9,7 +9,6 @@ import start.core.AppManager;
 import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.Response;
-import start.utils.MD5;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,7 +23,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.ancun.core.BaseActivity;
-import com.ancun.core.Constant;
 import com.ancun.service.ButtonTextWatcher;
 import com.ancun.service.User;
 
@@ -63,6 +61,13 @@ public class UnsubscribeActivity extends BaseActivity {
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
+//			String cp=getAppContext().currentUser().getCachePassword();
+//			if(!TextUtils.isEmpty(cp)){
+//				if(!cp.equals(MD5.md5(password))){
+//					getHandlerContext().makeTextLong("密码不匹配");
+//					return;
+//				}
+//			}
 			HttpServer hServer=new HttpServer("unicomWebSmsCancel", getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
