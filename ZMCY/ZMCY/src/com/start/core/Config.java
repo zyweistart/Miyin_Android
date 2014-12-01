@@ -19,12 +19,12 @@ public class Config {
 	// LED光源
 	public static final String LIGHTSOURCEURL="http://www.163.com";
 	// 商城
-	public static final String MallURL="http://www.baidu.com";
+	public static final String MallURL="http://api.020leader.com/38/shop_list.html ";
 	// 展会
 	public static final String ExhibitionURL="http://www.sina.com";
 	// 专家自荐
-	public static final String EXPERTSURL="http://www.sohu.com";
+	public static final String EXPERTSURL="http://api.020leader.com/63/zijian.html";
 	// 应用
-	public static final String APPURL="http://www.360.cn";
+	public static final String APPURL="http://api.020leader.com/40/yingyong.html";
 
 }
