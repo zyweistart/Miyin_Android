@@ -43,7 +43,7 @@ public class NewsListActivity extends BaseActivity implements RefreshListServerL
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				HolderView hv=(HolderView)view.getTag();
-				NewsListActivity.gotoNews(NewsListActivity.this,hv.recordno);
+				NewsListActivity.gotoNews(NewsListActivity.this,hv.id);
 			}
 			
 		});

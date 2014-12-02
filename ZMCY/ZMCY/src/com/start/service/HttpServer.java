@@ -24,7 +24,6 @@ import org.json.JSONObject;
 
 import start.core.AppConstant;
 import start.core.AppConstant.Handler;
-import start.core.AppContext;
 import start.core.AppException;
 import start.core.HandlerContext;
 import start.core.R;
@@ -37,6 +36,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
+
+import com.start.core.Config;
 
 /**
  * @author Start   
@@ -190,7 +191,7 @@ public class HttpServer {
 		//升序排列
 		Arrays.sort(arrs);
 		String signature= DigestUtils.shaHex(arrs[0]+arrs[1]+arrs[2]);
-		String url=String.format(AppContext.getInstance().getServerURL(), this.mUrl,signature,timestamp,nonce);
+		String url=String.format(Config.ServerURL, this.mUrl,signature,timestamp,nonce);
 		HttpPost post = new HttpPost(url);
 		try {
 			post.addHeader("format", "json");

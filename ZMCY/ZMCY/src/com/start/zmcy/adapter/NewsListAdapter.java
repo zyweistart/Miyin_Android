@@ -8,6 +8,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import start.core.AppContext;
 import start.widget.StartViewPager;
 import start.widget.StartViewPager.OnSingleTouchListener;
 import android.app.Activity;
@@ -22,20 +23,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
+import com.start.service.AppServer;
 import com.start.service.BitmapManager;
 import com.start.zmcy.R;
 import com.start.zmcy.content.NewsContentFragment;
 
 public class NewsListAdapter extends AppListAdapter{
 
-	
-	public static final String TYPE="type";
+	public static final String DATA="Data";
+	public static final String TYPE="key";
+	public static final String ID="Id";
 	public static final String TITLE="title";
-	public static final String DESCRIPTION="description";
-	public static final String RECORDNO="recordno";
-	public static final String IMAGEURL="url";
-	public static final String BANNERLIST="bannerlist";
-	public static final String BANNERINFO="bannerinfo";
+	public static final String DESCRIPTION="content";
+	public static final String IMAGEURL="images";
 	
 	private static BitmapManager mBannerBitmapManager;
 	private static BitmapManager mNewsBitmapManager;
@@ -71,15 +71,14 @@ public class NewsListAdapter extends AppListAdapter{
 		Map<String,Object> data=mItemDatas.get(position);
 		String type=String.valueOf(data.get(TYPE));
 		holder.position=position;
-		holder.recordno=String.valueOf(data.get(RECORDNO));
-		if("1".equals(type)){
+		if("banner".equals(type)){
 			//BANNER
 			setItemVisibility(holder,1);
 			try {
-				JSONArray listo=(JSONArray)data.get(BANNERLIST);
+				JSONArray listo=(JSONArray)data.get(DATA);
 				List<Map<String,String>>mListMapData=new ArrayList<Map<String,String>>();
 				for(int i=0;i<listo.length();i++){
-					JSONObject current = listo.getJSONObject(i).getJSONObject(BANNERINFO);
+					JSONObject current = listo.getJSONObject(i);
 					Map<String,String> datas=new HashMap<String,String>();
 					JSONArray names=current.names();
 					for(int j=0;j<names.length();j++){
@@ -92,8 +91,8 @@ public class NewsListAdapter extends AppListAdapter{
 				for (int i = 0; i < mListMapData.size(); i++) {
 					ImageView imageView = new ImageView(this.mActivity);
 					BannerHolder bh=new BannerHolder();
-					bh.recordno=String.valueOf(mListMapData.get(i).get(RECORDNO));
-					String url=mListMapData.get(i).get(IMAGEURL);
+					bh.id=String.valueOf(mListMapData.get(i).get(ID));
+					String url=AppContext.getInstance().getServerURL()+mListMapData.get(i).get(IMAGEURL);
 					mBannerBitmapManager.loadBitmap(url, imageView);
 					imageView.setTag(bh);
 					imageViews.add(imageView);
@@ -107,29 +106,19 @@ public class NewsListAdapter extends AppListAdapter{
 					@Override
 					public void onSingleTouch(View view) {
 						BannerHolder hv=(BannerHolder)view.getTag();
-						NewsContentFragment.gotoNews(mActivity,hv.recordno);
+						NewsContentFragment.gotoNews(mActivity,hv.id);
 					}
 					
 				});
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if("2".equals(type)){
-			//News
-			setItemVisibility(holder,2);
-			String url=String.valueOf(data.get(IMAGEURL));
-			if(TextUtils.isEmpty(url)){
-				holder.news_pic.setBackgroundResource(R.drawable.default_news);
-			}else{
-				mNewsBitmapManager.loadBitmap(url, holder.news_pic);
-			}
-			holder.news_title.setText(String.valueOf(data.get(TITLE)));
-			holder.news_description.setText(String.valueOf(data.get(DESCRIPTION)));
-		}else if("3".equals(type)){
+		}else if("advert".equals(type)){
 			//Advertising
 			setItemVisibility(holder,3);
+			holder.id=String.valueOf(data.get(ID));
 			
-			String url=String.valueOf(data.get(IMAGEURL));
+			String url=AppContext.getInstance().getServerURL()+String.valueOf(data.get(IMAGEURL));
 			if(TextUtils.isEmpty(url)){
 				holder.advertising_item.setBackgroundResource(R.drawable.default_banner);
 			}else{
@@ -144,7 +133,7 @@ public class NewsListAdapter extends AppListAdapter{
 				@Override
 				public void onClick(View v) {
 					HolderView hv=(HolderView)v.getTag();
-					NewsContentFragment.gotoNews(mActivity,hv.recordno);
+					NewsContentFragment.gotoNews(mActivity,hv.id);
 				}
 				
 			});
@@ -159,13 +148,26 @@ public class NewsListAdapter extends AppListAdapter{
 					notifyDataSetChanged();
 				}
 			});
+		}else{
+			//News
+			setItemVisibility(holder,2);
+			holder.id=String.valueOf(data.get(ID));
+			String url=AppContext.getInstance().getServerURL()+String.valueOf(data.get(IMAGEURL));
+			if(TextUtils.isEmpty(url)){
+				holder.news_pic.setBackgroundResource(R.drawable.default_news);
+			}else{
+				mNewsBitmapManager.loadBitmap(url, holder.news_pic);
+			}
+			holder.news_title.setText(String.valueOf(data.get(TITLE)));
+			String description=AppServer.html2Text(String.valueOf(data.get(DESCRIPTION)));
+			holder.news_description.setText(description);
 		}
 		return convertView;
 	}
 	
 	public class BannerHolder{
 		public int position;
-		public String recordno;
+		public String id;
 	}
 	
 	public class HolderView extends BannerHolder {

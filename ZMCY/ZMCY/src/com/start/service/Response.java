@@ -117,7 +117,8 @@ public class Response {
 						JSONArray names = current.names();
 						for (int j = 0; j < names.length(); j++) {
 							String name = names.getString(j);
-							datas.put(name, current.getString(name));
+							Object value=current.get(name);
+							datas.put(name, value);
 						}
 						mListMapData.add(datas);
 					}

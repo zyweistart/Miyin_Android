@@ -3,7 +3,6 @@ package com.start.zmcy.content;
 import java.util.HashMap;
 import java.util.Map;
 
-import start.core.AppConstant;
 import start.core.AppException;
 import start.widget.xlistview.XListView;
 import android.app.Activity;
@@ -17,6 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.start.core.BaseFragment;
 import com.start.core.BaseFragmentActivity;
+import com.start.core.Constant;
 import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
@@ -57,7 +57,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				if(id>0){
 					HolderView hv=(HolderView)view.getTag();
-					NewsContentFragment.gotoNews(mActivity,hv.recordno);
+					NewsContentFragment.gotoNews(mActivity,hv.id);
 				}else{
 					mRefreshListServer.getCurrentListView().startLoadMore();
 				}
@@ -65,7 +65,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 			
 		});
 		mRefreshListServer = new RefreshListServer(mActivity,mActivity.getHandlerContext(), mListView,new NewsListAdapter(mActivity));
-		mRefreshListServer.setCacheTag("NewsContentFragment");
+		mRefreshListServer.setCacheTag("NewsContentFragment"+mCategory.getKey());
 		mRefreshListServer.setRefreshListServerListener(this);
 
 		mRefreshListServer.initLoad();
@@ -84,11 +84,11 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 	
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer("GetListPage",mRefreshListServer.getHandlerContext());
+		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("classId", "11,12");
-		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
-		params.put("size", String.valueOf(AppConstant.PAGESIZE));
+		params.put("Id", mCategory.getKey());
+		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+//		params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 

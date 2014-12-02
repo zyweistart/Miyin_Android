@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
 import com.start.core.CacheActivity;
-import com.start.core.Config;
 import com.start.core.DBManageDao;
 import com.start.service.User;
 
@@ -33,7 +32,7 @@ public class BaseContext extends AppContext {
 
 	@Override
 	public String getServerURL() {
-		return isTestEnvironmental() ? Config.TestURL:Config.FormalURL;
+		return isTestEnvironmental() ? "http://api.020leader.com":"http://api.020leader.com";
 	}
 
 	@Override
