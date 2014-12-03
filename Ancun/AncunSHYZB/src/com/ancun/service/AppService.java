@@ -113,9 +113,8 @@ public class AppService {
 	 * 检测应用更新
 	 */
 	public static void checkAppUpdate(BaseActivity activity,Boolean status){
-		//TODO:检测应用更新
-//		UpdateApplication updateApplication = new UpdateApplication(activity);
-//		updateApplication.startCheck(status);
+		UpdateApplication updateApplication = new UpdateApplication(activity);
+		updateApplication.startCheck(status);
 	}
 
 	/**

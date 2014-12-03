@@ -2,17 +2,17 @@ package com.start.zmcy;
 
 import android.os.Bundle;
 
-import com.start.core.BaseActivity;
-
 /**
  * 关注
  */
-public class FollowActivity extends BaseActivity{
+public class FollowActivity extends BaseNewsActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		id="2";
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_follow);
 		setMainHeadTitle(getString(R.string.follow));
+		mRefreshListServer.initLoad();
  	}
+	
 }

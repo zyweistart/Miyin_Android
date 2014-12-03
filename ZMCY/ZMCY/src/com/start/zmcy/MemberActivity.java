@@ -14,8 +14,8 @@ import com.start.core.Constant.Preferences;
  */
 public class MemberActivity extends BaseActivity{
 	
-	private TextView txt_account_info;
 	private TextView txtMode;
+	private TextView txt_account_info;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +31,6 @@ public class MemberActivity extends BaseActivity{
 	protected void onResume() {
 		super.onResume();
 		loginStatusText();
-	}
-	
-	public void loginStatusText(){
-		if(getAppContext().currentUser().isLogin()){
-			txt_account_info.setText(R.string.exitlogin);
-		}else{
-			txt_account_info.setText(R.string.gotologin);
-		}
 	}
 	
 	@Override
@@ -84,6 +76,14 @@ public class MemberActivity extends BaseActivity{
 			startActivity(new Intent(this,SettingActivity.class));
 		}else{
 			super.onClick(v);
+		}
+	}
+	
+	public void loginStatusText(){
+		if(getAppContext().currentUser().isLogin()){
+			txt_account_info.setText(R.string.exitlogin);
+		}else{
+			txt_account_info.setText(R.string.gotologin);
 		}
 	}
 	

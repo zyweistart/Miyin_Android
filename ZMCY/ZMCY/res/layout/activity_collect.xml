@@ -7,4 +7,9 @@
     
     <include layout="@layout/module_header_title" />
      
+    
+    <start.widget.xlistview.XListView
+        android:id="@+id/xlv_listview"
+        style="@style/listview1"/>
+    
 </LinearLayout>

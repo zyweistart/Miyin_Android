@@ -100,7 +100,7 @@ public final class Constant {
 		/**
 		 * 意见反馈
 		 */
-		public static final String v4Feedback  ="v4Feedback";
+		public static final String feedback  ="feedback";
 		/**
 		 * 终端版本信息获取
 		 */

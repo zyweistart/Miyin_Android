@@ -2,17 +2,17 @@ package com.start.zmcy;
 
 import android.os.Bundle;
 
-import com.start.core.BaseActivity;
-
 /**
  * 收藏
  */
-public class CollectActivity extends BaseActivity{
+public class CollectActivity extends BaseNewsActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		id="1";
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_collect);
 		setMainHeadTitle(getString(R.string.collect));
+		mRefreshListServer.initLoad();
  	}
+	
 }
