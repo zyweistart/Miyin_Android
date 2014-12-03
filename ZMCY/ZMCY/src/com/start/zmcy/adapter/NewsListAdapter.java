@@ -12,7 +12,9 @@ import start.core.AppContext;
 import start.widget.StartViewPager;
 import start.widget.StartViewPager.OnSingleTouchListener;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,6 +35,7 @@ public class NewsListAdapter extends AppListAdapter{
 	public static final String DATA="Data";
 	public static final String TYPE="key";
 	public static final String ID="Id";
+	public static final String URL="links";
 	public static final String TITLE="title";
 	public static final String DESCRIPTION="content";
 	public static final String IMAGEURL="images";
@@ -116,38 +119,48 @@ public class NewsListAdapter extends AppListAdapter{
 		}else if("advert".equals(type)){
 			//Advertising
 			setItemVisibility(holder,3);
-			holder.id=String.valueOf(data.get(ID));
-			
-			String url=AppContext.getInstance().getServerURL()+String.valueOf(data.get(IMAGEURL));
-			if(TextUtils.isEmpty(url)){
-				holder.advertising_item.setBackgroundResource(R.drawable.default_banner);
-			}else{
-				ImageView iv=new ImageView(mActivity);
-				mBannerBitmapManager.loadBitmap(url, iv);
-				holder.advertising_item.setBackgroundDrawable(iv.getDrawable());
+			try{
+				JSONObject listo=(JSONObject)data.get(DATA);
+				holder.id=String.valueOf(listo.getString(ID));
+				holder.url=String.valueOf(listo.getString(URL));
+				
+				String url=AppContext.getInstance().getServerURL()+String.valueOf(listo.getString(IMAGEURL));
+				if(TextUtils.isEmpty(url)){
+					holder.advertising_item.setBackgroundResource(R.drawable.default_banner);
+				}else{
+					ImageView iv=new ImageView(mActivity);
+					mBannerBitmapManager.loadBitmap(url, iv);
+					holder.advertising_item.setBackgroundDrawable(iv.getDrawable());
+				}
+				holder.advertising_item.setTag(holder);
+				holder.advertising_item.setClickable(true);
+				holder.advertising_item.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						HolderView hv=(HolderView)v.getTag();
+						Intent intent = new Intent();
+				        intent.setAction("android.intent.action.VIEW");
+				        Uri content_url = Uri.parse(hv.url);
+				        intent.setData(content_url);
+				        mActivity.startActivity(intent);
+					}
+					
+				});
+				
+				holder.advertising_close.setTag(holder);
+				holder.advertising_close.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						HolderView hv=(HolderView)v.getTag();
+						getItemDatas().remove(hv.position);
+						notifyDataSetChanged();
+					}
+				});
+			}catch(Exception e){
+				e.printStackTrace();
 			}
-			holder.advertising_item.setTag(holder);
-			holder.advertising_item.setClickable(true);
-			holder.advertising_item.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					HolderView hv=(HolderView)v.getTag();
-					NewsContentFragment.gotoNews(mActivity,hv.id);
-				}
-				
-			});
-			
-			holder.advertising_close.setTag(holder);
-			holder.advertising_close.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					HolderView hv=(HolderView)v.getTag();
-					getItemDatas().remove(hv.position);
-					notifyDataSetChanged();
-				}
-			});
 		}else{
 			//News
 			setItemVisibility(holder,2);
@@ -168,6 +181,7 @@ public class NewsListAdapter extends AppListAdapter{
 	public class BannerHolder{
 		public int position;
 		public String id;
+		public String url;
 	}
 	
 	public class HolderView extends BannerHolder {
