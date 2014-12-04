@@ -1,5 +1,6 @@
 package com.start.zmcy;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,7 +14,11 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.start.core.BaseActivity;
+import com.start.core.Constant;
 import com.start.core.Constant.Handler;
+import com.start.service.HttpRunnable;
+import com.start.service.HttpServer;
+import com.start.service.Response;
 import com.start.service.SocialService;
 
 
@@ -72,8 +77,8 @@ public class RegisterActivity extends BaseActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_register){
-			String account=String.valueOf(et_register_account.getText());
-			String password=String.valueOf(et_register_password.getText());
+			final String account=String.valueOf(et_register_account.getText());
+			final String password=String.valueOf(et_register_password.getText());
 			String rePassword=String.valueOf(et_register_repassword.getText());
 			if(TextUtils.isEmpty(account)){
 				getHandlerContext().makeTextLong(getString(R.string.accounthint));
@@ -87,14 +92,30 @@ public class RegisterActivity extends BaseActivity{
 				getHandlerContext().makeTextLong(getString(R.string.passworddiffhint));
 				return;
 			}
-			//TODO:注册动作
-			Bundle bundle=new Bundle();
-			bundle.putString(STR_ACCOUNT, account);
-			bundle.putString(STR_PASSWORD, MD5.md5(password));
-			bundle.putString(REGISTERTYPE, REGISTERTYPE_ACCOUNT);
-			Intent intent=new Intent();
-			intent.putExtras(bundle);
-			registerSuccess(intent);
+			
+			HttpServer hServer = new HttpServer(Constant.URL.RegUser,getHandlerContext());
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("userName",account);
+			params.put("pwd", password);
+			params.put("pwd2", rePassword);
+			hServer.setParams(params);
+			hServer.get(new HttpRunnable() {
+
+				@Override
+				public void run(Response response) throws AppException {
+					
+					Bundle bundle=new Bundle();
+					bundle.putString(STR_ACCOUNT, account);
+					bundle.putString(STR_PASSWORD, MD5.md5(password));
+					bundle.putString(REGISTERTYPE, REGISTERTYPE_ACCOUNT);
+					Intent intent=new Intent();
+					intent.putExtras(bundle);
+					registerSuccess(intent);
+					
+				}
+
+			});
+			
 		}else if(v.getId()==R.id.qq_login){
 			SocialService.socialQQLogin(this);
 		}else if(v.getId()==R.id.wx_login){
