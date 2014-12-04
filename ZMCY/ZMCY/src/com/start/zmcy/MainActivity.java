@@ -32,6 +32,7 @@ import com.start.zmcy.content.NewsContentFragment;
 public class MainActivity extends BaseFragmentActivity implements OnClickListener {
 
 	public static final int REQUEST_LOGIN_CODE=111;
+	public static final int CHANNELRESULT=123;
 	
 	private static List<NewsCategory> mNewsCategoryes=new ArrayList<NewsCategory>();
 	private List<BaseFragment> nBaseFragments = new ArrayList<BaseFragment>();
@@ -46,6 +47,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	public ImageView shade_left;
 	/** 右阴影部分 */
 	public ImageView shade_right;
+	public ImageView button_more_columns;
 	/** 屏幕宽度 */
 	private int mScreenWidth = 0;
 	
@@ -102,6 +104,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		rl_column = (RelativeLayout) findViewById(R.id.rl_column);
 		shade_left = (ImageView) findViewById(R.id.shade_left);
 		shade_right = (ImageView) findViewById(R.id.shade_right);
+		button_more_columns = (ImageView) findViewById(R.id.button_more_columns);
+		button_more_columns.setOnClickListener(this);
 		
 		for(int i=0;i<mNewsCategoryes.size();i++){
 			nBaseFragments.add(new NewsContentFragment(this, mNewsCategoryes.get(i)));
@@ -176,6 +180,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		} else if (v.getId() == R.id.txtMember) {
 			// 会员
 			startActivity(new Intent(this, MemberActivity.class));
+		}else if(v.getId()==R.id.button_more_columns){
+			startActivity(new Intent(this, ChannelActivity.class));
 		}
 	}
 	

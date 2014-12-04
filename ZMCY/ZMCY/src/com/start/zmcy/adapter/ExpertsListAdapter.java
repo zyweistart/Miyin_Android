@@ -8,10 +8,14 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import start.core.AppContext;
 import start.widget.StartViewPager;
+import start.widget.StartViewPager.OnSingleTouchListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,19 +26,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
+import com.start.service.AppServer;
 import com.start.service.BitmapManager;
 import com.start.zmcy.ConsultationActivity;
 import com.start.zmcy.R;
 
 public class ExpertsListAdapter extends AppListAdapter{
-
-	public static final String TYPE="type";
+	
+	public static final String DATA="Data";
+	public static final String TYPE="key";
+	public static final String ID="Id";
+	public static final String URL="links";
 	public static final String TITLE="title";
-	public static final String DESCRIPTION="description";
-	public static final String RECORDNO="recordno";
-	public static final String IMAGEURL="url";
-	public static final String BANNERLIST="bannerlist";
-	public static final String BANNERINFO="bannerinfo";
+	public static final String DESCRIPTION="content";
+	public static final String IMAGEURL="images";
 	
 	private static BitmapManager mBannerBitmapManager;
 	private static BitmapManager mExpertsBitmapManager;
@@ -68,14 +73,13 @@ public class ExpertsListAdapter extends AppListAdapter{
 		}
 		Map<String,Object> data=mItemDatas.get(position);
 		String type=String.valueOf(data.get(TYPE));
-//		String recordno=String.valueOf(data.get(RECORDNO));
-		if("1".equals(type)){
+		if("banner".equals(type)){
 			setItemVisibility(holder,1);
 			try {
-				JSONArray listo=(JSONArray)data.get(BANNERLIST);
+				JSONArray listo=(JSONArray)data.get(DATA);
 				List<Map<String,String>>mListMapData=new ArrayList<Map<String,String>>();
 				for(int i=0;i<listo.length();i++){
-					JSONObject current = listo.getJSONObject(i).getJSONObject(BANNERINFO);
+					JSONObject current = listo.getJSONObject(i);
 					Map<String,String> datas=new HashMap<String,String>();
 					JSONArray names=current.names();
 					for(int j=0;j<names.length();j++){
@@ -86,21 +90,39 @@ public class ExpertsListAdapter extends AppListAdapter{
 				}
 				List<ImageView> imageViews= new ArrayList<ImageView>();
 				for (int i = 0; i < mListMapData.size(); i++) {
+					BannerHolder bh=new BannerHolder();
+					bh.id=String.valueOf(mListMapData.get(i).get(ID));
+					bh.url=String.valueOf(mListMapData.get(i).get(URL));
 					ImageView imageView = new ImageView(this.mActivity);
-					String url=mListMapData.get(i).get(IMAGEURL);
+					String url=AppContext.getInstance().getServerURL()+mListMapData.get(i).get(IMAGEURL);
 					mBannerBitmapManager.loadBitmap(url, imageView);
+					imageView.setTag(bh);
 					imageViews.add(imageView);
 				}
 				holder.startViewPager.setOffscreenPageLimit(mListMapData.size());
 				NewsBannerAdapter mNewsBannerAdapter=new NewsBannerAdapter(this.mActivity);
 				mNewsBannerAdapter.setItemDatas(imageViews);
 				holder.startViewPager.setAdapter(mNewsBannerAdapter);
+				holder.startViewPager.setOnSingleTouchListener(new OnSingleTouchListener() {
+					
+					@Override
+					public void onSingleTouch(View view) {
+						BannerHolder hv=(BannerHolder)view.getTag();
+						Intent intent = new Intent();
+				        intent.setAction("android.intent.action.VIEW");
+				        intent.setData(Uri.parse(hv.url));
+				        mActivity.startActivity(intent);
+					}
+					
+				});
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if("2".equals(type)||"3".equals(type)){
+		}else{
 			setItemVisibility(holder,2);
-			String url=String.valueOf(data.get(IMAGEURL));
+			holder.id=String.valueOf(data.get(ID));
+			
+			String url=AppContext.getInstance().getServerURL()+String.valueOf(data.get(IMAGEURL));
 			if(TextUtils.isEmpty(url)){
 				holder.experts_head.setBackgroundResource(R.drawable.default_experts);
 			}else{
@@ -108,19 +130,32 @@ public class ExpertsListAdapter extends AppListAdapter{
 			}
 			holder.experts_name.setText(String.valueOf(data.get(TITLE)));
 			holder.experts_pro.setText("研究院");
-			holder.experts_description.setText(String.valueOf(data.get(DESCRIPTION)));
+			holder.experts_description.setText(AppServer.html2Text(String.valueOf(data.get(DESCRIPTION))));
+			holder.experts_consultation.setTag(holder);
 			holder.experts_consultation.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					mActivity.startActivity(new Intent(mActivity,ConsultationActivity.class));
+					BannerHolder hv=(BannerHolder)v.getTag();
+					Bundle bundle=new Bundle();
+					bundle.putString(ConsultationActivity.CONSOLTATIONID, hv.id);
+					Intent intent=new Intent(mActivity,ConsultationActivity.class);
+					intent.putExtras(bundle);
+					mActivity.startActivity(intent);
+					
 				}
 			});
 		}
 		return convertView;
 	}
 	
-	private class HolderView {
+	public class BannerHolder{
+		public int position;
+		public String id;
+		public String url;
+	}
+	
+	public class HolderView extends BannerHolder {
 		private LinearLayout experts_item;
 		private StartViewPager startViewPager;
 		private ImageView experts_head;

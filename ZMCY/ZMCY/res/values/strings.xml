@@ -17,18 +17,18 @@
     <string name="newsdetail">照明产业新闻</string>
     <string name="resources">资源</string>
     <string name="activities">活动</string>
-    <string name="experts">专家</string>
+    <string name="experts">智库</string>
     <string name="app">应用</string>
     <string name="member">会员</string>
     <string name="consultation">咨询</string>
     
-    <string name="product_normal">传统光源</string>
-    <string name="product_led">LED光源</string>
+    <string name="product_normal">传统照明</string>
+    <string name="product_led">LED照明</string>
     <string name="activities_mall">商城</string>
     <string name="activities_exhibition">展会</string>
     <string name="experts_list">专家列表</string>
     <string name="experts_answer">专家解答</string>
-    <string name="experts_cover">专家自荐</string>
+    <string name="experts_cover">能人自荐</string>
     
     <string name="pushtip">亲，有新消息到达,请注意查收</string>
     <string name="signin">签到</string>
@@ -47,12 +47,17 @@
     <string name="cleancache">清理缓存</string>
     <string name="version">版本检测</string>
     <string name="aboutus">关于我们</string>
+    <string name="category_manager">栏目管理</string>
     
     <string name="cleanfile_sure">是否删除本地所有缓存文件？</string>
     <string name="cleanfile_success">成功清理本地所有文件</string>
     <string name="cleanfile_fail">清理本地文件失败</string>
     <string name="searchkeyshint">请输入关键词</string>
     <string name="hotsearch">热门搜索</string>
+    <string name="subscribe_my_category">我的频道</string>
+    <string name="subscribe_more_category">更多频道</string>
+    <string name="subscribe_manager_category_info">单击增删频道</string>
+    <string name="subscribe_manager_category_info_2">单击增删频道，长按拖拽排序</string>
     
 	<string-array name="fontsizetype">
         <item>标准</item>

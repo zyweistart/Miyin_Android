@@ -3,7 +3,6 @@ package com.start.zmcy;
 import java.util.HashMap;
 import java.util.Map;
 
-import start.core.AppConstant;
 import start.core.AppException;
 import start.widget.xlistview.XListView;
 import android.content.Intent;
@@ -17,12 +16,12 @@ import android.widget.Button;
 
 import com.start.core.BaseActivity;
 import com.start.core.Config;
+import com.start.core.Constant;
 import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
 import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
-import com.start.service.User;
 import com.start.zmcy.adapter.ExpertsListAdapter;
 import com.start.zmcy.adapter.ExpertsQuestionAdapter;
 
@@ -91,7 +90,7 @@ public class ExpertsActivity extends BaseActivity implements
 		mQuestionRefreshListServer = new RefreshListServer(this,
 				getHandlerContext(), mQuestionListView,
 				new ExpertsQuestionAdapter(this));
-		mQuestionRefreshListServer.setCacheTag(TAG);
+		mQuestionRefreshListServer.setCacheTag(TAG+"Question");
 		mQuestionRefreshListServer.setRefreshListServerListener(this);
 
 		mWebView = (WebView) findViewById(R.id.wvcontent);
@@ -105,8 +104,10 @@ public class ExpertsActivity extends BaseActivity implements
 		});
 		
 		setHeadButtonEnabled(type);
-		
 		mRefreshListServer.initLoad();
+		if(getAppContext().currentUser().isLogin()){
+			mQuestionRefreshListServer.initLoad();
+		}
 		mWebView.loadUrl(Config.EXPERTSURL);
 	}
 
@@ -166,14 +167,11 @@ public class ExpertsActivity extends BaseActivity implements
 
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer("htinfonewsQuery",getRefreshListServer().getHandlerContext());
-		Map<String, String> headers = new HashMap<String, String>();
-		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
-		hServer.setHeaders(headers);
+		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("accessid", User.USER_ACCESSID_LOCAL);
-		params.put("currentpage",String.valueOf(getRefreshListServer().getCurrentPage() + 1));
-		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
+		params.put("Id", type==1?"6":"8");
+		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+//		params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 

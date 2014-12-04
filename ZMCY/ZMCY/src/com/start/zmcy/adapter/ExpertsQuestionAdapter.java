@@ -1,15 +1,22 @@
 package com.start.zmcy.adapter;
 
+import java.util.Map;
+
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
+import com.start.service.AppServer;
 import com.start.zmcy.R;
 
 public class ExpertsQuestionAdapter extends AppListAdapter{
 
+	public static final String ID="Id";
+	public static final String TITLE="title";
+	public static final String DESCRIPTION="content";
+	
 	public ExpertsQuestionAdapter(Activity activity) {
 		super(activity);
 	}
@@ -26,9 +33,9 @@ public class ExpertsQuestionAdapter extends AppListAdapter{
 		} else {
 			holder = (HolderView) convertView.getTag();
 		}
-//		Map<String,Object> data=mItemDatas.get(position);
-		holder.question_title.setText("fjlskafjl7932874932ldkjfl jdls 在jlsj困困要 ");
-		holder.question_description.setText("困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困困");
+		Map<String,Object> data=mItemDatas.get(position);
+		holder.question_title.setText(String.valueOf(data.get(TITLE)));
+		holder.question_description.setText(AppServer.html2Text(String.valueOf(data.get(DESCRIPTION))));
 		return convertView;
 	}
 	
