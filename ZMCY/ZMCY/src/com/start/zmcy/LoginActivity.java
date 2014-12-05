@@ -6,7 +6,6 @@ import java.util.Set;
 
 import start.core.AppConstant;
 import start.core.AppException;
-import start.utils.MD5;
 import start.utils.StringUtils;
 import start.widget.CustomEditText;
 import android.content.Intent;
@@ -95,7 +94,7 @@ public class LoginActivity extends BaseActivity{
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
-			login(account,MD5.md5(password),true);
+			login(account,password,true);
 		}else if(v.getId()==R.id.qq_login){
 			SocialService.socialQQLogin(this);
 		}else if(v.getId()==R.id.wx_login){

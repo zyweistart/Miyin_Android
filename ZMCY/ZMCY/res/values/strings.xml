@@ -47,7 +47,7 @@
     <string name="cleancache">清理缓存</string>
     <string name="version">版本检测</string>
     <string name="aboutus">关于我们</string>
-    <string name="category_manager">栏目管理</string>
+    <string name="channel_manager">频道管理</string>
     
     <string name="cleanfile_sure">是否删除本地所有缓存文件？</string>
     <string name="cleanfile_success">成功清理本地所有文件</string>

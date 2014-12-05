@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.start.core.BaseFragment;
@@ -22,7 +23,7 @@ import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
 import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
-import com.start.service.bean.NewsCategory;
+import com.start.service.bean.ChannelItem;
 import com.start.zmcy.NewsDetailActivity;
 import com.start.zmcy.R;
 import com.start.zmcy.adapter.NewsListAdapter;
@@ -30,18 +31,18 @@ import com.start.zmcy.adapter.NewsListAdapter.HolderView;
 
 public class NewsContentFragment  extends BaseFragment implements RefreshListServerListener {
 
-	private NewsCategory mCategory;
+	private ChannelItem mChannelItem;
 	private BaseFragmentActivity mActivity;
 	
 	private View mCurrentView;
 	private XListView mListView;
 	private RefreshListServer mRefreshListServer;
 	
-    public NewsContentFragment(BaseFragmentActivity activity,NewsCategory category){
+    public NewsContentFragment(BaseFragmentActivity activity,ChannelItem category){
     	super();
     	this.mActivity=activity;
-    	this.mCategory=category;
-    	setTitle(this.mCategory.getTitle());
+    	this.mChannelItem=category;
+    	setTitle(this.mChannelItem.getName());
     }
     
     @Override
@@ -65,10 +66,10 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 			
 		});
 		mRefreshListServer = new RefreshListServer(mActivity,mActivity.getHandlerContext(), mListView,new NewsListAdapter(mActivity));
-		mRefreshListServer.setCacheTag("NewsContentFragment"+mCategory.getKey());
+		mRefreshListServer.setCacheTag("NewsContentFragment"+mChannelItem.getId());
 		mRefreshListServer.setRefreshListServerListener(this);
 		
-		mRefreshListServer.initLoad();
+//		mRefreshListServer.initLoad();
 	}
 
 	@Override
@@ -78,6 +79,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
         if (parent != null) {
             parent.removeView(mCurrentView);
         }
+		mActivity.getHandlerContext().makeTextLong(mChannelItem.getName()+"    "+mChannelItem.getId());
         return mCurrentView;
     }
 	
@@ -85,7 +87,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 	public void onLoading(final int HANDLER) {
 		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("Id", mCategory.getKey());
+		params.put("Id", mChannelItem.getId()+"");
 		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 //		params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);

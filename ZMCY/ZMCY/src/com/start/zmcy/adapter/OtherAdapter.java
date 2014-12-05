@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.start.service.ChannelItem;
+import com.start.service.bean.ChannelItem;
 import com.start.zmcy.R;
 
 public class OtherAdapter extends BaseAdapter {

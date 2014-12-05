@@ -1,5 +1,7 @@
 package com.start.core;
 
+import com.start.service.bean.ChannelItem;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -9,7 +11,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 	/**
 	 * 数据库名
 	 */
-	public static final String DB_NAME = "medical_database";
+	public static final String DB_NAME = "zmcy_database";
 	
 	/**
 	 * 数据库  版本  注意：数据库需要升级的时候才修改版本值
@@ -23,7 +25,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		
+		db.execSQL(ChannelItem.getCreateTableSQL());
 	}
 
 	//	//1把数据表重名为临时表

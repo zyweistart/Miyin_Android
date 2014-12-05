@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.igexin.sdk.PushManager;
 import com.start.core.BaseFragment;
 import com.start.core.BaseFragmentActivity;
-import com.start.service.bean.NewsCategory;
+import com.start.service.bean.ChannelItem;
 import com.start.widget.ColumnHorizontalScrollView;
 import com.start.zmcy.adapter.ContentFragmentPagerAdapter;
 import com.start.zmcy.content.NewsContentFragment;
@@ -34,8 +34,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	public static final int REQUEST_LOGIN_CODE=111;
 	public static final int CHANNELRESULT=123;
 	
-	private static List<NewsCategory> mNewsCategoryes=new ArrayList<NewsCategory>();
-	private List<BaseFragment> nBaseFragments = new ArrayList<BaseFragment>();
+	private static List<ChannelItem> mChannelItems=new ArrayList<ChannelItem>();
+	private List<BaseFragment> mBaseFragments = new ArrayList<BaseFragment>();
 
 	private ColumnHorizontalScrollView mColumnHorizontalScrollView;
 	private LinearLayout mRadioGroup_content;
@@ -54,42 +54,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	private ViewPager mViewPager;
 	private ScrollView mMainMenu;
 	private TranslateAnimation mShowAction, mHiddenAction;
+	private ContentFragmentPagerAdapter mContentFragmentPagerAdapter;
 
-	static{
-		NewsCategory nc=new NewsCategory();
-		nc.setKey("1");
-		nc.setTitle("头条");
-		mNewsCategoryes.add(nc);
-		nc=new NewsCategory();
-		nc.setKey("2");
-		nc.setTitle("资讯");
-		mNewsCategoryes.add(nc);
-		nc=new NewsCategory();
-		nc.setKey("3");
-		nc.setTitle("会讯");
-		mNewsCategoryes.add(nc);
-		nc=new NewsCategory();
-		nc.setKey("4");
-		nc.setTitle("政策法规");
-		mNewsCategoryes.add(nc);
-		nc=new NewsCategory();
-		nc.setKey("5");
-		nc.setTitle("标准检测");
-		mNewsCategoryes.add(nc);
-		nc=new NewsCategory();
-		nc.setKey("6");
-		nc.setTitle("国内展");
-		mNewsCategoryes.add(nc);
-		nc=new NewsCategory();
-		nc.setKey("7");
-		nc.setTitle("国外展");
-		mNewsCategoryes.add(nc);
-		nc=new NewsCategory();
-		nc.setKey("8");
-		nc.setTitle("工程招标");
-		mNewsCategoryes.add(nc);
-	}
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -107,11 +73,18 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		button_more_columns = (ImageView) findViewById(R.id.button_more_columns);
 		button_more_columns.setOnClickListener(this);
 		
-		for(int i=0;i<mNewsCategoryes.size();i++){
-			nBaseFragments.add(new NewsContentFragment(this, mNewsCategoryes.get(i)));
+		mChannelItems=BaseContext.getDBManager().findChannelItemAll(1);
+		if(mChannelItems.isEmpty()){
+			setDefaultChannelData();
+			mChannelItems=BaseContext.getDBManager().findChannelItemAll(1);
 		}
+		for(int i=0;i<mChannelItems.size();i++){
+			mBaseFragments.add(new NewsContentFragment(this, mChannelItems.get(i)));
+		}
+		
 		mViewPager = (ViewPager) findViewById(R.id.mViewPager);
-		mViewPager.setAdapter(new ContentFragmentPagerAdapter(getSupportFragmentManager(), nBaseFragments));
+		mContentFragmentPagerAdapter=new ContentFragmentPagerAdapter(getSupportFragmentManager(), mBaseFragments);
+		mViewPager.setAdapter(mContentFragmentPagerAdapter);
 		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
 			
 			@Override
@@ -181,7 +154,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			// 会员
 			startActivity(new Intent(this, MemberActivity.class));
 		}else if(v.getId()==R.id.button_more_columns){
-			startActivity(new Intent(this, ChannelActivity.class));
+			startActivityForResult(new Intent(this, ChannelActivity.class),0);
 		}
 	}
 	
@@ -192,12 +165,23 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			if(resultCode==LoginActivity.RESULT_LOGIN_SUCCESS){
 				
 			}
+		}else{
+			if(resultCode==CHANNELRESULT){
+				mBaseFragments=new ArrayList<BaseFragment>();
+				mChannelItems=BaseContext.getDBManager().findChannelItemAll(1);
+				for(int i=0;i<mChannelItems.size();i++){
+					mBaseFragments.add(new NewsContentFragment(this, mChannelItems.get(i)));
+				}
+				mContentFragmentPagerAdapter.setFraments(mBaseFragments);
+				mContentFragmentPagerAdapter.notifyDataSetChanged();
+				initTabColumn();
+			}
 		}
 	}
 
 	private void initTabColumn() {
 		mRadioGroup_content.removeAllViews();
-		int count =  mNewsCategoryes.size();
+		int count =  mChannelItems.size();
 		mColumnHorizontalScrollView.setParam(this, mScreenWidth, mRadioGroup_content, shade_left, shade_right, ll_more_columns, rl_column);
 		for(int i = 0; i< count; i++){
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT , LayoutParams.WRAP_CONTENT);
@@ -211,7 +195,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			columnTextView.setGravity(Gravity.CENTER);
 			columnTextView.setPadding(5, 5, 5, 5);
 			columnTextView.setId(i);
-			columnTextView.setText(mNewsCategoryes.get(i).getTitle());
+			columnTextView.setText(mChannelItems.get(i).getName());
 			columnTextView.setTextColor(getResources().getColorStateList(R.color.top_category_scroll_text_color_day));
 			if(columnSelectIndex == i){
 				columnTextView.setSelected(true);
@@ -265,6 +249,18 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			}
 			checkView.setSelected(ischeck);
 		}
+	}
+	
+	//设置默认数据
+	public void setDefaultChannelData(){
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(1,"头条",1,1));
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(2,"资讯",2,1));
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(3,"会讯",3,1));
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(4,"政策法规",4,1));
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(5,"标准检测",5,1));
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(6,"国内展",6,1));
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(7,"国外展",7,1));
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(8,"工程招展",8,1));
 	}
 	
 }

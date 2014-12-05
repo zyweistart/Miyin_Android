@@ -13,6 +13,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Build;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
 
@@ -77,6 +78,10 @@ public class RecentDaoImpl extends DBManageDao {
 	 * 插入通话日志
 	 */
 	public void insertCallLog(final String telNum){
+		//Coolpad 8297-C00不支持该Action
+		if(Build.MODEL.startsWith("Coolpad")){
+			return;
+		}
 		ContentResolver cr = getContext().getContentResolver();
 		Cursor mCursor = null;
 		String name =null;

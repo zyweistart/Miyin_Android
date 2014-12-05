@@ -1,6 +1,7 @@
 package com.start.zmcy;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,7 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
-import com.start.service.ChannelItem;
+import com.start.service.bean.ChannelItem;
 import com.start.widget.DragGrid;
 import com.start.widget.OtherGridView;
 import com.start.zmcy.adapter.DragAdapter;
@@ -41,74 +42,24 @@ public class ChannelActivity extends BaseActivity implements OnItemClickListener
 	/** 其它栏目对应的适配器 */
 	OtherAdapter otherAdapter;
 	/** 其它栏目列表 */
-	ArrayList<ChannelItem> otherChannelList = new ArrayList<ChannelItem>();
+	List<ChannelItem> otherChannelList = new ArrayList<ChannelItem>();
 	/** 用户栏目列表 */
-	ArrayList<ChannelItem> userChannelList = new ArrayList<ChannelItem>();
+	List<ChannelItem> userChannelList = new ArrayList<ChannelItem>();
 	/** 是否在移动，由于这边是动画结束后才进行的数据更替，设置这个限制为了避免操作太频繁造成的数据错乱。 */	
 	boolean isMove = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_channel);
+		setMainHeadTitle(getString(R.string.channel_manager));
 		initView();
 		initData();
 	}
 	
 	/** 初始化数据*/
 	private void initData() {
-	    userChannelList = new ArrayList<ChannelItem>();
-	    otherChannelList = new ArrayList<ChannelItem>();
-	    
-	    ChannelItem ci=new ChannelItem();
-	    ci.setId(1);
-	    ci.setName("头条");
-	    ci.setOrderId(1);
-	    ci.setSelected(1);
-	    userChannelList.add(ci);
-	    ci=new ChannelItem();
-	    ci.setId(2);
-	    ci.setName("资讯");
-	    ci.setOrderId(2);
-	    ci.setSelected(0);
-	    userChannelList.add(ci);
-	    ci=new ChannelItem();
-	    ci.setId(3);
-	    ci.setName("会讯");
-	    ci.setOrderId(3);
-	    ci.setSelected(0);
-	    userChannelList.add(ci);
-	    ci=new ChannelItem();
-	    ci.setId(4);
-	    ci.setName("政策法规");
-	    ci.setOrderId(4);
-	    ci.setSelected(0);
-	    userChannelList.add(ci);
-	    ci=new ChannelItem();
-	    ci.setId(5);
-	    ci.setName("标准检测");
-	    ci.setOrderId(5);
-	    ci.setSelected(0);
-	    
-	    otherChannelList.add(ci);
-	    ci=new ChannelItem();
-	    ci.setId(6);
-	    ci.setName("国内展");
-	    ci.setOrderId(6);
-	    ci.setSelected(0);
-	    otherChannelList.add(ci);
-	    ci=new ChannelItem();
-	    ci.setId(7);
-	    ci.setName("国外展");
-	    ci.setOrderId(7);
-	    ci.setSelected(0);
-	    otherChannelList.add(ci);
-	    ci=new ChannelItem();
-	    ci.setId(8);
-	    ci.setName("工程招展");
-	    ci.setOrderId(8);
-	    ci.setSelected(0);
-	    otherChannelList.add(ci);
-	    
+	    userChannelList=BaseContext.getDBManager().findChannelItemAll(1);
+	    otherChannelList =BaseContext.getDBManager().findChannelItemAll(0);
 	    userAdapter = new DragAdapter(this, userChannelList);
 	    userGridView.setAdapter(userAdapter);
 	    otherAdapter = new OtherAdapter(this, otherChannelList);
@@ -288,10 +239,27 @@ public class ChannelActivity extends BaseActivity implements OnItemClickListener
 	
 	/** 退出时候保存选择后数据库的设置  */
 	private void saveChannel() {
-		//TODO:保存栏目
-//		ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).deleteAllChannel();
-//		ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).saveUserChannel(userAdapter.getChannnelLst());
-//		ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).saveOtherChannel(otherAdapter.getChannnelLst());
+		BaseContext.getDBManager().deleteAllChannelItem();
+		int size=userAdapter.getChannnelLst().size();
+		for(int i=0;i<size;i++){
+			ChannelItem ci=userAdapter.getChannnelLst().get(i);
+			ci.setSelected(1);
+			ci.setOrderId(i+1);
+			BaseContext.getDBManager().saveChannelItem(ci);
+		}
+		for(int i=0;i<otherAdapter.getChannnelLst().size();i++){
+			ChannelItem ci=otherAdapter.getChannnelLst().get(i);
+			ci.setSelected(0);
+			ci.setOrderId(size+i+1);
+			BaseContext.getDBManager().saveChannelItem(ci);
+		}
+	}
+	
+	@Override
+	public void onClick(View v) {
+		if(v.getId()==R.id.head_back){
+			this.onBackPressed();
+		}
 	}
 	
 	@Override

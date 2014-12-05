@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Set;
 
 import start.core.AppException;
-import start.utils.MD5;
 import start.widget.CustomEditText;
 import android.content.Intent;
 import android.os.Bundle;
@@ -106,7 +105,7 @@ public class RegisterActivity extends BaseActivity{
 					
 					Bundle bundle=new Bundle();
 					bundle.putString(STR_ACCOUNT, account);
-					bundle.putString(STR_PASSWORD, MD5.md5(password));
+					bundle.putString(STR_PASSWORD, password);
 					bundle.putString(REGISTERTYPE, REGISTERTYPE_ACCOUNT);
 					Intent intent=new Intent();
 					intent.putExtras(bundle);

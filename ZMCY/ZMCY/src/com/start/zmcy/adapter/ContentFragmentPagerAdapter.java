@@ -20,6 +20,10 @@ public class ContentFragmentPagerAdapter extends FragmentPagerAdapter {
 		super(fm);
 		this.mFragments = fragments;
 	}
+	
+	public void setFraments(List<BaseFragment> framents){
+		this.mFragments=framents;
+	}
 
 	@Override
 	public Fragment getItem(int index) {
