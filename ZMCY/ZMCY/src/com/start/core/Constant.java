@@ -16,6 +16,7 @@ public final class Constant {
 		public static final String GetListALL="GetListALL";
 		public static final String UserLogin="UserLogin";
 		public static final String RegUser="RegUser";
+		public static final String OAuthLogin="OAuthLogin";
 		//登录
 		//注册
 		//第三方应用注册登录(微信，QQ)

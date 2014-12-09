@@ -14,7 +14,7 @@ import com.start.zmcy.R;
 public class ExpertsQuestionAdapter extends AppListAdapter{
 
 	public static final String ID="Id";
-	public static final String TITLE="title";
+	public static final String TITLE="question";
 	public static final String DESCRIPTION="content";
 	
 	public ExpertsQuestionAdapter(Activity activity) {
@@ -34,14 +34,16 @@ public class ExpertsQuestionAdapter extends AppListAdapter{
 			holder = (HolderView) convertView.getTag();
 		}
 		Map<String,Object> data=mItemDatas.get(position);
+		holder.question_id=String.valueOf(data.get(ID));
 		holder.question_title.setText(String.valueOf(data.get(TITLE)));
 		holder.question_description.setText(AppServer.html2Text(String.valueOf(data.get(DESCRIPTION))));
 		return convertView;
 	}
 	
-	private class HolderView {
-		private TextView question_title;
-		private TextView question_description;
+	public class HolderView {
+		public String question_id;
+		public TextView question_title;
+		public TextView question_description;
 	}
 	
 }

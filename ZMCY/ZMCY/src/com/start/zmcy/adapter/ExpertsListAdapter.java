@@ -37,7 +37,8 @@ public class ExpertsListAdapter extends AppListAdapter{
 	public static final String TYPE="key";
 	public static final String ID="Id";
 	public static final String URL="links";
-	public static final String TITLE="title";
+	public static final String NAME="Name";
+	public static final String JOBTITLE="jobTitle";
 	public static final String DESCRIPTION="content";
 	public static final String IMAGEURL="images";
 	
@@ -128,8 +129,8 @@ public class ExpertsListAdapter extends AppListAdapter{
 			}else{
 				mExpertsBitmapManager.loadBitmap(url, holder.experts_head);
 			}
-			holder.experts_name.setText(String.valueOf(data.get(TITLE)));
-			holder.experts_pro.setText("研究院");
+			holder.experts_name.setText(String.valueOf(data.get(NAME)));
+			holder.experts_pro.setText(String.valueOf(data.get(JOBTITLE)));
 			holder.experts_description.setText(AppServer.html2Text(String.valueOf(data.get(DESCRIPTION))));
 			holder.experts_consultation.setTag(holder);
 			holder.experts_consultation.setOnClickListener(new OnClickListener() {

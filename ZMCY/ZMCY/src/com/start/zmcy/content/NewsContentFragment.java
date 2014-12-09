@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import start.core.AppException;
+import start.core.AppConstant.Handler;
 import start.widget.xlistview.XListView;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.start.core.BaseFragment;
@@ -79,27 +79,28 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
         if (parent != null) {
             parent.removeView(mCurrentView);
         }
-		mActivity.getHandlerContext().makeTextLong(mChannelItem.getName()+"    "+mChannelItem.getId());
         return mCurrentView;
     }
 	
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("Id", mChannelItem.getId()+"");
-		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
-//		params.put("size", String.valueOf(AppConstant.PAGESIZE));
-		hServer.setParams(params);
-		hServer.get(new HttpRunnable() {
-
-			@Override
-			public void run(Response response) throws AppException {
-				mRefreshListServer.resolve(response);
-				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
-			}
-
-		}, false);
+		mActivity.getHandlerContext().makeTextLong(mChannelItem.getName()+"    "+mChannelItem.getId());
+		mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_END);
+//		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
+//		Map<String, String> params = new HashMap<String, String>();
+//		params.put("Id", mChannelItem.getId()+"");
+//		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+////		params.put("size", String.valueOf(AppConstant.PAGESIZE));
+//		hServer.setParams(params);
+//		hServer.get(new HttpRunnable() {
+//
+//			@Override
+//			public void run(Response response) throws AppException {
+//				mRefreshListServer.resolve(response);
+//				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+//			}
+//
+//		}, false);
 	}
     
 	public static void gotoNews(Activity activity,String recordno){

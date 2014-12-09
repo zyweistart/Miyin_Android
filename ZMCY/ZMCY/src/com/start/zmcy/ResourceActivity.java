@@ -34,7 +34,9 @@ public class ResourceActivity extends BaseActivity{
 		main_head_2.setVisibility(View.VISIBLE);
 		
 		mWebView1 = (WebView) findViewById(R.id.wvcontent1);
+		mWebView1.getSettings().setJavaScriptEnabled(true);
 		mWebView2 = (WebView) findViewById(R.id.wvcontent2);
+		mWebView2.getSettings().setJavaScriptEnabled(true);
 
 		mWebView1.setWebViewClient(new WebViewClient() {
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {

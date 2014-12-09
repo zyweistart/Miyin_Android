@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import start.core.AppConstant;
 import start.core.AppException;
 import start.utils.StringUtils;
@@ -22,6 +26,7 @@ import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.Response;
 import com.start.service.SocialService;
+import com.start.service.User;
 
 
 public class LoginActivity extends BaseActivity{
@@ -120,6 +125,7 @@ public class LoginActivity extends BaseActivity{
 		case Handler.HANDLERTHIRDPARTYLANDINGQQ:
 			//QQ登陆
 			this.registerLogin(QQ_LOGIN,(Map<String,Object>)msg.obj);
+			break;
 		case Handler.HANDLERTHIRDPARTYLANDINGWX:
 			//WX登陆
 			this.registerLogin(WX_LOGIN,(Map<String,Object>)msg.obj);
@@ -164,7 +170,22 @@ public class LoginActivity extends BaseActivity{
 
 			@Override
 			public void run(Response response) throws AppException {
-				loginSuccess(account,password,autoLogin);
+				
+				try{
+					User.ACCESSKEY=String.valueOf(response.getData("access_token"));
+					Map<String, String> datas = new HashMap<String, String>();
+					JSONObject current=(JSONObject)response.getData("userInfo");
+					JSONArray names = current.names();
+					for (int j = 0; j < names.length(); j++) {
+						String name = names.getString(j);
+						datas.put(name, String.valueOf(current.get(name)));
+					}
+					getAppContext().currentUser().resolve(datas);
+					loginSuccess(account,password,autoLogin);
+				}catch(JSONException e){
+					throw AppException.json(e);
+				}
+				
 			}
 			
 		});
@@ -188,7 +209,53 @@ public class LoginActivity extends BaseActivity{
 	 * @param loginType登录类型1:QQ 2:WX
 	 */
 	private void registerLogin(int loginType,Bundle data){
-		this.loginSuccess("","",true);
+		HttpServer hServer = new HttpServer(Constant.URL.OAuthLogin,getHandlerContext());
+		Map<String, String> params = new HashMap<String, String>();
+		if(loginType==1){
+			params.put("key","LoginQQ");
+			params.put("uid",data.getString("uid"));
+			params.put("name",data.getString("screen_name"));
+			params.put("gender",data.getString("gender"));
+			params.put("profile_image_url",data.getString("profile_image_url"));
+			params.put("openid",data.getString("openid"));
+			params.put("verified",data.getString("verified"));
+			params.put("access_token",data.getString("access_token"));
+		}else if(loginType==2){
+			params.put("key","LoginWX");
+			params.put("uid",data.getString("unionid"));
+			params.put("name",data.getString("nickname"));
+			params.put("sex",data.getString("sex"));
+			params.put("headimgurl",data.getString("headimgurl"));
+			params.put("openid",data.getString("openid"));
+			params.put("language",data.getString("language"));
+			params.put("country",data.getString("country"));
+			params.put("province",data.getString("province"));
+			params.put("city",data.getString("city"));
+		}
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) throws AppException {
+				try{
+					User.ACCESSKEY=String.valueOf(response.getData("access_token"));
+					Map<String, String> datas = new HashMap<String, String>();
+					JSONObject current=(JSONObject)response.getData("userInfo");
+					JSONArray names = current.names();
+					for (int j = 0; j < names.length(); j++) {
+						String name = names.getString(j);
+						datas.put(name, String.valueOf(current.get(name)));
+					}
+					getAppContext().currentUser().resolve(datas);
+					String account=getAppContext().currentUser().getInfo().get("userName");
+					String password=getAppContext().currentUser().getInfo().get("pwd");
+					loginSuccess(account,password,true);
+				}catch(JSONException e){
+					throw AppException.json(e);
+				}
+			}
+			
+		});
 	}
 	
 	/**

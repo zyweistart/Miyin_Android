@@ -20,6 +20,7 @@ import com.start.core.Constant;
 import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
+import com.start.service.User;
 import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
 import com.start.zmcy.adapter.ExpertsListAdapter;
@@ -94,6 +95,7 @@ public class ExpertsActivity extends BaseActivity implements
 		mQuestionRefreshListServer.setRefreshListServerListener(this);
 
 		mWebView = (WebView) findViewById(R.id.wvcontent);
+		mWebView.getSettings().setJavaScriptEnabled(true);
 
 		mWebView.setWebViewClient(new WebViewClient() {
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -169,7 +171,10 @@ public class ExpertsActivity extends BaseActivity implements
 	public void onLoading(final int HANDLER) {
 		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("Id", type==1?"6":"8");
+		params.put("Id", type==1?"9":"10");
+		if(type==2&&getAppContext().currentUser().isLogin()){
+			params.put("access_token", User.ACCESSKEY);
+		}
 		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 //		params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);

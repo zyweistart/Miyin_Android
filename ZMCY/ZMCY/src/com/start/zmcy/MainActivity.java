@@ -73,14 +73,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		button_more_columns = (ImageView) findViewById(R.id.button_more_columns);
 		button_more_columns.setOnClickListener(this);
 		
-		mChannelItems=BaseContext.getDBManager().findChannelItemAll(1);
-		if(mChannelItems.isEmpty()){
-			setDefaultChannelData();
-			mChannelItems=BaseContext.getDBManager().findChannelItemAll(1);
-		}
-		for(int i=0;i<mChannelItems.size();i++){
-			mBaseFragments.add(new NewsContentFragment(this, mChannelItems.get(i)));
-		}
+		this.loadChannelData();
+		this.initTabColumn();
 		
 		mViewPager = (ViewPager) findViewById(R.id.mViewPager);
 		mContentFragmentPagerAdapter=new ContentFragmentPagerAdapter(getSupportFragmentManager(), mBaseFragments);
@@ -115,8 +109,6 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 				Animation.RELATIVE_TO_SELF, -1.0f,Animation.RELATIVE_TO_SELF, 
 				0.0f, Animation.RELATIVE_TO_SELF,0.0f);
 		mHiddenAction.setDuration(500);
-		
-		initTabColumn();
 		
 		PushManager.getInstance().initialize(this.getApplicationContext());
 	}
@@ -167,14 +159,10 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			}
 		}else{
 			if(resultCode==CHANNELRESULT){
-				mBaseFragments=new ArrayList<BaseFragment>();
-				mChannelItems=BaseContext.getDBManager().findChannelItemAll(1);
-				for(int i=0;i<mChannelItems.size();i++){
-					mBaseFragments.add(new NewsContentFragment(this, mChannelItems.get(i)));
-				}
-				mContentFragmentPagerAdapter.setFraments(mBaseFragments);
-				mContentFragmentPagerAdapter.notifyDataSetChanged();
-				initTabColumn();
+				columnSelectIndex = 0;
+				this.loadChannelData();
+				this.initTabColumn();
+				mContentFragmentPagerAdapter.setFramentsNotifyDataSetChanged(mBaseFragments);
 			}
 		}
 	}
@@ -248,6 +236,18 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 				ischeck = false;
 			}
 			checkView.setSelected(ischeck);
+		}
+	}
+	
+	//加载频道数据
+	public void loadChannelData(){
+		mChannelItems=BaseContext.getDBManager().findChannelItemAll(1);
+		if(mChannelItems.isEmpty()){
+			setDefaultChannelData();
+			mChannelItems=BaseContext.getDBManager().findChannelItemAll(1);
+		}
+		for(int i=0;i<mChannelItems.size();i++){
+			mBaseFragments.add(new NewsContentFragment(this, mChannelItems.get(i)));
 		}
 	}
 	

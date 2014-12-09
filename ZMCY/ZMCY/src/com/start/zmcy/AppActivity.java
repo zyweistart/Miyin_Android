@@ -21,6 +21,7 @@ public class AppActivity extends BaseActivity{
 		setMainHeadTitle(getString(R.string.app));
 		
 		mWebView = (WebView) findViewById(R.id.wvcontent);
+		mWebView.getSettings().setJavaScriptEnabled(true);
 
 		mWebView.setWebViewClient(new WebViewClient() {
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {

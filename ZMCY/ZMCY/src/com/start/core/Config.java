@@ -14,7 +14,7 @@ public class Config {
 	public static final String QQAPPKEY = "c7394704798a158208a74ab60104f0ba";
 
 	// TODO:传统光源
-	public static final String NLIGHTSOURCEURL="http://www.qq.com";
+	public static final String NLIGHTSOURCEURL="http://api.020leader.com/59/qiye_list2.html";
 	// TODO: LED光源
 	public static final String LIGHTSOURCEURL="http://www.163.com";
 	// 商城

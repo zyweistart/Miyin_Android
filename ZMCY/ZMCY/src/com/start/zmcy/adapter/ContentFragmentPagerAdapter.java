@@ -10,20 +10,38 @@ import com.start.core.BaseFragment;
 
 public class ContentFragmentPagerAdapter extends FragmentPagerAdapter {
 
+	private FragmentManager mFragmentManager;
 	private List<BaseFragment> mFragments;
 	
 	public ContentFragmentPagerAdapter(FragmentManager fm) {
 		super(fm);
+		this.mFragmentManager=fm;
 	}
 	
 	public ContentFragmentPagerAdapter(FragmentManager fm,List<BaseFragment> fragments) {
 		super(fm);
+		this.mFragmentManager=fm;
 		this.mFragments = fragments;
 	}
 	
-	public void setFraments(List<BaseFragment> framents){
-		this.mFragments=framents;
+	public void setFramentsNotifyDataSetChanged(List<BaseFragment> framents) {
+//		if(this.mFragments != null){
+//			FragmentTransaction ft = mFragmentManager.beginTransaction();
+//			for(Fragment f:this.mFragments){
+//				ft.remove(f);
+//			}
+//			ft.commit();
+//			ft=null;
+//			mFragmentManager.executePendingTransactions();
+//		}
+		this.mFragments = framents;
+		notifyDataSetChanged();
 	}
+	
+	@Override  
+	public int getItemPosition(Object object) {  
+	    return POSITION_NONE;  
+	} 
 
 	@Override
 	public Fragment getItem(int index) {
@@ -33,11 +51,6 @@ public class ContentFragmentPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		return mFragments.size();
-	}
-	
-	@Override
-	public CharSequence getPageTitle(int position) {
-		return mFragments.get(position).getTitle();
 	}
 
 }
