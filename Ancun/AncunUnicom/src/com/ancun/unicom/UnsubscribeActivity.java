@@ -11,10 +11,15 @@ import start.service.HttpServer;
 import start.service.Response;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.telephony.gsm.SmsManager;
 import android.telephony.gsm.SmsMessage;
 import android.text.TextUtils;
@@ -36,6 +41,7 @@ public class UnsubscribeActivity extends BaseActivity {
 	
 	private SMSRecever mSMSRecever;
 	private ProgressDialog mPDialog;
+	private SmsObserver mObserver;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,10 +53,14 @@ public class UnsubscribeActivity extends BaseActivity {
 		btn_return =(Button)findViewById(R.id.btn_return);
 		et_pwd.addTextChangedListener(new ButtonTextWatcher(btn_submit));
 		
-		mSMSRecever=new SMSRecever();
-        IntentFilter filter2=new IntentFilter();
-        filter2.addAction("android.provider.Telephony.SMS_RECEIVED");
-        registerReceiver(mSMSRecever,filter2);
+//		mSMSRecever=new SMSRecever();
+//        IntentFilter filter2=new IntentFilter();
+//        filter2.addAction("android.provider.Telephony.SMS_RECEIVED");
+//        registerReceiver(mSMSRecever,filter2);
+		
+		ContentResolver resolver = getContentResolver();
+		mObserver = new SmsObserver(resolver, new SmsHandler(this));
+		resolver.registerContentObserver(Uri.parse("content://sms"), true,mObserver);
     }
 
 	@Override
@@ -128,6 +138,7 @@ public class UnsubscribeActivity extends BaseActivity {
 		if(mSMSRecever!=null){
 			unregisterReceiver(mSMSRecever);
 		}
+		this.getContentResolver().unregisterContentObserver(mObserver);
 		super.onDestroy();
 	}
 
@@ -161,6 +172,107 @@ public class UnsubscribeActivity extends BaseActivity {
 			}
 		}
 
+	}
+	
+	
+	/**
+	 * 短消息观察
+	 */
+	public class SmsObserver extends ContentObserver {
+
+		private ContentResolver mResolver;
+		public SmsHandler smsHandler;
+
+		public SmsObserver(ContentResolver mResolver, SmsHandler handler) {
+			super(handler);
+			this.mResolver = mResolver;
+			this.smsHandler = handler;
+		}
+
+		@Override
+		public void onChange(boolean selfChange) {
+			Cursor mCursor = mResolver.query(Uri.parse("content://sms/inbox"),
+					new String[] { "_id", "address", "read", "body","thread_id" }, "read=?", new String[] { "0" },"date desc");
+			if (mCursor == null) {
+				return;
+			} else {
+				while (mCursor.moveToNext()) {
+					SmsInfo _smsInfo = new SmsInfo();
+					int _inIndex = mCursor.getColumnIndex("_id");
+					if (_inIndex != -1) {
+						_smsInfo._id = mCursor.getString(_inIndex);
+					}
+					int thread_idIndex = mCursor.getColumnIndex("thread_id");
+					if (thread_idIndex != -1) {
+						_smsInfo.thread_id = mCursor.getString(thread_idIndex);
+					}
+					int addressIndex = mCursor.getColumnIndex("address");
+					if (addressIndex != -1) {
+						_smsInfo.smsAddress = mCursor.getString(addressIndex);
+					}
+					int bodyIndex = mCursor.getColumnIndex("body");
+					if (bodyIndex != -1) {
+						_smsInfo.smsBody = mCursor.getString(bodyIndex);
+					}
+					int readIndex = mCursor.getColumnIndex("read");
+					if (readIndex != -1) {
+						_smsInfo.read = mCursor.getString(readIndex);
+					}
+					// 根据你的拦截策略，判断是否不对短信进行操作;将短信设置为已读;将短信删除
+					Message msg = smsHandler.obtainMessage();
+					// 0不对短信进行操作;1将短信设置为已读;2将短信删除
+					_smsInfo.action = 0;
+					if(MESSAGE1.equals(_smsInfo.smsBody)){
+						btn_submit.setVisibility(View.GONE);
+						btn_return.setVisibility(View.VISIBLE);
+						if(mPDialog!=null) {
+							mPDialog.dismiss();
+							mPDialog=null;
+						}
+						getAppContext().currentUser().clearCacheUser();
+						getHandlerContext().makeTextLong("退订成功");
+						_smsInfo.action = 2;
+					}
+					msg.obj = _smsInfo;
+					smsHandler.sendMessage(msg);
+				}
+			}
+			if (mCursor != null) {
+				mCursor.close();
+				mCursor = null;
+			}
+		}
+	}
+
+	public class SmsHandler extends android.os.Handler {
+		
+		private Context mcontext;
+
+		public SmsHandler(Context context) {
+			this.mcontext = context;
+		}
+
+		@Override
+		public void handleMessage(Message msg) {
+			SmsInfo smsInfo = (SmsInfo) msg.obj;
+			if (smsInfo.action == 1) {
+				ContentValues values = new ContentValues();
+				values.put("read", "1");
+				mcontext.getContentResolver().update(Uri.parse("content://sms/inbox"), values,"thread_id=?", new String[] { smsInfo.thread_id });
+			} else if (smsInfo.action == 2) {
+				Uri mUri = Uri.parse("content://sms/");
+				mcontext.getContentResolver().delete(mUri, "_id=?",new String[] {smsInfo._id});
+			}
+		}
+	}
+
+	public class SmsInfo {
+		public String _id = "";
+		public String thread_id = "";
+		public String smsAddress = "";
+		public String smsBody = "";
+		public String read = "";
+		public int action = 0;// 1代表设置为已读，2表示删除短信
 	}
 	
 }
