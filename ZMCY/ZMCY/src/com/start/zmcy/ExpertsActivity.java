@@ -69,9 +69,8 @@ public class ExpertsActivity extends BaseActivity implements
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				getHandlerContext().makeTextLong(getCategoryId());
 			}
 		});
 		mRefreshListServer = new RefreshListServer(this, getHandlerContext(),
@@ -83,9 +82,8 @@ public class ExpertsActivity extends BaseActivity implements
 		mQuestionListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				getHandlerContext().makeTextLong(getCategoryId());
 			}
 		});
 		mQuestionRefreshListServer = new RefreshListServer(this,
@@ -171,7 +169,7 @@ public class ExpertsActivity extends BaseActivity implements
 	public void onLoading(final int HANDLER) {
 		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("Id", type==1?"9":"10");
+		params.put("Id", getCategoryId());
 		if(type==2&&getAppContext().currentUser().isLogin()){
 			params.put("access_token", User.ACCESSKEY);
 		}
@@ -189,4 +187,8 @@ public class ExpertsActivity extends BaseActivity implements
 		}, false);
 	}
 
+	public String getCategoryId(){
+		return type==1?"9":"10";
+	}
+	
 }

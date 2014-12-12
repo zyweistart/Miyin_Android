@@ -13,6 +13,7 @@ public final class Constant {
 	 * 用户接口
 	 */
 	public final class URL {
+		public static final String GetInfo="GetInfo";
 		public static final String GetListALL="GetListALL";
 		public static final String UserLogin="UserLogin";
 		public static final String RegUser="RegUser";

@@ -25,7 +25,7 @@ import com.start.zmcy.content.NewsContentFragment;
 
 public class BaseNewsActivity extends BaseActivity implements RefreshListServerListener{
 	
-	protected String id,keyword;
+	protected String categoryId,keyword;
 	protected XListView mListView;
 	protected RefreshListServer mRefreshListServer;
 	
@@ -41,7 +41,7 @@ public class BaseNewsActivity extends BaseActivity implements RefreshListServerL
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				if(id>0){
 					HolderView hv=(HolderView)view.getTag();
-					NewsContentFragment.gotoNews(BaseNewsActivity.this,hv.id);
+					NewsContentFragment.gotoNews(BaseNewsActivity.this,hv.categoryId,hv.id);
 				}else{
 					mRefreshListServer.getCurrentListView().startLoadMore();
 				}
@@ -57,7 +57,7 @@ public class BaseNewsActivity extends BaseActivity implements RefreshListServerL
 	public void onLoading(final int HANDLER) {
 		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("Id", id);
+		params.put("Id", categoryId);
 		if(getAppContext().currentUser().isLogin()){
 			params.put("access_token", User.ACCESSKEY);
 		}

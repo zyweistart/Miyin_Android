@@ -35,6 +35,7 @@ public class NewsListAdapter extends AppListAdapter{
 	public static final String DATA="Data";
 	public static final String TYPE="key";
 	public static final String ID="Id";
+	public static final String CATEGORYID="ClassId";
 	public static final String URL="links";
 	public static final String TITLE="title";
 	public static final String DESCRIPTION="content";
@@ -95,6 +96,7 @@ public class NewsListAdapter extends AppListAdapter{
 					ImageView imageView = new ImageView(this.mActivity);
 					BannerHolder bh=new BannerHolder();
 					bh.id=String.valueOf(mListMapData.get(i).get(ID));
+					bh.categoryId=String.valueOf(mListMapData.get(i).get(CATEGORYID));
 					String url=AppContext.getInstance().getServerURL()+mListMapData.get(i).get(IMAGEURL);
 					mBannerBitmapManager.loadBitmap(url, imageView);
 					imageView.setTag(bh);
@@ -109,7 +111,7 @@ public class NewsListAdapter extends AppListAdapter{
 					@Override
 					public void onSingleTouch(View view) {
 						BannerHolder hv=(BannerHolder)view.getTag();
-						NewsContentFragment.gotoNews(mActivity,hv.id);
+						NewsContentFragment.gotoNews(mActivity,hv.categoryId,hv.id);
 					}
 					
 				});
@@ -122,6 +124,7 @@ public class NewsListAdapter extends AppListAdapter{
 			try{
 				JSONObject listo=(JSONObject)data.get(DATA);
 				holder.id=String.valueOf(listo.getString(ID));
+				holder.categoryId=String.valueOf(listo.getString(CATEGORYID));
 				holder.url=String.valueOf(listo.getString(URL));
 				
 				String url=AppContext.getInstance().getServerURL()+String.valueOf(listo.getString(IMAGEURL));
@@ -165,6 +168,7 @@ public class NewsListAdapter extends AppListAdapter{
 			//News
 			setItemVisibility(holder,2);
 			holder.id=String.valueOf(data.get(ID));
+			holder.categoryId=String.valueOf(data.get(CATEGORYID));
 			String url=AppContext.getInstance().getServerURL()+String.valueOf(data.get(IMAGEURL));
 			if(TextUtils.isEmpty(url)){
 				holder.news_pic.setBackgroundResource(R.drawable.default_news);
@@ -181,6 +185,7 @@ public class NewsListAdapter extends AppListAdapter{
 	public class BannerHolder{
 		public int position;
 		public String id;
+		public String categoryId;
 		public String url;
 	}
 	
