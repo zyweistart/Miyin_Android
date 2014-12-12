@@ -65,7 +65,7 @@ public class MemberActivity extends BaseActivity{
 
 				@Override
 				public void run(Response response) throws AppException {
-					getHandlerContext().makeTextLong("签到成功");
+					getHandlerContext().makeTextShort("签到成功");
 				}
 
 			});

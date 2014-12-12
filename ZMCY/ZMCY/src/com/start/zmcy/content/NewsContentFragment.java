@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import start.core.AppException;
-import start.core.AppConstant.Handler;
 import start.widget.xlistview.XListView;
 import android.app.Activity;
 import android.content.Intent;
@@ -58,7 +57,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				if(id>0){
 					HolderView hv=(HolderView)view.getTag();
-					NewsContentFragment.gotoNews(mActivity,hv.id);
+					NewsContentFragment.gotoNews(mActivity,hv.categoryId,hv.id);
 				}else{
 					mRefreshListServer.getCurrentListView().startLoadMore();
 				}
@@ -69,7 +68,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 		mRefreshListServer.setCacheTag("NewsContentFragment"+mChannelItem.getId());
 		mRefreshListServer.setRefreshListServerListener(this);
 		
-//		mRefreshListServer.initLoad();
+		mRefreshListServer.initLoad();
 	}
 
 	@Override
@@ -84,28 +83,28 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 	
 	@Override
 	public void onLoading(final int HANDLER) {
-		mActivity.getHandlerContext().makeTextLong(mChannelItem.getName()+"    "+mChannelItem.getId());
-		mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_END);
-//		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
-//		Map<String, String> params = new HashMap<String, String>();
-//		params.put("Id", mChannelItem.getId()+"");
-//		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
-////		params.put("size", String.valueOf(AppConstant.PAGESIZE));
-//		hServer.setParams(params);
-//		hServer.get(new HttpRunnable() {
-//
-//			@Override
-//			public void run(Response response) throws AppException {
-//				mRefreshListServer.resolve(response);
-//				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
-//			}
-//
-//		}, false);
+//		mActivity.getHandlerContext().makeTextLong(mChannelItem.getName()+"    "+mChannelItem.getId());
+		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("Id", String.valueOf(mChannelItem.getId()));
+		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+//		params.put("size", String.valueOf(AppConstant.PAGESIZE));
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) throws AppException {
+				mRefreshListServer.resolve(response);
+				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+			}
+
+		}, false);
 	}
     
-	public static void gotoNews(Activity activity,String recordno){
+	public static void gotoNews(Activity activity,String categoryId,String newsId){
 		Bundle bundle=new Bundle();
-		bundle.putString(NewsDetailActivity.NEWSID, recordno);
+		bundle.putString(NewsDetailActivity.CATEGORYID, categoryId);
+		bundle.putString(NewsDetailActivity.NEWSID, newsId);
 		Intent intent=new Intent(activity,NewsDetailActivity.class);
 		intent.putExtras(bundle);
 		activity.startActivity(intent);
