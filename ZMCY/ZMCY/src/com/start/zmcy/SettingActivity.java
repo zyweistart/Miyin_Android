@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.core.Constant.Preferences;
+import com.start.service.AppServer;
 
 /**
  * 设置
@@ -99,7 +100,7 @@ public class SettingActivity extends BaseActivity {
 						}
 					}).show();
 		} else if (v.getId() == R.id.txtVersion) {
-			getHandlerContext().makeTextLong("版本检测");
+			AppServer.checkAppUpdate(this, false);
 		} else if (v.getId() == R.id.txtAboutus) {
 			startActivity(new Intent(this, AboutUsActivity.class));
 		} else {

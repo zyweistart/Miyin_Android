@@ -90,7 +90,12 @@ public class Response {
 			this.mCode=jo.getString(CODETAG);
 			this.mMsg=jo.getString(MSGTAG);
 			if(SUCCESS.equals(this.mCode)){
-				this.mJsonObject=jo.getJSONObject(DATATAG);
+				if(jo.has(DATATAG)){
+					Object o=jo.get(DATATAG);
+					if(!"null".equals(String.valueOf(o))){
+						this.mJsonObject=jo.getJSONObject(DATATAG);
+					}
+				}
 			}
 		} catch (JSONException e) {
 			throw AppException.json(e);

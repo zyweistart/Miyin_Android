@@ -17,6 +17,7 @@ import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
 import com.start.service.Response;
+import com.start.service.User;
 import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.zmcy.adapter.NewsListAdapter;
 import com.start.zmcy.adapter.NewsListAdapter.HolderView;
@@ -57,6 +58,9 @@ public class BaseNewsActivity extends BaseActivity implements RefreshListServerL
 		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Id", id);
+		if(getAppContext().currentUser().isLogin()){
+			params.put("access_token", User.ACCESSKEY);
+		}
 		if(!TextUtils.isEmpty(keyword)){
 			params.put("keyword", keyword);
 		}

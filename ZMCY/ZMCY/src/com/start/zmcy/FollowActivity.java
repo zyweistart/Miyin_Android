@@ -9,7 +9,7 @@ public class FollowActivity extends BaseNewsActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		id="2";
+		id="12";
 		super.onCreate(savedInstanceState);
 		setMainHeadTitle(getString(R.string.follow));
 		mRefreshListServer.initLoad();

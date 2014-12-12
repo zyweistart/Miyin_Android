@@ -1,13 +1,22 @@
 package com.start.zmcy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import start.core.AppContext;
+import start.core.AppException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
+import com.start.core.Constant;
 import com.start.core.Constant.Preferences;
+import com.start.service.HttpRunnable;
+import com.start.service.HttpServer;
+import com.start.service.Response;
+import com.start.service.User;
 
 /**
  * 成员
@@ -48,6 +57,18 @@ public class MemberActivity extends BaseActivity{
 				goLogin(new Intent(this,MemberActivity.class),getString(R.string.nologin));
 				return;
 			}
+			HttpServer hServer = new HttpServer(Constant.URL.UserSignIn,getHandlerContext());
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("access_token", User.ACCESSKEY);
+			hServer.setParams(params);
+			hServer.get(new HttpRunnable() {
+
+				@Override
+				public void run(Response response) throws AppException {
+					getHandlerContext().makeTextLong("签到成功");
+				}
+
+			});
 		}else if(v.getId()==R.id.txtCollect){
 			Intent intent=new Intent(this,CollectActivity.class);
 			if(!getAppContext().currentUser().isLogin()){

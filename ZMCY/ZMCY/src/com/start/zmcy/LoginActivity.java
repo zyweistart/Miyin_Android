@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import start.core.AppConstant;
+import start.core.AppContext;
 import start.core.AppException;
 import start.utils.StringUtils;
 import start.widget.CustomEditText;
@@ -18,9 +19,11 @@ import android.os.Message;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.igexin.sdk.PushManager;
 import com.start.core.BaseActivity;
 import com.start.core.Constant;
 import com.start.core.Constant.Handler;
+import com.start.core.Constant.Preferences;
 import com.start.core.Constant.ResultCode;
 import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
@@ -165,6 +168,9 @@ public class LoginActivity extends BaseActivity{
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("userName",account);
 		params.put("pwd", password);
+		String getuiClientId=AppContext.getSharedPreferences().getString(Preferences.SP_GETUICLIENTID, 
+				PushManager.getInstance().getClientid(this));
+		params.put("clientid", getuiClientId);
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 

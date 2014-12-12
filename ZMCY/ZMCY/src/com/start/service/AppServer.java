@@ -2,8 +2,18 @@ package com.start.service;
 
 import java.util.regex.Pattern;
 
+import com.start.core.BaseActivity;
+
 public class AppServer {
 
+	/**
+	 * 检测应用更新
+	 */
+	public static void checkAppUpdate(BaseActivity activity,Boolean status){
+		UpdateApplication updateApplication = new UpdateApplication(activity);
+		updateApplication.startCheck(status);
+	}
+	
 	public static String html2Text(String inputString) {
 		String htmlStr = inputString; // 含html标签的字符串
 		String textStr = "";

@@ -11,7 +11,7 @@ public class NewsListActivity extends BaseNewsActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		id="1";
+		id="13";
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
 			keyword=bundle.getString(BUNDLE_SEARCH);

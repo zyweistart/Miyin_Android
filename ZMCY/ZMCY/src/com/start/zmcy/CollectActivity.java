@@ -9,7 +9,7 @@ public class CollectActivity extends BaseNewsActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		id="1";
+		id="11";
 		super.onCreate(savedInstanceState);
 		setMainHeadTitle(getString(R.string.collect));
 		mRefreshListServer.initLoad();

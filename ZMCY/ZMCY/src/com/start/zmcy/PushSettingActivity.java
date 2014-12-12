@@ -1,15 +1,20 @@
 package com.start.zmcy;
 
-import start.core.AppContext;
+import java.util.HashMap;
+import java.util.Map;
+
+import start.core.AppException;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.igexin.sdk.PushManager;
 import com.start.core.BaseActivity;
-import com.start.core.Constant.Preferences;
+import com.start.core.Constant;
+import com.start.service.HttpRunnable;
+import com.start.service.HttpServer;
+import com.start.service.Response;
+import com.start.service.User;
 
 /**
  * 推送设置
@@ -20,6 +25,8 @@ public class PushSettingActivity extends BaseActivity{
 	private Drawable img_on;
 	
 	private TextView txt1;
+	
+	private Boolean state;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,24 +40,59 @@ public class PushSettingActivity extends BaseActivity{
 		img_on.setBounds(0, 0, img_on.getMinimumWidth(), img_on.getMinimumHeight());
 		
 		txt1=(TextView)findViewById(R.id.txt1);
-		txt1.setCompoundDrawables(null, null, img_on, null);
 		
-		String getuiClientId=AppContext.getSharedPreferences().getString(Preferences.SP_GETUICLIENTID, 
-				PushManager.getInstance().getClientid(this));
-		if(TextUtils.isEmpty(getuiClientId))	{
-			finish();
-		}
+
+		HttpServer hServer = new HttpServer(Constant.URL.GetPushState,getHandlerContext());
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("access_token", User.ACCESSKEY);
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) throws AppException {
+				state=Boolean.parseBoolean(response.getData("PushState")+"");
+				runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						setState();
+					}
+				});
+			}
+			
+		});
 		
-		getHandlerContext().makeTextLong("clientid:"+getuiClientId);
 		
  	}
 	
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.txt1){
-			
+			state=!state;
+			setState();
+			HttpServer hServer = new HttpServer(Constant.URL.ChangePushState,getHandlerContext());
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("access_token", User.ACCESSKEY);
+			params.put("state", state+"");
+			hServer.setParams(params);
+			hServer.get(new HttpRunnable() {
+
+				@Override
+				public void run(Response response) throws AppException {
+					getHandlerContext().makeTextShort("设置成功");
+				}
+				
+			});
 		}else{
 			super.onClick(v);
+		}
+	}
+	
+	public void setState(){
+		if(state){
+			txt1.setCompoundDrawables(null, null, img_on, null);
+		}else{
+			txt1.setCompoundDrawables(null, null, img_off, null);
 		}
 	}
 	

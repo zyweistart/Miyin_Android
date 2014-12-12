@@ -17,6 +17,11 @@ public final class Constant {
 		public static final String UserLogin="UserLogin";
 		public static final String RegUser="RegUser";
 		public static final String OAuthLogin="OAuthLogin";
+		public static final String FocusOrCollection="FocusOrCollection";
+		public static final String VersionCheck="VersionCheck";
+		public static final String UserSignIn="UserSignIn";
+		public static final String GetPushState="GetPushState";
+		public static final String ChangePushState="ChangePushState";
 		//登录
 		//注册
 		//第三方应用注册登录(微信，QQ)
