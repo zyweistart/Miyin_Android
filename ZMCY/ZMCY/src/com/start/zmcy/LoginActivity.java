@@ -25,6 +25,7 @@ import com.start.core.Constant;
 import com.start.core.Constant.Handler;
 import com.start.core.Constant.Preferences;
 import com.start.core.Constant.ResultCode;
+import com.start.service.AppServer;
 import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.Response;
@@ -142,7 +143,7 @@ public class LoginActivity extends BaseActivity{
 			if(RegisterActivity.REGISTERTYPE_ACCOUNT.equals(type)){
 				String account=bundle.getString(RegisterActivity.STR_ACCOUNT);
 				String password=bundle.getString(RegisterActivity.STR_PASSWORD);
-				login(account, password, true);
+				login(account, AppServer.MD5(password), true);
 			}else if(RegisterActivity.REGISTERTYPE_QQ.equals(type)){
 				this.registerLogin(QQ_LOGIN,bundle);
 			}else if(RegisterActivity.REGISTERTYPE_WX.equals(type)){

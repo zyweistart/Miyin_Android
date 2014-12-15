@@ -47,8 +47,8 @@ public class NewsDetailActivity extends BaseActivity{
 		
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
-			String id=bundle.getString(NEWSID);
-			String categoryid=bundle.getString(CATEGORYID);
+			final String id=bundle.getString(NEWSID);
+			final String categoryid=bundle.getString(CATEGORYID);
 			
 			HttpServer hServer = new HttpServer(Constant.URL.GetInfo,getHandlerContext());
 			Map<String, String> params = new HashMap<String, String>();
@@ -62,6 +62,7 @@ public class NewsDetailActivity extends BaseActivity{
 					try {
 						JSONArray jsonArray=(JSONArray)response.getData("Table");
 						JSONObject jo=jsonArray.getJSONObject(0);
+//						String url=getAppContext().getServerURL()+"/"+id+"/"+categoryid+"/news_ct.html";
 						shareContent="友盟社会化组件（SDK）让移动应用快速整合社交分享功能，http://www.umeng.com/social";
 						shareImageUrl="http://www.umeng.com/images/pic/banner_module_social.png";
 						final String evaluation=jo.getString("hit");

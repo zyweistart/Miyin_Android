@@ -14,6 +14,10 @@ public class AppServer {
 		updateApplication.startCheck(status);
 	}
 	
+	public static String MD5(String password){
+		return start.utils.MD5.md5(password).toLowerCase().substring(6,16);
+	}
+	
 	public static String html2Text(String inputString) {
 		String htmlStr = inputString; // 含html标签的字符串
 		String textStr = "";
