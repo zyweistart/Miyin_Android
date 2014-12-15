@@ -67,7 +67,7 @@ public final class Constant {
 		/**
 		 * 用户名或密码有误
 		 */
-		public static final int USERNAMEORPASSWORDERROR=120011;
+		public static final int USERNAMEORPASSWORDERROR=-20;
 		
 	}
 	

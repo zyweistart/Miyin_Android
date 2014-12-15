@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 
@@ -31,6 +32,18 @@ public class NewsSearchActivity extends BaseActivity{
 			if(getInputMethodManager().isActive()){
 				getInputMethodManager().hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 			}
+			goSearch();
+		}else if(v.getId()==R.id.searchkeysbutton1
+				||v.getId()==R.id.searchkeysbutton2
+				||v.getId()==R.id.searchkeysbutton3
+				||v.getId()==R.id.searchkeysbutton4
+				||v.getId()==R.id.searchkeysbutton5
+				||v.getId()==R.id.searchkeysbutton6
+				||v.getId()==R.id.searchkeysbutton7
+				||v.getId()==R.id.searchkeysbutton8
+				||v.getId()==R.id.searchkeysbutton9
+				||v.getId()==R.id.searchkeysbutton10){
+			et_search_content.setText(String.valueOf(((TextView)v).getText()));
 			goSearch();
 		}
 	}

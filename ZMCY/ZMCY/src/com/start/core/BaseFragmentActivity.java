@@ -53,7 +53,6 @@ public class BaseFragmentActivity extends FragmentActivity implements HandleCont
 	}
 	
 	public void goLoginResult(int requestCode,String message){
-		getAppContext().currentUser().clearCachePassword();
 		Bundle bundle=new Bundle();
 		bundle.putString(LoginActivity.BUNLE_MESSAGE, message);
 		Intent intent=new Intent(this,LoginActivity.class);

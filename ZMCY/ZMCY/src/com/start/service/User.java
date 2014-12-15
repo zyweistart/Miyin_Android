@@ -64,11 +64,11 @@ public class User {
 	/**
 	 * 修改存储的密码
 	 */
-	public void changeCacheUser(String password){
-		if(BaseContext.getSharedPreferences().getBoolean(Preferences.SP_AUTOLOGIN_CONTENT_DATA, false)){
-			BaseContext.getSharedPreferences().putString(Preferences.SP_PASSWORD_CONTENT_DATA, password);
-		}
-	}
+//	public void changeCacheUser(String password){
+//		if(BaseContext.getSharedPreferences().getBoolean(Preferences.SP_AUTOLOGIN_CONTENT_DATA, false)){
+//			BaseContext.getSharedPreferences().putString(Preferences.SP_PASSWORD_CONTENT_DATA, password);
+//		}
+//	}
 	
 	public void clearCacheUser(){
 		setLogin(false);

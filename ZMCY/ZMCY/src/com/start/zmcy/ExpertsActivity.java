@@ -20,11 +20,13 @@ import com.start.core.Constant;
 import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
-import com.start.service.User;
 import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
+import com.start.service.User;
 import com.start.zmcy.adapter.ExpertsListAdapter;
+import com.start.zmcy.adapter.ExpertsListAdapter.ExpertsHolderView;
 import com.start.zmcy.adapter.ExpertsQuestionAdapter;
+import com.start.zmcy.adapter.ExpertsQuestionAdapter.QuestionHolderView;
 
 /**
  * 专家
@@ -38,8 +40,8 @@ public class ExpertsActivity extends BaseActivity implements
 	private Button main_head_2;
 	private Button main_head_3;
 
-	private XListView mListView;
-	private RefreshListServer mRefreshListServer;
+	private XListView mExpertsListView;
+	private RefreshListServer mExpertsRefreshListServer;
 
 	private XListView mQuestionListView;
 	private RefreshListServer mQuestionRefreshListServer;
@@ -52,7 +54,6 @@ public class ExpertsActivity extends BaseActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_experts);
-		setMainHeadTitle(getString(R.string.experts));
 
 		main_head_1 = (Button) findViewById(R.id.head_1);
 		main_head_1.setText(getString(R.string.experts_list));
@@ -63,27 +64,46 @@ public class ExpertsActivity extends BaseActivity implements
 		main_head_3 = (Button) findViewById(R.id.head_3);
 		main_head_3.setText(getString(R.string.experts_cover));
 		main_head_3.setVisibility(View.VISIBLE);
-		
 
-		mListView = (XListView) findViewById(R.id.xlv_listview);
-		mListView.setOnItemClickListener(new OnItemClickListener() {
+		mExpertsListView = (XListView) findViewById(R.id.xlv_listview);
+		mExpertsListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				getHandlerContext().makeTextLong(getCategoryId());
+				if(id>0){
+					ExpertsHolderView hv=(ExpertsHolderView)view.getTag();
+					Bundle bundle=new Bundle();
+					bundle.putString(ExpertsDetailActivity.EXPERTSID, hv.id);
+					bundle.putString(ExpertsDetailActivity.CATEGORYID, hv.categoryid);
+					Intent intent=new Intent(ExpertsActivity.this,ExpertsDetailActivity.class);
+					intent.putExtras(bundle);
+					startActivity(intent);
+				}else{
+					mExpertsRefreshListServer.getCurrentListView().startLoadMore();
+				}
 			}
 		});
-		mRefreshListServer = new RefreshListServer(this, getHandlerContext(),
-				mListView, new ExpertsListAdapter(this));
-		mRefreshListServer.setCacheTag(TAG);
-		mRefreshListServer.setRefreshListServerListener(this);
+		mExpertsRefreshListServer = new RefreshListServer(this, getHandlerContext(),
+				mExpertsListView, new ExpertsListAdapter(this));
+		mExpertsRefreshListServer.setCacheTag(TAG+"ExpertsList");
+		mExpertsRefreshListServer.setRefreshListServerListener(this);
 
 		mQuestionListView = (XListView) findViewById(R.id.xlv_listview_question);
 		mQuestionListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				getHandlerContext().makeTextLong(getCategoryId());
+//				if(id>0){
+					QuestionHolderView hv=(QuestionHolderView)view.getTag();
+					Bundle bundle=new Bundle();
+					bundle.putString(ExpertsQuestionDetailActivity.QUESTIONID, hv.question_id);
+					bundle.putString(ExpertsQuestionDetailActivity.CATEGORYID, hv.question_categoryid);
+					Intent intent=new Intent(ExpertsActivity.this,ExpertsQuestionDetailActivity.class);
+					intent.putExtras(bundle);
+					startActivity(intent);
+//				}else{
+//					mQuestionRefreshListServer.getCurrentListView().startLoadMore();
+//				}
 			}
 		});
 		mQuestionRefreshListServer = new RefreshListServer(this,
@@ -104,7 +124,7 @@ public class ExpertsActivity extends BaseActivity implements
 		});
 		
 		setHeadButtonEnabled(type);
-		mRefreshListServer.initLoad();
+		mExpertsRefreshListServer.initLoad();
 		if(getAppContext().currentUser().isLogin()){
 			mQuestionRefreshListServer.initLoad();
 		}
@@ -150,14 +170,14 @@ public class ExpertsActivity extends BaseActivity implements
 		main_head_1.setEnabled(index == 1 ? false : true);
 		main_head_2.setEnabled(index == 2 ? false : true);
 		main_head_3.setEnabled(index == 3 ? false : true);
-		mListView.setVisibility(!main_head_1.isEnabled() ?View.VISIBLE:View.GONE);
+		mExpertsListView.setVisibility(!main_head_1.isEnabled() ?View.VISIBLE:View.GONE);
 		mQuestionListView.setVisibility(!main_head_2.isEnabled() ?View.VISIBLE:View.GONE);
 		mWebView.setVisibility(!main_head_3.isEnabled()?View.VISIBLE:View.GONE);
 	}
 
 	public RefreshListServer getRefreshListServer() {
 		if(type==1){
-			return mRefreshListServer;
+			return mExpertsRefreshListServer;
 		}else if(type==2){
 			return mQuestionRefreshListServer;
 		}else{
@@ -167,13 +187,13 @@ public class ExpertsActivity extends BaseActivity implements
 
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
+		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mExpertsRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Id", getCategoryId());
 		if(type==2&&getAppContext().currentUser().isLogin()){
 			params.put("access_token", User.ACCESSKEY);
 		}
-		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+		params.put("index",String.valueOf(mExpertsRefreshListServer.getCurrentPage() + 1));
 //		params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {

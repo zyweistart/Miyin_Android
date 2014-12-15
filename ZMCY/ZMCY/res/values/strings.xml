@@ -58,6 +58,17 @@
     <string name="subscribe_more_category">更多频道</string>
     <string name="subscribe_manager_category_info">单击增删频道</string>
     <string name="subscribe_manager_category_info_2">单击增删频道，长按拖拽排序</string>
+    <!-- 搜索文本 -->
+    <string name="search_text_1">LED照明</string>
+    <string name="search_text_2">传统照明</string>
+    <string name="search_text_3">室内照明</string>
+    <string name="search_text_4">户外照明</string>
+    <string name="search_text_5">照明灯具</string>
+    <string name="search_text_6">特种光源</string>
+    <string name="search_text_7">灯具配件</string>
+    <string name="search_text_8">灯具配件</string>
+    <string name="search_text_9">荧光粉</string>
+    <string name="search_text_10">照明灯管</string>
     
 	<string-array name="fontsizetype">
         <item>标准</item>

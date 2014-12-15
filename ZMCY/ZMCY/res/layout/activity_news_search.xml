@@ -74,24 +74,29 @@
             android:orientation="horizontal" >
 
             <Button
+                android:id="@+id/searchkeysbutton1"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_1" />
 
             <Button
+                android:id="@+id/searchkeysbutton2"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_2" />
 
             <Button
+                android:id="@+id/searchkeysbutton3"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_3" />
 
             <Button
+                android:id="@+id/searchkeysbutton4"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_4" />
 
             <Button
+                android:id="@+id/searchkeysbutton5"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_5" />
         </LinearLayout>
 
         <LinearLayout
@@ -100,24 +105,29 @@
             android:orientation="horizontal" >
 
             <Button
+                android:id="@+id/searchkeysbutton6"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_6" />
 
             <Button
+                android:id="@+id/searchkeysbutton7"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_7" />
 
             <Button
+                android:id="@+id/searchkeysbutton8"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_8" />
 
             <Button
+                android:id="@+id/searchkeysbutton9"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_9" />
 
             <Button
+                android:id="@+id/searchkeysbutton10"
                 style="@style/searchkeysbutton"
-                android:text="搜索1" />
+                android:text="@string/search_text_10" />
         </LinearLayout>
     </LinearLayout>
 

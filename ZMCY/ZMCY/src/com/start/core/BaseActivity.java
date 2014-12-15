@@ -63,18 +63,18 @@ public class BaseActivity extends AppActivity {
 		}
 	}
 	
-	public void goLogin(Boolean autoLogin){
-		Bundle bundle=new Bundle();
-		bundle.putBoolean(LoginActivity.BUNLE_AUTOLOGINFLAG, autoLogin);
-		Intent intent=new Intent(this,LoginActivity.class);
-		intent.putExtras(bundle);
-		startActivity(intent);
-		finish();
-	}
+//	public void goLogin(Boolean autoLogin){
+//		Bundle bundle=new Bundle();
+//		bundle.putBoolean(LoginActivity.BUNLE_AUTOLOGINFLAG, autoLogin);
+//		Intent intent=new Intent(this,LoginActivity.class);
+//		intent.putExtras(bundle);
+//		startActivity(intent);
+//		finish();
+//	}
 	
 	public void goLogin(Intent startIntent,String message){
 		getAppContext().getCacheActivity().setIntent(startIntent);
-		getAppContext().currentUser().clearCachePassword();
+//		getAppContext().currentUser().clearCachePassword();
 		Bundle bundle=new Bundle();
 		bundle.putString(LoginActivity.BUNLE_MESSAGE, message);
 		Intent intent=new Intent(this,LoginActivity.class);
@@ -86,7 +86,7 @@ public class BaseActivity extends AppActivity {
 	}
 	
 	public void goLoginResult(int requestCode,String message){
-		getAppContext().currentUser().clearCachePassword();
+//		getAppContext().currentUser().clearCachePassword();
 		Bundle bundle=new Bundle();
 		bundle.putString(LoginActivity.BUNLE_MESSAGE, message);
 		Intent intent=new Intent(this,LoginActivity.class);

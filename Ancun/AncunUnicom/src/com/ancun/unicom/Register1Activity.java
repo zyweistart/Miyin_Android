@@ -175,7 +175,7 @@ public class Register1Activity extends BaseActivity {
 				@Override
 				public void run() {
 					//设置超时时间
-					int sec = 80;
+					int sec = 60;
 					while (sec > 0) {
 						sec--;
 						final int n = sec;

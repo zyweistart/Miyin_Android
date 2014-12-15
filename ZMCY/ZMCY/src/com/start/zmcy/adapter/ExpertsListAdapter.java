@@ -36,6 +36,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 	public static final String DATA="Data";
 	public static final String TYPE="key";
 	public static final String ID="Id";
+	public static final String CATEGORYID="ClassId";
 	public static final String URL="links";
 	public static final String NAME="Name";
 	public static final String JOBTITLE="jobTitle";
@@ -57,10 +58,10 @@ public class ExpertsListAdapter extends AppListAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		HolderView holder;
+		ExpertsHolderView holder;
 		if (convertView == null) {
 			convertView = mActivity.getLayoutInflater().inflate(R.layout.listitem_experts_list, null);
-			holder = new HolderView();
+			holder = new ExpertsHolderView();
 			holder.startViewPager = (StartViewPager) convertView.findViewById(R.id.banner_item);
 			holder.experts_item = (LinearLayout) convertView.findViewById(R.id.experts_item);
 			holder.experts_head = (ImageView) convertView.findViewById(R.id.experts_head);
@@ -70,7 +71,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 			holder.experts_consultation = (Button) convertView.findViewById(R.id.experts_consultation);
 			convertView.setTag(holder);
 		} else {
-			holder = (HolderView) convertView.getTag();
+			holder = (ExpertsHolderView) convertView.getTag();
 		}
 		Map<String,Object> data=mItemDatas.get(position);
 		String type=String.valueOf(data.get(TYPE));
@@ -122,6 +123,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 		}else{
 			setItemVisibility(holder,2);
 			holder.id=String.valueOf(data.get(ID));
+			holder.categoryid=String.valueOf(data.get(CATEGORYID));
 			
 			String url=AppContext.getInstance().getServerURL()+String.valueOf(data.get(IMAGEURL));
 			if(TextUtils.isEmpty(url)){
@@ -153,10 +155,11 @@ public class ExpertsListAdapter extends AppListAdapter{
 	public class BannerHolder{
 		public int position;
 		public String id;
+		public String categoryid;
 		public String url;
 	}
 	
-	public class HolderView extends BannerHolder {
+	public class ExpertsHolderView extends BannerHolder {
 		private LinearLayout experts_item;
 		private StartViewPager startViewPager;
 		private ImageView experts_head;
@@ -166,7 +169,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 		private Button experts_consultation;
 	}
 	
-	public void setItemVisibility(HolderView holder,int index){
+	public void setItemVisibility(ExpertsHolderView holder,int index){
 		holder.startViewPager.setVisibility(index==1?View.VISIBLE:View.GONE);
 		holder.experts_item.setVisibility(index==2?View.VISIBLE:View.GONE);
 	}

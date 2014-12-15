@@ -9,6 +9,8 @@ import start.core.AppManager;
 import start.service.HttpRunnable;
 import start.service.HttpServer;
 import start.service.Response;
+import start.utils.MD5;
+import start.utils.TimeUtils;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -35,6 +37,7 @@ import com.ancun.service.User;
 public class UnsubscribeActivity extends BaseActivity {
 
 	private static final String MESSAGE1="您定制联通宽带公司的安存语录1业务已取消！";
+	public static final int SENDMESSAGETIMEOUT=0x4732847;
 	
 	private EditText et_pwd;
 	private Button btn_submit,btn_return;
@@ -63,6 +66,51 @@ public class UnsubscribeActivity extends BaseActivity {
 		resolver.registerContentObserver(Uri.parse("content://sms"), true,mObserver);
     }
 
+    @Override
+	public void onProcessMessage(Message msg) throws AppException {
+		switch(msg.what){
+			case SENDMESSAGETIMEOUT:
+			
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					//设置超时时间
+					int sec = 60;
+					while (sec > 0) {
+						sec--;
+						final int n = sec;
+						runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								if (n == 0) {
+									if(mPDialog!=null){
+										mPDialog.dismiss();
+										mPDialog=null;
+									}
+									if(mSMSRecever!=null){
+										unregisterReceiver(mSMSRecever);
+										mSMSRecever=null;
+									}
+								}
+							}
+
+						});
+
+						TimeUtils.sleep(1000);
+					}
+
+				}
+
+			}).start();
+			break;
+		default:
+			super.onProcessMessage(msg);
+			break;
+		}
+	}
+    
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_submit){
@@ -71,13 +119,13 @@ public class UnsubscribeActivity extends BaseActivity {
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
-//			String cp=getAppContext().currentUser().getCachePassword();
-//			if(!TextUtils.isEmpty(cp)){
-//				if(!cp.equals(MD5.md5(password))){
-//					getHandlerContext().makeTextLong("密码不匹配");
-//					return;
-//				}
-//			}
+			String cp=getAppContext().currentUser().getCachePassword();
+			if(!TextUtils.isEmpty(cp)){
+				if(!cp.equals(MD5.md5(password))){
+					getHandlerContext().makeTextLong("密码不匹配");
+					return;
+				}
+			}
 			HttpServer hServer=new HttpServer("unicomWebSmsCancel", getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
@@ -98,7 +146,7 @@ public class UnsubscribeActivity extends BaseActivity {
 						public void run() {
 //							btn_submit.setVisibility(View.GONE);
 //							btn_return.setVisibility(View.VISIBLE);
-							
+							getHandlerContext().sendEmptyMessage(SENDMESSAGETIMEOUT);
 							mPDialog = new ProgressDialog(UnsubscribeActivity.this);
 							mPDialog.setMessage(getString(R.string.wait));
 							mPDialog.setIndeterminate(true);

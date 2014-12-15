@@ -59,33 +59,27 @@ public class LoginActivity extends BaseActivity{
 		et_login_account=(CustomEditText)findViewById(R.id.et_login_account);
 		et_login_password=(CustomEditText)findViewById(R.id.et_login_password);
 		
+		Boolean autoLogin=getAppContext().currentUser().getCacheAutoLogin();
+		if(autoLogin){
+			String account=getAppContext().currentUser().getCacheAccount();
+			String password=getAppContext().currentUser().getCachePassword();
+			if(!StringUtils.isEmpty(account)&&!StringUtils.isEmpty(password)){
+				et_login_account.setText(account);
+				et_login_password.setText(password);
+				login(account, password, autoLogin);
+				return;
+			}
+		}
+		
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
 			
-			if(bundle.getBoolean(BUNLE_AUTOLOGINFLAG)){
-				String account=getAppContext().currentUser().getCacheAccount();
-				if(StringUtils.isEmpty(account)){
-					return;
-				}
-				et_login_account.setText(account);
-				Boolean autoLogin=getAppContext().currentUser().getCacheAutoLogin();
-				if(autoLogin){
-					String password=getAppContext().currentUser().getCachePassword();
-					if(StringUtils.isEmpty(password)){
-						return;
-					}
-					et_login_password.setText(password);
-					login(account, password, autoLogin);
-				}
-			}else{
-				
-				String message=bundle.getString(BUNLE_MESSAGE);
-				if(!StringUtils.isEmpty(message)){
-					getHandlerContext().makeTextLong(message);
-					return;
-				}
-				
+			String message=bundle.getString(BUNLE_MESSAGE);
+			if(!StringUtils.isEmpty(message)){
+				getHandlerContext().makeTextLong(message);
+				return;
 			}
+			
 		}
 	}
 	
@@ -238,6 +232,9 @@ public class LoginActivity extends BaseActivity{
 			params.put("province",data.getString("province"));
 			params.put("city",data.getString("city"));
 		}
+		String getuiClientId=AppContext.getSharedPreferences().getString(Preferences.SP_GETUICLIENTID, 
+				PushManager.getInstance().getClientid(this));
+		params.put("clientid", getuiClientId);
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 
@@ -272,7 +269,6 @@ public class LoginActivity extends BaseActivity{
 		if(getInputMethodManager().isActive()){
 			getInputMethodManager().hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 		}
-		getAppContext().currentUser().setLogin(true);
 		if(getAppContext().getCacheActivity().isGotoActivity()){
 			getAppContext().getCacheActivity().startActivity(this);
 		}else{
