@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ancun.unicom"
-    android:versionCode="2014111318"
+    android:versionCode="2014121616"
     android:versionName="1.0.1" >
 
     <uses-sdk
@@ -69,7 +69,7 @@
             android:value="548fe32bfd98c5631a001375" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="CHANNELNAME" />
+            android:value="LT-GPLAY" />
 
         <activity
             android:name=".StartActivity"
