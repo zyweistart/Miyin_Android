@@ -66,7 +66,7 @@
         
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="54781beafd98c50718000010" />
+            android:value="548fe32bfd98c5631a001375" />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="CHANNELNAME" />
@@ -157,6 +157,11 @@
         <activity
             android:name=".LockSetupActivity"
             android:screenOrientation="portrait" />
+        <receiver android:name=".HomeKeyEventReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.CLOSE_SYSTEM_DIALOGS"/>
+            </intent-filter>
+        </receiver>
         
     </application>
 

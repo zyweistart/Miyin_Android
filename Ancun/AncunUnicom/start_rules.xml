@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="custom_rules" default="debug">
+<project name="custom_rules" default="start_release">
     
 	<!-- 修改的配置文件 -->
 	<property name="app.file.manifest" value="AndroidManifest.xml"/>
