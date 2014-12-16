@@ -2,7 +2,6 @@ package com.ancun.core;
 
 import start.core.AppException;
 import start.core.HandlerContext;
-import start.core.R;
 import start.core.HandlerContext.HandleContextListener;
 import android.content.Intent;
 import android.os.Message;
@@ -11,6 +10,7 @@ import android.view.View;
 
 import com.ancun.core.Constant.ResultCode;
 import com.ancun.unicom.BaseContext;
+import com.ancun.unicom.R;
 
 /**
  * 主体内容区核心父类
