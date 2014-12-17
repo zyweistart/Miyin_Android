@@ -65,10 +65,11 @@ public class UpdateApplication {
 		if (NetConnectManager.isNetworkConnected(currentActivity)) {
 			HttpServer hServer=new HttpServer(Constant.URL.versioninfoGet, mHandlerContext);
 			Map<String, String> headers = new HashMap<String, String>();
-			headers.put("sign", "");
+			headers.put("sign", User.USER_ACCESSKEY_LOCAL);
 			hServer.setHeaders(headers);
 			Map<String, String> params = new HashMap<String, String>();
-			params.put("type", "6");
+			params.put("accessid", User.USER_ACCESSID_LOCAL);
+			params.put("type", "8");
 			params.put("termtype", "4");
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {

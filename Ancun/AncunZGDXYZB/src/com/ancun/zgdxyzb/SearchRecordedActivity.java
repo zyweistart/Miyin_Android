@@ -47,7 +47,11 @@ public class SearchRecordedActivity extends BaseActivity{
 		etPhone = (EditText) findViewById(R.id.search_content_phone);
 		etRemark = (EditText) findViewById(R.id.search_content_remark);
 		etStartDay = (EditText) findViewById(R.id.search_content_startday);
+		etStartDay.setClickable(true);
+		etStartDay.setOnClickListener(this);
 		etEndDay = (EditText) findViewById(R.id.search_content_endday);
+		etEndDay.setClickable(true);
+		etEndDay.setOnClickListener(this);
 		
 		btnStartDay = (ImageButton) findViewById(R.id.search_content_btn_startday);
 		btnStartDay.setOnClickListener(this);
@@ -96,7 +100,7 @@ public class SearchRecordedActivity extends BaseActivity{
 	
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.search_content_btn_startday){
+		if(v.getId()==R.id.search_content_btn_startday||v.getId()==R.id.search_content_startday){
 			DatePickerDialog dialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
 				@Override
@@ -130,6 +134,7 @@ public class SearchRecordedActivity extends BaseActivity{
 	                    @Override
 	                    public void onClick(DialogInterface dialog, int which) {
 	                    	etStartDay.setText("");
+	                    	dialog.cancel();
 	                    }
 	                });
 			dialog.setOnCancelListener(new OnCancelListener() {
@@ -140,7 +145,7 @@ public class SearchRecordedActivity extends BaseActivity{
 				}
 			});
 			dialog.show();
-		}else if(v.getId()==R.id.search_content_btn_endday){
+		}else if(v.getId()==R.id.search_content_btn_endday||v.getId()==R.id.search_content_endday){
 			DatePickerDialog dialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
 				@Override
@@ -173,6 +178,7 @@ public class SearchRecordedActivity extends BaseActivity{
 	                    @Override
 	                    public void onClick(DialogInterface dialog, int which) {
 	                    	etEndDay.setText("");
+	                    	dialog.cancel();
 	                    }
 	                });
 			dialog.setOnCancelListener(new OnCancelListener() {

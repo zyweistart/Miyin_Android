@@ -34,7 +34,7 @@ public class BaseContext extends AppContext {
 	@Override
 	public String getServerURL() {
 		return isTestEnvironmental() ?
-				"http://192.168.0.223:2230/http/HttpService":
+				"http://192.168.0.223:2233/http/HttpService":
 					"http://android.95105859.com:20015/http/HttpService";
 	}
 	

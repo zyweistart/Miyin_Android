@@ -2,6 +2,8 @@ package com.start.service;
 
 import java.util.regex.Pattern;
 
+import start.utils.MD5;
+
 import com.start.core.BaseActivity;
 
 public class AppServer {
@@ -15,7 +17,7 @@ public class AppServer {
 	}
 	
 	public static String MD5(String password){
-		return start.utils.MD5.md5(password).toLowerCase().substring(6,16);
+		return MD5.md5(password).toLowerCase().substring(6,22);
 	}
 	
 	public static String html2Text(String inputString) {

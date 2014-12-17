@@ -13,15 +13,17 @@ import start.utils.StringUtils;
 import start.utils.TimeUtils;
 import start.widget.CustomEditText;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.database.Cursor;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.telephony.gsm.SmsManager;
-import android.telephony.gsm.SmsMessage;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,17 +31,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ancun.core.BaseActivity;
-import com.ancun.core.Constant;
 import com.ancun.core.Constant.Handler;
 import com.ancun.service.AppService;
 import com.ancun.service.User;
 
 /**
  * 注册
- * 
- * @author start 获取校验码 发送ac1至10655598301 提交校验码 发送y 收到开通成功进入设置密码
- *         您申请的联通宽带公司的安存语录1业务（10元/月），请直接回复Y生效。
- *         您已成功定制联通宽带公司(10655598301)的安存语录1业务，发送tdac1到10655598301退订业务，查询热线10010。
  */
 @SuppressWarnings("deprecation")
 public class Register1Activity extends BaseActivity {
@@ -49,12 +46,11 @@ public class Register1Activity extends BaseActivity {
 	
 	public static final int SENDMESSAGETIMEOUT=0x4732847;
 	
-	private static final String MESSAGE1="您申请的联通宽带公司的安存语录1业务（10元/月），请直接回复Y生效。";
+	private static final String MESSAGE1="您即将定制信元无线提供的音证宝服务，信息费包月10元（不含通讯费），由中国电信代收，首次订购免费体验3天。回复任意内容确认定制，无回复则不定制。中国电信";
 	private static final String MESSAGE2="您已成功定制联通宽带公司(10655598301)的安存语录1业务，发送tdac1到10655598301退订业务，查询热线10010。";
-	private static final String MESSAGE3="【安存网络】用户注册，您正在免费注册安存语录全国首个录音公证电话，验证码";
-	private static final String MESSAGE4="请及时输入。如非本人操作，请致电95105857";
-	private static final String MESSAGE5="对不起，您已经定制联通宽带公司的安存语录1产品，客服电话01067685228，资费方案：10元/月(本消息免费)";
-	private String checksum;
+	private static final String MESSAGE3="对不起，您已经定制联通宽带公司的安存语录1产品，客服电话01067685228，资费方案：10元/月(本消息免费)";
+	private static final String MESSAGE4="对不起，您定制信元无线的音证宝产品失败，客服电话4008189001，资费方案：包月10元(本消息免费)";
+	
 	protected String phone;
 	protected String authcode;
 	protected String password;
@@ -77,9 +73,8 @@ public class Register1Activity extends BaseActivity {
 	protected TextView txt_servercontent;
 	private TextView txt_tip,txt_tip2;
 	
-	private SMSRecever mSMSRecever;
-	
 	private ProgressDialog mPDialog;
+	private SmsObserver mObserver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,50 +106,16 @@ public class Register1Activity extends BaseActivity {
 		txt_tip.setVisibility(View.VISIBLE);
 		
 		txt_tip2=(TextView)findViewById(R.id.txttip2);
+
+		ContentResolver resolver = getContentResolver();
+		mObserver = new SmsObserver(resolver, new SmsHandler(this));
+		resolver.registerContentObserver(Uri.parse("content://sms"), true,mObserver);
 		
 	}
 
 	@Override
 	public void onProcessMessage(Message msg) throws AppException {
 		switch (msg.what) {
-		case Handler.REGISTER_RESET_PASSWORD_STEP1:
-			ll_first_frame.setVisibility(View.GONE);
-			ll_code_frame.setVisibility(View.VISIBLE);
-			btn_zre_get_checksum.setEnabled(false);
-
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					int sec = 60;
-					while (sec > 0) {
-						sec--;
-						final int n = sec;
-						runOnUiThread(new Runnable() {
-
-							@Override
-							public void run() {
-								if (n == 0) {
-									btn_zre_get_checksum
-											.setText(R.string.regetauthcode);
-									btn_zre_get_checksum.setEnabled(true);
-								} else {
-									btn_zre_get_checksum.setText(n
-											+ "秒,后可重新获取验证码");
-									btn_zre_get_checksum.setEnabled(false);
-								}
-							}
-
-						});
-
-						TimeUtils.sleep(1000);
-					}
-
-				}
-
-			}).start();
-
-			break;
 		case Handler.REGISTER_RESET_PASSWORD_STEP2:
 			ll_password_frame.setVisibility(View.GONE);
 			ll_second_frame.setVisibility(View.VISIBLE);
@@ -166,7 +127,7 @@ public class Register1Activity extends BaseActivity {
 				@Override
 				public void run() {
 					//设置超时时间
-					int sec = 80;
+					int sec = 60;
 					while (sec > 0) {
 						sec--;
 						final int n = sec;
@@ -181,10 +142,6 @@ public class Register1Activity extends BaseActivity {
 										mPDialog.dismiss();
 										mPDialog=null;
 									}
-									if(mSMSRecever!=null){
-										unregisterReceiver(mSMSRecever);
-										mSMSRecever=null;
-									}
 								}
 							}
 
@@ -196,7 +153,6 @@ public class Register1Activity extends BaseActivity {
 				}
 
 			}).start();
-			
 			
 			break;
 		case 120050:
@@ -239,31 +195,7 @@ public class Register1Activity extends BaseActivity {
 				return;
 			}
 			txt_tip2.setVisibility(View.GONE);
-			mSMSRecever=new SMSRecever();
-	        IntentFilter filter2=new IntentFilter();
-	        filter2.addAction("android.provider.Telephony.SMS_RECEIVED");
-	        registerReceiver(mSMSRecever,filter2);
 			unicomWebOpen(phone);
-//			getAuthCode(1);
-		} else if (v.getId() == R.id.btn_zre_get_checksum) {
-			getAuthCode(1);
-		} else if (v.getId() == R.id.btn_submit_checksum) {
-			authcode = String.valueOf(et_checksum.getText());
-			if (StringUtils.isEmpty(authcode)) {
-				getHandlerContext().makeTextLong(
-						getString(R.string.autocodeemptytip));
-				return;
-			}
-			if(!authcode.equals(checksum)){
-				getHandlerContext().makeTextLong("验证码不正确");
-				return;
-			}
-			mPDialog = new ProgressDialog(this);
-			mPDialog.setMessage(getString(R.string.wait));
-			mPDialog.setIndeterminate(true);
-			mPDialog.setCancelable(false);
-			mPDialog.show();
-			sendMessage("10655598301","ac1");
 		} else if (v.getId() == R.id.btn_next) {
 			password = String.valueOf(et_setting_password.getText());
 			if (StringUtils.isEmpty(password)) {
@@ -309,58 +241,36 @@ public class Register1Activity extends BaseActivity {
 			super.onClick(v);
 		}
 	}
-
-	/**
-	 * 获取验证码
-	 */
-	public void getAuthCode(int type) {
-		HttpServer hServer = new HttpServer(Constant.URL.authcodeGet,getHandlerContext());
-		Map<String, String> headers = new HashMap<String, String>();
-		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
-		hServer.setHeaders(headers);
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("accessid", User.USER_ACCESSID_LOCAL);
-		params.put("userTel", phone);
-		params.put("actype", String.valueOf(type));
-		hServer.setParams(params);
-		hServer.get(new HttpRunnable() {
-
-			@Override
-			public void run(Response response) {
-				getHandlerContext().getHandler().sendEmptyMessage(Handler.REGISTER_RESET_PASSWORD_STEP1);
-			}
-
-		});
-	}
 	
 	public void unicomWebOpen(String p) {
-		HttpServer hServer = new HttpServer("unicomWebSmsOpen",getHandlerContext());
-		Map<String, String> headers = new HashMap<String, String>();
-		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
-		hServer.setHeaders(headers);
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("accessid", User.USER_ACCESSID_LOCAL);
-		params.put("phone", p);
-		hServer.setParams(params);
-		hServer.get(new HttpRunnable() {
-
-			@Override
-			public void run(Response response) {
-				runOnUiThread(new Runnable() {
-					
-					@Override
-					public void run() {
+//		HttpServer hServer = new HttpServer("unicomWebSmsOpen",getHandlerContext());
+//		Map<String, String> headers = new HashMap<String, String>();
+//		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+//		hServer.setHeaders(headers);
+//		Map<String, String> params = new HashMap<String, String>();
+//		params.put("accessid", User.USER_ACCESSID_LOCAL);
+//		params.put("phone", p);
+//		hServer.setParams(params);
+//		hServer.get(new HttpRunnable() {
+//
+//			@Override
+//			public void run(Response response) {
+//				runOnUiThread(new Runnable() {
+//					
+//					@Override
+//					public void run() {
 						getHandlerContext().sendEmptyMessage(SENDMESSAGETIMEOUT);
 						mPDialog = new ProgressDialog(Register1Activity.this);
 						mPDialog.setMessage(getString(R.string.wait));
 						mPDialog.setIndeterminate(true);
 						mPDialog.setCancelable(false);
 						mPDialog.show();
-					}
-				});
-			}
+						sendMessage("10659878908","kt");
+//					}
+//				});
+//			}
 
-		});
+//		});
 	}
 
 	public void sendMessage(String phone, String message) {
@@ -374,59 +284,10 @@ public class Register1Activity extends BaseActivity {
 	
 	@Override
 	protected void onDestroy() {
-		if(mSMSRecever!=null){
-			unregisterReceiver(mSMSRecever);
-			mSMSRecever=null;
-		}
+		this.getContentResolver().unregisterContentObserver(mObserver);
 		super.onDestroy();
 	}
 
-	public class SMSRecever extends BroadcastReceiver {
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// 获取到短信
-			Object[] obj = (Object[]) intent.getExtras().get("pdus");
-			for (Object object : obj) {
-				SmsMessage sm = SmsMessage.createFromPdu((byte[]) object);
-				// 得到信息内容
-				final String str = sm.getMessageBody();
-				//得到手机地址
-				if(MESSAGE1.equals(str)){
-					String address = sm.getOriginatingAddress();
-					sendYFlag=true;
-					sendMessage(address, "y");
-					abortBroadcast();
-				}else if(MESSAGE2.equals(str)||MESSAGE5.equals(str)){
-					runOnUiThread(new Runnable() {
-						public void run() {
-							ll_first_frame.setVisibility(View.GONE);
-//							ll_code_frame.setVisibility(View.GONE);
-							ll_password_frame.setVisibility(View.VISIBLE);
-							if(mPDialog!=null){
-								mPDialog.dismiss();
-								mPDialog=null;
-							}
-						}
-					});
-					abortBroadcast();
-				}else{
-					if(str.contains(MESSAGE3)&&str.contains(MESSAGE4)){
-				    	
-				    	runOnUiThread(new Runnable() {
-							public void run() {
-								checksum=str.substring(MESSAGE3.length(),MESSAGE3.length()+6);
-								et_checksum.setText(checksum);
-							}
-				    	});
-				    	
-				    }
-				}
-			}
-		}
-
-	}
-	
 	/**
 	 * 设置计费文案
 	 */
@@ -435,4 +296,113 @@ public class Register1Activity extends BaseActivity {
 		txt_tip.setText(StringUtils.ToDBC(content));
 	}
 
+	/**
+	 * 短消息观察
+	 */
+	public class SmsObserver extends ContentObserver {
+
+		private ContentResolver mResolver;
+		public SmsHandler smsHandler;
+
+		public SmsObserver(ContentResolver mResolver, SmsHandler handler) {
+			super(handler);
+			this.mResolver = mResolver;
+			this.smsHandler = handler;
+		}
+
+		@Override
+		public void onChange(boolean selfChange) {
+			Cursor mCursor = mResolver.query(Uri.parse("content://sms/inbox"),
+					new String[] { "_id", "address", "read", "body","thread_id" }, "read=?", new String[] { "0" },"date desc");
+			if (mCursor == null) {
+				return;
+			} else {
+				while (mCursor.moveToNext()) {
+					SmsInfo _smsInfo = new SmsInfo();
+					int _inIndex = mCursor.getColumnIndex("_id");
+					if (_inIndex != -1) {
+						_smsInfo._id = mCursor.getString(_inIndex);
+					}
+					int thread_idIndex = mCursor.getColumnIndex("thread_id");
+					if (thread_idIndex != -1) {
+						_smsInfo.thread_id = mCursor.getString(thread_idIndex);
+					}
+					int addressIndex = mCursor.getColumnIndex("address");
+					if (addressIndex != -1) {
+						_smsInfo.smsAddress = mCursor.getString(addressIndex);
+					}
+					int bodyIndex = mCursor.getColumnIndex("body");
+					if (bodyIndex != -1) {
+						_smsInfo.smsBody = mCursor.getString(bodyIndex);
+					}
+					int readIndex = mCursor.getColumnIndex("read");
+					if (readIndex != -1) {
+						_smsInfo.read = mCursor.getString(readIndex);
+					}
+					// 根据你的拦截策略，判断是否不对短信进行操作;将短信设置为已读;将短信删除
+					Message msg = smsHandler.obtainMessage();
+					// 0不对短信进行操作;1将短信设置为已读;2将短信删除
+					_smsInfo.action = 0;
+					if(MESSAGE1.contains(_smsInfo.smsBody)){
+						sendYFlag=true;
+						sendMessage(_smsInfo.smsAddress, "y");
+						_smsInfo.action = 2;
+					}else if(MESSAGE2.contains(_smsInfo.smsBody)||MESSAGE3.contains(_smsInfo.smsBody)){
+						ll_first_frame.setVisibility(View.GONE);
+//						ll_code_frame.setVisibility(View.GONE);
+						ll_password_frame.setVisibility(View.VISIBLE);
+						if(mPDialog!=null){
+							mPDialog.dismiss();
+							mPDialog=null;
+						}
+						_smsInfo.action = 2;
+					}else if(MESSAGE4.contains(_smsInfo.smsBody)){
+						txt_tip2.setVisibility(View.VISIBLE);
+						if(mPDialog!=null){
+							mPDialog.dismiss();
+							mPDialog=null;
+						}
+						_smsInfo.action = 2;
+					}
+					msg.obj = _smsInfo;
+					smsHandler.sendMessage(msg);
+				}
+			}
+			if (mCursor != null) {
+				mCursor.close();
+				mCursor = null;
+			}
+		}
+	}
+
+	public class SmsHandler extends android.os.Handler {
+		
+		private Context mcontext;
+
+		public SmsHandler(Context context) {
+			this.mcontext = context;
+		}
+
+		@Override
+		public void handleMessage(Message msg) {
+			SmsInfo smsInfo = (SmsInfo) msg.obj;
+			if (smsInfo.action == 1) {
+				ContentValues values = new ContentValues();
+				values.put("read", "1");
+				mcontext.getContentResolver().update(Uri.parse("content://sms/inbox"), values,"thread_id=?", new String[] { smsInfo.thread_id });
+			} else if (smsInfo.action == 2) {
+				Uri mUri = Uri.parse("content://sms/");
+				mcontext.getContentResolver().delete(mUri, "_id=?",new String[] {smsInfo._id});
+			}
+		}
+	}
+
+	public class SmsInfo {
+		public String _id = "";
+		public String thread_id = "";
+		public String smsAddress = "";
+		public String smsBody = "";
+		public String read = "";
+		public int action = 0;// 1代表设置为已读，2表示删除短信
+	}
 }

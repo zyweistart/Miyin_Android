@@ -7,9 +7,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import start.core.AppContext;
 import start.core.AppException;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -35,6 +38,8 @@ public class NewsDetailActivity extends BaseActivity{
 	private String shareContent;
 	private String shareImageUrl;
 	
+	private WebView mWebView;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +49,17 @@ public class NewsDetailActivity extends BaseActivity{
 		mHeadMore.setVisibility(View.VISIBLE);
 		mHeadChildTitle=(TextView)findViewById(R.id.head_child_title);
 		mHeadChildTitle.setVisibility(View.VISIBLE);
+		
+		mWebView = (WebView) findViewById(R.id.wvcontent);
+		mWebView.getSettings().setJavaScriptEnabled(true);
+
+		mWebView.setWebViewClient(new WebViewClient() {
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				// 重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
+				view.loadUrl(url);
+				return true;
+			}
+		});
 		
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
@@ -62,13 +78,14 @@ public class NewsDetailActivity extends BaseActivity{
 					try {
 						JSONArray jsonArray=(JSONArray)response.getData("Table");
 						JSONObject jo=jsonArray.getJSONObject(0);
-//						String url=getAppContext().getServerURL()+"/"+id+"/"+categoryid+"/news_ct.html";
 						shareContent="友盟社会化组件（SDK）让移动应用快速整合社交分享功能，http://www.umeng.com/social";
-						shareImageUrl="http://www.umeng.com/images/pic/banner_module_social.png";
+						shareImageUrl=AppContext.getInstance().getServerURL()+jo.getString("images");
 						final String evaluation=jo.getString("hit");
 						runOnUiThread(new Runnable() {
 							public void run() {
 								mHeadChildTitle.setText(evaluation+"评");
+								String url=getAppContext().getServerURL()+"/"+categoryid+"/"+id+"/ios_news_ct.html";
+								mWebView.loadUrl(url);
 							}
 						});
 					} catch (JSONException e) {

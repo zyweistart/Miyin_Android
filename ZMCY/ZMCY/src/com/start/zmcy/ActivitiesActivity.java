@@ -10,7 +10,7 @@ import com.start.core.BaseActivity;
 import com.start.core.Config;
 
 /**
- * 活动
+ * 市场
  */
 public class ActivitiesActivity extends BaseActivity {
 

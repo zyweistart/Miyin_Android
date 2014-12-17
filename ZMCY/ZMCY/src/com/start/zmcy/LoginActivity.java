@@ -97,7 +97,7 @@ public class LoginActivity extends BaseActivity{
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
-			login(account,password,true);
+			login(account,AppServer.MD5(password),true);
 		}else if(v.getId()==R.id.qq_login){
 			SocialService.socialQQLogin(this);
 		}else if(v.getId()==R.id.wx_login){
