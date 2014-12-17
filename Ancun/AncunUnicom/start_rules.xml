@@ -12,10 +12,10 @@
     <target name="-pre-build">
         <!-- 把原配置文件先进行备份然后进行文字替换 -->
         <copy file="${app.file.manifest}" tofile="${app.file.manifest.bak}" overwrite="true"/>
-		<replace file ="${app.file.manifest}" 
+		<!-- <replace file ="${app.file.manifest}" 
 		    token="android:versionCode=&quot;${version.code}&quot;" 
 		    value="android:versionCode=&quot;${var.time}&quot;" 
-		    encoding="UTF-8"/>
+		    encoding="UTF-8"/> -->
 		<replace file ="${app.file.manifest}" 
 		    token="android:value=&quot;${apk.market}&quot;" 
 		    value="android:value=&quot;${apk-market}&quot;" 
@@ -48,9 +48,9 @@
     
 	<!-- 调用该目标方法生成全部 -->
 	<target name="start_release"> 
-	    <!-- 如果生成失败，调用下面语句清理项目，或者执行菜单Project->Clean...
+	    <!-- 如果生成失败，调用下面语句清理项目，或者执行菜单Project->Clean... -->
 	    <antcall target="clean" />
-	    <echo>项目清理完成，开始生成</echo> -->
+	    <echo>项目清理完成，开始生成</echo>
 	   <foreach target="release" list="${app.channel}" param="apk-market" delimiter=";"/> 
 	</target>
     
