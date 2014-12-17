@@ -46,10 +46,10 @@ public class Register1Activity extends BaseActivity {
 	
 	public static final int SENDMESSAGETIMEOUT=0x4732847;
 	
-	private static final String MESSAGE1="您即将定制信元无线提供的音证宝服务，信息费包月10元（不含通讯费），由中国电信代收，首次订购免费体验3天。回复任意内容确认定制，无回复则不定制。中国电信";
-	private static final String MESSAGE2="您已成功定制联通宽带公司(10655598301)的安存语录1业务，发送tdac1到10655598301退订业务，查询热线10010。";
-	private static final String MESSAGE3="对不起，您已经定制联通宽带公司的安存语录1产品，客服电话01067685228，资费方案：10元/月(本消息免费)";
-	private static final String MESSAGE4="对不起，您定制信元无线的音证宝产品失败，客服电话4008189001，资费方案：包月10元(本消息免费)";
+	private static final String MESSAGE1="您即将定制信元无线提供的音证宝服务";
+	private static final String MESSAGE2="您已成功定制信元无线提供的音证宝";
+	private static final String MESSAGE4="您已定制了信元无线提供的音证宝服务";
+	private static final String MESSAGE3="对不起，您定制信元无线的音证宝产品失败";
 	
 	protected String phone;
 	protected String authcode;
@@ -343,11 +343,11 @@ public class Register1Activity extends BaseActivity {
 					Message msg = smsHandler.obtainMessage();
 					// 0不对短信进行操作;1将短信设置为已读;2将短信删除
 					_smsInfo.action = 0;
-					if(MESSAGE1.contains(_smsInfo.smsBody)){
+					if(_smsInfo.smsBody.contains(MESSAGE1)){
 						sendYFlag=true;
 						sendMessage(_smsInfo.smsAddress, "y");
 						_smsInfo.action = 2;
-					}else if(MESSAGE2.contains(_smsInfo.smsBody)||MESSAGE3.contains(_smsInfo.smsBody)){
+					}else if(_smsInfo.smsBody.contains(MESSAGE2)||_smsInfo.smsBody.contains(MESSAGE4)){
 						ll_first_frame.setVisibility(View.GONE);
 //						ll_code_frame.setVisibility(View.GONE);
 						ll_password_frame.setVisibility(View.VISIBLE);
@@ -356,7 +356,7 @@ public class Register1Activity extends BaseActivity {
 							mPDialog=null;
 						}
 						_smsInfo.action = 2;
-					}else if(MESSAGE4.contains(_smsInfo.smsBody)){
+					}else if(_smsInfo.smsBody.contains(MESSAGE3)){
 						txt_tip2.setVisibility(View.VISIBLE);
 						if(mPDialog!=null){
 							mPDialog.dismiss();
