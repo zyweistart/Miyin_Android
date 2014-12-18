@@ -16,6 +16,11 @@
         <start.widget.CustomEditText
             android:id="@+id/et_content"
             style="@style/edittext1"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:singleLine="false"
+            android:maxLines="6"
+            android:minLines="6"
             android:hint="@string/questioncontenthint" />
 
         <View
@@ -29,7 +34,7 @@
             android:background="@drawable/selector_button_1"
             android:onClick="onClick"
             android:padding="10.0dip"
-            android:text="@string/submit"
+            android:text="@string/consultation"
             android:textColor="@color/white"
             android:textSize="16.0dip" />
     </LinearLayout>

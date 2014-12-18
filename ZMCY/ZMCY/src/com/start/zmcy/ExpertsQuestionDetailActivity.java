@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.core.Constant;
-import com.start.service.AppServer;
 import com.start.service.HttpRunnable;
 import com.start.service.HttpServer;
 import com.start.service.Response;
@@ -58,7 +57,7 @@ public class ExpertsQuestionDetailActivity extends BaseActivity{
 						runOnUiThread(new Runnable() {
 							public void run() {
 								question_title.setText(title);
-								question_description.setText(AppServer.html2Text(description));
+								question_description.setText(description);
 							}
 						});
 					} catch (JSONException e) {

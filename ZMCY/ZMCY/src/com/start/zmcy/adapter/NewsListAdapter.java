@@ -25,7 +25,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
-import com.start.service.AppServer;
 import com.start.service.BitmapManager;
 import com.start.zmcy.R;
 import com.start.zmcy.content.NewsContentFragment;
@@ -176,8 +175,7 @@ public class NewsListAdapter extends AppListAdapter{
 				mNewsBitmapManager.loadBitmap(url, holder.news_pic);
 			}
 			holder.news_title.setText(String.valueOf(data.get(TITLE)));
-			String description=AppServer.html2Text(String.valueOf(data.get(DESCRIPTION)));
-			holder.news_description.setText(description);
+			holder.news_description.setText(String.valueOf(data.get(DESCRIPTION)));
 		}
 		return convertView;
 	}

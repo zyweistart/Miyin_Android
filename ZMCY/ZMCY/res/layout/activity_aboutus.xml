@@ -2,9 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_activity"  >
-    
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
     <include layout="@layout/module_header_title" />
-     
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_launcher"
+            android:layout_centerHorizontal="true"
+            android:text="中国照明产业"/>
+        
+    </RelativeLayout>
+
 </LinearLayout>

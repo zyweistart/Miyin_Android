@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.start.service.AppListAdapter;
-import com.start.service.AppServer;
 import com.start.zmcy.R;
 
 public class ExpertsQuestionAdapter extends AppListAdapter{
@@ -38,7 +37,7 @@ public class ExpertsQuestionAdapter extends AppListAdapter{
 		holder.question_id=String.valueOf(data.get(ID));
 		holder.question_categoryid=String.valueOf(data.get(CATEGORYID));
 		holder.question_title.setText(String.valueOf(data.get(TITLE)));
-		holder.question_description.setText(AppServer.html2Text(String.valueOf(data.get(DESCRIPTION))));
+		holder.question_description.setText(String.valueOf(data.get(DESCRIPTION)));
 		return convertView;
 	}
 	

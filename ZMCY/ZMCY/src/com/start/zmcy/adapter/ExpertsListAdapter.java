@@ -27,7 +27,6 @@ import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.service.AppListAdapter;
-import com.start.service.AppServer;
 import com.start.service.BitmapManager;
 import com.start.zmcy.ConsultationActivity;
 import com.start.zmcy.R;
@@ -134,7 +133,7 @@ public class ExpertsListAdapter extends AppListAdapter{
 			}
 			holder.experts_name.setText(String.valueOf(data.get(NAME)));
 			holder.experts_pro.setText(String.valueOf(data.get(JOBTITLE)));
-			holder.experts_description.setText(AppServer.html2Text(String.valueOf(data.get(DESCRIPTION))));
+			holder.experts_description.setText(String.valueOf(data.get(DESCRIPTION)));
 			holder.experts_consultation.setTag(holder);
 			holder.experts_consultation.setOnClickListener(new OnClickListener() {
 				
