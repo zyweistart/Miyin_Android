@@ -59,6 +59,7 @@ public class NewsSearchActivity extends BaseActivity{
 		Intent intent=new Intent(this,NewsListActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
+		finish();
 	}
 	
 }

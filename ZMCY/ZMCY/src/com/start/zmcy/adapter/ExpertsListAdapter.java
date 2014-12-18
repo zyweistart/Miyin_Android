@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.start.core.BaseActivity;
 import com.start.service.AppListAdapter;
 import com.start.service.AppServer;
 import com.start.service.BitmapManager;
@@ -140,12 +141,16 @@ public class ExpertsListAdapter extends AppListAdapter{
 				@Override
 				public void onClick(View v) {
 					BannerHolder hv=(BannerHolder)v.getTag();
+					BaseActivity bActivity=(BaseActivity)mActivity;
 					Bundle bundle=new Bundle();
 					bundle.putString(ConsultationActivity.CONSOLTATIONID, hv.id);
 					Intent intent=new Intent(mActivity,ConsultationActivity.class);
 					intent.putExtras(bundle);
-					mActivity.startActivity(intent);
-					
+					if(!bActivity.getAppContext().currentUser().isLogin()){
+						bActivity.goLogin(intent,bActivity.getString(R.string.nologin));
+						return;
+					}
+					bActivity.startActivity(intent);
 				}
 			});
 		}

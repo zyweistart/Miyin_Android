@@ -125,11 +125,17 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			}
 		} else if (v.getId() == R.id.head_login) {
 			// 登录
-			if(getAppContext().currentUser().isLogin()){
-				startActivity(new Intent(this, MemberActivity.class));
-			}else{
-				goLoginResult(REQUEST_LOGIN_CODE,getString(R.string.nologin));
+			Intent intent=new Intent(this,MemberActivity.class);
+			if(!getAppContext().currentUser().isLogin()){
+				goLogin(intent,getString(R.string.nologin));
+				return;
 			}
+			startActivity(intent);
+//			if(getAppContext().currentUser().isLogin()){
+//				startActivity(new Intent(this, MemberActivity.class));
+//			}else{
+//				goLoginResult(REQUEST_LOGIN_CODE,getString(R.string.nologin));
+//			}
 		} else if (v.getId() == R.id.txtResources) {
 			// 资源
 			startActivity(new Intent(this, ResourceActivity.class));

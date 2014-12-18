@@ -87,6 +87,9 @@ public class LoginActivity extends BaseActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_login){
+			if(getInputMethodManager().isActive()){
+				getInputMethodManager().hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+			}
 			String account=String.valueOf(et_login_account.getText());
 			if(StringUtils.isEmpty(account)){
 				getHandlerContext().makeTextLong(getString(R.string.accounthint));
@@ -267,9 +270,6 @@ public class LoginActivity extends BaseActivity{
 	 */
 	private void loginSuccess(String account,String password,Boolean autoLogin){
 		getAppContext().currentUser().addCacheUser(account, password, autoLogin);
-		if(getInputMethodManager().isActive()){
-			getInputMethodManager().hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-		}
 		if(getAppContext().getCacheActivity().isGotoActivity()){
 			getAppContext().getCacheActivity().startActivity(this);
 		}else{

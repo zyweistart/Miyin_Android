@@ -96,7 +96,8 @@
             <Button
                 android:id="@+id/searchkeysbutton5"
                 style="@style/searchkeysbutton"
-                android:text="@string/search_text_5" />
+                android:text="@string/search_text_5"
+                android:visibility="gone"  />
         </LinearLayout>
 
         <LinearLayout
@@ -127,7 +128,8 @@
             <Button
                 android:id="@+id/searchkeysbutton10"
                 style="@style/searchkeysbutton"
-                android:text="@string/search_text_10" />
+                android:text="@string/search_text_10"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 

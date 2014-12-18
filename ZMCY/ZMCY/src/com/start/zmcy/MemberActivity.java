@@ -46,8 +46,8 @@ public class MemberActivity extends BaseActivity{
 	public void onClick(View v) {
 		if(v.getId()==R.id.txt_account_info){
 			if(getAppContext().currentUser().isLogin()){
-				getAppContext().currentUser().clearCacheUser();
 				loginStatusText();
+				getAppContext().currentUser().clearCacheUser();
 			}else{
 				getAppContext().getCacheActivity().setIntent(new Intent(this,MemberActivity.class));
 				startActivity(new Intent(this,LoginActivity.class));
