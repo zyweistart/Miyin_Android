@@ -11,6 +11,7 @@
     <string name="noaccount">没有账号?</string>
     <string name="nologin">您还没有登录</string>
     <string name="accounthint">请输入账号</string>
+    <string name="questioncontenthint">请输入咨询内容</string>
     <string name="passwordhint">请输入密码</string>
     <string name="passworddiffhint">两次密码不一致</string>
     <string name="news">资讯</string>

@@ -30,8 +30,8 @@ public class ExpertsDetailActivity extends BaseActivity{
 		
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
-			String id=bundle.getString(EXPERTSID);
-			String categoryid=bundle.getString(CATEGORYID);
+//			String id=bundle.getString(EXPERTSID);
+//			String categoryid=bundle.getString(CATEGORYID);
 			
 //			HttpServer hServer = new HttpServer(Constant.URL.GetInfo,getHandlerContext());
 //			Map<String, String> params = new HashMap<String, String>();

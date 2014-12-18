@@ -40,30 +40,54 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 		this.mBaseListAdapter=listAdapter;
 		this.mBaseListAdapter.setItemDatas(getItemDatas());
 		this.mCurrentListView.setAdapter(this.mBaseListAdapter);
+		this.mHandlerContext=new HandlerContext(this.mContext);
+		this.mHandlerContext.setListener(this);
 	}
 	
 	/**
 	 * 初始化加载
 	 */
 	public void initLoad(){
-		getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+//		getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try{
+					if(!TextUtils.isEmpty(getCacheTag())){
+						String responseString=AppContext.getSharedPreferences().getString(getCacheTag(),AppConstant.EMPTYSTR);
+						if(!AppConstant.EMPTYSTR.equals(responseString)){
+							Response response=new Response(null);
+							response.setResponseString(responseString);
+							response.resolveJson();
+							resolve(response);
+						}
+					}else{
+						getItemDatas().clear();
+					}
+					getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+				}catch(AppException e){
+					
+				}
+			}
+		}).start();
 	}
 	
 	@Override
 	public void onProcessMessage(Message msg) throws AppException {
 		switch (msg.what) {
 			case Handler.LOAD_INIT_DATA:
-				if(!TextUtils.isEmpty(getCacheTag())){
-					String responseString=AppContext.getSharedPreferences().getString(getCacheTag(),AppConstant.EMPTYSTR);
-					if(!AppConstant.EMPTYSTR.equals(responseString)){
-						Response response=new Response(null);
-						response.setResponseString(responseString);
-						response.resolveJson();
-						resolve(response);
-					}
-				}else{
-					getItemDatas().clear();
-				}
+//				if(!TextUtils.isEmpty(getCacheTag())){
+//					String responseString=AppContext.getSharedPreferences().getString(getCacheTag(),AppConstant.EMPTYSTR);
+//					if(!AppConstant.EMPTYSTR.equals(responseString)){
+//						Response response=new Response(null);
+//						response.setResponseString(responseString);
+//						response.resolveJson();
+//						resolve(response);
+//					}
+//				}else{
+//					getItemDatas().clear();
+//				}
 				//如果缓存数据为空则加载网络数据
 				if(getItemDatas().isEmpty()){
 					setCurrentPage(0);
@@ -191,10 +215,6 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	}
 
 	public HandlerContext getHandlerContext() {
-		if(mHandlerContext==null){
-			mHandlerContext=new HandlerContext(this.mContext);
-			mHandlerContext.setListener(this);
-		}
 		return mHandlerContext;
 	}
 
