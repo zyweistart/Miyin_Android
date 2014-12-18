@@ -6,7 +6,6 @@ import java.util.Map;
 
 import start.core.AppConstant;
 import start.core.AppConstant.Handler;
-import start.core.AppConstant.ResultCode;
 import start.core.AppContext;
 import start.core.AppException;
 import start.core.HandlerContext;
@@ -127,7 +126,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 				getCurrentListView().stopLoadMore();
 				getCurrentListView().setRefreshTime(TimeUtils.getSysTime());
 				break;
-			case ResultCode.NODATA:
+			case -10:
 				if(getCurrentPage()==0){
 					if(!TextUtils.isEmpty(getCacheTag())){
 						AppContext.getSharedPreferences().putString(getCacheTag(), AppConstant.EMPTYSTR);

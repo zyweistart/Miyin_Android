@@ -71,6 +71,9 @@
     <string name="search_text_9">荧光粉</string>
     <string name="search_text_10">照明灯管</string>
     
+    <string name="aboutuscontent1">       浙江照明电器协会经原浙江省体办（1989）13号文和浙江省民政厅（1990）13号文批准成立，是全省照明电器行业的企业、事业单位等自愿组成的社团体，具有社会团体法人资格。现拥有400余家团体会员单位。按专业分有：电光源、半导体照明、光伏照明、灯具、电器附件、灯头灯座、专用材料和照明工程等。</string>
+    <string name="aboutuscontent2">       协会的宗旨的协调同行业利益、促进行业发展，维护行业的整体利益及会员单位的合法权益，沟通行业之间、企业与政府之间的关系，为政府提供咨询和建议。</string>
+    
 	<string-array name="fontsizetype">
         <item>标准</item>
         <item>中</item>

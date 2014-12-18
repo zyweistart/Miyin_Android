@@ -63,7 +63,7 @@ public final class Constant {
 		/**
 		 * 登录信息过期，请重新登录
 		 */
-		public static final int NOLOGIN=414;
+		public static final int NOLOGIN=-15;
 		/**
 		 * 用户名或密码有误
 		 */

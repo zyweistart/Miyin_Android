@@ -102,13 +102,13 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, -1.0f,
 				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
 				0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-		mShowAction.setDuration(500);
+		mShowAction.setDuration(200);
 
 		//隐藏动画从右向左滑
 		mHiddenAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF,0.0f, 
 				Animation.RELATIVE_TO_SELF, -1.0f,Animation.RELATIVE_TO_SELF, 
 				0.0f, Animation.RELATIVE_TO_SELF,0.0f);
-		mHiddenAction.setDuration(500);
+		mHiddenAction.setDuration(200);
 		
 		PushManager.getInstance().initialize(this.getApplicationContext());
 	}

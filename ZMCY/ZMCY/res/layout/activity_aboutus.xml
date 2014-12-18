@@ -9,15 +9,56 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        
+        android:layout_height="match_parent"
+        android:padding="10.0dip" >
+
         <TextView
+            android:id="@+id/top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_launcher"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="中国照明产业"/>
-        
+            android:drawableTop="@drawable/ic_launcher"
+            android:text="中国照明产业2.0版本"
+            android:textColor="#777777"
+            android:textSize="18.0dip"
+            android:layout_marginTop="20.0dip"
+            android:layout_marginBottom="20.0dip" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top"
+            android:padding="5.0dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aboutuscontent1"
+                android:textColor="#777777"
+                android:textSize="15.0dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aboutuscontent2"
+                android:textColor="#777777"
+                android:textSize="15.0dip" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/selector_button_1"
+            android:padding="10.0dip"
+            android:text="投稿地址：2577891457@qq.com"
+            android:textColor="@color/white"
+            android:textSize="16.0dip"
+            android:layout_marginTop="20.0dip"
+            android:layout_marginBottom="20.0dip"  />
     </RelativeLayout>
 
 </LinearLayout>

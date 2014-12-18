@@ -78,9 +78,9 @@ public class NewsDetailActivity extends BaseActivity{
 					try {
 						JSONArray jsonArray=(JSONArray)response.getData("Table");
 						JSONObject jo=jsonArray.getJSONObject(0);
-						shareContent="友盟社会化组件（SDK）让移动应用快速整合社交分享功能，http://www.umeng.com/social";
+						shareContent=jo.getString("ShareContent");
 						shareImageUrl=AppContext.getInstance().getServerURL()+jo.getString("images");
-						final String evaluation=jo.getString("hit");
+						final String evaluation=jo.getString("PLNum");
 						runOnUiThread(new Runnable() {
 							public void run() {
 								mHeadChildTitle.setText(evaluation+"评");
