@@ -49,11 +49,11 @@ public class ConsultationActivity extends BaseActivity{
 				getHandlerContext().makeTextLong(getString(R.string.questioncontenthint));
 				return;
 			}
-			HttpServer hServer = new HttpServer(Constant.URL.UserLogin,getHandlerContext());
+			HttpServer hServer = new HttpServer(Constant.URL.AskExperts,getHandlerContext());
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("access_token",User.ACCESSKEY);
 			params.put("expertId",expertId);
-			params.put("content", content);
+			params.put("question", content);
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
 

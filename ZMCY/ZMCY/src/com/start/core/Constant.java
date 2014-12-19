@@ -23,6 +23,7 @@ public final class Constant {
 		public static final String UserSignIn="UserSignIn";
 		public static final String GetPushState="GetPushState";
 		public static final String ChangePushState="ChangePushState";
+		public static final String AskExperts="AskExperts";
 		//登录
 		//注册
 		//第三方应用注册登录(微信，QQ)
