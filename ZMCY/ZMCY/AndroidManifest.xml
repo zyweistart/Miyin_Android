@@ -74,6 +74,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".AdvertisingActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".GuideActivity"
             android:screenOrientation="portrait" />
         <activity

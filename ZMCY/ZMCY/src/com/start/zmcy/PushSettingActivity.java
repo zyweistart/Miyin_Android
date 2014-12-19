@@ -79,7 +79,6 @@ public class PushSettingActivity extends BaseActivity{
 
 				@Override
 				public void run(Response response) throws AppException {
-					getHandlerContext().makeTextShort("设置成功");
 				}
 				
 			});
