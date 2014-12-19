@@ -34,18 +34,21 @@ public class GetuiPushReceiver extends BroadcastReceiver {
 					 * {
 						    "title": "这是标题",
 						    "description": "描述内容",
-						    "newsid": "新闻的ID"
+						    "newsid": "新闻的ID",
+						    "classid": "新闻的类别ID"
 						}
 					 */
 					JSONObject jo = new JSONObject(content);
 					
 					String title=jo.getString("title");
+					String newsId=jo.getString("newsid");
+					String categoryId=jo.getString("classid");
 					String description=jo.getString("description");
-					String newsid=jo.getString("newsid");
 					
 					// 单击通知后会跳转到NewsDetailActivity类  
 					Bundle nBundle=new Bundle();
-					nBundle.putString(NewsDetailActivity.NEWSID, newsid);
+					nBundle.putString(NewsDetailActivity.NEWSID, newsId);
+					nBundle.putString(NewsDetailActivity.CATEGORYID, categoryId);
 					Intent nIntent=new Intent(context,NewsDetailActivity.class);
 					nIntent.putExtras(nBundle);
 					
