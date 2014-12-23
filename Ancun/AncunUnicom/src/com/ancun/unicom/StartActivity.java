@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant.Preferences;
+import com.tencent.stat.StatConfig;
+import com.tencent.stat.StatService;
 
 
 /**
@@ -67,6 +69,13 @@ public class StartActivity extends BaseActivity{
 			}
 			
 		});
+		
+		/*****************除了腾讯包 其它包这段代码要去掉    *********************/
+		// 打开DEBUG开关，可查看MTA上报日志或错误
+		StatConfig.setDebugEnable(false);
+		// 调用统计接口，触发MTA并上报数据
+		StatService.trackCustomEvent(this, "onCreate", "");
+		/************************************************************/
  	}
 
 	/**
