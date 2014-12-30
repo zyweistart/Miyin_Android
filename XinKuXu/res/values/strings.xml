@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">中国照明产业</string>
+    <string name="login">登录</string>
+    <string name="back">返回</string>
+    <string name="registernewuser">注册新用户</string>
+    <string name="gotologin">立即登录</string>
+    <string name="exitlogin">退出登录</string>
+    <string name="gotoregister">立即注册</string>
+    <string name="noaccount">没有账号?</string>
+    <string name="nologin">您还没有登录</string>
+    <string name="accounthint">请输入账号</string>
+    <string name="questioncontenthint">请输入咨询内容</string>
+    <string name="passwordhint">请输入密码</string>
+    <string name="passworddiffhint">两次密码不一致</string>
+    <string name="news">资讯</string>
+    <string name="newsdetail">照明产业新闻</string>
+    <string name="resources">资源</string>
+    <string name="activities">市场</string>
+    <string name="experts">智库</string>
+    <string name="app">应用</string>
+    <string name="member">会员</string>
+    <string name="consultation">咨询</string>
+    
+    <string name="product_normal">传统照明</string>
+    <string name="product_led">LED照明</string>
+    <string name="activities_mall">商城</string>
+    <string name="activities_exhibition">展会</string>
+    <string name="experts_list">专家列表</string>
+    <string name="experts_answer">专家解答</string>
+    <string name="experts_cover">能人自荐</string>
+    
+    <string name="pushtip">亲，有新消息到达,请注意查收</string>
+    <string name="signin">签到</string>
+    <string name="collect">收藏</string>
+    <string name="follow">关注</string>
+    <string name="offline">离线阅读</string>
+    <string name="daymode">白天模式</string>
+    <string name="nightmode">夜间模式</string>
+    <string name="textmode">文字模式</string>
+    <string name="search">新闻搜索</string>
+    <string name="setting">设置</string>
+    
+    <string name="bindshared">分享绑定</string>
+    <string name="sizesetting">字号设置</string>
+    <string name="pushsetting">推送设置</string>
+    <string name="cleancache">清理缓存</string>
+    <string name="version">版本检测</string>
+    <string name="aboutus">关于我们</string>
+    <string name="channel_manager">频道管理</string>
+    
+    <string name="cleanfile_sure">是否删除本地所有缓存文件？</string>
+    <string name="cleanfile_success">成功清理本地所有文件</string>
+    <string name="cleanfile_fail">清理本地文件失败</string>
+    <string name="searchkeyshint">请输入关键词</string>
+    <string name="hotsearch">热门搜索</string>
+    <string name="subscribe_my_category">我的频道</string>
+    <string name="subscribe_more_category">更多频道</string>
+    <string name="subscribe_manager_category_info">单击增删频道</string>
+    <string name="subscribe_manager_category_info_2">单击增删频道，长按拖拽排序</string>
+    <!-- 搜索文本 -->
+    <string name="search_text_1">LED照明</string>
+    <string name="search_text_2">传统照明</string>
+    <string name="search_text_3">室内照明</string>
+    <string name="search_text_4">户外照明</string>
+    <string name="search_text_5">照明灯具</string>
+    <string name="search_text_6">特种光源</string>
+    <string name="search_text_7">灯具配件</string>
+    <string name="search_text_8">灯具配件</string>
+    <string name="search_text_9">荧光粉</string>
+    <string name="search_text_10">照明灯管</string>
+    
+    <string name="aboutuscontent1">       浙江照明电器协会经原浙江省体办（1989）13号文和浙江省民政厅（1990）13号文批准成立，是全省照明电器行业的企业、事业单位等自愿组成的社团体，具有社会团体法人资格。现拥有400余家团体会员单位。按专业分有：电光源、半导体照明、光伏照明、灯具、电器附件、灯头灯座、专用材料和照明工程等。</string>
+    <string name="aboutuscontent2">       协会的宗旨的协调同行业利益、促进行业发展，维护行业的整体利益及会员单位的合法权益，沟通行业之间、企业与政府之间的关系，为政府提供咨询和建议。</string>
+    
+	<string-array name="fontsizetype">
+        <item>标准</item>
+        <item>中</item>
+        <item>大</item>
+        <item>特大</item>
+        <item>小</item>
+    </string-array>
+    
+</resources>
