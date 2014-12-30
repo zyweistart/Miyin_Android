@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.start.xinkuxu"
+    package="com.start.xinkuxue"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 允许应用程序对扩展存储设备（如SD卡）进行写入操作 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     
     <application
         android:allowBackup="true"

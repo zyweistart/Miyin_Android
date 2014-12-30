@@ -1,64 +1,52 @@
-package com.start.core;
+package com.start.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.start.service.bean.WordItem;
+import com.start.xinkuxue.BaseContext;
 
-public  class DBManageDao {
-
-	private Context mContext;
-	private SQLiteDBHelper mDBHelper;
+public class WordService {
+	
+	public final String DATABASE_PATH = "englishdb";
+	public static final String AUDIOPATH="/audio_word/";
+	public static final String EXAMPLEIMAGEPATH="/image_example/";
+	public static final String MEMORYIMAGEPATH="/image_memory/";
+	
+	private String mDirName;
 	private SQLiteDatabase mSQLiteDatabase;
-	
-	public DBManageDao(Context context) {
-		this.mContext=context;
-		this.mDBHelper = new SQLiteDBHelper(context);
-		this.mSQLiteDatabase = this.mDBHelper.getWritableDatabase();
-	}
-	
-	public Context getContext(){
-		return mContext;
-	}
-	
-	public SQLiteDBHelper getDBHelper() {
-		return mDBHelper;
-	}
 
-	public SQLiteDatabase getSQLiteDatabase() {
-		return mSQLiteDatabase;
+	public WordService(String dirName) {
+		this.mDirName=dirName;
+		String dbFileName = BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+"/word.db";
+		File dbFile=new File(dbFileName);
+		if(dbFile.exists()){
+			mSQLiteDatabase = SQLiteDatabase.openOrCreateDatabase(dbFileName, null);
+		}
 	}
 	
-	public void deleteAllChannelItem() {
-		getSQLiteDatabase().delete(WordItem.TABLENAME, null, null);
+	//获取单词讲解音频路径
+	public String getAudioPath(String name){
+		return BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+AUDIOPATH+name;
 	}
 	
-	public void saveWordItem(WordItem ci){
-		ContentValues values = new ContentValues();
-		values.put("id", ci.getId());
-		values.put("englishName", ci.getEnglishName());
-		values.put("phoneticSymbols", ci.getPhoneticSymbols());
-		values.put("chineseSignificance", ci.getChineseSignificance());
-		values.put("exampleEnglish", ci.getExampleEnglish());
-		values.put("exampleChinese", ci.getExampleChinese());
-		values.put("fillProblem", ci.getFillProblem());
-		values.put("fillAnswer", ci.getFillAnswer());
-		values.put("memoryMethodA", ci.getMemoryMethodA());
-		values.put("memoryMethodB", ci.getMemoryMethodB());
-		values.put("exampleImage", ci.getExampleImage());
-		values.put("memoryImage", ci.getMemoryImage());
-		values.put("englishAudio", ci.getEnglishAudio());
-		getSQLiteDatabase().insert(WordItem.TABLENAME, null, values);
+	//获取例句（图片）路径
+	public String getExampleImagePath(String name){
+		return BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+EXAMPLEIMAGEPATH+name;
 	}
 	
-	public List<WordItem> findAllWordItem() {
+	//获取图形记忆法（图片）路径
+	public String getMemoryImagePath(String name){
+		return BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+MEMORYIMAGEPATH+name;
+	}
+	
+	public List<WordItem> findAll() {
 		List<WordItem> channelItems = new ArrayList<WordItem>();
-		Cursor cursor = getSQLiteDatabase().query(WordItem.TABLENAME,
+		Cursor cursor = mSQLiteDatabase.query(WordItem.TABLENAME,
 				new String[] { "id", "englishName", "phoneticSymbols",
 				"chineseSignificance", "exampleEnglish", "exampleChinese",
 				"fillProblem", "fillAnswer", "memoryMethodA",
@@ -88,5 +76,5 @@ public  class DBManageDao {
 		}
 		return channelItems;
 	}
-
+	
 }
