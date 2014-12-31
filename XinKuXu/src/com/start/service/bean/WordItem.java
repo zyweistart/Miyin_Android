@@ -21,7 +21,7 @@ public class WordItem implements Serializable {
 	 */
 	public String englishName;
 	/**
-	 * 音标
+	 * 音标（可能为空）
 	 */
 	public String phoneticSymbols;
 	/**
@@ -49,7 +49,7 @@ public class WordItem implements Serializable {
 	 */
 	public String memoryMethodA;
 	/**
-	 * 记忆方法2
+	 * 记忆方法2（可能为空）
 	 */
 	public String memoryMethodB;
 	/**
@@ -57,7 +57,7 @@ public class WordItem implements Serializable {
 	 */
 	public String exampleImage;
 	/**
-	 * 图形记忆法（图片）
+	 * 图形记忆法（图片）（可能为空）
 	 */
 	public String memoryImage;
 	/**
