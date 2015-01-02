@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_listenlooklearnwords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:background="@drawable/selector_button_1"
+        android:onClick="onClick"
+        android:padding="10.0dip"
+        android:text="@string/listenlooklearnwords"
+        android:textColor="@color/selector_button_textcolor_1"
+        android:textSize="16.0dip" />
+
+    <Button
+        android:id="@+id/btn_words123"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:background="@drawable/selector_button_2"
+        android:onClick="onClick"
+        android:padding="10.0dip"
+        android:text="@string/words123"
+        android:textColor="@color/selector_button_textcolor_2"
+        android:textSize="16.0dip" />
+    
+    <Button
+        android:id="@+id/btn_testeveryday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:background="@drawable/selector_button_2"
+        android:onClick="onClick"
+        android:padding="10.0dip"
+        android:text="@string/testeveryday"
+        android:textColor="@color/selector_button_textcolor_2"
+        android:textSize="16.0dip" />
+
+</LinearLayout>

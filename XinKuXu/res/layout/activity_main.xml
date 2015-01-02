@@ -6,9 +6,24 @@
     android:background="@color/bg_activity"
     android:orientation="vertical" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" 测试" />
-
+    	<TextView 
+    	    android:id="@+id/learnwords"
+    	    style="@style/main_function_selector_bg"
+    	    android:text="@string/learnwords"
+    	    android:background="@drawable/selector_button_1"/>
+	<TextView 
+    	    android:id="@+id/testvocabulary"
+    	    style="@style/main_function_selector_bg"
+    	    android:text="@string/testvocabulary"
+    	    android:background="@drawable/selector_button_1"/>
+	<TextView 
+    	    android:id="@+id/newwords"
+    	    style="@style/main_function_selector_bg"
+    	    android:text="@string/newwords"
+    	    android:background="@drawable/selector_button_1"/>
+	<TextView 
+    	    android:id="@+id/specialtraining"
+    	    style="@style/main_function_selector_bg"
+    	    android:text="@string/specialtraining"
+    	    android:background="@drawable/selector_button_1"/>
 </LinearLayout>

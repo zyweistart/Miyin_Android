@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_activity"
+    android:orientation="vertical"
+    android:padding="40.0dip" >
+
+    <RelativeLayout
+        android:id="@+id/frame_a"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/iv_word"
+            android:layout_width="250.0dip"
+            android:layout_height="250.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/default_words" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/frame_a_selector_answer_a"
+                style="@style/test_words_page_selector"
+                android:text="jfkd晨跑晨跑电压力锅夼恩啊电压力锅历电压力锅晨加" />
+
+            <TextView
+                android:id="@+id/frame_a_selector_answer_b"
+                style="@style/test_words_page_selector"
+                android:text="frame_acc" />
+
+            <TextView
+                android:id="@+id/frame_a_selector_answer_c"
+                style="@style/test_words_page_selector"
+                android:text="frame_afdsafsdf" />
+
+            <TextView
+                android:id="@+id/frame_a_selector_answer_d"
+                style="@style/test_words_page_selector"
+                android:text="frame_a" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/frame_b"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textSize="20.0dip"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="frame_acc" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/frame_b_selector_answer_a"
+                style="@style/test_words_page_selector"
+                android:text="jfkd晨跑晨跑电压力锅夼恩啊电压力锅历电压力锅晨加" />
+
+            <TextView
+                android:id="@+id/frame_b_selector_answer_b"
+                style="@style/test_words_page_selector"
+                android:text="frame_acc" />
+
+            <TextView
+                android:id="@+id/frame_b_selector_answer_c"
+                style="@style/test_words_page_selector"
+                android:text="frame_afdsafsdf" />
+
+            <TextView
+                android:id="@+id/frame_b_selector_answer_d"
+                style="@style/test_words_page_selector"
+                android:text="frame_a" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/frame_c"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/frame_a_selector_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:text="frame_c" />
+    </RelativeLayout>
+
+</LinearLayout>

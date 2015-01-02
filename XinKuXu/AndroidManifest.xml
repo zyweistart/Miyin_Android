@@ -25,16 +25,36 @@
         
         <activity
             android:name=".StartActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".LearnWordsListenLookActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".LearnWordsSwitchActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".LearnWordsSwitchTestActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".TestWordsPageActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".TestWordsPageDoneActivity"
+            android:screenOrientation="landscape"/>
         
     </application>
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/frame_test_start1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"  >
+
+        <Button
+            android:id="@+id/btn_test_start1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5.0dip"
+            android:background="@drawable/selector_button_1"
+            android:onClick="onClick"
+            android:padding="10.0dip"
+            android:text="@string/teststart"
+            android:textColor="@color/selector_button_textcolor_1"
+            android:textSize="16.0dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/frame_test_start2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <Button
+            android:id="@+id/btn_test_start2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5.0dip"
+            android:background="@drawable/selector_button_2"
+            android:onClick="onClick"
+            android:padding="10.0dip"
+            android:text="@string/teststart"
+            android:textColor="@color/selector_button_textcolor_2"
+            android:textSize="16.0dip" />
+    </LinearLayout>
+
+</LinearLayout>

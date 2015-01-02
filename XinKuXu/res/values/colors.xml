@@ -8,4 +8,11 @@
 	<color name="bg_header">#005dde</color>
    	<color name="bg_activity">#f3f3f3</color>
    	
+   	<color name="selector_button_textcolor_1">#676767</color>
+   	<color name="selector_button_n_1">#dddddd</color>
+   	<color name="selector_button_p_1">#a0a0a0</color>
+   	<color name="selector_button_textcolor_2">#ffffff</color>
+   	<color name="selector_button_n_2">#ea1c33</color>
+   	<color name="selector_button_p_2">#a0a0a0</color>
+   	
 </resources>
