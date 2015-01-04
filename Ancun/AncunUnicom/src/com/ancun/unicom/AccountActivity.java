@@ -75,7 +75,6 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		hServer.setHeaders(headers);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid",User.ACCESSID);
-		params.put("ownerno",getAppContext().currentUser().getPhone());
 		params.put("ordersort","desc");
 		params.put("currentpage",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
 		params.put("pagesize", String.valueOf(AppConstant.PAGESIZE));
@@ -110,7 +109,6 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("accessid", User.ACCESSID);
-		params.put("userTel", getAppContext().currentUser().getPhone());
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 			

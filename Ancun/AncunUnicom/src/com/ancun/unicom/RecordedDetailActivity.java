@@ -74,7 +74,6 @@ public class RecordedDetailActivity extends BaseActivity {
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
-			params.put("ownerno",getAppContext().currentUser().getPhone());
 			params.put("fileno",fileno);
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {
@@ -141,7 +140,6 @@ public class RecordedDetailActivity extends BaseActivity {
  				hServer.setHeaders(headers);
  				Map<String,String> params=new HashMap<String,String>();
  				params.put("accessid", User.ACCESSID);
- 				params.put("ownerno",getAppContext().currentUser().getPhone());
  				params.put("fileno",fileno);
  				params.put("remark", remark);
  				hServer.setParams(params);

@@ -48,7 +48,8 @@
             android:screenOrientation="landscape"/>
         <activity
             android:name=".LearnWordsSwitchTestActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".TestWordsPageActivity"
             android:screenOrientation="landscape"/>

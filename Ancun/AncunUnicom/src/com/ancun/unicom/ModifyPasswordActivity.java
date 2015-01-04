@@ -74,7 +74,6 @@ public class ModifyPasswordActivity extends BaseActivity {
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
-			params.put("phone", getAppContext().currentUser().getPhone());
 			params.put("passwordold", MD5.md5(password));
 			params.put("passwordnew",pwd);
 			hServer.setParams(params);

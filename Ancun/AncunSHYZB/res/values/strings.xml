@@ -22,8 +22,8 @@
     <string name="reset_password">重置密码</string>
     <string name="accounthint">请输入手机号码</string>
     <string name="passwordhint">请输入密码</string>
-    <string name="newpasswordhint">请输入新密码</string>
-    <string name="repasswordhint">请再次输入密码</string>
+    <string name="newpasswordhint">请输入原密码</string>
+    <string name="repasswordhint">请再次输入新密码</string>
     <string name="autologinttxt">自动登录</string>
     <string name="forgetgesutepassword">忘记手势密码</string>
     <string name="otheraccountlogin">用其他账号登录</string>

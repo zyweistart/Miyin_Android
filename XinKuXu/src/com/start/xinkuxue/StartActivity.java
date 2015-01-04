@@ -46,7 +46,7 @@ public class StartActivity extends BaseActivity{
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-				Intent intent=new Intent(StartActivity.this,TestWordsPageActivity.class);
+				Intent intent=new Intent(StartActivity.this,LearnWordsSwitchActivity.class);
 				startActivity(intent);
 				finish();
 			}

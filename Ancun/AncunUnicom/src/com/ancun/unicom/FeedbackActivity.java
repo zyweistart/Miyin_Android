@@ -53,7 +53,6 @@ public class FeedbackActivity extends BaseActivity {
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
-			params.put("userNo",getAppContext().currentUser().getPhone());
 			params.put("content",content);
 			params.put("contractMethod", contact);
 			params.put("type", "8");

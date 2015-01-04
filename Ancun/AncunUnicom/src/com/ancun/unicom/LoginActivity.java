@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.ancun.core.BaseActivity;
 import com.ancun.core.Constant;
 import com.ancun.core.Constant.ResultCode;
-import com.ancun.service.User;
 
 public class LoginActivity extends BaseActivity {
 	/**
@@ -140,10 +139,9 @@ public class LoginActivity extends BaseActivity {
 	public void login(final String account,final String password,final Boolean autoLogin){
 		HttpServer hServer=new HttpServer(Constant.URL.ylcnuserpwdCheck, getHandlerContext());
 		Map<String,String> headers=new HashMap<String,String>();
-		headers.put("sign", User.USER_ACCESSKEY_LOCAL);
+		headers.put("sign", password);
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
-		params.put("accessid", User.USER_ACCESSID_LOCAL);
 		params.put("userTel", account);
 		params.put("password", password);
 		params.put("type", "1");

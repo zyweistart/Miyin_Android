@@ -20,6 +20,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.ancun.core.BaseActivity;
 import com.ancun.service.ButtonTextWatcher;
@@ -31,7 +32,9 @@ public class UnsubscribeActivity extends BaseActivity {
 	public static final int SENDMESSAGETIMEOUT=0x4732847;
 	
 	private EditText et_pwd;
-	private Button btn_submit,btn_return;
+	private Button btn_submit;
+	
+	private LinearLayout ll_first_frame,ll_second_frame;
 	
 	private ProgressDialog mPDialog;
 	private SmsObserver mObserver;
@@ -43,8 +46,10 @@ public class UnsubscribeActivity extends BaseActivity {
 		setMainHeadTitle(getString(R.string.unsubscribe));
 		et_pwd =(EditText)findViewById(R.id.et_pwd);
 		btn_submit =(Button)findViewById(R.id.btn_submit);
-		btn_return =(Button)findViewById(R.id.btn_return);
 		et_pwd.addTextChangedListener(new ButtonTextWatcher(btn_submit));
+		
+		ll_first_frame =(LinearLayout)findViewById(R.id.ll_first_frame);
+		ll_second_frame =(LinearLayout)findViewById(R.id.ll_second_frame);
 		
 		ContentResolver resolver = getContentResolver();
 		mObserver = new SmsObserver(resolver, new SmsHandler(this));
@@ -184,14 +189,13 @@ public class UnsubscribeActivity extends BaseActivity {
 					// 0不对短信进行操作;1将短信设置为已读;2将短信删除
 					_smsInfo.action = 0;
 					if(_smsInfo.smsBody.contains(MESSAGE1)){
-						btn_submit.setVisibility(View.GONE);
-						btn_return.setVisibility(View.VISIBLE);
+						ll_first_frame.setVisibility(View.GONE);
+						ll_second_frame.setVisibility(View.VISIBLE);
 						if(mPDialog!=null) {
 							mPDialog.dismiss();
 							mPDialog=null;
 						}
 						getAppContext().currentUser().clearCacheUser();
-						getHandlerContext().makeTextLong("退订成功");
 						_smsInfo.action = 2;
 					}
 					msg.obj = _smsInfo;

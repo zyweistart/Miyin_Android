@@ -136,7 +136,6 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
                     		hServer.setHeaders(headers);
                     		Map<String,String> params=new HashMap<String,String>();
                     		params.put("accessid", User.ACCESSID);
-                    		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
                     		params.put("fileno", fileno);
                     		params.put("alteract", "1");
                     		hServer.setParams(params);
@@ -189,7 +188,6 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		hServer.setHeaders(headers);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("accessid",User.ACCESSID);
-		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
 		//被叫号码
 		params.put("calledno",String.valueOf(et_content.getText()));
 		//开始时间
@@ -227,7 +225,6 @@ public class RecordingContentView extends BaseScrollContent implements RefreshLi
 		hServer.setHeaders(headers);
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("accessid", User.ACCESSID);
-		params.put("ownerno",getCurrentActivity().getAppContext().currentUser().getPhone());
 		params.put("fileno", fileNo);
 		hServer.setParams(params);
 		hServer.download(new DownloadRunnable() {

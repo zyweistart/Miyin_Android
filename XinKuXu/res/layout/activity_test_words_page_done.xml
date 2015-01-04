@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/start_view"
     android:layout_width="match_parent"
-	android:layout_height="match_parent"
-    android:background="@drawable/bm_start_background"
-	android:gravity="bottom"
-    android:orientation="vertical">
-    
+    android:layout_height="match_parent"
+    android:background="@drawable/bm_words"
+    android:orientation="horizontal"
+    android:padding="40.0dip" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/empty"
+        android:src="@drawable/logo" />
+
 </LinearLayout>

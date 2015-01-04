@@ -50,7 +50,6 @@ public class AppService {
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
-			params.put("userTel", activity.getAppContext().currentUser().getPhone());
 			params.put("oppno",phone);
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {

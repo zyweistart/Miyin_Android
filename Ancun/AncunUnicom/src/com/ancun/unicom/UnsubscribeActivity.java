@@ -132,7 +132,6 @@ public class UnsubscribeActivity extends BaseActivity {
 			hServer.setHeaders(headers);
 			Map<String,String> params=new HashMap<String,String>();
 			params.put("accessid", User.ACCESSID);
-			params.put("phone", getAppContext().currentUser().getPhone());
 //			params.put("password", MD5.md5(password));
 			hServer.setParams(params);
 			hServer.get(new HttpRunnable() {

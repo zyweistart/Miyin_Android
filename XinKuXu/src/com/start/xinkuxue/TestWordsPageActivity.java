@@ -2,9 +2,14 @@ package com.start.xinkuxue;
 
 import java.util.Random;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 
@@ -25,72 +30,275 @@ public class TestWordsPageActivity extends BaseActivity{
 	public static final String BUNDLE_RANDOM_NUMBER="BUNDLE_RANDOM_NUMBER";
 	
 	//测试类型(1:中-英 2:英-中 3:图-英 4:英-图 5:填空)
-	private int[] mTestType;
+	private String[] mTestType;
 	//当前单词的ID，单词游标索引，总测试单词数，开始测试的ID，结束测试的ID，几选1数，总答对数
 	private int mCurrentWordId,mAnswerIndex,mAnswerCount,mStartWordID,mEndWordID,mRandomNumber,mRightCount;
 	
 	private Random rnTestRandom,rnRandom;
 	
-	private RelativeLayout frame_a,frame_b,frame_c;
+	private ImageView problem_picture;
+	private TextView problem_words,problem_sentence;
+	private LinearLayout answer_frame_text;
+	private RelativeLayout answer_frame_picture;
+	
+	private TextView frame_text_selector_answer_a,frame_text_selector_answer_b,frame_text_selector_answer_c,frame_text_selector_answer_d;
+	private TextView frame_picture_selector_answer_a,frame_picture_selector_answer_b,frame_picture_selector_answer_c,frame_picture_selector_answer_d;
+	private TextView frame_text_selector_answer_cannotskip,frame_picture_selector_answer_cannotskip;
+	
+	private String mTitle,mAName,mBName,mCName,mDName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_words_page);
-		frame_a=(RelativeLayout)findViewById(R.id.frame_a);
-		frame_b=(RelativeLayout)findViewById(R.id.frame_b);
-		frame_c=(RelativeLayout)findViewById(R.id.frame_c);
+		problem_picture=(ImageView)findViewById(R.id.problem_picture);
+		problem_words=(TextView)findViewById(R.id.problem_words);
+		problem_sentence=(TextView)findViewById(R.id.problem_sentence);
+		answer_frame_text=(LinearLayout)findViewById(R.id.answer_frame_text);
+		answer_frame_picture=(RelativeLayout)findViewById(R.id.answer_frame_picture);
 		
-		mStartWordID=1;
-		mEndWordID=500;
-		mTestType=new int[]{1,2,3};
-		mRandomNumber=5;
+		frame_text_selector_answer_a=(TextView)findViewById(R.id.frame_text_selector_answer_a);
+		frame_text_selector_answer_b=(TextView)findViewById(R.id.frame_text_selector_answer_b);
+		frame_text_selector_answer_c=(TextView)findViewById(R.id.frame_text_selector_answer_c);
+		frame_text_selector_answer_d=(TextView)findViewById(R.id.frame_text_selector_answer_d);
+		frame_text_selector_answer_cannotskip=(TextView)findViewById(R.id.frame_text_selector_answer_cannotskip);
+		frame_picture_selector_answer_a=(TextView)findViewById(R.id.frame_picture_selector_answer_a);
+		frame_picture_selector_answer_b=(TextView)findViewById(R.id.frame_picture_selector_answer_b);
+		frame_picture_selector_answer_c=(TextView)findViewById(R.id.frame_picture_selector_answer_c);
+		frame_picture_selector_answer_d=(TextView)findViewById(R.id.frame_picture_selector_answer_d);
+		frame_picture_selector_answer_cannotskip=(TextView)findViewById(R.id.frame_picture_selector_answer_cannotskip);
 		
-		rnTestRandom=new Random();
-		rnRandom=new Random();
+		Bundle bundle=getIntent().getExtras();
+		if(bundle!=null){
+			mStartWordID=bundle.getInt(BUNDLE_LEARN_WORDS_START_INDEX);
+			mEndWordID=bundle.getInt(BUNDLE_LEARN_WORDS_END_INDEX);
+			mTestType=bundle.getStringArray(BUNDLE_WORDS);
+			mRandomNumber=bundle.getInt(BUNDLE_RANDOM_NUMBER);
+			
+			rnTestRandom=new Random();
+			rnRandom=new Random();
+			
+			mAnswerCount=(mEndWordID-mStartWordID+1)/mRandomNumber;
+			
+			mAnswerIndex=0;
+			currentWord();
+		}else{
+			finish();
+		}
 		
-		mAnswerCount=(mEndWordID-mStartWordID+1)/mRandomNumber;
-		
-		mAnswerIndex=0;
-		currentWord();
 	}
 	
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.frame_a_selector_answer_a){
+		if(v.getId()==R.id.frame_text_selector_answer_a){
+			setStyleTextViewRight(frame_text_selector_answer_a);
+		}else if(v.getId()==R.id.frame_text_selector_answer_b){
+			setStyleTextViewError(frame_text_selector_answer_b);
+		}else if(v.getId()==R.id.frame_text_selector_answer_c){
 			
-		}else if(v.getId()==R.id.frame_b_selector_answer_a){
+		}else if(v.getId()==R.id.frame_text_selector_answer_d){
 			
-		}else if(v.getId()==R.id.frame_a_selector_c){
+		}else if(v.getId()==R.id.frame_text_selector_answer_cannotskip){
+			joinWords();
+		}else if(v.getId()==R.id.frame_picture_selector_answer_a){
 			
+		}else if(v.getId()==R.id.frame_picture_selector_answer_b){
+			
+		}else if(v.getId()==R.id.frame_picture_selector_answer_c){
+			
+		}else if(v.getId()==R.id.frame_picture_selector_answer_d){
+
+		}else if(v.getId()==R.id.frame_picture_selector_answer_cannotskip){
+			joinWords();
 		}
-		if(mAnswerCount<mAnswerCount){
+		frame_text_selector_answer_a.setEnabled(false);
+		frame_text_selector_answer_b.setEnabled(false);
+		frame_text_selector_answer_c.setEnabled(false);
+		frame_text_selector_answer_d.setEnabled(false);
+		frame_text_selector_answer_cannotskip.setEnabled(false);
+		frame_picture_selector_answer_a.setEnabled(false);
+		frame_picture_selector_answer_b.setEnabled(false);
+		frame_picture_selector_answer_c.setEnabled(false);
+		frame_picture_selector_answer_d.setEnabled(false);
+		frame_picture_selector_answer_cannotskip.setEnabled(false);
+		getHandlerContext().getHandler().postDelayed(new Runnable() {
 			
-		}
-		mAnswerIndex++;
-		currentWord();
+			@Override
+			public void run() {
+				if(mAnswerIndex>=mAnswerCount){
+					Intent intent=new Intent(TestWordsPageActivity.this,TestWordsPageDoneActivity.class);
+					startActivity(intent);
+					finish();
+				}else{
+					frame_text_selector_answer_cannotskip.setEnabled(true);
+					frame_picture_selector_answer_cannotskip.setEnabled(true);
+					currentWord();
+				}
+			}
+		}, 1500);
 	}
 	
 	public void currentWord(){
 		mCurrentWordId=mStartWordID+mAnswerIndex*mRandomNumber+rnRandom.nextInt(mRandomNumber);
-		int type=mTestType[rnTestRandom.nextInt(mTestType.length)];
+		int type=Integer.parseInt(mTestType[rnTestRandom.nextInt(mTestType.length)]);
 		if(type==1){
-			frame_a.setVisibility(View.VISIBLE);
-			frame_b.setVisibility(View.GONE);
-			frame_c.setVisibility(View.GONE);
+			mTitle="meet";
+			mAName="A、这是A";
+			mBName="B、这是B";
+			mCName="C、这是C";
+			mDName="D、这是D";
+			wordToText();
 		}else if(type==2){
-			frame_a.setVisibility(View.GONE);
-			frame_b.setVisibility(View.VISIBLE);
-			frame_c.setVisibility(View.GONE);
+			mTitle="meet";
+			mAName="A、这是A";
+			mBName="B、这是B";
+			mCName="C、这是C";
+			mDName="D、这是D";
+			wordToText();
 		}else if(type==3){
-			frame_a.setVisibility(View.GONE);
-			frame_b.setVisibility(View.GONE);
-			frame_c.setVisibility(View.VISIBLE);
+			mTitle="meet";
+			mAName="A、这是A";
+			mBName="B、这是B";
+			mCName="C、这是C";
+			mDName="D、这是D";
+			pictureToText();
 		}else if(type==4){
-			
+			mTitle="meet";
+			mAName="A、这是A";
+			mBName="B、这是B";
+			mCName="C、这是C";
+			mDName="D、这是D";
+			wordToPicture();
 		}else if(type==5){
-			
+			mTitle="meet";
+			mAName="A、这是A";
+			mBName="B、这是B";
+			mCName="C、这是C";
+			mDName="D、这是D";
+			textToText();
 		}
+		mAnswerIndex++;
+	}
+	
+	public void wordToText(){
+		//显示隐藏
+		problem_picture.setVisibility(View.GONE);
+		problem_words.setVisibility(View.VISIBLE);
+		problem_sentence.setVisibility(View.GONE);
+		answer_frame_text.setVisibility(View.VISIBLE);
+		answer_frame_picture.setVisibility(View.GONE);
+		//设置样式
+		setStyleTextViewNormal(frame_text_selector_answer_a);
+		setStyleTextViewNormal(frame_text_selector_answer_b);
+		setStyleTextViewNormal(frame_text_selector_answer_c);
+		setStyleTextViewNormal(frame_text_selector_answer_d);
+		//显示内容
+		problem_words.setText(mTitle);
+		frame_text_selector_answer_a.setText(mAName);
+		frame_text_selector_answer_b.setText(mBName);
+		frame_text_selector_answer_c.setText(mCName);
+		frame_text_selector_answer_d.setText(mDName);
+	}
+	
+	public void wordToPicture(){
+		//显示隐藏
+		problem_picture.setVisibility(View.GONE);
+		problem_words.setVisibility(View.VISIBLE);
+		problem_sentence.setVisibility(View.GONE);
+		answer_frame_text.setVisibility(View.GONE);
+		answer_frame_picture.setVisibility(View.VISIBLE);
+		//设置样式、显示内容
+		problem_words.setText(mTitle);
+		Drawable d= getResources().getDrawable(R.drawable.default_words);
+		setStyleTextViewPictureNormal(frame_picture_selector_answer_a,d);
+		setStyleTextViewPictureNormal(frame_picture_selector_answer_b,d);
+		setStyleTextViewPictureNormal(frame_picture_selector_answer_c,d);
+		setStyleTextViewPictureNormal(frame_picture_selector_answer_d,d);
+	}
+	
+	public void textToText(){
+		//显示隐藏
+		problem_picture.setVisibility(View.GONE);
+		problem_words.setVisibility(View.GONE);
+		problem_sentence.setVisibility(View.VISIBLE);
+		answer_frame_text.setVisibility(View.VISIBLE);
+		answer_frame_picture.setVisibility(View.GONE);
+		//设置样式
+		setStyleTextViewNormal(frame_text_selector_answer_a);
+		setStyleTextViewNormal(frame_text_selector_answer_b);
+		setStyleTextViewNormal(frame_text_selector_answer_c);
+		setStyleTextViewNormal(frame_text_selector_answer_d);
+		//显示内容
+		problem_sentence.setText(mTitle);
+		frame_text_selector_answer_a.setText(mAName);
+		frame_text_selector_answer_b.setText(mBName);
+		frame_text_selector_answer_c.setText(mCName);
+		frame_text_selector_answer_d.setText(mDName);
+	}
+	
+	public void pictureToText(){
+		//显示隐藏
+		problem_picture.setVisibility(View.VISIBLE);
+		problem_words.setVisibility(View.GONE);
+		problem_sentence.setVisibility(View.GONE);
+		answer_frame_text.setVisibility(View.VISIBLE);
+		answer_frame_picture.setVisibility(View.GONE);
+		//设置样式
+		setStyleTextViewNormal(frame_text_selector_answer_a);
+		setStyleTextViewNormal(frame_text_selector_answer_b);
+		setStyleTextViewNormal(frame_text_selector_answer_c);
+		setStyleTextViewNormal(frame_text_selector_answer_d);
+		//显示内容
+		Drawable picture= getResources().getDrawable(R.drawable.default_words);
+		picture.setBounds(0, 0, picture.getMinimumWidth(), picture.getMinimumHeight());
+		problem_picture.setBackground(picture);
+		frame_text_selector_answer_a.setText(mAName);
+		frame_text_selector_answer_b.setText(mBName);
+		frame_text_selector_answer_c.setText(mCName);
+		frame_text_selector_answer_d.setText(mDName);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void setStyleTextViewNormal(TextView tv){
+		tv.setEnabled(true);
+		tv.setTextAppearance(this, R.style.test_words_page_text_selector);
+		tv.setCompoundDrawables(null, null, null, null);
+		int _pL = tv.getPaddingLeft();
+		int _pT = tv.getPaddingTop();
+		int _pR = tv.getPaddingRight();
+		int _pB = tv.getPaddingBottom();
+		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_3));
+		tv.setPadding(_pL, _pT, _pR, _pB);
+	}
+
+	public void setStyleTextViewPictureNormal(TextView tv,Drawable pA){
+		tv.setEnabled(true);
+		pA.setBounds(0, 0, pA.getMinimumWidth(), pA.getMinimumHeight());
+		tv.setCompoundDrawables(null, pA, null, null);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void setStyleTextViewRight(TextView tv){
+		mRightCount++;
+		tv.setTextAppearance(this, R.style.test_words_page_text_right_selector);
+		Drawable right= getResources().getDrawable(R.drawable.ic_right);
+		right.setBounds(0, 0, right.getMinimumWidth(), right.getMinimumHeight());
+		tv.setCompoundDrawables(null, null, right, null);
+		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_right));
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void setStyleTextViewError(TextView tv){
+		joinWords();
+		tv.setTextAppearance(this, R.style.test_words_page_text_error_selector);
+		Drawable right= getResources().getDrawable(R.drawable.ic_error);
+		right.setBounds(0, 0, right.getMinimumWidth(), right.getMinimumHeight());
+		tv.setCompoundDrawables(null, null, right, null);
+		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_error));
+	}
+	
+	public void joinWords(){
+		getHandlerContext().makeTextShort("已加入生词本");
 	}
 	
 }

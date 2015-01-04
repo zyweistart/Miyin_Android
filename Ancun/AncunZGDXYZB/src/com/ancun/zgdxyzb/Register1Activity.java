@@ -293,7 +293,7 @@ public class Register1Activity extends BaseActivity {
 	 */
 	public void setBillingText(){
 		String content="欢迎使用"+getString(R.string.app_name)+"！对您商务和日常生活中的重要电话进行录音保全，必要时还可以向公证机关申办公证。功能费每月10元，通话费按原有资费标准收取。";
-		txt_tip.setText(StringUtils.ToDBC(content));
+		txt_tip.setText(content);
 	}
 
 	/**
