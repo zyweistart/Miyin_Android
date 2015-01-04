@@ -12,6 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
+import com.start.service.WordService;
+import com.start.service.bean.WordItem;
 
 /**
  * 测试单词页面A
@@ -29,12 +31,15 @@ public class TestWordsPageActivity extends BaseActivity{
 	//几选1
 	public static final String BUNDLE_RANDOM_NUMBER="BUNDLE_RANDOM_NUMBER";
 	
+	
 	//测试类型(1:中-英 2:英-中 3:图-英 4:英-图 5:填空)
 	private String[] mTestType;
 	//当前单词的ID，单词游标索引，总测试单词数，开始测试的ID，结束测试的ID，几选1数，总答对数
 	private int mCurrentWordId,mAnswerIndex,mAnswerCount,mStartWordID,mEndWordID,mRandomNumber,mRightCount;
 	
 	private Random rnTestRandom,rnRandom;
+	
+	private WordItem mWordItem;
 	
 	private ImageView problem_picture;
 	private TextView problem_words,problem_sentence;
@@ -140,41 +145,45 @@ public class TestWordsPageActivity extends BaseActivity{
 	
 	public void currentWord(){
 		mCurrentWordId=mStartWordID+mAnswerIndex*mRandomNumber+rnRandom.nextInt(mRandomNumber);
-		int type=Integer.parseInt(mTestType[rnTestRandom.nextInt(mTestType.length)]);
+		
+		WordService mWordService=new WordService("");
+		mWordItem=mWordService.findById(mCurrentWordId);
+		int type=4;
+//		int type=Integer.parseInt(mTestType[rnTestRandom.nextInt(mTestType.length)]);
 		if(type==1){
-			mTitle="meet";
-			mAName="A、这是A";
-			mBName="B、这是B";
-			mCName="C、这是C";
-			mDName="D、这是D";
+			mTitle=mWordItem.getChineseSignificance();
+			mAName="A、"+mWordItem.getEnglishName();
+			mBName="B、"+mWordItem.getEnglishName();
+			mCName="C、"+mWordItem.getEnglishName();
+			mDName="D、"+mWordItem.getEnglishName();
 			wordToText();
 		}else if(type==2){
-			mTitle="meet";
-			mAName="A、这是A";
-			mBName="B、这是B";
-			mCName="C、这是C";
-			mDName="D、这是D";
+			mTitle=mWordItem.getEnglishName();
+			mAName="A、"+mWordItem.getChineseSignificance();
+			mBName="B、"+mWordItem.getChineseSignificance();
+			mCName="C、"+mWordItem.getChineseSignificance();
+			mDName="D、"+mWordItem.getChineseSignificance();
 			wordToText();
 		}else if(type==3){
-			mTitle="meet";
-			mAName="A、这是A";
-			mBName="B、这是B";
-			mCName="C、这是C";
-			mDName="D、这是D";
+			mTitle=mWordItem.getId();
+			mAName="A、"+mWordItem.getEnglishName();
+			mBName="B、"+mWordItem.getEnglishName();
+			mCName="C、"+mWordItem.getEnglishName();
+			mDName="D、"+mWordItem.getEnglishName();
 			pictureToText();
 		}else if(type==4){
-			mTitle="meet";
-			mAName="A、这是A";
-			mBName="B、这是B";
-			mCName="C、这是C";
-			mDName="D、这是D";
+			mTitle=mWordItem.getEnglishName();
+			mAName=mWordItem.getId();
+			mBName=mWordItem.getId();
+			mCName=mWordItem.getId();
+			mDName=mWordItem.getId();
 			wordToPicture();
 		}else if(type==5){
-			mTitle="meet";
-			mAName="A、这是A";
-			mBName="B、这是B";
-			mCName="C、这是C";
-			mDName="D、这是D";
+			mTitle=mWordItem.getFillProblem();
+			mAName="A、"+mWordItem.getFillAnswer();
+			mBName="B、"+mWordItem.getFillAnswer();
+			mCName="C、"+mWordItem.getFillAnswer();
+			mDName="D、"+mWordItem.getFillAnswer();
 			textToText();
 		}
 		mAnswerIndex++;

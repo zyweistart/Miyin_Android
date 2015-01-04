@@ -2,7 +2,6 @@ package com.start.xinkuxue;
 
 import start.core.AppContext;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
 
 import com.start.core.CacheActivity;
 import com.start.core.DBManageDao;
@@ -37,8 +36,10 @@ public class BaseContext extends AppContext {
 
 	@Override
 	public String getStorageDirectory(String name) {
-		return Environment.getExternalStorageDirectory().getPath() + "/xinkuxue/"
-				+ name + "/";
+//		if(Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
+//			return Environment.getExternalStorageDirectory().getPath() + "/xinkuxue/"+ name + "/";
+//		}
+		return "/storage/emulated/legacy/xinkuxue/"+ name + "/";
 	}
 
 	/**

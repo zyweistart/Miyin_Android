@@ -53,8 +53,8 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				frame_test_start2.setVisibility(View.VISIBLE);
 				
 				et_test_start_index.setText("1");
-				et_test_end_index.setText("10");
-				et_section.setText("5");
+				et_test_end_index.setText("3");
+				et_section.setText("1");
 			}
 		}else{
 			finish();
