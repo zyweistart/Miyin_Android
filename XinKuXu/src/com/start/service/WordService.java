@@ -14,8 +14,8 @@ public class WordService {
 	
 	public final String DATABASE_PATH = "englishdb";
 	public static final String AUDIOPATH="/audio_word/";
-	public static final String EXAMPLEIMAGEPATH="/image_example/";
-	public static final String MEMORYIMAGEPATH="/image_memory/";
+	public static final String EXAMPLEIMAGEPATH="image_example/";
+	public static final String MEMORYIMAGEPATH="image_memory/";
 	
 	private String mDirName;
 	private SQLiteDatabase mSQLiteDatabase;
@@ -36,7 +36,7 @@ public class WordService {
 	
 	//获取例句（图片）路径
 	public String getExampleImagePath(String name){
-		return BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+EXAMPLEIMAGEPATH+name;
+		return BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+EXAMPLEIMAGEPATH+name+".jpg";
 	}
 	
 	//获取图形记忆法（图片）路径

@@ -1,8 +1,11 @@
 package com.start.xinkuxue;
 
+import java.io.File;
 import java.util.Random;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -39,6 +42,7 @@ public class TestWordsPageActivity extends BaseActivity{
 	
 	private Random rnTestRandom,rnRandom;
 	
+	private WordService mWordService;
 	private WordItem mWordItem;
 	
 	private ImageView problem_picture;
@@ -84,6 +88,8 @@ public class TestWordsPageActivity extends BaseActivity{
 			rnRandom=new Random();
 			
 			mAnswerCount=(mEndWordID-mStartWordID+1)/mRandomNumber;
+			
+			mWordService=new WordService("");
 			
 			mAnswerIndex=0;
 			currentWord();
@@ -146,7 +152,6 @@ public class TestWordsPageActivity extends BaseActivity{
 	public void currentWord(){
 		mCurrentWordId=mStartWordID+mAnswerIndex*mRandomNumber+rnRandom.nextInt(mRandomNumber);
 		
-		WordService mWordService=new WordService("");
 		mWordItem=mWordService.findById(mCurrentWordId);
 		int type=4;
 //		int type=Integer.parseInt(mTestType[rnTestRandom.nextInt(mTestType.length)]);
@@ -219,6 +224,7 @@ public class TestWordsPageActivity extends BaseActivity{
 		//设置样式、显示内容
 		problem_words.setText(mTitle);
 		Drawable d= getResources().getDrawable(R.drawable.default_words);
+		
 		setStyleTextViewPictureNormal(frame_picture_selector_answer_a,d);
 		setStyleTextViewPictureNormal(frame_picture_selector_answer_b,d);
 		setStyleTextViewPictureNormal(frame_picture_selector_answer_c,d);
@@ -258,9 +264,13 @@ public class TestWordsPageActivity extends BaseActivity{
 		setStyleTextViewNormal(frame_text_selector_answer_c);
 		setStyleTextViewNormal(frame_text_selector_answer_d);
 		//显示内容
-		Drawable picture= getResources().getDrawable(R.drawable.default_words);
-		picture.setBounds(0, 0, picture.getMinimumWidth(), picture.getMinimumHeight());
-		problem_picture.setBackground(picture);
+		String myJpgPath = mWordService.getExampleImagePath(mTitle);
+		File dbFile=new File(myJpgPath);
+		if(dbFile.exists()){
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inSampleSize = 2;
+			problem_picture.setImageBitmap(BitmapFactory.decodeFile(myJpgPath, options));
+		}
 		frame_text_selector_answer_a.setText(mAName);
 		frame_text_selector_answer_b.setText(mBName);
 		frame_text_selector_answer_c.setText(mCName);
