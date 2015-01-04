@@ -6,6 +6,7 @@ import java.util.Random;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -179,9 +180,9 @@ public class TestWordsPageActivity extends BaseActivity{
 		}else if(type==4){
 			mTitle=mWordItem.getEnglishName();
 			mAName=mWordItem.getId();
-			mBName=mWordItem.getId();
-			mCName=mWordItem.getId();
-			mDName=mWordItem.getId();
+			mBName="2";
+			mCName="3";
+			mDName="4";
 			wordToPicture();
 		}else if(type==5){
 			mTitle=mWordItem.getFillProblem();
@@ -214,6 +215,7 @@ public class TestWordsPageActivity extends BaseActivity{
 		frame_text_selector_answer_d.setText(mDName);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void wordToPicture(){
 		//显示隐藏
 		problem_picture.setVisibility(View.GONE);
@@ -223,12 +225,25 @@ public class TestWordsPageActivity extends BaseActivity{
 		answer_frame_picture.setVisibility(View.VISIBLE);
 		//设置样式、显示内容
 		problem_words.setText(mTitle);
-		Drawable d= getResources().getDrawable(R.drawable.default_words);
 		
-		setStyleTextViewPictureNormal(frame_picture_selector_answer_a,d);
-		setStyleTextViewPictureNormal(frame_picture_selector_answer_b,d);
-		setStyleTextViewPictureNormal(frame_picture_selector_answer_c,d);
-		setStyleTextViewPictureNormal(frame_picture_selector_answer_d,d);
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inSampleSize = 2;
+		String mAPicturePath = mWordService.getExampleImagePath(mAName);
+		if(new File(mAPicturePath).exists()){
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_a,new BitmapDrawable(BitmapFactory.decodeFile(mAPicturePath, options)));
+		}
+		String mBPicturePath = mWordService.getExampleImagePath(mAName);
+		if(new File(mBPicturePath).exists()){
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_b,new BitmapDrawable(BitmapFactory.decodeFile(mBPicturePath, options)));
+		}
+		String mCPicturePath = mWordService.getExampleImagePath(mAName);
+		if(new File(mCPicturePath).exists()){
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_c,new BitmapDrawable(BitmapFactory.decodeFile(mCPicturePath, options)));
+		}
+		String mDPicturePath = mWordService.getExampleImagePath(mAName);
+		if(new File(mDPicturePath).exists()){
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_d,new BitmapDrawable(BitmapFactory.decodeFile(mDPicturePath, options)));
+		}
 	}
 	
 	public void textToText(){
