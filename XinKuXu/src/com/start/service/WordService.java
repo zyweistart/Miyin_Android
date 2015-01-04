@@ -12,17 +12,19 @@ import com.start.xinkuxue.BaseContext;
 
 public class WordService {
 	
-	public final String DATABASE_PATH = "englishdb";
 	public static final String AUDIOPATH="/audio_word/";
 	public static final String EXAMPLEIMAGEPATH="image_example/";
 	public static final String MEMORYIMAGEPATH="image_memory/";
+	public static final String DBEXTENSIONNAME="words.db";
+	public static final String PICTUREEXTENSION=".jpg";
+	public static final String AUDIOEXTENSION=".mp3";
 	
 	private String mDirName;
 	private SQLiteDatabase mSQLiteDatabase;
 
 	public WordService(String dirName) {
 		this.mDirName=dirName;
-		String dbFileName = BaseContext.getInstance().getStorageDirectory(DATABASE_PATH)+"words.db";
+		String dbFileName = BaseContext.getInstance().getStorageDirectory(this.mDirName)+DBEXTENSIONNAME;
 		File dbFile=new File(dbFileName);
 		if(dbFile.exists()){
 			mSQLiteDatabase = SQLiteDatabase.openOrCreateDatabase(dbFileName, null);
@@ -31,17 +33,17 @@ public class WordService {
 	
 	//获取单词讲解音频路径
 	public String getAudioPath(String name){
-		return BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+AUDIOPATH+name;
+		return BaseContext.getInstance().getStorageDirectory(this.mDirName)+AUDIOPATH+name+AUDIOEXTENSION;
 	}
 	
 	//获取例句（图片）路径
 	public String getExampleImagePath(String name){
-		return BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+EXAMPLEIMAGEPATH+name+".jpg";
+		return BaseContext.getInstance().getStorageDirectory(this.mDirName)+EXAMPLEIMAGEPATH+name+PICTUREEXTENSION;
 	}
 	
 	//获取图形记忆法（图片）路径
 	public String getMemoryImagePath(String name){
-		return BaseContext.getInstance().getStorageDirectory(DATABASE_PATH) + this.mDirName+MEMORYIMAGEPATH+name;
+		return BaseContext.getInstance().getStorageDirectory(this.mDirName)+MEMORYIMAGEPATH+name+PICTUREEXTENSION;
 	}
 	
 	public WordItem findById(int id) {
@@ -64,9 +66,6 @@ public class WordService {
 					ci.setFillAnswer(cursor.getString(cursor.getColumnIndex("fillAnswer")));
 					ci.setMemoryMethodA(cursor.getString(cursor.getColumnIndex("memoryMethodA")));
 					ci.setMemoryMethodB(cursor.getString(cursor.getColumnIndex("memoryMethodB")));
-//					ci.setExampleImage(cursor.getString(cursor.getColumnIndex("exampleImage")));
-//					ci.setMemoryImage(cursor.getString(cursor.getColumnIndex("memoryImage")));
-//					ci.setEnglishAudio(cursor.getString(cursor.getColumnIndex("englishAudio")));
 					return ci;
 				} while (cursor.moveToNext());
 			}
@@ -97,9 +96,6 @@ public class WordService {
 					ci.setFillAnswer(cursor.getString(cursor.getColumnIndex("fillAnswer")));
 					ci.setMemoryMethodA(cursor.getString(cursor.getColumnIndex("memoryMethodA")));
 					ci.setMemoryMethodB(cursor.getString(cursor.getColumnIndex("memoryMethodB")));
-//					ci.setExampleImage(cursor.getString(cursor.getColumnIndex("exampleImage")));
-//					ci.setMemoryImage(cursor.getString(cursor.getColumnIndex("memoryImage")));
-//					ci.setEnglishAudio(cursor.getString(cursor.getColumnIndex("englishAudio")));
 					channelItems.add(ci);
 				} while (cursor.moveToNext());
 			}

@@ -1,10 +1,11 @@
 package com.start.xinkuxue;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -43,8 +44,9 @@ public class TestWordsPageActivity extends BaseActivity{
 	
 	private Random rnTestRandom,rnRandom;
 	
+	private int mCurrentRightWordItemIndex;
 	private WordService mWordService;
-	private WordItem mWordItem;
+	private WordItem mCurrentRightWordItem;
 	
 	private ImageView problem_picture;
 	private TextView problem_words,problem_sentence;
@@ -90,7 +92,7 @@ public class TestWordsPageActivity extends BaseActivity{
 			
 			mAnswerCount=(mEndWordID-mStartWordID+1)/mRandomNumber;
 			
-			mWordService=new WordService("");
+			mWordService=new WordService("simpleenglish");
 			
 			mAnswerIndex=0;
 			currentWord();
@@ -103,23 +105,55 @@ public class TestWordsPageActivity extends BaseActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.frame_text_selector_answer_a){
-			setStyleTextViewRight(frame_text_selector_answer_a);
+			if(mCurrentRightWordItemIndex==0){
+				setStyleTextViewRight(frame_text_selector_answer_a);
+			}else{
+				setStyleTextViewError(frame_text_selector_answer_a);
+			}
 		}else if(v.getId()==R.id.frame_text_selector_answer_b){
-			setStyleTextViewError(frame_text_selector_answer_b);
+			if(mCurrentRightWordItemIndex==1){
+				setStyleTextViewRight(frame_text_selector_answer_b);
+			}else{
+				setStyleTextViewError(frame_text_selector_answer_b);
+			}
 		}else if(v.getId()==R.id.frame_text_selector_answer_c){
-			
+			if(mCurrentRightWordItemIndex==2){
+				setStyleTextViewRight(frame_text_selector_answer_c);
+			}else{
+				setStyleTextViewError(frame_text_selector_answer_c);
+			}
 		}else if(v.getId()==R.id.frame_text_selector_answer_d){
-			
+			if(mCurrentRightWordItemIndex==3){
+				setStyleTextViewRight(frame_text_selector_answer_d);
+			}else{
+				setStyleTextViewError(frame_text_selector_answer_d);
+			}
 		}else if(v.getId()==R.id.frame_text_selector_answer_cannotskip){
 			joinWords();
 		}else if(v.getId()==R.id.frame_picture_selector_answer_a){
-			
+			if(mCurrentRightWordItemIndex==0){
+				setStyleTextViewRight(frame_picture_selector_answer_a);
+			}else{
+				setStyleTextViewError(frame_picture_selector_answer_a);
+			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_b){
-			
+			if(mCurrentRightWordItemIndex==1){
+				setStyleTextViewRight(frame_picture_selector_answer_b);
+			}else{
+				setStyleTextViewError(frame_picture_selector_answer_b);
+			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_c){
-			
+			if(mCurrentRightWordItemIndex==2){
+				setStyleTextViewRight(frame_picture_selector_answer_c);
+			}else{
+				setStyleTextViewError(frame_picture_selector_answer_c);
+			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_d){
-
+			if(mCurrentRightWordItemIndex==3){
+				setStyleTextViewRight(frame_picture_selector_answer_d);
+			}else{
+				setStyleTextViewError(frame_picture_selector_answer_d);
+			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_cannotskip){
 			joinWords();
 		}
@@ -138,7 +172,10 @@ public class TestWordsPageActivity extends BaseActivity{
 			@Override
 			public void run() {
 				if(mAnswerIndex>=mAnswerCount){
+					Bundle bundle=new Bundle();
+					bundle.putString("mRightCount", String.valueOf(mRightCount));
 					Intent intent=new Intent(TestWordsPageActivity.this,TestWordsPageDoneActivity.class);
+					intent.putExtras(bundle);
 					startActivity(intent);
 					finish();
 				}else{
@@ -152,44 +189,74 @@ public class TestWordsPageActivity extends BaseActivity{
 	
 	public void currentWord(){
 		mCurrentWordId=mStartWordID+mAnswerIndex*mRandomNumber+rnRandom.nextInt(mRandomNumber);
+		mCurrentRightWordItem=mWordService.findById(mCurrentWordId);
+		List<WordItem> answerWordItems=new ArrayList<WordItem>();
+		answerWordItems.add(mCurrentRightWordItem);
+		while(true){
+			int tmpWordId=rnTestRandom.nextInt(mEndWordID-mStartWordID+1)+mStartWordID;
+			if(mCurrentWordId==tmpWordId){
+				continue;
+			}
+			WordItem tmpWord=mWordService.findById(tmpWordId);
+			if(tmpWord!=null){
+				continue;
+			}
+			answerWordItems.add(tmpWord);
+			if(answerWordItems.size()>=4){
+				break;
+			}
+		}
+		List<WordItem> sortWordItems=new ArrayList<WordItem>();
+		while(!answerWordItems.isEmpty()){
+			int index=rnTestRandom.nextInt(answerWordItems.size());
+			WordItem tmpWord=answerWordItems.get(index);
+			sortWordItems.add(tmpWord);
+			answerWordItems.remove(index);
+		}
+		for(int i=0;i<sortWordItems.size();i++){
+			WordItem tmpWord=sortWordItems.get(i);
+			if(mCurrentRightWordItem.getId().equals(tmpWord.getId())){
+				mCurrentRightWordItemIndex=i;
+				break;
+			}
+		}
 		
-		mWordItem=mWordService.findById(mCurrentWordId);
-		int type=4;
-//		int type=Integer.parseInt(mTestType[rnTestRandom.nextInt(mTestType.length)]);
+//		int type=4;
+		int type=Integer.parseInt(mTestType[rnTestRandom.nextInt(mTestType.length)]);
 		if(type==1){
-			mTitle=mWordItem.getChineseSignificance();
-			mAName="A、"+mWordItem.getEnglishName();
-			mBName="B、"+mWordItem.getEnglishName();
-			mCName="C、"+mWordItem.getEnglishName();
-			mDName="D、"+mWordItem.getEnglishName();
+			mTitle=mCurrentRightWordItem.getChineseSignificance();
+			mAName="A、"+sortWordItems.get(0).getEnglishName();
+			mBName="B、"+sortWordItems.get(1).getEnglishName();
+			mCName="C、"+sortWordItems.get(2).getEnglishName();
+			mDName="D、"+sortWordItems.get(3).getEnglishName();
 			wordToText();
 		}else if(type==2){
-			mTitle=mWordItem.getEnglishName();
-			mAName="A、"+mWordItem.getChineseSignificance();
-			mBName="B、"+mWordItem.getChineseSignificance();
-			mCName="C、"+mWordItem.getChineseSignificance();
-			mDName="D、"+mWordItem.getChineseSignificance();
+			mTitle=mCurrentRightWordItem.getEnglishName();
+			mAName="A、"+sortWordItems.get(0).getChineseSignificance();
+			mBName="B、"+sortWordItems.get(1).getChineseSignificance();
+			mCName="C、"+sortWordItems.get(2).getChineseSignificance();
+			mDName="D、"+sortWordItems.get(3).getChineseSignificance();
 			wordToText();
 		}else if(type==3){
-			mTitle=mWordItem.getId();
-			mAName="A、"+mWordItem.getEnglishName();
-			mBName="B、"+mWordItem.getEnglishName();
-			mCName="C、"+mWordItem.getEnglishName();
-			mDName="D、"+mWordItem.getEnglishName();
+			mTitle=mCurrentRightWordItem.getId();
+			mAName="A、"+sortWordItems.get(0).getEnglishName();
+			mBName="B、"+sortWordItems.get(1).getEnglishName();
+			mCName="C、"+sortWordItems.get(2).getEnglishName();
+			mDName="D、"+sortWordItems.get(3).getEnglishName();
 			pictureToText();
 		}else if(type==4){
-			mTitle=mWordItem.getEnglishName();
-			mAName=mWordItem.getId();
-			mBName="2";
-			mCName="3";
-			mDName="4";
+			mTitle=mCurrentRightWordItem.getEnglishName();
+			mAName=sortWordItems.get(0).getId();
+			mBName=sortWordItems.get(1).getId();
+			mCName=sortWordItems.get(2).getId();
+			mDName=sortWordItems.get(3).getId();
 			wordToPicture();
 		}else if(type==5){
-			mTitle=mWordItem.getFillProblem();
-			mAName="A、"+mWordItem.getFillAnswer();
-			mBName="B、"+mWordItem.getFillAnswer();
-			mCName="C、"+mWordItem.getFillAnswer();
-			mDName="D、"+mWordItem.getFillAnswer();
+			mTitle=mCurrentRightWordItem.getFillProblem();
+			mAName="A、"+sortWordItems.get(0).getFillAnswer();
+			mBName="B、"+sortWordItems.get(1).getFillAnswer();
+			mCName="C、"+sortWordItems.get(2).getFillAnswer();
+			mDName="D、"+sortWordItems.get(3).getFillAnswer();
 			textToText();
 		}
 		mAnswerIndex++;
