@@ -486,7 +486,7 @@ public class TestWordsPageActivity extends BaseActivity{
 	}
 	
 	public void joinWords(){
-//		getHandlerContext().makeTextShort(getString(R.string.addtonewword));
+		BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mCurrentWordId), getAppContext().currentUser().getCacheAccount());
 	}
 	
 }

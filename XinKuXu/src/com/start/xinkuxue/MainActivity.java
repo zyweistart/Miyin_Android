@@ -22,7 +22,8 @@ public class MainActivity extends BaseActivity {
 		}else if(v.getId()==R.id.testvocabulary){
 			getHandlerContext().makeTextShort("词汇测试,即将上线");
 		}else if(v.getId()==R.id.newwords){
-			getHandlerContext().makeTextShort("生词本,即将上线");
+			Intent intent=new Intent(this,StrangeWordsActivity.class);
+			startActivity(intent);
 		}else if(v.getId()==R.id.specialtraining){
 			getHandlerContext().makeTextShort("特训营,即将上线");
 		}

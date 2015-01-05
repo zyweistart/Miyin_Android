@@ -56,6 +56,21 @@
         <activity
             android:name=".TestWordsPageDoneActivity"
             android:screenOrientation="landscape"/>
+        <activity
+            android:name=".StrangeWordsActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".StrangeWordsListenLookActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".StrangeWordsSwitchTestActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".StrangeWordsTestActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".StrangeWordsTestDoneActivity"
+            android:screenOrientation="landscape"/>
         
     </application>
 

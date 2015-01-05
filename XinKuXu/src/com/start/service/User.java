@@ -83,7 +83,8 @@ public class User {
 	}
 	
 	public String getCacheAccount(){
-		return BaseContext.getSharedPreferences().getString(Preferences.SP_ACCOUNT_CONTENT_DATA, AppConstant.EMPTYSTR);
+		return "weizhenyao";
+//		return BaseContext.getSharedPreferences().getString(Preferences.SP_ACCOUNT_CONTENT_DATA, AppConstant.EMPTYSTR);
 	}
 	
 	public String getCachePassword(){
