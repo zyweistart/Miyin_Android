@@ -6,214 +6,250 @@
     android:orientation="vertical"
     android:padding="20.0dip" >
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20.0dip"
-        android:contentDescription="@string/empty"
-        android:src="@drawable/logo" />
-
     <LinearLayout
         android:id="@+id/frame_test_start1"
-        android:layout_width="600.0dip"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:visibility="gone" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10.0dip"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
 
-            <TextView
-                android:layout_width="100.0dip"
-                android:layout_height="wrap_content"
-                android:gravity="right|center_vertical"
-                android:text="选择区间："
-                android:textColor="@color/learn_words_switch_test_textcolor"
-                android:textSize="18.0dip" />
-
-            <start.widget.CustomEditText
-                android:id="@+id/et_word_start_index"
-                style="@style/edittext2"
-                android:layout_marginLeft="10.0dip"
-                android:inputType="number" />
-
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:text="~"
-                android:textColor="@color/learn_words_switch_test_textcolor"
-                android:textSize="18.0dip" />
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/empty"
+                android:src="@drawable/logo" />
+        </RelativeLayout>
 
-            <start.widget.CustomEditText
-                android:id="@+id/et_word_end_index"
-                style="@style/edittext2"
-                android:layout_marginLeft="10.0dip"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <View 
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30.0dip"/>
-        
-        <Button
-            android:id="@+id/btn_test_start1"
-            android:layout_width="200.0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5.0dip"
-            android:background="@drawable/selector_button_2"
-            android:onClick="onClick"
-            android:padding="10.0dip"
-            android:text="@string/teststart"
-            android:textColor="@color/selector_button_textcolor_2"
-            android:textSize="16.0dip" />
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="100.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="选择区间："
+                    android:textColor="@color/learn_words_switch_test_textcolor"
+                    android:textSize="18.0dip" />
+
+                <start.widget.CustomEditText
+                    android:id="@+id/et_word_start_index"
+                    style="@style/edittext2"
+                    android:layout_marginLeft="10.0dip"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="~"
+                    android:textColor="@color/learn_words_switch_test_textcolor"
+                    android:textSize="18.0dip" />
+
+                <start.widget.CustomEditText
+                    android:id="@+id/et_word_end_index"
+                    style="@style/edittext2"
+                    android:layout_marginLeft="10.0dip"
+                    android:inputType="number" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/btn_test_start1"
+                style="@style/button_style_1"
+                android:layout_centerInParent="true"
+                android:background="@drawable/selector_button_2"
+                android:text="@string/teststart" />
+        </RelativeLayout>
     </LinearLayout>
 
-    
     <LinearLayout
         android:id="@+id/frame_test_start2"
-        android:layout_width="600.0dip"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
         android:visibility="gone" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="10.0dip"
-            android:orientation="horizontal" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
 
-            <TextView
-                android:layout_width="100.0dip"
-                android:layout_height="wrap_content"
-                android:gravity="right|center_vertical"
-                android:text="选择区间："
-                android:textColor="@color/learn_words_switch_test_textcolor"
-                android:textSize="18.0dip" />
-
-            <start.widget.CustomEditText
-                android:id="@+id/et_test_start_index"
-                style="@style/edittext2"
-                android:layout_marginLeft="10.0dip"
-                android:inputType="number" />
-
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:text="~"
-                android:textColor="@color/learn_words_switch_test_textcolor"
-                android:textSize="18.0dip" />
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/empty"
+                android:src="@drawable/logo" />
+        </RelativeLayout>
 
-            <start.widget.CustomEditText
-                android:id="@+id/et_test_end_index"
-                style="@style/edittext2"
-                android:layout_marginLeft="10.0dip"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10.0dip"
-            android:orientation="horizontal" >
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
 
-            <TextView
-                android:layout_width="100.0dip"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right|center_vertical"
-                android:text="测试方式："
-                android:textColor="@color/learn_words_switch_test_textcolor"
-                android:textSize="18.0dip" />
+                android:layout_centerInParent="true"
+                android:orientation="vertical" >
 
-            <CheckBox
-                android:id="@+id/cb_switch_a"
-                style="@style/checkbox1"
-                android:layout_marginLeft="10.0dip"
-                android:checked="true"
-                android:text="中->英" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal" >
 
-            <CheckBox
-                android:id="@+id/cb_switch_b"
-                style="@style/checkbox1"
-                android:layout_marginLeft="10.0dip"
-                android:checked="true"
-                android:text="英->中" />
+                    <TextView
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:text="选择区间："
+                        android:textColor="@color/learn_words_switch_test_textcolor"
+                        android:textSize="18.0dip" />
 
-            <CheckBox
-                android:id="@+id/cb_switch_c"
-                style="@style/checkbox1"
-                android:layout_marginLeft="10.0dip"
-                android:checked="true"
-                android:text="图->英" />
+                    <start.widget.CustomEditText
+                        android:id="@+id/et_test_start_index"
+                        style="@style/edittext2"
+                        android:layout_marginLeft="10.0dip"
+                        android:inputType="number" />
 
-            <CheckBox
-                android:id="@+id/cb_switch_d"
-                style="@style/checkbox1"
-                android:layout_marginLeft="10.0dip"
-                android:text="英->图" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.0dip"
+                        android:text="~"
+                        android:textColor="@color/learn_words_switch_test_textcolor"
+                        android:textSize="18.0dip" />
 
-            <CheckBox
-                android:id="@+id/cb_switch_e"
-                style="@style/checkbox1"
-                android:layout_marginLeft="10.0dip"
-                android:text="填空" />
-        </LinearLayout>
+                    <start.widget.CustomEditText
+                        android:id="@+id/et_test_end_index"
+                        style="@style/edittext2"
+                        android:layout_marginLeft="10.0dip"
+                        android:inputType="number" />
+                </LinearLayout>
 
-        <LinearLayout
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10.0dip" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:text="测试方式："
+                        android:textColor="@color/learn_words_switch_test_textcolor"
+                        android:textSize="18.0dip" />
+
+                    <CheckBox
+                        android:id="@+id/cb_switch_a"
+                        style="@style/checkbox1"
+                        android:layout_marginLeft="10.0dip"
+                        android:checked="true"
+                        android:text="中->英" />
+
+                    <CheckBox
+                        android:id="@+id/cb_switch_b"
+                        style="@style/checkbox1"
+                        android:layout_marginLeft="10.0dip"
+                        android:checked="true"
+                        android:text="英->中" />
+
+                    <CheckBox
+                        android:id="@+id/cb_switch_c"
+                        style="@style/checkbox1"
+                        android:layout_marginLeft="10.0dip"
+                        android:checked="true"
+                        android:text="图->英" />
+
+                    <CheckBox
+                        android:id="@+id/cb_switch_d"
+                        style="@style/checkbox1"
+                        android:layout_marginLeft="10.0dip"
+                        android:text="英->图" />
+
+                    <CheckBox
+                        android:id="@+id/cb_switch_e"
+                        style="@style/checkbox1"
+                        android:layout_marginLeft="10.0dip"
+                        android:text="填空" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10.0dip" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:text="几选1："
+                        android:textColor="@color/learn_words_switch_test_textcolor"
+                        android:textSize="18.0dip" />
+
+                    <start.widget.CustomEditText
+                        android:id="@+id/et_section"
+                        style="@style/edittext2"
+                        android:layout_marginLeft="10.0dip"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10.0dip" />
+
+                <TextView
+                    android:id="@+id/tip2"
+                    android:layout_width="500.0dip"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20.0dip"
+                    android:textColor="@color/learn_words_switch_test_textcolor"
+                    android:textSize="16.0dip" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10.0dip"
-            android:orientation="horizontal" >
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
 
-            <TextView
-                android:layout_width="100.0dip"
-                android:layout_height="wrap_content"
-                android:gravity="right|center_vertical"
-                android:text="几选1："
-                android:textColor="@color/learn_words_switch_test_textcolor"
-                android:textSize="18.0dip" />
-
-            <start.widget.CustomEditText
-                android:id="@+id/et_section"
-                style="@style/edittext2"
-                android:layout_marginLeft="10.0dip"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tip2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10.0dip"
-            android:paddingLeft="20.0dip"
-            android:textColor="@color/learn_words_switch_test_textcolor"
-            android:textSize="16.0dip" />
-
-        <Button
-            android:id="@+id/btn_test_start2"
-            android:layout_width="200.0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5.0dip"
-            android:background="@drawable/selector_button_2"
-            android:onClick="onClick"
-            android:padding="10.0dip"
-            android:text="@string/teststart"
-            android:textColor="@color/selector_button_textcolor_2"
-            android:textSize="16.0dip" />
+            <Button
+                android:id="@+id/btn_test_start2"
+                style="@style/button_style_1"
+                android:layout_centerInParent="true"
+                android:background="@drawable/selector_button_2"
+                android:text="@string/teststart" />
+        </RelativeLayout>
     </LinearLayout>
 
 </RelativeLayout>
