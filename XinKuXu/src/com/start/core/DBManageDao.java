@@ -62,7 +62,7 @@ public  class DBManageDao {
 	
 	private void joinToStrangeWordStatistic(String userName){
 		//只有不存在当天记录才进行添加
-		String str="select count(*)  from "+StrangeWordStatisticsItem.TABLENAME+" where userName='"+userName+"'";
+		String str="select count(*)  from "+StrangeWordStatisticsItem.TABLENAME+" where userName='"+userName+"' and joinTime='"+TimeUtils.getSysdate()+"'";
         Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
         cursor.moveToFirst();
         if(cursor.getLong(0)==0){

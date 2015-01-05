@@ -51,26 +51,33 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".TestWordsPageActivity"
-            android:screenOrientation="landscape"/>
+            android:name=".WordsTestPageActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".TestWordsPageDoneActivity"
-            android:screenOrientation="landscape"/>
+            android:name=".WordsTestPageDoneActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".StrangeWordsActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".StrangeWordsListenLookActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".StrangeWordsSwitchTestActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".StrangeWordsTestActivity"
-            android:screenOrientation="landscape"/>
+            android:name=".StrangeWordsTestPageActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".StrangeWordsTestDoneActivity"
-            android:screenOrientation="landscape"/>
+            android:name=".StrangeWordsTestPageDoneActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         
     </application>
 

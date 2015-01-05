@@ -25,8 +25,10 @@ import com.start.service.bean.WordItem;
  */
 public class LearnWordsListenLookActivity extends BaseActivity{
 	
-	public static final String BUNDLE_LEARN_WORDS_START_INDEX="BUNDLE_LEARN_WORDS_START_INDEX";
-	public static final String BUNDLE_LEARN_WORDS_END_INDEX="BUNDLE_LEARN_WORDS_END_INDEX";
+	public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
+	
+	private int currentIndex;
+	private String[] mAnswerArray;
 	
 	private ImageView iv_word,iv_memory_method;
 	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
@@ -34,8 +36,6 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	private TextView txt_learn_count;
 	private WordService mWordService;
 	private WordItem mWordItem;
-	
-	private int currentIndex,startIndex,endIndex;
 	
 	private RelativeLayout frame_learn;
 	private LinearLayout frame_done;
@@ -70,16 +70,13 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 		}
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
-			startIndex=bundle.getInt(BUNDLE_LEARN_WORDS_START_INDEX);
-			endIndex=bundle.getInt(BUNDLE_LEARN_WORDS_END_INDEX);
-			if(endIndex>startIndex){
-				txt_learn_count.setText(String.valueOf(endIndex-startIndex+1));
-				currentIndex=startIndex;
-				showWordDetail();
-				return;
-			}
+			mAnswerArray=bundle.getStringArray(BUNDLE_ANSWER_ARRAY);
+			txt_learn_count.setText(String.valueOf(mAnswerArray.length));
+			currentIndex=0;
+			showWordDetail();
+		}else{
+			finish();
 		}
-		finish();
 	}
 	
 	@Override
@@ -107,16 +104,14 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 			}
 		}else if(v.getId()==R.id.btn_previous){
 			closeAudio();
-			if(currentIndex>startIndex){
-				currentIndex--;
-				if(currentIndex==startIndex){
-					btn_previous.setVisibility(View.GONE);
-				}
-				showWordDetail();
+			currentIndex--;
+			if(currentIndex<1){
+				btn_previous.setVisibility(View.GONE);
 			}
+			showWordDetail();
 		}else if(v.getId()==R.id.btn_next){
 			closeAudio();
-			if(endIndex>currentIndex){
+			if(mAnswerArray.length>currentIndex){
 				currentIndex++;
 				btn_previous.setVisibility(View.VISIBLE);
 				showWordDetail();
@@ -145,7 +140,7 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	}
 
 	public void showWordDetail(){
-		mWordItem=mWordService.findById(currentIndex);
+		mWordItem=mWordService.findById(Integer.parseInt(mAnswerArray[currentIndex]));
 		if(mWordItem==null){
 			return;
 		}

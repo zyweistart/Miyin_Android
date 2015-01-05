@@ -1,10 +1,10 @@
 package com.start.xinkuxue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.start.core.BaseActivity;
 import com.start.service.bean.StrangeWordItem;
@@ -22,22 +22,29 @@ public class StrangeWordsActivity extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_strange_words);
 		List<StrangeWordStatisticsItem> mStrangeWordStatisticsItems=BaseContext.getDBManager().findAllByStrangeWordStatistic(getAppContext().currentUser().getCacheAccount());
-		for(StrangeWordStatisticsItem i : mStrangeWordStatisticsItems){
-			List<StrangeWordItem> datas=BaseContext.getDBManager().findAllByStrangeWordItem(i.getJoinTime());
+		for(StrangeWordStatisticsItem sws : mStrangeWordStatisticsItems){
+			List<StrangeWordItem> datas=BaseContext.getDBManager().findAllByStrangeWordItem(sws.getJoinTime());
 			System.out.println(datas.size());
-		}
-	}
-	
-	@Override
-	public void onClick(View v) {
-		if(v.getId()==R.id.btn_login){
-			Intent intent=new Intent(this,MainActivity.class);
+			List<String> models=new ArrayList<String>();
+			models.add("1");
+			models.add("2");
+			models.add("3");
+			models.add("4");
+			models.add("5");
+			//答案总数
+			int mAnswerCount=datas.size();
+			List<String> ids=new ArrayList<String>();
+			for(int i=0;i<mAnswerCount;i++){
+				ids.add(datas.get(i).getIndex());
+			}
+			Bundle bundle=new Bundle();
+			bundle.putStringArray(StrangeWordsTestPageActivity.BUNDLE_WORDS, models.toArray(new String[models.size()]));
+			bundle.putStringArray(StrangeWordsTestPageActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+			Intent intent=new Intent(this,StrangeWordsTestPageActivity.class);
+			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();
-		}else if(v.getId()==R.id.btn_register){
-			getHandlerContext().makeTextLong("暂无注册功能");
-		}else{
-			super.onClick(v);
+			break;
 		}
 	}
 	

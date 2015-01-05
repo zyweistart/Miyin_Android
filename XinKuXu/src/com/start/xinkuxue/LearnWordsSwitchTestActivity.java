@@ -2,6 +2,7 @@ package com.start.xinkuxue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import start.utils.StringUtils;
 import start.widget.CustomEditText;
@@ -103,9 +104,12 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				getHandlerContext().makeTextLong("结束区间不能大于总单词数："+mWordCount);
 				return;
 			}
+			List<String> ids=new ArrayList<String>();
+			for(int i=start;i<=end;i++){
+				ids.add(String.valueOf(i));
+			}
 			Bundle bundle=new Bundle();
-			bundle.putInt(LearnWordsListenLookActivity.BUNDLE_LEARN_WORDS_START_INDEX, start);
-			bundle.putInt(LearnWordsListenLookActivity.BUNDLE_LEARN_WORDS_END_INDEX, end);
+			bundle.putStringArray(LearnWordsListenLookActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
 			Intent intent=new Intent(this,LearnWordsListenLookActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
@@ -159,12 +163,19 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				getHandlerContext().makeTextLong("测试方法必须大于等于3种");
 				return;
 			}
+			Random rnRandom=new Random();
+			//几选一
+			Integer se=Integer.parseInt(section);
+			//答案总数
+			int mAnswerCount=(e-s+1)/se;
+			List<String> ids=new ArrayList<String>();
+			for(int i=0;i<mAnswerCount;i++){
+				ids.add(String.valueOf(s+i*se+rnRandom.nextInt(se)));
+			}
 			Bundle bundle=new Bundle();
-			bundle.putInt(TestWordsPageActivity.BUNDLE_LEARN_WORDS_START_INDEX, Integer.parseInt(start));
-			bundle.putInt(TestWordsPageActivity.BUNDLE_LEARN_WORDS_END_INDEX, Integer.parseInt(end));
-			bundle.putStringArray(TestWordsPageActivity.BUNDLE_WORDS, indexs.toArray(new String[indexs.size()]));
-			bundle.putInt(TestWordsPageActivity.BUNDLE_RANDOM_NUMBER, Integer.parseInt(section));
-			Intent intent=new Intent(this,TestWordsPageActivity.class);
+			bundle.putStringArray(WordsTestPageActivity.BUNDLE_WORDS, indexs.toArray(new String[indexs.size()]));
+			bundle.putStringArray(WordsTestPageActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+			Intent intent=new Intent(this,WordsTestPageActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();
