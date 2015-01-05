@@ -38,9 +38,13 @@ public class StrangeWordsActivity extends BaseActivity{
 				ids.add(datas.get(i).getIndex());
 			}
 			Bundle bundle=new Bundle();
-			bundle.putStringArray(StrangeWordsTestPageActivity.BUNDLE_WORDS, models.toArray(new String[models.size()]));
-			bundle.putStringArray(StrangeWordsTestPageActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
-			Intent intent=new Intent(this,StrangeWordsTestPageActivity.class);
+			
+			bundle.putStringArray(StrangeWordsListenLookActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+			Intent intent=new Intent(this,StrangeWordsListenLookActivity.class);
+			
+//			bundle.putStringArray(StrangeWordsTestPageActivity.BUNDLE_WORDS, models.toArray(new String[models.size()]));
+//			bundle.putStringArray(StrangeWordsTestPageActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+//			Intent intent=new Intent(this,StrangeWordsTestPageActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();

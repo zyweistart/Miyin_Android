@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_activity"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/bm_words" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +14,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_margin="20.0dip"
             android:contentDescription="@string/empty"
             android:src="@drawable/logo" />
     </RelativeLayout>
@@ -22,92 +21,86 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0.0dip"
-        android:layout_weight="2" >
+        android:layout_weight="1" >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:orientation="vertical" >
 
             <LinearLayout
-                android:layout_width="400.0dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/bg_login_frame"
-                android:orientation="vertical" >
+                android:orientation="horizontal" >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="100.0dip"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5.0dip"
-                    android:orientation="horizontal" >
+                    android:gravity="right|center_vertical"
+                    android:text="测试方式："
+                    android:textColor="@color/learn_words_switch_test_textcolor"
+                    android:textSize="18.0dip" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="5.0dip"
-                        android:contentDescription="@string/empty"
-                        android:src="@drawable/ic_username" />
+                <CheckBox
+                    android:id="@+id/cb_switch_a"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:checked="true"
+                    android:text="中->英" />
 
-                    <start.widget.CustomEditText
-                        android:id="@+id/et_login_account"
-                        style="@style/edittext1"
-                        android:hint="@string/accounthint" />
-                </LinearLayout>
+                <CheckBox
+                    android:id="@+id/cb_switch_b"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:checked="true"
+                    android:text="英->中" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1.0dip"
-                    android:background="#c0c0c0" />
+                <CheckBox
+                    android:id="@+id/cb_switch_c"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:checked="true"
+                    android:text="图->英" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5.0dip"
-                    android:orientation="horizontal" >
+                <CheckBox
+                    android:id="@+id/cb_switch_d"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="英->图" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="5.0dip"
-                        android:contentDescription="@string/empty"
-                        android:src="@drawable/ic_password" />
-
-                    <start.widget.CustomEditText
-                        android:id="@+id/et_login_password"
-                        style="@style/edittext1"
-                        android:hint="@string/passwordhint"
-                        android:inputType="textPassword" />
-                </LinearLayout>
+                <CheckBox
+                    android:id="@+id/cb_switch_e"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="填空" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50.0dip"/>
-            
-            <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_height="10.0dip" />
+
+            <TextView
+                android:id="@+id/tip2"
+                android:layout_width="500.0dip"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/btn_register"
-                    style="@style/button_style_1"
-                    android:background="@drawable/selector_button_1"
-                    android:text="@string/register" />
-
-                <Button
-                    android:id="@+id/btn_login"
-                    style="@style/button_style_1"
-                    android:background="@drawable/selector_button_2"
-                    android:text="@string/login" />
-            </LinearLayout>
+                android:paddingLeft="20.0dip"
+                android:textColor="@color/learn_words_switch_test_textcolor"
+                android:textSize="16.0dip" />
         </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/btn_test_start2"
+            style="@style/button_style_1"
+            android:layout_centerInParent="true"
+            android:background="@drawable/selector_button_2"
+            android:text="@string/teststart" />
     </RelativeLayout>
 
 </LinearLayout>

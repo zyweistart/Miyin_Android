@@ -111,7 +111,7 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 			showWordDetail();
 		}else if(v.getId()==R.id.btn_next){
 			closeAudio();
-			if(mAnswerArray.length>currentIndex){
+			if(mAnswerArray.length-1>currentIndex){
 				currentIndex++;
 				btn_previous.setVisibility(View.VISIBLE);
 				showWordDetail();
