@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_activity"
-    android:orientation="vertical" >
+    android:background="@color/bg_activity" >
 
-    	<TextView 
-    	    android:id="@+id/learnwords"
-    	    style="@style/main_function_selector_bg"
-    	    android:text="@string/learnwords"
-    	    android:background="@drawable/selector_button_1"/>
-	<TextView 
-    	    android:id="@+id/testvocabulary"
-    	    style="@style/main_function_selector_bg"
-    	    android:text="@string/testvocabulary"
-    	    android:background="@drawable/selector_button_1"/>
-	<TextView 
-    	    android:id="@+id/newwords"
-    	    style="@style/main_function_selector_bg"
-    	    android:text="@string/newwords"
-    	    android:background="@drawable/selector_button_1"/>
-	<TextView 
-    	    android:id="@+id/specialtraining"
-    	    style="@style/main_function_selector_bg"
-    	    android:text="@string/specialtraining"
-    	    android:background="@drawable/selector_button_1"/>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/learnwords"
+                style="@style/button_style_2"
+                android:background="@drawable/selector_button_7"
+                android:drawableTop="@drawable/ic_learnwords"
+                android:text="@string/learnwords" />
+
+            <Button
+                android:id="@+id/testvocabulary"
+                style="@style/button_style_2"
+                android:background="@drawable/selector_button_2"
+                android:drawableTop="@drawable/ic_testvocabulary"
+                android:text="@string/testvocabulary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/newwords"
+                style="@style/button_style_2"
+                android:background="@drawable/selector_button_6"
+                android:drawableTop="@drawable/ic_newwords"
+                android:text="@string/newwords" />
+
+            <Button
+                android:id="@+id/specialtraining"
+                style="@style/button_style_2"
+                android:background="@drawable/selector_button_8"
+                android:drawableTop="@drawable/ic_specialtraining"
+                android:text="@string/specialtraining" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -35,7 +35,13 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_learn_words_switch_test);
-		mWordService=new WordService();
+		try{
+			mWordService=new WordService();
+		}catch(Exception e){
+			getHandlerContext().makeTextLong(e.getMessage());
+			finish();
+			return;
+		}
 		mWordCount=mWordService.getWordCount();
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){

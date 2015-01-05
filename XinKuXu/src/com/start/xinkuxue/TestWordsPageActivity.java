@@ -100,9 +100,13 @@ public class TestWordsPageActivity extends BaseActivity{
 			rnRandom=new Random();
 			
 			mAnswerCount=(mEndWordID-mStartWordID+1)/mRandomNumber;
-			
-			mWordService=new WordService();
-			
+			try{
+				mWordService=new WordService();
+			}catch(Exception e){
+				getHandlerContext().makeTextLong(e.getMessage());
+				finish();
+				return;
+			}
 			mAnswerIndex=0;
 			currentWord();
 		}else{

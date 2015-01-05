@@ -12,40 +12,47 @@ import com.start.xinkuxue.BaseContext;
 
 public class WordService {
 	
-	public static final String AUDIOPATH="/audio_word/";
-	public static final String EXAMPLEIMAGEPATH="image_example/";
-	public static final String MEMORYIMAGEPATH="image_memory/";
+	public static final String DIRPATH="data";
+	public static final String AUDIOPATH="audio_word";
+	public static final String EXAMPLEIMAGEPATH="image_example";
+	public static final String MEMORYIMAGEPATH="image_memory";
+	
 	public static final String DBEXTENSIONNAME="words.db";
 	public static final String PICTUREEXTENSION=".jpg";
 	public static final String AUDIOEXTENSION=".mp3";
 	
-	private String mDirName;
 	private SQLiteDatabase mSQLiteDatabase;
 
-	public WordService() {
-		this.mDirName="simpleenglish";
-		String dbFileName = BaseContext.getInstance().getStorageDirectory(this.mDirName)+DBEXTENSIONNAME;
+	public WordService() throws Exception {
+		String dbFileName = BaseContext.getInstance().getStorageDirectory(DIRPATH)+DBEXTENSIONNAME;
 		File dbFile=new File(dbFileName);
 		if(dbFile.exists()){
 			mSQLiteDatabase = SQLiteDatabase.openOrCreateDatabase(dbFileName, null);
+		}
+		if(mSQLiteDatabase==null){
+			throw new Exception("数据为空，请联系管理员");
 		}
 	}
 	
 	//获取单词讲解音频路径
 	public String getAudioPath(String name){
-		return BaseContext.getInstance().getStorageDirectory(this.mDirName)+AUDIOPATH+name+AUDIOEXTENSION;
+		return BaseContext.getInstance().getStorageDirectory(DIRPATH)+AUDIOPATH+"/"+name+AUDIOEXTENSION;
 	}
 	
 	//获取例句（图片）路径
 	public String getExampleImagePath(String name){
-		return BaseContext.getInstance().getStorageDirectory(this.mDirName)+EXAMPLEIMAGEPATH+name+PICTUREEXTENSION;
+		return BaseContext.getInstance().getStorageDirectory(DIRPATH)+EXAMPLEIMAGEPATH+"/"+name+PICTUREEXTENSION;
 	}
 	
 	//获取图形记忆法（图片）路径
 	public String getMemoryImagePath(String name){
-		return BaseContext.getInstance().getStorageDirectory(this.mDirName)+MEMORYIMAGEPATH+name+PICTUREEXTENSION;
+		return BaseContext.getInstance().getStorageDirectory(DIRPATH)+MEMORYIMAGEPATH+"/"+name+PICTUREEXTENSION;
 	}
 	
+	/**
+	 * 获取单词总数
+	 * @return
+	 */
 	public Long getWordCount(){
         String str="select count(id)  from "+WordItem.TABLENAME;
         Cursor cursor = mSQLiteDatabase.rawQuery(str,null);

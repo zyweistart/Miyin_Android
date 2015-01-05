@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_activity"
-    android:orientation="vertical" >
+    android:background="@color/bg_activity">
 
-    <Button
-        android:id="@+id/btn_listenlooklearnwords"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/main_frame"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5.0dip"
-        android:background="@drawable/selector_button_1"
-        android:onClick="onClick"
-        android:padding="10.0dip"
-        android:text="@string/listenlooklearnwords"
-        android:textColor="@color/selector_button_textcolor_1"
-        android:textSize="16.0dip" />
+        android:orientation="horizontal" 
+        android:layout_centerInParent="true">
 
-    <Button
-        android:id="@+id/btn_words123"
-        android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_listenlooklearnwords"
+            style="@style/button_style_1"
+            android:background="@drawable/selector_button_6"
+            android:text="@string/listenlooklearnwords" />
+
+        <Button
+            android:id="@+id/btn_words123"
+            style="@style/button_style_1"
+            android:background="@drawable/selector_button_7"
+            android:text="@string/words123" />
+
+        <Button
+            android:id="@+id/btn_testeveryday"
+            style="@style/button_style_1"
+            android:background="@drawable/selector_button_2"
+            android:text="@string/testeveryday" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5.0dip"
-        android:background="@drawable/selector_button_2"
-        android:onClick="onClick"
-        android:padding="10.0dip"
-        android:text="@string/words123"
-        android:textColor="@color/selector_button_textcolor_2"
-        android:textSize="16.0dip" />
+        android:layout_margin="20.0dip"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/empty"
+        android:src="@drawable/logo" 
+        android:layout_above="@id/main_frame"/>
     
-    <Button
-        android:id="@+id/btn_testeveryday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5.0dip"
-        android:background="@drawable/selector_button_2"
-        android:onClick="onClick"
-        android:padding="10.0dip"
-        android:text="@string/testeveryday"
-        android:textColor="@color/selector_button_textcolor_2"
-        android:textSize="16.0dip" />
-
-</LinearLayout>
+</RelativeLayout>

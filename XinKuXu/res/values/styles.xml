@@ -32,7 +32,28 @@
         <item name="android:drawableRight">@drawable/ic_input_clear</item>
         <item name="android:background">@drawable/bg_frame</item>
     </style>
-    
+     <style name="button_style_1">
+        <item name="android:layout_width">250.0dip</item>
+        <item name="android:layout_height">50.0dip</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:layout_margin">5.0dip</item>
+        <item name="android:gravity">center</item>>
+    </style>
+    <style name="button_style_2">
+        <item name="android:layout_width">150.0dip</item>
+        <item name="android:layout_height">150.0dip</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">25.0dip</item>
+        <item name="android:layout_margin">5.0dip</item>
+        <item name="android:gravity">center</item>>
+    </style>
     <style name="checkbox1">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -75,7 +96,6 @@
     <style name="test_words_page_text_error_selector" parent="test_words_page_text_selector">
         <item name="android:textColor">@color/white</item>
     </style>
-    
     <style name="test_words_page_picture_frame_selector">
         <item name="android:layout_width">0.0dip</item>
         <item name="android:layout_height">wrap_content</item>

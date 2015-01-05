@@ -21,11 +21,11 @@ public class MainActivity extends BaseActivity {
 			startActivity(intent);
 			finish();
 		}else if(v.getId()==R.id.testvocabulary){
-			getHandlerContext().makeTextLong("词汇测试");
+			getHandlerContext().makeTextShort("词汇测试,即将上线");
 		}else if(v.getId()==R.id.newwords){
-			getHandlerContext().makeTextLong("生词本");
+			getHandlerContext().makeTextShort("生词本,即将上线");
 		}else if(v.getId()==R.id.specialtraining){
-			getHandlerContext().makeTextLong("特训营");
+			getHandlerContext().makeTextShort("特训营,即将上线");
 		}
 	}
 	
