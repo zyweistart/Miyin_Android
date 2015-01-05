@@ -19,7 +19,6 @@ public class MainActivity extends BaseActivity {
 		if(v.getId()==R.id.learnwords){
 			Intent intent=new Intent(this,LearnWordsSwitchActivity.class);
 			startActivity(intent);
-			finish();
 		}else if(v.getId()==R.id.testvocabulary){
 			getHandlerContext().makeTextShort("词汇测试,即将上线");
 		}else if(v.getId()==R.id.newwords){

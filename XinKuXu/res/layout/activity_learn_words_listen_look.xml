@@ -153,6 +153,17 @@
                         android:layout_marginLeft="40.0dip"
                         android:textColor="@color/black"
                         android:textSize="16.0dip" />
+                    
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10.0dip" />
+                    
+                    <ImageView
+	                    android:id="@+id/iv_memory_method"
+	                    android:layout_width="250.0dip"
+	                    android:layout_height="50.0dip"
+	                    android:contentDescription="@string/empty"/>
+                    
                 </LinearLayout>
             </LinearLayout>
 

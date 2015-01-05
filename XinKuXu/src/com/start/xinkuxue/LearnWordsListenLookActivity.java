@@ -1,9 +1,11 @@
 package com.start.xinkuxue;
 
 import java.io.File;
+import java.io.IOException;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -35,6 +37,8 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	private int currentIndex,startIndex,endIndex;
 	
 	private RelativeLayout frame_learn,frame_done;
+	
+	private MediaPlayer mMediaPlayer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +83,28 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_player){
+			closeAudio();
 			String mAudioPath = mWordService.getAudioPath(mWordItem.getId());
 			if(new File(mAudioPath).exists()){
-				getHandlerContext().makeTextLong("播放路径:"+mAudioPath);
+				try {
+					mMediaPlayer=new MediaPlayer();
+					mMediaPlayer.setDataSource(mAudioPath);
+					mMediaPlayer.prepare();
+					mMediaPlayer.start();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					e.printStackTrace();
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}else{
 				getHandlerContext().makeTextShort(getString(R.string.word_data_not_audio));
 			}
 		}else if(v.getId()==R.id.btn_previous){
+			closeAudio();
 			if(currentIndex>startIndex){
 				currentIndex--;
 				if(currentIndex==startIndex){
@@ -94,6 +113,7 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 				showWordDetail();
 			}
 		}else if(v.getId()==R.id.btn_next){
+			closeAudio();
 			if(endIndex>currentIndex){
 				currentIndex++;
 				btn_previous.setVisibility(View.VISIBLE);
@@ -116,6 +136,12 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 		}
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		closeAudio();
+	}
+
 	public void showWordDetail(){
 		mWordItem=mWordService.findById(currentIndex);
 		if(mWordItem==null){
@@ -143,6 +169,16 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 		txt_exampleChinese.setText(mWordItem.getExampleChinese());
 		txt_memoryMethodA.setText(mWordItem.getMemoryMethodA());
 		txt_memoryMethodB.setText(mWordItem.getMemoryMethodB());
+	}
+	
+	public void closeAudio(){
+		if(mMediaPlayer!=null){
+			if(mMediaPlayer.isPlaying()){
+				mMediaPlayer.stop();
+			}
+			mMediaPlayer.release();
+			mMediaPlayer=null;
+		}
 	}
 	
 }
