@@ -222,7 +222,8 @@
                 android:background="@drawable/selector_button_1"
                 android:onClick="onClick"
                 android:padding="10.0dip"
-                android:contentDescription="@string/empty"/>
+                android:contentDescription="@string/empty"
+                android:visibility="gone"/>
 
             <ImageButton
                 android:id="@+id/btn_next"
