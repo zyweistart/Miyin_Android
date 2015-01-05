@@ -77,7 +77,7 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				frame_test_start2.setVisibility(View.VISIBLE);
 				et_test_start_index.setText("1");
 				et_test_end_index.setText(String.valueOf(mWordCount));
-				et_section.setText("1");
+				et_section.setText("5");
 			}
 		}else{
 			finish();
