@@ -3,6 +3,7 @@ package com.start.xinkuxue;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 
@@ -13,10 +14,24 @@ import com.start.core.BaseActivity;
  */
 public class TestWordsPageDoneActivity extends BaseActivity{
 	
+	public static final String ANSWERCOUNT="ANSWERCOUNT";
+	public static final String RIGHTCOUNT="RIGHTCOUNT";
+	
+	private int mAnswerCount,mRightCount;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_words_page_done);
+		TextView tv=(TextView)findViewById(R.id.tipinfo);
+		Bundle bundle=getIntent().getExtras();
+		if(bundle==null){
+			finish();
+		}else{
+			mAnswerCount=bundle.getInt(ANSWERCOUNT);
+			mRightCount=bundle.getInt(RIGHTCOUNT);
+			tv.setText("答案结束共："+mAnswerCount+"道题，答对了："+mRightCount+"道题");
+		}
 	}
 	
 	@Override

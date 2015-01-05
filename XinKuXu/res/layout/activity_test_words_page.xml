@@ -27,7 +27,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:textColor="@color/black"
-            android:textSize="75.0dip"
+            android:textSize="35.0dip"
             android:textStyle="bold"
             android:visibility="gone" />
 
@@ -55,15 +55,15 @@
 
         <TextView
             android:id="@+id/frame_text_selector_answer_b"
-            style="@style/test_words_page_text_selector"/>
+            style="@style/test_words_page_text_selector" />
 
         <TextView
             android:id="@+id/frame_text_selector_answer_c"
-            style="@style/test_words_page_text_selector"/>
+            style="@style/test_words_page_text_selector" />
 
         <TextView
             android:id="@+id/frame_text_selector_answer_d"
-            style="@style/test_words_page_text_selector"/>
+            style="@style/test_words_page_text_selector" />
 
         <TextView
             android:id="@+id/frame_text_selector_answer_cannotskip"
@@ -89,31 +89,64 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
-                <TextView
+                <LinearLayout
                     android:id="@+id/frame_picture_selector_answer_a"
-                    style="@style/test_words_page_picture_selector"
-                    android:text="A" />
-
-                <TextView
+                    style="@style/test_words_page_picture_frame_selector">>
+                    <ImageView 
+                    	android:id="@+id/frame_imageview_answer_a"
+                        style="@style/test_words_page_imageview"
+                        android:src="@drawable/default_words"
+                        android:contentDescription="@string/empty"/>
+                    <TextView
+                    	android:id="@+id/frame_textview_answer_a"
+	                    style="@style/test_words_page_textview"
+	                    android:text="A" />
+                </LinearLayout>
+                <LinearLayout
                     android:id="@+id/frame_picture_selector_answer_b"
-                    style="@style/test_words_page_picture_selector"
-                    android:text="B" />
+                    style="@style/test_words_page_picture_frame_selector">>
+                    <ImageView 
+                    	android:id="@+id/frame_imageview_answer_b"
+                        style="@style/test_words_page_imageview"
+                        android:src="@drawable/default_words"
+                        android:contentDescription="@string/empty"/>
+                    <TextView
+                    	android:id="@+id/frame_textview_answer_b"
+	                    style="@style/test_words_page_textview"
+	                    android:text="B" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
-
-                <TextView
+                <LinearLayout
                     android:id="@+id/frame_picture_selector_answer_c"
-                    style="@style/test_words_page_picture_selector"
-                    android:text="C" />
-
-                <TextView
+                    style="@style/test_words_page_picture_frame_selector">
+                    <ImageView 
+                    	android:id="@+id/frame_imageview_answer_c"
+                        style="@style/test_words_page_imageview"
+                        android:src="@drawable/default_words"
+                        android:contentDescription="@string/empty"/>
+                    <TextView
+                    	android:id="@+id/frame_textview_answer_c"
+	                    style="@style/test_words_page_textview"
+	                    android:text="C" />
+                </LinearLayout>
+                <LinearLayout
                     android:id="@+id/frame_picture_selector_answer_d"
-                    style="@style/test_words_page_picture_selector"
-                    android:text="D" />
+                    style="@style/test_words_page_picture_frame_selector"> >
+                    <ImageView 
+                    	android:id="@+id/frame_imageview_answer_d"
+                        style="@style/test_words_page_imageview"
+                        android:src="@drawable/default_words"
+                        android:contentDescription="@string/empty"/>
+                    <TextView
+                    	android:id="@+id/frame_textview_answer_d"
+	                    style="@style/test_words_page_textview"
+	                    android:text="D" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView

@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import com.start.core.BaseActivity;
+import com.start.service.WordService;
 
 /**
  * 单词测试选择界面
@@ -27,10 +28,15 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 	private CustomEditText et_word_start_index,et_word_end_index,et_test_start_index,et_test_end_index,et_section;
 	private CheckBox cb_switch_a,cb_switch_b,cb_switch_c,cb_switch_d,cb_switch_e;
 	
+	private WordService mWordService;
+	private Long mWordCount;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_learn_words_switch_test);
+		mWordService=new WordService();
+		mWordCount=mWordService.getWordCount();
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
 			frame_test_start1=(LinearLayout)findViewById(R.id.frame_test_start1);
@@ -40,6 +46,8 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				et_word_end_index=(CustomEditText)findViewById(R.id.et_word_end_index);
 				frame_test_start1.setVisibility(View.VISIBLE);
 				frame_test_start2.setVisibility(View.GONE);
+				et_word_start_index.setText("1");
+				et_word_end_index.setText(String.valueOf(mWordCount));
 			}else{
 				et_test_start_index=(CustomEditText)findViewById(R.id.et_test_start_index);
 				et_test_end_index=(CustomEditText)findViewById(R.id.et_test_end_index);
@@ -51,9 +59,8 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				et_section=(CustomEditText)findViewById(R.id.et_section);
 				frame_test_start1.setVisibility(View.GONE);
 				frame_test_start2.setVisibility(View.VISIBLE);
-				
 				et_test_start_index.setText("1");
-				et_test_end_index.setText("3");
+				et_test_end_index.setText(String.valueOf(mWordCount));
 				et_section.setText("1");
 			}
 		}else{
@@ -70,9 +77,17 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				getHandlerContext().makeTextLong("结束区间必须大于开始区间");
 				return;
 			}
+			if(start<1){
+				getHandlerContext().makeTextLong("开始区间必须大于或等于1");
+				return;
+			}
+			if(mWordCount<end){
+				getHandlerContext().makeTextLong("结束区间不能大于总单词数");
+				return;
+			}
 			Bundle bundle=new Bundle();
 			bundle.putInt(LearnWordsListenLookActivity.BUNDLE_LEARN_WORDS_START_INDEX, start);
-			bundle.putInt(LearnWordsListenLookActivity.BUNDLE_LEARN_WORDS_END_INDEX, start);
+			bundle.putInt(LearnWordsListenLookActivity.BUNDLE_LEARN_WORDS_END_INDEX, end);
 			Intent intent=new Intent(this,LearnWordsListenLookActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
@@ -84,8 +99,18 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				getHandlerContext().makeTextLong("区间不能为空");
 				return;
 			}
-			if(Integer.parseInt(start)>=Integer.parseInt(end)){
+			int s=Integer.parseInt(start);
+			int e=Integer.parseInt(end);
+			if(s>=e){
 				getHandlerContext().makeTextLong("结束区间必须大于开始区间");
+				return;
+			}
+			if(s<1){
+				getHandlerContext().makeTextLong("开始区间必须大于或等于1");
+				return;
+			}
+			if(mWordCount<e){
+				getHandlerContext().makeTextLong("结束区间不能大于总单词数");
 				return;
 			}
 			String section=String.valueOf(et_section.getText());

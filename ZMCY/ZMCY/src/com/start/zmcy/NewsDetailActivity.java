@@ -3,10 +3,6 @@ package com.start.zmcy;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import start.core.AppContext;
 import start.core.AppException;
 import android.os.Bundle;
@@ -75,22 +71,16 @@ public class NewsDetailActivity extends BaseActivity{
 
 				@Override
 				public void run(Response response) throws AppException {
-					try {
-						JSONArray jsonArray=(JSONArray)response.getData("Table");
-						JSONObject jo=jsonArray.getJSONObject(0);
-						shareContent=jo.getString("ShareContent");
-						shareImageUrl=AppContext.getInstance().getServerURL()+jo.getString("images");
-						final String evaluation=jo.getString("PLNum");
-						runOnUiThread(new Runnable() {
-							public void run() {
-								mHeadChildTitle.setText(evaluation+"评");
-								String url=getAppContext().getServerURL()+"/"+categoryid+"/"+id+"/ios_news_ct.html";
-								mWebView.loadUrl(url);
-							}
-						});
-					} catch (JSONException e) {
-						throw AppException.json(e);
-					}
+					shareContent=String.valueOf(response.getData("ShareContent"));
+					shareImageUrl=AppContext.getInstance().getServerURL()+String.valueOf(response.getData("images"));
+					final String evaluation=String.valueOf(response.getData("PLNum"));
+					runOnUiThread(new Runnable() {
+						public void run() {
+							mHeadChildTitle.setText(evaluation+"评");
+							String url=getAppContext().getServerURL()+"/"+categoryid+"/"+id+"/ios_news_ct.html";
+							mWebView.loadUrl(url);
+						}
+					});
 				}
 				
 			});

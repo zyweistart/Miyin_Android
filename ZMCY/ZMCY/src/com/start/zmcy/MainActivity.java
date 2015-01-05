@@ -266,7 +266,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		BaseContext.getDBManager().saveChannelItem(new ChannelItem(5,"标准检测",5,1));
 		BaseContext.getDBManager().saveChannelItem(new ChannelItem(6,"国内展",6,1));
 		BaseContext.getDBManager().saveChannelItem(new ChannelItem(7,"国外展",7,1));
-		BaseContext.getDBManager().saveChannelItem(new ChannelItem(8,"工程招展",8,1));
+		BaseContext.getDBManager().saveChannelItem(new ChannelItem(8,"工程招标",8,1));
 	}
 	
 }

@@ -67,7 +67,7 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 		mRefreshListServer = new RefreshListServer(mActivity,mActivity.getHandlerContext(), mListView,new NewsListAdapter(mActivity));
 		mRefreshListServer.setCacheTag("NewsContentFragment"+mChannelItem.getId());
 		mRefreshListServer.setRefreshListServerListener(this);
-		
+
 		mRefreshListServer.initLoad();
 	}
 

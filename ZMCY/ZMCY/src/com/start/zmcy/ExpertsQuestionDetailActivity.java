@@ -3,10 +3,6 @@ package com.start.zmcy;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import start.core.AppException;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -49,20 +45,14 @@ public class ExpertsQuestionDetailActivity extends BaseActivity{
 
 				@Override
 				public void run(Response response) throws AppException {
-					try {
-						JSONArray jsonArray=(JSONArray)response.getData("Table");
-						JSONObject jo=jsonArray.getJSONObject(0);
-						final String title=jo.getString("question");
-						final String description=jo.getString("content");
-						runOnUiThread(new Runnable() {
-							public void run() {
-								question_title.setText(title);
-								question_description.setText(description);
-							}
-						});
-					} catch (JSONException e) {
-						throw AppException.json(e);
-					}
+					final String title=String.valueOf(response.getData("question"));
+					final String description=String.valueOf(response.getData("content"));
+					runOnUiThread(new Runnable() {
+						public void run() {
+							question_title.setText(title);
+							question_description.setText(description);
+						}
+					});
 				}
 				
 			});

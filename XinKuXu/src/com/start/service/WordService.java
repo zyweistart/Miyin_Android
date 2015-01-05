@@ -22,8 +22,8 @@ public class WordService {
 	private String mDirName;
 	private SQLiteDatabase mSQLiteDatabase;
 
-	public WordService(String dirName) {
-		this.mDirName=dirName;
+	public WordService() {
+		this.mDirName="simpleenglish";
 		String dbFileName = BaseContext.getInstance().getStorageDirectory(this.mDirName)+DBEXTENSIONNAME;
 		File dbFile=new File(dbFileName);
 		if(dbFile.exists()){
@@ -44,6 +44,13 @@ public class WordService {
 	//获取图形记忆法（图片）路径
 	public String getMemoryImagePath(String name){
 		return BaseContext.getInstance().getStorageDirectory(this.mDirName)+MEMORYIMAGEPATH+name+PICTUREEXTENSION;
+	}
+	
+	public Long getWordCount(){
+        String str="select count(id)  from "+WordItem.TABLENAME;
+        Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
+        cursor.moveToFirst();
+        return cursor.getLong(0);
 	}
 	
 	public WordItem findById(int id) {

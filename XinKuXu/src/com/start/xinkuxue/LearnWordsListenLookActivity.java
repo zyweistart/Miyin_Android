@@ -1,5 +1,8 @@
 package com.start.xinkuxue;
 
+import java.io.File;
+
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
+import com.start.service.WordService;
+import com.start.service.bean.WordItem;
 
 /**
  * 边听边看学单词
@@ -21,6 +26,8 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	private ImageView iv_word;
 	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
 	private Button btn_previous,btn_next;
+	
+	private WordService mWordService;
 	
 	private int currentIndex,startIndex,endIndex;
 	
@@ -38,21 +45,18 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 		txt_memoryMethodB=(TextView)findViewById(R.id.txt_memoryMethodB);
 		btn_previous=(Button)findViewById(R.id.btn_previous);
 		btn_next=(Button)findViewById(R.id.btn_next);
-		
-//		Bundle bundle=getIntent().getExtras();
-//		if(bundle!=null){
-//			startIndex=bundle.getInt(BUNDLE_LEARN_WORDS_START_INDEX);
-//			endIndex=bundle.getInt(BUNDLE_LEARN_WORDS_END_INDEX);
-			startIndex=1;
-			endIndex=5;
+		mWordService=new WordService();
+		Bundle bundle=getIntent().getExtras();
+		if(bundle!=null){
+			startIndex=bundle.getInt(BUNDLE_LEARN_WORDS_START_INDEX);
+			endIndex=bundle.getInt(BUNDLE_LEARN_WORDS_END_INDEX);
 			if(endIndex>startIndex){
 				currentIndex=startIndex;
 				showWordDetail();
 				return;
 			}
-//		}
-//		finish();
-		
+		}
+		finish();
 	}
 	
 	@Override
@@ -69,12 +73,15 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 			}
 		}else if(v.getId()==R.id.btn_next){
 			if(endIndex>currentIndex){
-				btn_previous.setVisibility(View.VISIBLE);
 				currentIndex++;
+				btn_previous.setVisibility(View.VISIBLE);
 				showWordDetail();
+				if(endIndex==currentIndex){
+					btn_previous.setVisibility(View.GONE);
+					btn_next.setText("结束练习");
+				}
 			}else{
-				//TODO:跳转至结束页面
-				getHandlerContext().makeTextLong("单词复习结束了");
+				finish();
 			}
 		}else{
 			super.onClick(v);
@@ -82,15 +89,23 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	}
 	
 	public void showWordDetail(){
-		//TODO:根据索引查找单词
-		iv_word.setImageResource(R.drawable.default_words);
-		txt_englishName.setText("Message"+currentIndex);
-		txt_phoneticSymbols.setText("[MAASD]");
-		txt_chineseSignificance.setText("pron.我的");
-		txt_exampleEnglish.setText("Please leave a message with my receptionist.");
-		txt_exampleChinese.setText("请给我的接待员留言。");
-		txt_memoryMethodA.setText("记忆法1：re重复、重新+cept拿、抓、握住+ion表名词+ist从事某种职业的人->n.接待员：传达员");
-		txt_memoryMethodB.setText("记忆法2：re重复、重新+cept拿、抓、握住+ion表名词+ist从事某种职业的人->n.接待员：传达员");
+		WordItem wordItem=mWordService.findById(currentIndex);
+		if(wordItem==null){
+			return;
+		}
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inSampleSize = 2;
+		String mImagePath = mWordService.getExampleImagePath(wordItem.getId());
+		if(new File(mImagePath).exists()){
+			iv_word.setImageBitmap(BitmapFactory.decodeFile(mImagePath, options));
+		}
+		txt_englishName.setText(wordItem.getEnglishName());
+		txt_phoneticSymbols.setText(wordItem.getPhoneticSymbols());
+		txt_chineseSignificance.setText(wordItem.getChineseSignificance());
+		txt_exampleEnglish.setText(wordItem.getExampleEnglish());
+		txt_exampleChinese.setText(wordItem.getExampleChinese());
+		txt_memoryMethodA.setText(wordItem.getMemoryMethodA());
+		txt_memoryMethodB.setText(wordItem.getMemoryMethodB());
 	}
 	
 }

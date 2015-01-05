@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -36,7 +36,6 @@ public class TestWordsPageActivity extends BaseActivity{
 	//几选1
 	public static final String BUNDLE_RANDOM_NUMBER="BUNDLE_RANDOM_NUMBER";
 	
-	
 	//测试类型(1:中-英 2:英-中 3:图-英 4:英-图 5:填空)
 	private String[] mTestType;
 	//当前单词的ID，单词游标索引，总测试单词数，开始测试的ID，结束测试的ID，几选1数，总答对数
@@ -54,7 +53,9 @@ public class TestWordsPageActivity extends BaseActivity{
 	private RelativeLayout answer_frame_picture;
 	
 	private TextView frame_text_selector_answer_a,frame_text_selector_answer_b,frame_text_selector_answer_c,frame_text_selector_answer_d;
-	private TextView frame_picture_selector_answer_a,frame_picture_selector_answer_b,frame_picture_selector_answer_c,frame_picture_selector_answer_d;
+	private ImageView frame_imageview_answer_a,frame_imageview_answer_b,frame_imageview_answer_c,frame_imageview_answer_d;
+	private TextView frame_textview_answer_a,frame_textview_answer_b,frame_textview_answer_c,frame_textview_answer_d;
+	private LinearLayout frame_picture_selector_answer_a,frame_picture_selector_answer_b,frame_picture_selector_answer_c,frame_picture_selector_answer_d;
 	private TextView frame_text_selector_answer_cannotskip,frame_picture_selector_answer_cannotskip;
 	
 	private String mTitle,mAName,mBName,mCName,mDName;
@@ -74,10 +75,18 @@ public class TestWordsPageActivity extends BaseActivity{
 		frame_text_selector_answer_c=(TextView)findViewById(R.id.frame_text_selector_answer_c);
 		frame_text_selector_answer_d=(TextView)findViewById(R.id.frame_text_selector_answer_d);
 		frame_text_selector_answer_cannotskip=(TextView)findViewById(R.id.frame_text_selector_answer_cannotskip);
-		frame_picture_selector_answer_a=(TextView)findViewById(R.id.frame_picture_selector_answer_a);
-		frame_picture_selector_answer_b=(TextView)findViewById(R.id.frame_picture_selector_answer_b);
-		frame_picture_selector_answer_c=(TextView)findViewById(R.id.frame_picture_selector_answer_c);
-		frame_picture_selector_answer_d=(TextView)findViewById(R.id.frame_picture_selector_answer_d);
+		frame_imageview_answer_a=(ImageView)findViewById(R.id.frame_imageview_answer_a);
+		frame_imageview_answer_b=(ImageView)findViewById(R.id.frame_imageview_answer_b);
+		frame_imageview_answer_c=(ImageView)findViewById(R.id.frame_imageview_answer_c);
+		frame_imageview_answer_d=(ImageView)findViewById(R.id.frame_imageview_answer_d);
+		frame_textview_answer_a=(TextView)findViewById(R.id.frame_textview_answer_a);
+		frame_textview_answer_b=(TextView)findViewById(R.id.frame_textview_answer_b);
+		frame_textview_answer_c=(TextView)findViewById(R.id.frame_textview_answer_c);
+		frame_textview_answer_d=(TextView)findViewById(R.id.frame_textview_answer_d);
+		frame_picture_selector_answer_a=(LinearLayout)findViewById(R.id.frame_picture_selector_answer_a);
+		frame_picture_selector_answer_b=(LinearLayout)findViewById(R.id.frame_picture_selector_answer_b);
+		frame_picture_selector_answer_c=(LinearLayout)findViewById(R.id.frame_picture_selector_answer_c);
+		frame_picture_selector_answer_d=(LinearLayout)findViewById(R.id.frame_picture_selector_answer_d);
 		frame_picture_selector_answer_cannotskip=(TextView)findViewById(R.id.frame_picture_selector_answer_cannotskip);
 		
 		Bundle bundle=getIntent().getExtras();
@@ -92,7 +101,7 @@ public class TestWordsPageActivity extends BaseActivity{
 			
 			mAnswerCount=(mEndWordID-mStartWordID+1)/mRandomNumber;
 			
-			mWordService=new WordService("simpleenglish");
+			mWordService=new WordService();
 			
 			mAnswerIndex=0;
 			currentWord();
@@ -106,56 +115,82 @@ public class TestWordsPageActivity extends BaseActivity{
 	public void onClick(View v) {
 		if(v.getId()==R.id.frame_text_selector_answer_a){
 			if(mCurrentRightWordItemIndex==0){
+				mRightCount++;
 				setStyleTextViewRight(frame_text_selector_answer_a);
 			}else{
 				setStyleTextViewError(frame_text_selector_answer_a);
 			}
 		}else if(v.getId()==R.id.frame_text_selector_answer_b){
 			if(mCurrentRightWordItemIndex==1){
+				mRightCount++;
 				setStyleTextViewRight(frame_text_selector_answer_b);
 			}else{
 				setStyleTextViewError(frame_text_selector_answer_b);
 			}
 		}else if(v.getId()==R.id.frame_text_selector_answer_c){
 			if(mCurrentRightWordItemIndex==2){
+				mRightCount++;
 				setStyleTextViewRight(frame_text_selector_answer_c);
 			}else{
 				setStyleTextViewError(frame_text_selector_answer_c);
 			}
 		}else if(v.getId()==R.id.frame_text_selector_answer_d){
 			if(mCurrentRightWordItemIndex==3){
+				mRightCount++;
 				setStyleTextViewRight(frame_text_selector_answer_d);
 			}else{
 				setStyleTextViewError(frame_text_selector_answer_d);
 			}
 		}else if(v.getId()==R.id.frame_text_selector_answer_cannotskip){
 			joinWords();
+			if(mCurrentRightWordItemIndex==0){
+				setStyleTextViewRight(frame_text_selector_answer_a);
+			}else if(mCurrentRightWordItemIndex==1){
+				setStyleTextViewRight(frame_text_selector_answer_b);
+			}else if(mCurrentRightWordItemIndex==2){
+				setStyleTextViewRight(frame_text_selector_answer_c);
+			}else if(mCurrentRightWordItemIndex==3){
+				setStyleTextViewRight(frame_text_selector_answer_d);
+			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_a){
 			if(mCurrentRightWordItemIndex==0){
-				setStyleTextViewRight(frame_picture_selector_answer_a);
+				mRightCount++;
+				setStyleTextViewRight(frame_picture_selector_answer_a,frame_textview_answer_a);
 			}else{
-				setStyleTextViewError(frame_picture_selector_answer_a);
+				setStyleTextViewError(frame_picture_selector_answer_a,frame_textview_answer_a);
 			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_b){
 			if(mCurrentRightWordItemIndex==1){
-				setStyleTextViewRight(frame_picture_selector_answer_b);
+				mRightCount++;
+				setStyleTextViewRight(frame_picture_selector_answer_b,frame_textview_answer_b);
 			}else{
-				setStyleTextViewError(frame_picture_selector_answer_b);
+				setStyleTextViewError(frame_picture_selector_answer_b,frame_textview_answer_b);
 			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_c){
 			if(mCurrentRightWordItemIndex==2){
-				setStyleTextViewRight(frame_picture_selector_answer_c);
+				mRightCount++;
+				setStyleTextViewRight(frame_picture_selector_answer_c,frame_textview_answer_c);
 			}else{
-				setStyleTextViewError(frame_picture_selector_answer_c);
+				setStyleTextViewError(frame_picture_selector_answer_c,frame_textview_answer_c);
 			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_d){
 			if(mCurrentRightWordItemIndex==3){
-				setStyleTextViewRight(frame_picture_selector_answer_d);
+				mRightCount++;
+				setStyleTextViewRight(frame_picture_selector_answer_d,frame_textview_answer_d);
 			}else{
-				setStyleTextViewError(frame_picture_selector_answer_d);
+				setStyleTextViewError(frame_picture_selector_answer_d,frame_textview_answer_d);
 			}
 		}else if(v.getId()==R.id.frame_picture_selector_answer_cannotskip){
 			joinWords();
+			if(mCurrentRightWordItemIndex==0){
+				setStyleTextViewRight(frame_picture_selector_answer_a,frame_textview_answer_a);
+			}else if(mCurrentRightWordItemIndex==1){
+				setStyleTextViewRight(frame_picture_selector_answer_b,frame_textview_answer_b);
+			}else if(mCurrentRightWordItemIndex==2){
+				setStyleTextViewRight(frame_picture_selector_answer_c,frame_textview_answer_c);
+			}else if(mCurrentRightWordItemIndex==3){
+				setStyleTextViewRight(frame_picture_selector_answer_d,frame_textview_answer_d);
+			}
 		}
 		frame_text_selector_answer_a.setEnabled(false);
 		frame_text_selector_answer_b.setEnabled(false);
@@ -173,7 +208,8 @@ public class TestWordsPageActivity extends BaseActivity{
 			public void run() {
 				if(mAnswerIndex>=mAnswerCount){
 					Bundle bundle=new Bundle();
-					bundle.putString("mRightCount", String.valueOf(mRightCount));
+					bundle.putInt(TestWordsPageDoneActivity.RIGHTCOUNT, mRightCount);
+					bundle.putInt(TestWordsPageDoneActivity.ANSWERCOUNT, mAnswerCount);
 					Intent intent=new Intent(TestWordsPageActivity.this,TestWordsPageDoneActivity.class);
 					intent.putExtras(bundle);
 					startActivity(intent);
@@ -190,15 +226,22 @@ public class TestWordsPageActivity extends BaseActivity{
 	public void currentWord(){
 		mCurrentWordId=mStartWordID+mAnswerIndex*mRandomNumber+rnRandom.nextInt(mRandomNumber);
 		mCurrentRightWordItem=mWordService.findById(mCurrentWordId);
+		//加载随机答案前3后3中随机查找
 		List<WordItem> answerWordItems=new ArrayList<WordItem>();
 		answerWordItems.add(mCurrentRightWordItem);
+		List<Integer> ids=new ArrayList<Integer>();
+		ids.add(mCurrentWordId-1);
+		ids.add(mCurrentWordId-2);
+		ids.add(mCurrentWordId-3);
+		ids.add(mCurrentWordId+1);
+		ids.add(mCurrentWordId+2);
+		ids.add(mCurrentWordId+3);
 		while(true){
-			int tmpWordId=rnTestRandom.nextInt(mEndWordID-mStartWordID+1)+mStartWordID;
-			if(mCurrentWordId==tmpWordId){
-				continue;
-			}
+			int rnvalue=rnTestRandom.nextInt(ids.size());
+			int tmpWordId=ids.get(rnvalue);
 			WordItem tmpWord=mWordService.findById(tmpWordId);
-			if(tmpWord!=null){
+			ids.remove(rnvalue);
+			if(tmpWord==null){
 				continue;
 			}
 			answerWordItems.add(tmpWord);
@@ -206,6 +249,7 @@ public class TestWordsPageActivity extends BaseActivity{
 				break;
 			}
 		}
+		//答案随机排序
 		List<WordItem> sortWordItems=new ArrayList<WordItem>();
 		while(!answerWordItems.isEmpty()){
 			int index=rnTestRandom.nextInt(answerWordItems.size());
@@ -213,6 +257,7 @@ public class TestWordsPageActivity extends BaseActivity{
 			sortWordItems.add(tmpWord);
 			answerWordItems.remove(index);
 		}
+		//获取正确的答案
 		for(int i=0;i<sortWordItems.size();i++){
 			WordItem tmpWord=sortWordItems.get(i);
 			if(mCurrentRightWordItem.getId().equals(tmpWord.getId())){
@@ -221,7 +266,7 @@ public class TestWordsPageActivity extends BaseActivity{
 			}
 		}
 		
-//		int type=4;
+//		int type=1;
 		int type=Integer.parseInt(mTestType[rnTestRandom.nextInt(mTestType.length)]);
 		if(type==1){
 			mTitle=mCurrentRightWordItem.getChineseSignificance();
@@ -282,7 +327,6 @@ public class TestWordsPageActivity extends BaseActivity{
 		frame_text_selector_answer_d.setText(mDName);
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void wordToPicture(){
 		//显示隐藏
 		problem_picture.setVisibility(View.GONE);
@@ -297,19 +341,19 @@ public class TestWordsPageActivity extends BaseActivity{
 		options.inSampleSize = 2;
 		String mAPicturePath = mWordService.getExampleImagePath(mAName);
 		if(new File(mAPicturePath).exists()){
-			setStyleTextViewPictureNormal(frame_picture_selector_answer_a,new BitmapDrawable(BitmapFactory.decodeFile(mAPicturePath, options)));
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_a,frame_imageview_answer_a,frame_textview_answer_a,BitmapFactory.decodeFile(mAPicturePath, options));
 		}
-		String mBPicturePath = mWordService.getExampleImagePath(mAName);
+		String mBPicturePath = mWordService.getExampleImagePath(mBName);
 		if(new File(mBPicturePath).exists()){
-			setStyleTextViewPictureNormal(frame_picture_selector_answer_b,new BitmapDrawable(BitmapFactory.decodeFile(mBPicturePath, options)));
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_b,frame_imageview_answer_b,frame_textview_answer_b,BitmapFactory.decodeFile(mBPicturePath, options));
 		}
-		String mCPicturePath = mWordService.getExampleImagePath(mAName);
+		String mCPicturePath = mWordService.getExampleImagePath(mCName);
 		if(new File(mCPicturePath).exists()){
-			setStyleTextViewPictureNormal(frame_picture_selector_answer_c,new BitmapDrawable(BitmapFactory.decodeFile(mCPicturePath, options)));
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_c,frame_imageview_answer_c,frame_textview_answer_c,BitmapFactory.decodeFile(mCPicturePath, options));
 		}
-		String mDPicturePath = mWordService.getExampleImagePath(mAName);
+		String mDPicturePath = mWordService.getExampleImagePath(mDName);
 		if(new File(mDPicturePath).exists()){
-			setStyleTextViewPictureNormal(frame_picture_selector_answer_d,new BitmapDrawable(BitmapFactory.decodeFile(mDPicturePath, options)));
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_d,frame_imageview_answer_d,frame_textview_answer_d,BitmapFactory.decodeFile(mDPicturePath, options));
 		}
 	}
 	
@@ -372,15 +416,8 @@ public class TestWordsPageActivity extends BaseActivity{
 		tv.setPadding(_pL, _pT, _pR, _pB);
 	}
 
-	public void setStyleTextViewPictureNormal(TextView tv,Drawable pA){
-		tv.setEnabled(true);
-		pA.setBounds(0, 0, pA.getMinimumWidth(), pA.getMinimumHeight());
-		tv.setCompoundDrawables(null, pA, null, null);
-	}
-	
 	@SuppressWarnings("deprecation")
 	public void setStyleTextViewRight(TextView tv){
-		mRightCount++;
 		tv.setTextAppearance(this, R.style.test_words_page_text_right_selector);
 		Drawable right= getResources().getDrawable(R.drawable.ic_right);
 		right.setBounds(0, 0, right.getMinimumWidth(), right.getMinimumHeight());
@@ -396,6 +433,44 @@ public class TestWordsPageActivity extends BaseActivity{
 		right.setBounds(0, 0, right.getMinimumWidth(), right.getMinimumHeight());
 		tv.setCompoundDrawables(null, null, right, null);
 		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_error));
+		if(mCurrentRightWordItemIndex==0){
+			setStyleTextViewRight(frame_text_selector_answer_a);
+		}else if(mCurrentRightWordItemIndex==1){
+			setStyleTextViewRight(frame_text_selector_answer_b);
+		}else if(mCurrentRightWordItemIndex==2){
+			setStyleTextViewRight(frame_text_selector_answer_c);
+		}else if(mCurrentRightWordItemIndex==3){
+			setStyleTextViewRight(frame_text_selector_answer_d);
+		}
+	}
+	
+	public void setStyleTextViewPictureNormal(LinearLayout ll,ImageView iv,TextView tv,Bitmap bitmap){
+		ll.setEnabled(true);
+		iv.setImageBitmap(bitmap);
+		tv.setTextColor(0xff000000);
+		ll.setBackgroundResource(R.color.transparent);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void setStyleTextViewRight(LinearLayout ll,TextView tv){
+		tv.setTextColor(0xffffffff);
+		ll.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_right));
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void setStyleTextViewError(LinearLayout ll,TextView tv){
+		joinWords();
+		tv.setTextColor(0xffffffff);
+		ll.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_error));
+		if(mCurrentRightWordItemIndex==0){
+			setStyleTextViewRight(frame_picture_selector_answer_a,frame_textview_answer_a);
+		}else if(mCurrentRightWordItemIndex==1){
+			setStyleTextViewRight(frame_picture_selector_answer_b,frame_textview_answer_b);
+		}else if(mCurrentRightWordItemIndex==2){
+			setStyleTextViewRight(frame_picture_selector_answer_c,frame_textview_answer_c);
+		}else if(mCurrentRightWordItemIndex==3){
+			setStyleTextViewRight(frame_picture_selector_answer_d,frame_textview_answer_d);
+		}
 	}
 	
 	public void joinWords(){
