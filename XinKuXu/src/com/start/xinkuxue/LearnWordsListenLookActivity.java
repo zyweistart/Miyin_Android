@@ -137,8 +137,8 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	}
 	
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+	protected void onPause() {
+		super.onPause();
 		closeAudio();
 	}
 
