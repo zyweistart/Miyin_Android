@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,7 +37,8 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	
 	private int currentIndex,startIndex,endIndex;
 	
-	private RelativeLayout frame_learn,frame_done;
+	private RelativeLayout frame_learn;
+	private LinearLayout frame_done;
 	
 	private MediaPlayer mMediaPlayer;
 	
@@ -56,7 +58,7 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 		btn_previous=(ImageButton)findViewById(R.id.btn_previous);
 		txt_learn_count=(TextView)findViewById(R.id.txt_learn_count);
 		frame_learn=(RelativeLayout)findViewById(R.id.frame_learn);
-		frame_done=(RelativeLayout)findViewById(R.id.frame_done);
+		frame_done=(LinearLayout)findViewById(R.id.frame_done);
 		frame_learn.setVisibility(View.VISIBLE);
 		frame_done.setVisibility(View.GONE);
 		try{

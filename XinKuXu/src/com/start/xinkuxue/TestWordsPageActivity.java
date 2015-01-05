@@ -224,7 +224,7 @@ public class TestWordsPageActivity extends BaseActivity{
 					currentWord();
 				}
 			}
-		}, 1500);
+		}, 1000);
 	}
 	
 	public void currentWord(){
@@ -486,7 +486,7 @@ public class TestWordsPageActivity extends BaseActivity{
 	}
 	
 	public void joinWords(){
-		getHandlerContext().makeTextShort(getString(R.string.addtonewword));
+//		getHandlerContext().makeTextShort(getString(R.string.addtonewword));
 	}
 	
 }

@@ -79,11 +79,11 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_margin="5.0dip"
-                            android:src="@drawable/ic_player"
                             android:background="@drawable/selector_button_8"
+                            android:contentDescription="@string/empty"
                             android:onClick="onClick"
-                            android:padding="10.0dip" 
-                            android:contentDescription="@string/empty"/>
+                            android:padding="10.0dip"
+                            android:src="@drawable/ic_player" />
                     </RelativeLayout>
 
                     <View
@@ -153,17 +153,16 @@
                         android:layout_marginLeft="40.0dip"
                         android:textColor="@color/black"
                         android:textSize="16.0dip" />
-                    
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="10.0dip" />
-                    
+
                     <ImageView
-	                    android:id="@+id/iv_memory_method"
-	                    android:layout_width="250.0dip"
-	                    android:layout_height="50.0dip"
-	                    android:contentDescription="@string/empty"/>
-                    
+                        android:id="@+id/iv_memory_method"
+                        android:layout_width="250.0dip"
+                        android:layout_height="50.0dip"
+                        android:contentDescription="@string/empty" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -218,98 +217,121 @@
                 android:layout_width="150.0dip"
                 android:layout_height="wrap_content"
                 android:layout_margin="5.0dip"
-                android:src="@drawable/ic_arrow_left"
                 android:background="@drawable/selector_button_1"
+                android:contentDescription="@string/empty"
                 android:onClick="onClick"
                 android:padding="10.0dip"
-                android:contentDescription="@string/empty"
-                android:visibility="gone"/>
+                android:src="@drawable/ic_arrow_left"
+                android:visibility="gone" />
 
             <ImageButton
                 android:id="@+id/btn_next"
                 android:layout_width="150.0dip"
                 android:layout_height="wrap_content"
                 android:layout_margin="5.0dip"
-                android:src="@drawable/ic_arrow_right"
                 android:background="@drawable/selector_button_2"
+                android:contentDescription="@string/empty"
                 android:onClick="onClick"
                 android:padding="10.0dip"
-                android:contentDescription="@string/empty"/>
+                android:src="@drawable/ic_arrow_right" />
         </LinearLayout>
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/frame_done"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/frame_tip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/empty"
+                android:src="@drawable/logo" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:layout_centerInParent="true"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="恭喜你学习完"
+                        android:textColor="@color/black"
+                        android:textSize="35.0dip"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_learn_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#e82626"
+                        android:textSize="35.0dip"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="个单词，"
+                        android:textColor="@color/black"
+                        android:textSize="35.0dip"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="恭喜你学习完"
-                    android:textColor="@color/black"
-                    android:textSize="35.0dip"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_learn_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#e82626"
-                    android:textSize="35.0dip"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="个单词，"
+                    android:layout_gravity="center_horizontal"
+                    android:text="要不要测试下成果？"
                     android:textColor="@color/black"
                     android:textSize="35.0dip"
                     android:textStyle="bold" />
             </LinearLayout>
+        </RelativeLayout>
 
-            <TextView
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="要不要测试下成果？"
-                android:textColor="@color/black"
-                android:layout_gravity="center_horizontal"
-                android:textSize="35.0dip"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_centerInParent="true"
+                android:orientation="horizontal" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/frame_tip"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="20.0dip"
-            android:orientation="horizontal" >
+                <Button
+                    android:id="@+id/immediatetest"
+                    style="@style/button_style_1"
+                    android:background="@drawable/selector_button_2"
+                    android:text="@string/immediatetest" />
 
-            <Button
-                android:id="@+id/immediatetest"
-                style="@style/button_style_1"
-                android:background="@drawable/selector_button_2"
-                android:text="@string/immediatetest" />
-
-            <Button
-                android:id="@+id/waitagain"
-                style="@style/button_style_1"
-                android:background="@drawable/selector_button_8"
-                android:text="@string/waitagain" />
-        </LinearLayout>
-    </RelativeLayout>
+                <Button
+                    android:id="@+id/waitagain"
+                    style="@style/button_style_1"
+                    android:background="@drawable/selector_button_8"
+                    android:text="@string/waitagain" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

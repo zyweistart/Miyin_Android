@@ -23,6 +23,10 @@
                 android:drawableTop="@drawable/ic_learnwords"
                 android:text="@string/learnwords" />
 
+            <View
+                android:layout_width="20.0dip"
+                android:layout_height="match_parent" />
+
             <Button
                 android:id="@+id/testvocabulary"
                 style="@style/button_style_2"
@@ -30,6 +34,10 @@
                 android:drawableTop="@drawable/ic_testvocabulary"
                 android:text="@string/testvocabulary" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20.0dip" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -42,6 +50,10 @@
                 android:background="@drawable/selector_button_6"
                 android:drawableTop="@drawable/ic_newwords"
                 android:text="@string/newwords" />
+
+            <View
+                android:layout_width="20.0dip"
+                android:layout_height="match_parent" />
 
             <Button
                 android:id="@+id/specialtraining"

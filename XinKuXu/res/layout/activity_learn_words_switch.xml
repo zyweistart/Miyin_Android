@@ -1,42 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bm_words">
+    android:background="@drawable/bm_words"
+    android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/main_frame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" 
-        android:layout_centerInParent="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/btn_listenlooklearnwords"
-            style="@style/button_style_1"
-            android:background="@drawable/selector_button_6"
-            android:text="@string/listenlooklearnwords" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20.0dip"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
 
-        <Button
-            android:id="@+id/btn_words123"
-            style="@style/button_style_1"
-            android:background="@drawable/selector_button_7"
-            android:text="@string/words123" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="3" >
 
-        <Button
-            android:id="@+id/btn_testeveryday"
-            style="@style/button_style_1"
-            android:background="@drawable/selector_button_2"
-            android:text="@string/testeveryday" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20.0dip"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/empty"
-        android:src="@drawable/logo" 
-        android:layout_above="@id/main_frame"/>
-    
-</RelativeLayout>
+            <Button
+                android:id="@+id/btn_listenlooklearnwords"
+                style="@style/button_style_1"
+                android:background="@drawable/selector_button_6"
+                android:text="@string/listenlooklearnwords" />
+
+            <Button
+                android:id="@+id/btn_words123"
+                style="@style/button_style_1"
+                android:background="@drawable/selector_button_7"
+                android:text="@string/words123" />
+
+            <Button
+                android:id="@+id/btn_testeveryday"
+                style="@style/button_style_1"
+                android:background="@drawable/selector_button_2"
+                android:text="@string/testeveryday" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
