@@ -25,9 +25,10 @@
         android:visibility="gone" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10.0dip"
+            android:layout_gravity="center_horizontal"
             android:orientation="horizontal" >
 
             <TextView
@@ -88,8 +89,9 @@
         android:visibility="gone" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_margin="10.0dip"
             android:orientation="horizontal" >
 
