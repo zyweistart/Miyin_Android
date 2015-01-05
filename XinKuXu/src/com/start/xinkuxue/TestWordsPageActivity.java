@@ -486,7 +486,7 @@ public class TestWordsPageActivity extends BaseActivity{
 	}
 	
 	public void joinWords(){
-		getHandlerContext().makeTextShort("已加入生词本");
+		getHandlerContext().makeTextShort(getString(R.string.addtonewword));
 	}
 	
 }

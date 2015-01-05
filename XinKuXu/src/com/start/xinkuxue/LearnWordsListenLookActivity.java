@@ -25,7 +25,7 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	public static final String BUNDLE_LEARN_WORDS_START_INDEX="BUNDLE_LEARN_WORDS_START_INDEX";
 	public static final String BUNDLE_LEARN_WORDS_END_INDEX="BUNDLE_LEARN_WORDS_END_INDEX";
 	
-	private ImageView iv_word;
+	private ImageView iv_word,iv_memory_method;
 	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
 	private ImageButton btn_previous;
 	private TextView txt_learn_count;
@@ -41,6 +41,7 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_learn_words_listen_look);
 		iv_word=(ImageView)findViewById(R.id.iv_word);
+		iv_memory_method=(ImageView)findViewById(R.id.iv_memory_method);
 		txt_englishName=(TextView)findViewById(R.id.txt_englishName);
 		txt_phoneticSymbols=(TextView)findViewById(R.id.txt_phoneticSymbols);
 		txt_chineseSignificance=(TextView)findViewById(R.id.txt_chineseSignificance);
@@ -127,11 +128,13 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 			iv_word.setImageBitmap(BitmapFactory.decodeFile(mImagePath, options));
 		}else{
 			iv_word.setImageDrawable(getResources().getDrawable(R.drawable.default_words));
-			getHandlerContext().makeTextShort(getString(R.string.word_data_not_example_image));
 		}
 		String mMemoryPath = mWordService.getMemoryImagePath(mWordItem.getId());
 		if(new File(mMemoryPath).exists()){
-			//TODO:设置记忆方法图片该图片如果为NULL则不处理
+			iv_memory_method.setVisibility(View.VISIBLE);
+			iv_memory_method.setImageBitmap(BitmapFactory.decodeFile(mMemoryPath, options));
+		}else{
+			iv_memory_method.setVisibility(View.GONE);
 		}
 		txt_englishName.setText(mWordItem.getEnglishName());
 		txt_phoneticSymbols.setText(mWordItem.getPhoneticSymbols());
