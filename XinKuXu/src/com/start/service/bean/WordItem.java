@@ -64,6 +64,10 @@ public class WordItem implements Serializable {
 	 * 单词讲解音频
 	 */
 	public String englishAudio;
+	/**
+	 * 加入时间
+	 */
+	public String joinTime;
 
 	public WordItem() {
 	}
@@ -124,92 +128,60 @@ public class WordItem implements Serializable {
 		this.fillProblem = fillProblem;
 	}
 
-
-
-
 	public String getFillAnswer() {
 		return fillAnswer;
 	}
 
-
-
-
 	public void setFillAnswer(String fillAnswer) {
 		this.fillAnswer = fillAnswer;
 	}
-
-
-
-
+	
 	public String getMemoryMethodA() {
 		return memoryMethodA;
 	}
 
-
-
-
 	public void setMemoryMethodA(String memoryMethodA) {
 		this.memoryMethodA = memoryMethodA;
 	}
-
-
-
-
+	
 	public String getMemoryMethodB() {
 		return memoryMethodB;
 	}
-
-
-
-
+	
 	public void setMemoryMethodB(String memoryMethodB) {
 		this.memoryMethodB = memoryMethodB;
 	}
-
-
-
-
+	
 	public String getExampleImage() {
 		return exampleImage;
 	}
-
-
-
-
+	
 	public void setExampleImage(String exampleImage) {
 		this.exampleImage = exampleImage;
 	}
-
-
-
-
+	
 	public String getMemoryImage() {
 		return memoryImage;
 	}
-
-
-
-
+	
 	public void setMemoryImage(String memoryImage) {
 		this.memoryImage = memoryImage;
 	}
-
-
-
-
 	public String getEnglishAudio() {
 		return englishAudio;
 	}
-
-
-
-
+	
 	public void setEnglishAudio(String englishAudio) {
 		this.englishAudio = englishAudio;
 	}
+	
+	public String getJoinTime() {
+		return joinTime;
+	}
 
-
-
+	public void setJoinTime(String joinTime) {
+		this.joinTime = joinTime;
+	}
 
 	public static String getCreateTableSQL(){
 		StringBuilder strBuilder=new StringBuilder();
@@ -228,7 +200,8 @@ public class WordItem implements Serializable {
 		strBuilder.append("memoryMethodB varchar,");
 		strBuilder.append("exampleImage varchar,");
 		strBuilder.append("memoryImage varchar,");
-		strBuilder.append("englishAudio varchar");
+		strBuilder.append("englishAudio varchar,");
+		strBuilder.append("joinTime varchar");
 		strBuilder.append(")");
 		return strBuilder.toString();
 	}

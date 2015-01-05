@@ -38,7 +38,18 @@ public  class DBManageDao {
 		getSQLiteDatabase().delete(WordItem.TABLENAME, null, null);
 	}
 	
-	public void saveWordItem(WordItem ci){
+	/**
+	 * 获取单词总数
+	 * @return
+	 */
+	public Long getWordCount(){
+        String str="select count(id)  from "+WordItem.TABLENAME;
+        Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
+        cursor.moveToFirst();
+        return cursor.getLong(0);
+	}
+	
+	public void save(WordItem ci){
 		ContentValues values = new ContentValues();
 		values.put("id", ci.getId());
 		values.put("englishName", ci.getEnglishName());
@@ -56,13 +67,12 @@ public  class DBManageDao {
 		getSQLiteDatabase().insert(WordItem.TABLENAME, null, values);
 	}
 	
-	public List<WordItem> findAllWordItem() {
-		List<WordItem> channelItems = new ArrayList<WordItem>();
-		Cursor cursor = getSQLiteDatabase().query(WordItem.TABLENAME,
+	public WordItem findById(int id) {
+		Cursor cursor = mSQLiteDatabase.query(WordItem.TABLENAME,
 				new String[] { "id", "englishName", "phoneticSymbols",
 				"chineseSignificance", "exampleEnglish", "exampleChinese",
 				"fillProblem", "fillAnswer", "memoryMethodA",
-				"memoryMethodB", "exampleImage", "memoryImage","englishAudio"},null, null, null, null, null);
+				"memoryMethodB"},"id=?", new String[]{String.valueOf(id)}, null, null, null);
 		try {
 			if (cursor.moveToFirst()) {
 				do {
@@ -77,9 +87,36 @@ public  class DBManageDao {
 					ci.setFillAnswer(cursor.getString(cursor.getColumnIndex("fillAnswer")));
 					ci.setMemoryMethodA(cursor.getString(cursor.getColumnIndex("memoryMethodA")));
 					ci.setMemoryMethodB(cursor.getString(cursor.getColumnIndex("memoryMethodB")));
-					ci.setExampleImage(cursor.getString(cursor.getColumnIndex("exampleImage")));
-					ci.setMemoryImage(cursor.getString(cursor.getColumnIndex("memoryImage")));
-					ci.setEnglishAudio(cursor.getString(cursor.getColumnIndex("englishAudio")));
+					return ci;
+				} while (cursor.moveToNext());
+			}
+		} finally {
+			cursor.close();
+		}
+		return null;
+	}
+	
+	public List<WordItem> findAll() {
+		List<WordItem> channelItems = new ArrayList<WordItem>();
+		Cursor cursor = mSQLiteDatabase.query(WordItem.TABLENAME,
+				new String[] { "id", "englishName", "phoneticSymbols",
+				"chineseSignificance", "exampleEnglish", "exampleChinese",
+				"fillProblem", "fillAnswer", "memoryMethodA",
+				"memoryMethodB"},null, null, null, null, null);
+		try {
+			if (cursor.moveToFirst()) {
+				do {
+					WordItem ci = new WordItem();
+					ci.setId(cursor.getString(cursor.getColumnIndex("id")));
+					ci.setEnglishName(cursor.getString(cursor.getColumnIndex("englishName")));
+					ci.setPhoneticSymbols(cursor.getString(cursor.getColumnIndex("phoneticSymbols")));
+					ci.setChineseSignificance(cursor.getString(cursor.getColumnIndex("chineseSignificance")));
+					ci.setExampleEnglish(cursor.getString(cursor.getColumnIndex("exampleEnglish")));
+					ci.setExampleChinese(cursor.getString(cursor.getColumnIndex("exampleChinese")));
+					ci.setFillProblem(cursor.getString(cursor.getColumnIndex("fillProblem")));
+					ci.setFillAnswer(cursor.getString(cursor.getColumnIndex("fillAnswer")));
+					ci.setMemoryMethodA(cursor.getString(cursor.getColumnIndex("memoryMethodA")));
+					ci.setMemoryMethodB(cursor.getString(cursor.getColumnIndex("memoryMethodB")));
 					channelItems.add(ci);
 				} while (cursor.moveToNext());
 			}
