@@ -4,11 +4,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.start.service.bean.WordItem;
 import com.start.xinkuxue.BaseContext;
+import com.start.xinkuxue.R;
 
 public class WordService {
 	
@@ -23,14 +25,14 @@ public class WordService {
 	
 	private SQLiteDatabase mSQLiteDatabase;
 
-	public WordService() throws Exception {
+	public WordService(Context context) throws Exception {
 		String dbFileName = BaseContext.getInstance().getStorageDirectory(DIRPATH)+DBEXTENSIONNAME;
 		File dbFile=new File(dbFileName);
 		if(dbFile.exists()){
 			mSQLiteDatabase = SQLiteDatabase.openOrCreateDatabase(dbFileName, null);
 		}
 		if(mSQLiteDatabase==null){
-			throw new Exception("数据为空，请联系管理员");
+			throw new Exception(context.getString(R.string.word_data_not_found));
 		}
 	}
 	

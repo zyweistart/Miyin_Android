@@ -2,12 +2,12 @@ package com.start.xinkuxue;
 
 import java.io.File;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,8 +27,8 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	
 	private ImageView iv_word;
 	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
-	private Button btn_previous,btn_next;
-	
+	private ImageButton btn_previous;
+	private TextView txt_learn_count;
 	private WordService mWordService;
 	private WordItem mWordItem;
 	
@@ -48,14 +48,14 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 		txt_exampleChinese=(TextView)findViewById(R.id.txt_exampleChinese);
 		txt_memoryMethodA=(TextView)findViewById(R.id.txt_memoryMethodA);
 		txt_memoryMethodB=(TextView)findViewById(R.id.txt_memoryMethodB);
-		btn_previous=(Button)findViewById(R.id.btn_previous);
-		btn_next=(Button)findViewById(R.id.btn_next);
+		btn_previous=(ImageButton)findViewById(R.id.btn_previous);
+		txt_learn_count=(TextView)findViewById(R.id.txt_learn_count);
 		frame_learn=(RelativeLayout)findViewById(R.id.frame_learn);
 		frame_done=(RelativeLayout)findViewById(R.id.frame_done);
 		frame_learn.setVisibility(View.VISIBLE);
 		frame_done.setVisibility(View.GONE);
 		try{
-			mWordService=new WordService();
+			mWordService=new WordService(this);
 		}catch(Exception e){
 			getHandlerContext().makeTextLong(e.getMessage());
 			finish();
@@ -66,6 +66,7 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 			startIndex=bundle.getInt(BUNDLE_LEARN_WORDS_START_INDEX);
 			endIndex=bundle.getInt(BUNDLE_LEARN_WORDS_END_INDEX);
 			if(endIndex>startIndex){
+				txt_learn_count.setText(String.valueOf(endIndex-startIndex+1));
 				currentIndex=startIndex;
 				showWordDetail();
 				return;
@@ -80,6 +81,8 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 			String mAudioPath = mWordService.getAudioPath(mWordItem.getId());
 			if(new File(mAudioPath).exists()){
 				getHandlerContext().makeTextLong("播放路径:"+mAudioPath);
+			}else{
+				getHandlerContext().makeTextShort(getString(R.string.word_data_not_audio));
 			}
 		}else if(v.getId()==R.id.btn_previous){
 			if(currentIndex>startIndex){
@@ -95,9 +98,18 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 				btn_previous.setVisibility(View.VISIBLE);
 				showWordDetail();
 			}else{
-				frame_learn.setVisibility(View.VISIBLE);
-				frame_done.setVisibility(View.GONE);
+				frame_learn.setVisibility(View.GONE);
+				frame_done.setVisibility(View.VISIBLE);
 			}
+		}else if(v.getId()==R.id.immediatetest){
+			Bundle bundle=new Bundle();
+			bundle.putInt(LearnWordsSwitchTestActivity.TESTSWITCHTYPE, 1);
+			Intent intent=new Intent(this,LearnWordsSwitchTestActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+			finish();
+		}else if(v.getId()==R.id.waitagain){
+			finish();
 		}else{
 			super.onClick(v);
 		}
@@ -113,6 +125,13 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 		String mImagePath = mWordService.getExampleImagePath(mWordItem.getId());
 		if(new File(mImagePath).exists()){
 			iv_word.setImageBitmap(BitmapFactory.decodeFile(mImagePath, options));
+		}else{
+			iv_word.setImageDrawable(getResources().getDrawable(R.drawable.default_words));
+			getHandlerContext().makeTextShort(getString(R.string.word_data_not_example_image));
+		}
+		String mMemoryPath = mWordService.getMemoryImagePath(mWordItem.getId());
+		if(new File(mMemoryPath).exists()){
+			//TODO:设置记忆方法图片该图片如果为NULL则不处理
 		}
 		txt_englishName.setText(mWordItem.getEnglishName());
 		txt_phoneticSymbols.setText(mWordItem.getPhoneticSymbols());

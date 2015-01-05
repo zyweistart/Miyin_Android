@@ -3,13 +3,17 @@ package com.start.xinkuxue;
 import java.util.ArrayList;
 import java.util.List;
 
+import start.utils.StringUtils;
 import start.widget.CustomEditText;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.service.WordService;
@@ -31,12 +35,14 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 	private WordService mWordService;
 	private Long mWordCount;
 	
+	private TextView tip2;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_learn_words_switch_test);
 		try{
-			mWordService=new WordService();
+			mWordService=new WordService(this);
 		}catch(Exception e){
 			getHandlerContext().makeTextLong(e.getMessage());
 			finish();
@@ -55,14 +61,18 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				et_word_start_index.setText("1");
 				et_word_end_index.setText(String.valueOf(mWordCount));
 			}else{
+				tip2=(TextView)findViewById(R.id.tip2);
 				et_test_start_index=(CustomEditText)findViewById(R.id.et_test_start_index);
+				et_test_start_index.addTextChangedListener(new CustomTextWatcher());
 				et_test_end_index=(CustomEditText)findViewById(R.id.et_test_end_index);
+				et_test_end_index.addTextChangedListener(new CustomTextWatcher());
 				cb_switch_a=(CheckBox)findViewById(R.id.cb_switch_a);
 				cb_switch_b=(CheckBox)findViewById(R.id.cb_switch_b);
 				cb_switch_c=(CheckBox)findViewById(R.id.cb_switch_c);
 				cb_switch_d=(CheckBox)findViewById(R.id.cb_switch_d);
 				cb_switch_e=(CheckBox)findViewById(R.id.cb_switch_e);
 				et_section=(CustomEditText)findViewById(R.id.et_section);
+				et_section.addTextChangedListener(new CustomTextWatcher());
 				frame_test_start1.setVisibility(View.GONE);
 				frame_test_start2.setVisibility(View.VISIBLE);
 				et_test_start_index.setText("1");
@@ -84,11 +94,13 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				return;
 			}
 			if(start<1){
+				et_word_start_index.setText("1");
 				getHandlerContext().makeTextLong("开始区间必须大于或等于1");
 				return;
 			}
 			if(mWordCount<end){
-				getHandlerContext().makeTextLong("结束区间不能大于总单词数");
+				et_word_end_index.setText(String.valueOf(mWordCount));
+				getHandlerContext().makeTextLong("结束区间不能大于总单词数："+mWordCount);
 				return;
 			}
 			Bundle bundle=new Bundle();
@@ -112,15 +124,18 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				return;
 			}
 			if(s<1){
+				et_test_start_index.setText("1");
 				getHandlerContext().makeTextLong("开始区间必须大于或等于1");
 				return;
 			}
 			if(mWordCount<e){
-				getHandlerContext().makeTextLong("结束区间不能大于总单词数");
+				et_test_end_index.setText(String.valueOf(mWordCount));
+				getHandlerContext().makeTextLong("结束区间不能大于总单词数："+mWordCount);
 				return;
 			}
 			String section=String.valueOf(et_section.getText());
 			if(TextUtils.isEmpty(section)){
+				et_section.setText("1");
 				getHandlerContext().makeTextLong("几选1不能为空");
 				return;
 			}
@@ -156,6 +171,35 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 		}else{
 			super.onClick(v);
 		}
+	}
+	
+	private class CustomTextWatcher implements TextWatcher {
+
+		public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+			
+		}
+
+		public void afterTextChanged(Editable s) {
+			
+		}
+
+		public void onTextChanged(CharSequence s, int start, int before,int count) {
+			Integer ss=StringUtils.toInt(String.valueOf(et_test_start_index.getText()), 1);
+			if(ss<1){
+				return;
+			}
+			Integer ee=StringUtils.toInt(String.valueOf(et_test_end_index.getText()), 1);
+			if(ee<1){
+				return;
+			}
+			Integer section=StringUtils.toInt(String.valueOf(et_section.getText()), 1);
+			if(section<1){
+				return;
+			}
+			Integer num=ee-ss+1;
+			tip2.setText("测试自动挑选"+num+"个词汇量里面，以"+section+"选1，随机产生"+(num/section)+"道测试，检测你的单词掌握量");
+		}
+
 	}
 	
 }

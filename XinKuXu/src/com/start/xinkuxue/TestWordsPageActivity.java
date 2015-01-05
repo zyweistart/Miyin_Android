@@ -101,7 +101,7 @@ public class TestWordsPageActivity extends BaseActivity{
 			
 			mAnswerCount=(mEndWordID-mStartWordID+1)/mRandomNumber;
 			try{
-				mWordService=new WordService();
+				mWordService=new WordService(this);
 			}catch(Exception e){
 				getHandlerContext().makeTextLong(e.getMessage());
 				finish();
@@ -269,8 +269,6 @@ public class TestWordsPageActivity extends BaseActivity{
 				break;
 			}
 		}
-		
-//		int type=1;
 		int type=Integer.parseInt(mTestType[rnTestRandom.nextInt(mTestType.length)]);
 		if(type==1){
 			mTitle=mCurrentRightWordItem.getChineseSignificance();
@@ -346,18 +344,26 @@ public class TestWordsPageActivity extends BaseActivity{
 		String mAPicturePath = mWordService.getExampleImagePath(mAName);
 		if(new File(mAPicturePath).exists()){
 			setStyleTextViewPictureNormal(frame_picture_selector_answer_a,frame_imageview_answer_a,frame_textview_answer_a,BitmapFactory.decodeFile(mAPicturePath, options));
+		}else{
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_a,frame_imageview_answer_a,frame_textview_answer_a,BitmapFactory.decodeResource(getResources(), R.drawable.default_words));
 		}
 		String mBPicturePath = mWordService.getExampleImagePath(mBName);
 		if(new File(mBPicturePath).exists()){
 			setStyleTextViewPictureNormal(frame_picture_selector_answer_b,frame_imageview_answer_b,frame_textview_answer_b,BitmapFactory.decodeFile(mBPicturePath, options));
+		}else{
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_b,frame_imageview_answer_b,frame_textview_answer_b,BitmapFactory.decodeResource(getResources(), R.drawable.default_words));
 		}
 		String mCPicturePath = mWordService.getExampleImagePath(mCName);
 		if(new File(mCPicturePath).exists()){
 			setStyleTextViewPictureNormal(frame_picture_selector_answer_c,frame_imageview_answer_c,frame_textview_answer_c,BitmapFactory.decodeFile(mCPicturePath, options));
+		}else{
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_c,frame_imageview_answer_c,frame_textview_answer_c,BitmapFactory.decodeResource(getResources(), R.drawable.default_words));
 		}
 		String mDPicturePath = mWordService.getExampleImagePath(mDName);
 		if(new File(mDPicturePath).exists()){
 			setStyleTextViewPictureNormal(frame_picture_selector_answer_d,frame_imageview_answer_d,frame_textview_answer_d,BitmapFactory.decodeFile(mDPicturePath, options));
+		}else{
+			setStyleTextViewPictureNormal(frame_picture_selector_answer_d,frame_imageview_answer_d,frame_textview_answer_d,BitmapFactory.decodeResource(getResources(), R.drawable.default_words));
 		}
 	}
 	
@@ -394,12 +400,14 @@ public class TestWordsPageActivity extends BaseActivity{
 		setStyleTextViewNormal(frame_text_selector_answer_c);
 		setStyleTextViewNormal(frame_text_selector_answer_d);
 		//显示内容
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inSampleSize = 2;
 		String myJpgPath = mWordService.getExampleImagePath(mTitle);
 		File dbFile=new File(myJpgPath);
 		if(dbFile.exists()){
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inSampleSize = 2;
 			problem_picture.setImageBitmap(BitmapFactory.decodeFile(myJpgPath, options));
+		}else{
+			problem_picture.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.default_words));
 		}
 		frame_text_selector_answer_a.setText(mAName);
 		frame_text_selector_answer_b.setText(mBName);

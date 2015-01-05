@@ -192,11 +192,11 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tip2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10.0dip"
             android:paddingLeft="20.0dip"
-            android:text="测试自动挑选500个词汇量里面，以5选1，随机产生100道测试，检测你的单词掌握量"
             android:textColor="@color/learn_words_switch_test_textcolor"
             android:textSize="16.0dip" />
 
