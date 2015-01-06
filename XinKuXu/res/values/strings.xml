@@ -22,6 +22,8 @@
     <string name="china">中</string>
     <string name="cases">例</string>
     <string name="kuxuememorymethod">酷学记忆法</string>
+    <string name="vocabularytest">词汇量测试</string>
+    <string name="practicetest">练习测试</string>
     <string name="cannotskip">不会，跳过</string>
     <string name="addtonewword">加入生词本</string>
     <string name="immediatetest">立即测试</string>
@@ -29,5 +31,16 @@
     <string name="testmethodtip">测试方法必须大于等于3种</string>
     <string name="word_data_not_audio">未找到该单词的音频数据，请联系管理员</string>
     <string name="word_data_not_found">单词数据未找到，请联系管理员</string>
+    
+    <string name="levelname1">初一初级</string>
+    <string name="levelname2">初一中级</string>
+    <string name="levelname3">初二初级</string>
+    <string name="levelname4">初二中级</string>
+    <string name="levelname5">初三初级</string>
+    <string name="levelname6">初三中级</string>
+    <string name="levelname7">高一初级</string>
+    <string name="levelname8">高二初级</string>
+    <string name="levelname9">高三初级</string>
+    <string name="levelname10">高三中级</string>
     
 </resources>

@@ -18,8 +18,8 @@
 
             <Button
                 android:id="@+id/learnwords"
-                style="@style/button_style_2"
-                android:background="@drawable/selector_button_7"
+                style="@style/button_style_square"
+                android:background="@drawable/selector_button_color_orange"
                 android:drawableTop="@drawable/ic_newwords"
                 android:text="@string/learnwords" />
 
@@ -29,8 +29,8 @@
 
             <Button
                 android:id="@+id/testvocabulary"
-                style="@style/button_style_2"
-                android:background="@drawable/selector_button_2"
+                style="@style/button_style_square"
+                android:background="@drawable/selector_button_color_red"
                 android:drawableTop="@drawable/ic_specialtraining"
                 android:text="@string/testvocabulary" />
         </LinearLayout>
@@ -46,8 +46,8 @@
 
             <Button
                 android:id="@+id/newwords"
-                style="@style/button_style_2"
-                android:background="@drawable/selector_button_6"
+                style="@style/button_style_square"
+                android:background="@drawable/selector_button_color_blue"
                 android:drawableTop="@drawable/ic_learnwords"
                 android:text="@string/newwords" />
 
@@ -57,8 +57,8 @@
 
             <Button
                 android:id="@+id/specialtraining"
-                style="@style/button_style_2"
-                android:background="@drawable/selector_button_8"
+                style="@style/button_style_square"
+                android:background="@drawable/selector_button_grey"
                 android:drawableTop="@drawable/ic_testvocabulary"
                 android:text="@string/specialtraining" />
         </LinearLayout>

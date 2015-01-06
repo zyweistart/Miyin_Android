@@ -97,9 +97,9 @@
 
         <Button
             android:id="@+id/btn_test_start"
-            style="@style/button_style_1"
+            style="@style/button_style_rectangle"
             android:layout_centerInParent="true"
-            android:background="@drawable/selector_button_2"
+            android:background="@drawable/selector_button_color_red"
             android:text="@string/teststart" />
     </RelativeLayout>
 

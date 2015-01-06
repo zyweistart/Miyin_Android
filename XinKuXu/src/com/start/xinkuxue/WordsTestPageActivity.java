@@ -384,7 +384,7 @@ public class WordsTestPageActivity extends BaseActivity{
 		int _pT = tv.getPaddingTop();
 		int _pR = tv.getPaddingRight();
 		int _pB = tv.getPaddingBottom();
-		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_3));
+		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_color_lightgrey));
 		tv.setPadding(_pL, _pT, _pR, _pB);
 	}
 
@@ -394,7 +394,7 @@ public class WordsTestPageActivity extends BaseActivity{
 		Drawable right= getResources().getDrawable(R.drawable.ic_right);
 		right.setBounds(0, 0, right.getMinimumWidth(), right.getMinimumHeight());
 		tv.setCompoundDrawables(null, null, right, null);
-		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_right));
+		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_color_green));
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -404,7 +404,7 @@ public class WordsTestPageActivity extends BaseActivity{
 		Drawable right= getResources().getDrawable(R.drawable.ic_error);
 		right.setBounds(0, 0, right.getMinimumWidth(), right.getMinimumHeight());
 		tv.setCompoundDrawables(null, null, right, null);
-		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_error));
+		tv.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_color_red));
 		if(mCurrentRightWordItemIndex==0){
 			setStyleTextViewRight(frame_text_selector_answer_a);
 		}else if(mCurrentRightWordItemIndex==1){
@@ -426,14 +426,14 @@ public class WordsTestPageActivity extends BaseActivity{
 	@SuppressWarnings("deprecation")
 	public void setStyleTextViewRight(LinearLayout ll,TextView tv){
 		tv.setTextColor(0xffffffff);
-		ll.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_right));
+		ll.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_color_green));
 	}
 	
 	@SuppressWarnings("deprecation")
 	public void setStyleTextViewError(LinearLayout ll,TextView tv){
 		joinWords();
 		tv.setTextColor(0xffffffff);
-		ll.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_button_error));
+		ll.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_color_red));
 		if(mCurrentRightWordItemIndex==0){
 			setStyleTextViewRight(frame_picture_selector_answer_a,frame_textview_answer_a);
 		}else if(mCurrentRightWordItemIndex==1){

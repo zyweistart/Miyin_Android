@@ -32,22 +32,16 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/btn_listenlooklearnwords"
-                style="@style/button_style_rectangle"
-                android:background="@drawable/selector_button_color_blue"
-                android:text="@string/listenlooklearnwords" />
-
-            <Button
-                android:id="@+id/btn_words123"
-                style="@style/button_style_rectangle"
-                android:background="@drawable/selector_button_color_orange"
-                android:text="@string/words123" />
-
-            <Button
-                android:id="@+id/btn_testeveryday"
+                android:id="@+id/btn_vocabularytest"
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_red"
-                android:text="@string/testeveryday" />
+                android:text="@string/vocabularytest" />
+
+            <Button
+                android:id="@+id/btn_practicetest"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/practicetest" />
         </LinearLayout>
     </RelativeLayout>
 

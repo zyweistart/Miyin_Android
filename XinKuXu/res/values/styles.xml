@@ -18,7 +18,6 @@
         <item name="android:drawableRight">@drawable/ic_input_clear</item>
         <item name="android:background">@drawable/bg_frame</item>
     </style>
-    
     <style name="edittext2">
         <item name="android:layout_width">150.0dip</item>
         <item name="android:layout_height">35.0dip</item>
@@ -32,10 +31,10 @@
         <item name="android:drawableRight">@drawable/ic_input_clear</item>
         <item name="android:background">@drawable/bg_frame</item>
     </style>
-     <style name="button_style_1">
-        <item name="android:layout_width">250.0dip</item>
-        <item name="android:layout_height">70.0dip</item>
-        <item name="android:textSize">20.0dip</item>
+     <style name="button_style_rectangle">
+        <item name="android:layout_width">270.0dip</item>
+        <item name="android:layout_height">80.0dip</item>
+        <item name="android:textSize">25.0dip</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:clickable">true</item>
         <item name="android:onClick">onClick</item>
@@ -43,7 +42,7 @@
         <item name="android:layout_margin">5.0dip</item>
         <item name="android:gravity">center</item>>
     </style>
-    <style name="button_style_2">
+    <style name="button_style_square">
         <item name="android:layout_width">150.0dip</item>
         <item name="android:layout_height">150.0dip</item>
         <item name="android:textSize">22.0dip</item>

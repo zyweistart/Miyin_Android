@@ -10,15 +10,4 @@
 	<color name="bg_header">#005dde</color>
    	<color name="bg_activity">#e2e3e7</color>
    	
-   	<color name="selector_button_textcolor_1">#676767</color>
-   	<color name="selector_button_n_1">#dddddd</color>
-   	<color name="selector_button_p_1">#a0a0a0</color>
-   	<color name="selector_button_textcolor_2">#ffffff</color>
-   	<color name="selector_button_n_2">#ea1c33</color>
-   	<color name="selector_button_p_2">#e67c88</color>
-   	<color name="selector_button_n_3">#d1d1d1</color>
-   	<color name="selector_button_p_3">#949494</color>
-   	<color name="selector_button_n_4">#a68c8b</color>
-   	<color name="selector_button_p_4">#949494</color>
-   	
 </resources>

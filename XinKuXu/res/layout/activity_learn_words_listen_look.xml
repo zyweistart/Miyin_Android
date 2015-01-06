@@ -79,7 +79,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_margin="5.0dip"
-                            android:background="@drawable/selector_button_8"
+                            android:background="@drawable/selector_button_grey"
                             android:contentDescription="@string/empty"
                             android:onClick="onClick"
                             android:padding="10.0dip"
@@ -217,7 +217,7 @@
                 android:layout_width="150.0dip"
                 android:layout_height="wrap_content"
                 android:layout_margin="5.0dip"
-                android:background="@drawable/selector_button_1"
+                android:background="@drawable/selector_button_color_lightgrey"
                 android:contentDescription="@string/empty"
                 android:onClick="onClick"
                 android:padding="10.0dip"
@@ -229,7 +229,7 @@
                 android:layout_width="150.0dip"
                 android:layout_height="wrap_content"
                 android:layout_margin="5.0dip"
-                android:background="@drawable/selector_button_2"
+                android:background="@drawable/selector_button_color_red"
                 android:contentDescription="@string/empty"
                 android:onClick="onClick"
                 android:padding="10.0dip"
@@ -321,14 +321,14 @@
 
                 <Button
                     android:id="@+id/immediatetest"
-                    style="@style/button_style_1"
-                    android:background="@drawable/selector_button_2"
+                    style="@style/button_style_rectangle"
+                    android:background="@drawable/selector_button_color_red"
                     android:text="@string/immediatetest" />
 
                 <Button
                     android:id="@+id/waitagain"
-                    style="@style/button_style_1"
-                    android:background="@drawable/selector_button_8"
+                    style="@style/button_style_rectangle"
+                    android:background="@drawable/selector_button_grey"
                     android:text="@string/waitagain" />
             </LinearLayout>
         </RelativeLayout>
