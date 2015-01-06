@@ -20,6 +20,7 @@ public class StrangeWordsListenLookActivity extends LearnWordsListenLookActivity
 	public void onClick(View v) {
 		if(v.getId()==R.id.immediatetest){
 			Intent intent=new Intent(this,StrangeWordsSwitchTestActivity.class);
+			intent.putExtras(mBundle);
 			startActivity(intent);
 			finish();
 		}else{

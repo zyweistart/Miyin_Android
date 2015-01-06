@@ -96,7 +96,7 @@
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/btn_test_start2"
+            android:id="@+id/btn_test_start"
             style="@style/button_style_1"
             android:layout_centerInParent="true"
             android:background="@drawable/selector_button_2"

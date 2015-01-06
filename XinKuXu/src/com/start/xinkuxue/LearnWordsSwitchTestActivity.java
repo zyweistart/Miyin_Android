@@ -160,7 +160,7 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				indexs.add("5");
 			}
 			if(indexs.size()<3){
-				getHandlerContext().makeTextLong("测试方法必须大于等于3种");
+				getHandlerContext().makeTextLong(getString(R.string.testmethodtip));
 				return;
 			}
 			Random rnRandom=new Random();

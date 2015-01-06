@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.start.service.bean.StrangeWordItem;
-import com.start.service.bean.StrangeWordStatisticsItem;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
 
@@ -27,7 +26,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(StrangeWordItem.getCreateTableSQL());
-		db.execSQL(StrangeWordStatisticsItem.getCreateTableSQL());
 	}
 
 	//	//1把数据表重名为临时表

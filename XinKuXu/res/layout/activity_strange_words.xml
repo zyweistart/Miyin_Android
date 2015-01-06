@@ -5,5 +5,25 @@
     android:background="@color/bg_activity"
     android:orientation="vertical" >
 
+    <Button
+        android:id="@+id/btn_strange_words1"
+        style="@style/button_style_1"
+        android:background="@drawable/selector_button_2"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/btn_strange_words2"
+        style="@style/button_style_1"
+        android:background="@drawable/selector_button_2" 
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/btn_strange_words3"
+        style="@style/button_style_1"
+        android:background="@drawable/selector_button_2" 
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/btn_strange_words4"
+        style="@style/button_style_1"
+        android:background="@drawable/selector_button_2" 
+        android:visibility="gone"/>
 
 </LinearLayout>

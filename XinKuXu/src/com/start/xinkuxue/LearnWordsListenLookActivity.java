@@ -42,6 +42,8 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 	
 	private MediaPlayer mMediaPlayer;
 	
+	protected Bundle mBundle;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,9 +70,9 @@ public class LearnWordsListenLookActivity extends BaseActivity{
 			finish();
 			return;
 		}
-		Bundle bundle=getIntent().getExtras();
-		if(bundle!=null){
-			mAnswerArray=bundle.getStringArray(BUNDLE_ANSWER_ARRAY);
+		mBundle=getIntent().getExtras();
+		if(mBundle!=null){
+			mAnswerArray=mBundle.getStringArray(BUNDLE_ANSWER_ARRAY);
 			txt_learn_count.setText(String.valueOf(mAnswerArray.length));
 			currentIndex=0;
 			showWordDetail();

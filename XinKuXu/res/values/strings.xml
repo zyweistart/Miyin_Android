@@ -26,6 +26,7 @@
     <string name="addtonewword">加入生词本</string>
     <string name="immediatetest">立即测试</string>
     <string name="waitagain">稍候再说</string>
+    <string name="testmethodtip">测试方法必须大于等于3种</string>
     <string name="word_data_not_audio">未找到该单词的音频数据，请联系管理员</string>
     <string name="word_data_not_found">单词数据未找到，请联系管理员</string>
     

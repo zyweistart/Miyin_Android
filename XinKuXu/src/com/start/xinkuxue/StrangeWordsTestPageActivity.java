@@ -18,9 +18,9 @@ public class StrangeWordsTestPageActivity extends WordsTestPageActivity{
 	@Override
 	public void toDonePage(){
 		Bundle bundle=new Bundle();
-//		bundle.putInt(TestWordsPageDoneActivity.RIGHTCOUNT, mRightCount);
-//		bundle.putInt(TestWordsPageDoneActivity.ANSWERCOUNT, mAnswerArray.length);
-		Intent intent=new Intent(this,LoginActivity.class);
+		bundle.putInt(StrangeWordsTestPageDoneActivity.RIGHTCOUNT, mRightCount);
+		bundle.putInt(StrangeWordsTestPageDoneActivity.ANSWERCOUNT, mAnswerArray.length);
+		Intent intent=new Intent(this,StrangeWordsTestPageDoneActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
 		finish();

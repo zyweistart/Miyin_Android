@@ -21,9 +21,17 @@ public class StrangeWordItem implements Serializable {
 	 */
 	public String index;
 	/**
+	 * 用户ID
+	 */
+	public String userName;
+	/**
 	 * 加入时间
 	 */
 	public String joinTime;
+	/**
+	 * 临时变量
+	 */
+	public String temp1;
 	
 	public String getId() {
 		return id;
@@ -31,6 +39,14 @@ public class StrangeWordItem implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getIndex() {
@@ -49,13 +65,22 @@ public class StrangeWordItem implements Serializable {
 		this.joinTime = joinTime;
 	}
 
+	public String getTemp1() {
+		return temp1;
+	}
+
+	public void setTemp1(String temp1) {
+		this.temp1 = temp1;
+	}
+
 	public static String getCreateTableSQL(){
 		StringBuilder strBuilder=new StringBuilder();
 		strBuilder.append("CREATE TABLE ");
 		strBuilder.append(TABLENAME);
 		strBuilder.append("(");
-		strBuilder.append("id int auto_increment PRIMARY KEY,");
+		strBuilder.append("id integer primary key autoincrement,");
 		strBuilder.append("pindex varchar,");
+		strBuilder.append("userName varchar,");
 		strBuilder.append("joinTime varchar");
 		strBuilder.append(")");
 		return strBuilder.toString();

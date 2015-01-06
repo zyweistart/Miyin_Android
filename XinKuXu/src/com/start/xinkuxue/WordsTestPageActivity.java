@@ -35,10 +35,15 @@ public class WordsTestPageActivity extends BaseActivity{
 	private Random rnTestRandom;
 	private WordService mWordService;
 	
-	//测试类型(1:中-英 2:英-中 3:图-英 4:英-图 5:填空),题目列表
-	private String[] mTestType,mAnswerArray;
-	//当前单词的ID，单词游标索引，总答对数
-	private int mCurrentWordId,mAnswerIndex,mRightCount;
+	//题目列表
+	protected String[] mAnswerArray;
+	//总答对数
+	protected int mRightCount;
+	
+	//测试类型(1:中-英 2:英-中 3:图-英 4:英-图 5:填空)
+	private String[] mTestType;
+	//当前单词的ID，单词游标索引
+	private int mCurrentWordId,mAnswerIndex;
 	
 	private int mCurrentRightWordItemIndex;
 	private WordItem mCurrentRightWordItem;

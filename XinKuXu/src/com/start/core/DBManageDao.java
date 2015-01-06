@@ -52,52 +52,34 @@ public  class DBManageDao {
         return cursor.getLong(0);
 	}
 	
-	public void joinToStrangeWord(String id,String userName){
-		ContentValues values = new ContentValues();
-		values.put("pindex", id);
-		values.put("joinTime", TimeUtils.getSysdate());
-		getSQLiteDatabase().insert(StrangeWordItem.TABLENAME, null, values);
-		joinToStrangeWordStatistic(userName);
-	}
-	
-	private void joinToStrangeWordStatistic(String userName){
-		//只有不存在当天记录才进行添加
-		String str="select count(*)  from "+StrangeWordStatisticsItem.TABLENAME+" where userName='"+userName+"' and joinTime='"+TimeUtils.getSysdate()+"'";
+	public void joinToStrangeWord(String wordId,String userName){
+		//一个单词一个用户仅添加一次
+		String str="select count(*)  from "+StrangeWordItem.TABLENAME+" where pindex='"+wordId+"' and userName='"+userName+"'";
         Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
         cursor.moveToFirst();
         if(cursor.getLong(0)==0){
         	ContentValues values = new ContentValues();
+    		values.put("pindex", wordId);
     		values.put("userName", userName);
     		values.put("joinTime", TimeUtils.getSysdate());
-    		getSQLiteDatabase().insert(StrangeWordStatisticsItem.TABLENAME, null, values);
+    		getSQLiteDatabase().insert(StrangeWordItem.TABLENAME, null, values);
         }
 	}
 	
 	/**
-	 * 获取单词总数
-	 * @return
+	 * 根据加入时间获取所对应的所有生词
 	 */
-	public Long getStrangeWordCount(String joinTime){
-        String str="select count(id)  from "+StrangeWordItem.TABLENAME+" where joinTime='"+joinTime+"'";
-        Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
-        cursor.moveToFirst();
-        return cursor.getLong(0);
-	}
-	
-	/**
-	 * 根据当前用户获取所对应的单日统计信息
-	 */
-	public List<StrangeWordStatisticsItem> findAllByStrangeWordStatistic(String userName) {
+	public List<StrangeWordStatisticsItem> findStrangeWordStatistic(String userName) {
 		List<StrangeWordStatisticsItem> channelItems = new ArrayList<StrangeWordStatisticsItem>();
-		Cursor cursor = mSQLiteDatabase.query(StrangeWordStatisticsItem.TABLENAME,
-				new String[] { "id", "userName", "joinTime"},"userName=?", new String[]{userName}, null, null, "id desc");
+		Cursor cursor = mSQLiteDatabase.query(StrangeWordItem.TABLENAME,
+				new String[] { "count(*) xcount", "joinTime"},"userName=?", new String[]{userName}, "joinTime", null, "joinTime desc");
 		try {
 			if (cursor.moveToFirst()) {
 				do {
 					StrangeWordStatisticsItem ci = new StrangeWordStatisticsItem();
-					ci.setId(cursor.getString(cursor.getColumnIndex("id")));
-					ci.setUserName(cursor.getString(cursor.getColumnIndex("userName")));
+					ci.setUserName(userName);
 					ci.setJoinTime(cursor.getString(cursor.getColumnIndex("joinTime")));
+					ci.setWordCount(cursor.getString(cursor.getColumnIndex("xcount")));
 					channelItems.add(ci);
 				} while (cursor.moveToNext());
 			}
@@ -110,16 +92,17 @@ public  class DBManageDao {
 	/**
 	 * 根据加入时间获取所对应的所有生词
 	 */
-	public List<StrangeWordItem> findAllByStrangeWordItem(String joinTime) {
+	public List<StrangeWordItem> findAllByStrangeWordItem(String userName,String joinTime) {
 		List<StrangeWordItem> channelItems = new ArrayList<StrangeWordItem>();
 		Cursor cursor = mSQLiteDatabase.query(StrangeWordItem.TABLENAME,
-				new String[] { "id", "pindex", "joinTime"},"joinTime=?", new String[]{joinTime}, null, null, "id desc");
+				new String[] { "id", "pindex","userName", "joinTime"},"userName=? and joinTime=?", new String[]{userName,joinTime}, null, null, "id desc");
 		try {
 			if (cursor.moveToFirst()) {
 				do {
 					StrangeWordItem ci = new StrangeWordItem();
 					ci.setId(cursor.getString(cursor.getColumnIndex("id")));
 					ci.setIndex(cursor.getString(cursor.getColumnIndex("pindex")));
+					ci.setUserName(cursor.getString(cursor.getColumnIndex("userName")));
 					ci.setJoinTime(cursor.getString(cursor.getColumnIndex("joinTime")));
 					channelItems.add(ci);
 				} while (cursor.moveToNext());
