@@ -55,11 +55,11 @@ public class WordService {
 	 * 获取单词总数
 	 * @return
 	 */
-	public Long getWordCount(){
+	public Integer getWordCount(){
         String str="select count(id)  from "+WordItem.TABLENAME;
         Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
         cursor.moveToFirst();
-        return cursor.getLong(0);
+        return cursor.getInt(0);
 	}
 	
 	public WordItem findById(int id) {

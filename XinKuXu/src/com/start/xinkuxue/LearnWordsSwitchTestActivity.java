@@ -34,7 +34,7 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 	private CheckBox cb_switch_a,cb_switch_b,cb_switch_c,cb_switch_d,cb_switch_e;
 	
 	private WordService mWordService;
-	private Long mWordCount;
+	private Integer mWordCount;
 	
 	private TextView tip2;
 	
@@ -168,6 +168,10 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 			Integer se=Integer.parseInt(section);
 			//答案总数
 			int mAnswerCount=(e-s+1)/se;
+			if(se>(e-s+1)){
+				getHandlerContext().makeTextLong("几选一不能大于点题目数量");
+				return;
+			}
 			List<String> ids=new ArrayList<String>();
 			for(int i=0;i<mAnswerCount;i++){
 				ids.add(String.valueOf(s+i*se+rnRandom.nextInt(se)));

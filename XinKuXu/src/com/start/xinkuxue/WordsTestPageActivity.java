@@ -219,36 +219,8 @@ public class WordsTestPageActivity extends BaseActivity{
 		mCurrentWordId=Integer.parseInt(mAnswerArray[mAnswerIndex]);
 		mCurrentRightWordItem=mWordService.findById(mCurrentWordId);
 		//加载随机答案前3后3中随机查找
-		List<WordItem> answerWordItems=new ArrayList<WordItem>();
-		answerWordItems.add(mCurrentRightWordItem);
-		List<Integer> ids=new ArrayList<Integer>();
-		ids.add(mCurrentWordId-1);
-		ids.add(mCurrentWordId-2);
-		ids.add(mCurrentWordId-3);
-		ids.add(mCurrentWordId+1);
-		ids.add(mCurrentWordId+2);
-		ids.add(mCurrentWordId+3);
-		while(true){
-			int rnvalue=rnTestRandom.nextInt(ids.size());
-			int tmpWordId=ids.get(rnvalue);
-			WordItem tmpWord=mWordService.findById(tmpWordId);
-			ids.remove(rnvalue);
-			if(tmpWord==null){
-				continue;
-			}
-			answerWordItems.add(tmpWord);
-			if(answerWordItems.size()>=4){
-				break;
-			}
-		}
-		//答案随机排序
-		List<WordItem> sortWordItems=new ArrayList<WordItem>();
-		while(!answerWordItems.isEmpty()){
-			int index=rnTestRandom.nextInt(answerWordItems.size());
-			WordItem tmpWord=answerWordItems.get(index);
-			sortWordItems.add(tmpWord);
-			answerWordItems.remove(index);
-		}
+		List<WordItem> answerWordItems=getRandomWordItem();
+		List<WordItem> sortWordItems=sortWordItem(answerWordItems);
 		//获取正确的答案
 		for(int i=0;i<sortWordItems.size();i++){
 			WordItem tmpWord=sortWordItems.get(i);
@@ -471,6 +443,54 @@ public class WordsTestPageActivity extends BaseActivity{
 		}else if(mCurrentRightWordItemIndex==3){
 			setStyleTextViewRight(frame_picture_selector_answer_d,frame_textview_answer_d);
 		}
+	}
+	
+	/**
+	 * 获取随机题目
+	 * @return
+	 */
+	public List<WordItem> getRandomWordItem(){
+		List<WordItem> answerWordItems=new ArrayList<WordItem>();
+		//正确答案
+		answerWordItems.add(mCurrentRightWordItem);
+		Integer wordCount=mWordService.getWordCount();
+		while(true){
+			int rnvalue=rnTestRandom.nextInt(wordCount)+1;
+			WordItem tmpWord=mWordService.findById(rnvalue);
+			if(tmpWord==null){
+				continue;
+			}
+			boolean flag=false;
+			for(WordItem wi : answerWordItems){
+				if(wi.getId().equals(tmpWord.getId())){
+					flag=true;
+					break;
+				}
+			}
+			if(!flag){
+				//不包含则添加
+				answerWordItems.add(tmpWord);
+				if(answerWordItems.size()>=4){
+					//至少加满4题为止
+					break;
+				}
+			}
+		}
+		return answerWordItems;
+	}
+	
+	/**
+	 * 随机打乱题目顺序
+	 * @return
+	 */
+	public List<WordItem> sortWordItem(List<WordItem> answerWordItems){
+		List<WordItem> sortWordItems=new ArrayList<WordItem>();
+		while(!answerWordItems.isEmpty()){
+			int index=rnTestRandom.nextInt(answerWordItems.size());
+			sortWordItems.add(answerWordItems.get(index));
+			answerWordItems.remove(index);
+		}
+		return sortWordItems;
 	}
 	
 	public void toDonePage(){
