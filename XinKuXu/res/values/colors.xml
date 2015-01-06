@@ -6,6 +6,7 @@
 	<color name="transparent">#00000000</color>
 	
 	<color name="learn_words_switch_test_textcolor">#353535</color>
+	<color name="test_textcolor">#413f40</color>
 	
 	<color name="bg_header">#005dde</color>
    	<color name="bg_activity">#e2e3e7</color>
