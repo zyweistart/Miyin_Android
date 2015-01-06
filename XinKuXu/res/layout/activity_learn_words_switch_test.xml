@@ -42,13 +42,13 @@
                     android:layout_width="100.0dip"
                     android:layout_height="wrap_content"
                     android:gravity="right|center_vertical"
-                    android:text="选择区间："
+                    android:text="@string/select_scope"
                     android:textColor="@color/learn_words_switch_test_textcolor"
                     android:textSize="18.0dip" />
 
                 <start.widget.CustomEditText
                     android:id="@+id/et_word_start_index"
-                    style="@style/edittext2"
+                    style="@style/edittext_input"
                     android:layout_marginLeft="10.0dip"
                     android:inputType="number" />
 
@@ -56,13 +56,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10.0dip"
-                    android:text="~"
+                    android:text="@string/between"
                     android:textColor="@color/learn_words_switch_test_textcolor"
                     android:textSize="18.0dip" />
 
                 <start.widget.CustomEditText
                     android:id="@+id/et_word_end_index"
-                    style="@style/edittext2"
+                    style="@style/edittext_input"
                     android:layout_marginLeft="10.0dip"
                     android:inputType="number" />
             </LinearLayout>
@@ -106,7 +106,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0.0dip"
-            android:layout_weight="1" >
+            android:layout_weight="1.5" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -124,13 +124,13 @@
                         android:layout_width="100.0dip"
                         android:layout_height="wrap_content"
                         android:gravity="right|center_vertical"
-                        android:text="选择区间："
+                        android:text="@string/select_scope"
                         android:textColor="@color/learn_words_switch_test_textcolor"
                         android:textSize="18.0dip" />
 
                     <start.widget.CustomEditText
                         android:id="@+id/et_test_start_index"
-                        style="@style/edittext2"
+                        style="@style/edittext_input"
                         android:layout_marginLeft="10.0dip"
                         android:inputType="number" />
 
@@ -138,13 +138,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10.0dip"
-                        android:text="~"
+                        android:text="@string/between"
                         android:textColor="@color/learn_words_switch_test_textcolor"
                         android:textSize="18.0dip" />
 
                     <start.widget.CustomEditText
                         android:id="@+id/et_test_end_index"
-                        style="@style/edittext2"
+                        style="@style/edittext_input"
                         android:layout_marginLeft="10.0dip"
                         android:inputType="number" />
                 </LinearLayout>
@@ -162,7 +162,7 @@
                         android:layout_width="100.0dip"
                         android:layout_height="wrap_content"
                         android:gravity="right|center_vertical"
-                        android:text="测试方式："
+                        android:text="@string/test_method"
                         android:textColor="@color/learn_words_switch_test_textcolor"
                         android:textSize="18.0dip" />
 
@@ -171,33 +171,33 @@
                         style="@style/checkbox1"
                         android:layout_marginLeft="10.0dip"
                         android:checked="true"
-                        android:text="中->英" />
+                        android:text="@string/chinesetoenglish" />
 
                     <CheckBox
                         android:id="@+id/cb_switch_b"
                         style="@style/checkbox1"
                         android:layout_marginLeft="10.0dip"
                         android:checked="true"
-                        android:text="英->中" />
+                        android:text="@string/englishtochinese" />
 
                     <CheckBox
                         android:id="@+id/cb_switch_c"
                         style="@style/checkbox1"
                         android:layout_marginLeft="10.0dip"
                         android:checked="true"
-                        android:text="图->英" />
+                        android:text="@string/picturetoenglish" />
 
                     <CheckBox
                         android:id="@+id/cb_switch_d"
                         style="@style/checkbox1"
                         android:layout_marginLeft="10.0dip"
-                        android:text="英->图" />
+                        android:text="@string/englishtopicture" />
 
                     <CheckBox
                         android:id="@+id/cb_switch_e"
                         style="@style/checkbox1"
                         android:layout_marginLeft="10.0dip"
-                        android:text="填空" />
+                        android:text="@string/fillanswer" />
                 </LinearLayout>
 
                 <View
@@ -213,13 +213,13 @@
                         android:layout_width="100.0dip"
                         android:layout_height="wrap_content"
                         android:gravity="right|center_vertical"
-                        android:text="几选1："
+                        android:text="@string/section"
                         android:textColor="@color/learn_words_switch_test_textcolor"
                         android:textSize="18.0dip" />
 
                     <start.widget.CustomEditText
                         android:id="@+id/et_section"
-                        style="@style/edittext2"
+                        style="@style/edittext_input"
                         android:layout_marginLeft="10.0dip"
                         android:inputType="number" />
                 </LinearLayout>
