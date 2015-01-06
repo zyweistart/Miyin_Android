@@ -15,9 +15,9 @@ import com.start.xinkuxue.R;
 public class WordService {
 	
 	public static final String DIRPATH="data";
-	public static final String AUDIOPATH="audio_word";
-	public static final String EXAMPLEIMAGEPATH="image_example";
-	public static final String MEMORYIMAGEPATH="image_memory";
+	public static final String AUDIOPATH="audio";
+	public static final String EXAMPLEIMAGEPATH="image";
+	public static final String MEMORYIMAGEPATH="memory";
 	
 	public static final String DBEXTENSIONNAME="words.db";
 	public static final String PICTUREEXTENSION=".jpg";
