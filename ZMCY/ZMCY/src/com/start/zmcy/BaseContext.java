@@ -37,7 +37,7 @@ public class BaseContext extends AppContext {
 
 	@Override
 	public String getStorageDirectory(String name) {
-		return Environment.getExternalStorageDirectory().getPath() + "/ancun/"
+		return Environment.getExternalStorageDirectory().getPath() + "/zcmy/"
 				+ name + "/";
 	}
 

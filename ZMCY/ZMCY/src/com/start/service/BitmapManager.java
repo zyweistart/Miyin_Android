@@ -20,6 +20,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.CoreProtocolPNames;
 
+import com.start.zmcy.BaseContext;
+
 import start.core.AppConstant;
 import start.core.AppException;
 import start.utils.FileUtils;
@@ -91,7 +93,7 @@ public class BitmapManager {
      * @param width
      * @param height
      */
-    public void loadBitmap(String url, ImageView imageView, Bitmap defaultBmp, int width, int height) {  
+    public void loadBitmap(String url, ImageView imageView, Bitmap defaultBmp, int width, int height) {
         imageViews.put(imageView, url);  
         Bitmap bitmap = getBitmapFromCache(url);  
    
@@ -101,7 +103,7 @@ public class BitmapManager {
         } else {  
         	//加载SD卡中的图片缓存
         	String filename = FileUtils.getFileName(url);
-        	String filepath = imageView.getContext().getFilesDir() + File.separator + filename;
+        	String filepath =BaseContext.getInstance().getStorageDirectory("images") + File.separator + filename;
     		File file = new File(filepath);
     		if(file.exists()){
 				//显示SD卡中的图片缓存
@@ -144,7 +146,9 @@ public class BitmapManager {
                         imageView.setImageBitmap((Bitmap) msg.obj);  
                         try {
                         	//向SD卡中写入图片缓存
-							ImageUtils.saveImage(imageView.getContext(), FileUtils.getFileName(url), (Bitmap) msg.obj);
+//							ImageUtils.saveImage(imageView.getContext(), FileUtils.getFileName(url), (Bitmap) msg.obj);
+							String filePath=BaseContext.getInstance().getStorageDirectory("images") + File.separator + FileUtils.getFileName(url);
+							ImageUtils.saveImageToSD(imageView.getContext(), filePath, (Bitmap) msg.obj, 1);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -177,8 +181,8 @@ public class BitmapManager {
 				//指定显示图片的高宽
 				bitmap = Bitmap.createScaledBitmap(bitmap, width, height, true);
 			} 
-			//放入缓存
-			cache.put(url, new SoftReference<Bitmap>(bitmap));
+			//TODO:放入缓存
+//			cache.put(url, new SoftReference<Bitmap>(bitmap));
 		} catch (AppException e) {
 			e.printStackTrace();
 		}
@@ -204,7 +208,12 @@ public class BitmapManager {
 					throw AppException.http(statusCode);
 				}
 		        InputStream inStream = response.getEntity().getContent();
-		        bitmap = BitmapFactory.decodeStream(inStream);
+		        
+		        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+		        bitmapOptions.inSampleSize = 4;
+		        bitmap = BitmapFactory.decodeStream(inStream, null , bitmapOptions);
+		        
+//		        bitmap = BitmapFactory.decodeStream(inStream);
 		        inStream.close();
 		        break;
 			} catch (Exception e) {

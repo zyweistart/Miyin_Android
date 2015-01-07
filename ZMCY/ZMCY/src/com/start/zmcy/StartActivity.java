@@ -46,7 +46,7 @@ public class StartActivity extends BaseActivity{
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-				Intent intent=new Intent(StartActivity.this,MainActivity.class);
+				Intent intent=new Intent(StartActivity.this,AdvertisingActivity.class);
 				startActivity(intent);
 				finish();
 			}
