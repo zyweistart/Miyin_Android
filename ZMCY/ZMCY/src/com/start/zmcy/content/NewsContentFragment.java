@@ -95,7 +95,13 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 			@Override
 			public void run(Response response) throws AppException {
 				mRefreshListServer.resolve(response);
-				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+				mActivity.runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+					}
+				});
 			}
 
 		}, false);

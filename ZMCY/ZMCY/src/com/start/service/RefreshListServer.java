@@ -117,7 +117,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 						this.mCurrentListView.setPullLoadEnable(true);
 					}
 					this.mBaseListAdapter.setItemDatas(new ArrayList<Map<String,Object>>(getItemDatas()	));
-					this.mBaseListAdapter.notifyDataSetChanged();
+//					this.mBaseListAdapter.notifyDataSetChanged();
 				}
 				getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_END);
 				break;
@@ -133,7 +133,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 					}
 					getItemDatas().clear();
 					this.mBaseListAdapter.setItemDatas(new ArrayList<Map<String,Object>>(getItemDatas()	));
-					this.mBaseListAdapter.notifyDataSetChanged();
+//					this.mBaseListAdapter.notifyDataSetChanged();
 				}
 			default:
 				getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_END);

@@ -23,59 +23,71 @@ import com.start.zmcy.adapter.NewsListAdapter;
 import com.start.zmcy.adapter.NewsListAdapter.HolderView;
 import com.start.zmcy.content.NewsContentFragment;
 
-public class BaseNewsActivity extends BaseActivity implements RefreshListServerListener{
-	
-	protected String categoryId,keyword;
+public class BaseNewsActivity extends BaseActivity implements
+		RefreshListServerListener {
+
+	protected String categoryId, keyword;
 	protected XListView mListView;
 	protected RefreshListServer mRefreshListServer;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_collect);
-		
-		mListView = (XListView)findViewById(R.id.xlv_listview);
+
+		mListView = (XListView) findViewById(R.id.xlv_listview);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				if(id>0){
-					HolderView hv=(HolderView)view.getTag();
-					NewsContentFragment.gotoNews(BaseNewsActivity.this,hv.categoryId,hv.id);
-				}else{
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				if (id > 0) {
+					HolderView hv = (HolderView) view.getTag();
+					NewsContentFragment.gotoNews(BaseNewsActivity.this,
+							hv.categoryId, hv.id);
+				} else {
 					mRefreshListServer.getCurrentListView().startLoadMore();
 				}
 			}
-			
+
 		});
-		mRefreshListServer = new RefreshListServer(this,getHandlerContext(), mListView,new NewsListAdapter(this));
+		mRefreshListServer = new RefreshListServer(this, getHandlerContext(),
+				mListView, new NewsListAdapter(this));
 		mRefreshListServer.setCacheTag(TAG);
 		mRefreshListServer.setRefreshListServerListener(this);
- 	}
-	
+	}
+
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
+		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,
+				mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Id", categoryId);
-		if(getAppContext().currentUser().isLogin()){
+		if (getAppContext().currentUser().isLogin()) {
 			params.put("access_token", User.ACCESSKEY);
 		}
-		if(!TextUtils.isEmpty(keyword)){
+		if (!TextUtils.isEmpty(keyword)) {
 			params.put("keyword", keyword);
 		}
-		params.put("index",String.valueOf(mRefreshListServer.getCurrentPage() + 1));
-//		params.put("size", String.valueOf(AppConstant.PAGESIZE));
+		params.put("index",
+				String.valueOf(mRefreshListServer.getCurrentPage() + 1));
+		// params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
 		hServer.get(new HttpRunnable() {
 
 			@Override
 			public void run(Response response) throws AppException {
 				mRefreshListServer.resolve(response);
-				mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						mRefreshListServer.getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+					}
+				});
 			}
 
 		}, false);
 	}
-	
+
 }

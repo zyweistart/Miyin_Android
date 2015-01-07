@@ -24,6 +24,7 @@ public abstract class AppListAdapter extends BaseAdapter {
 	
 	public void setItemDatas(List<Map<String,Object>> mItemDatas) {
 		this.mItemDatas = mItemDatas;
+		notifyDataSetChanged();
 	}
 	
 	public List<Map<String, Object>> getItemDatas() {

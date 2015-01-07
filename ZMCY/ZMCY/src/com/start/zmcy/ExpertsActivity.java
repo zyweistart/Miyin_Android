@@ -201,7 +201,13 @@ public class ExpertsActivity extends BaseActivity implements
 			@Override
 			public void run(Response response) throws AppException {
 				getRefreshListServer().resolve(response);
-				getRefreshListServer().getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+				runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						getRefreshListServer().getHandlerContext().getHandler().sendEmptyMessage(HANDLER);
+					}
+				});
 			}
 
 		}, false);
