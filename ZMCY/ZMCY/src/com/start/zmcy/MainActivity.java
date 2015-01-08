@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -53,6 +54,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	
 	private ViewPager mViewPager;
 	private ScrollView mMainMenu;
+	private LinearLayout mMainMenuFrame;
 	private TranslateAnimation mShowAction, mHiddenAction;
 	private ContentFragmentPagerAdapter mContentFragmentPagerAdapter;
 
@@ -63,6 +65,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 		setMainHeadTitle(getString(R.string.app_name));
 
 		mMainMenu = (ScrollView) findViewById(R.id.main_menu);
+		mMainMenuFrame = (LinearLayout) findViewById(R.id.main_menu_frame);
 		mScreenWidth = getWindowsWidth(this);
 		mColumnHorizontalScrollView =  (ColumnHorizontalScrollView)findViewById(R.id.mColumnHorizontalScrollView);
 		mRadioGroup_content = (LinearLayout) findViewById(R.id.mRadioGroup_content);
@@ -119,10 +122,18 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			if (mMainMenu.isShown()) {
 				mMainMenu.startAnimation(mHiddenAction);   
 				mMainMenu.setVisibility(View.GONE);
+				mMainMenuFrame.setVisibility(View.GONE);
 			} else {
+				mMainMenuFrame.setVisibility(View.VISIBLE);
 				mMainMenu.startAnimation(mShowAction);   
 				mMainMenu.setVisibility(View.VISIBLE);
 			}
+		} else if (v.getId() == R.id.main_menu_frame) {
+			if (mMainMenu.isShown()) {
+				mMainMenu.startAnimation(mHiddenAction);   
+				mMainMenu.setVisibility(View.GONE);
+			}
+			mMainMenuFrame.setVisibility(View.GONE);
 		} else if (v.getId() == R.id.head_login) {
 			// 登录
 			Intent intent=new Intent(this,MemberActivity.class);
@@ -183,6 +194,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			params.rightMargin = 5;
 //			TextView localTextView = (TextView) mInflater.inflate(R.layout.column_radio_item, null);
 			TextView columnTextView = new TextView(this);
+//			columnTextView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 			columnTextView.setTextAppearance(this, R.style.top_category_scroll_view_item_text);
 //			localTextView.setBackground(getResources().getDrawable(R.drawable.top_category_scroll_text_view_bg));
 			columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
@@ -224,10 +236,6 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	 *  选择的Column里面的Tab
 	 * */
 	private void selectTab(int tab_postion) {
-		if (mMainMenu.isShown()) {
-			mMainMenu.startAnimation(mHiddenAction);   
-			mMainMenu.setVisibility(View.GONE);
-		}
 		columnSelectIndex = tab_postion;
 		for (int i = 0; i < mRadioGroup_content.getChildCount(); i++) {
 			View checkView = mRadioGroup_content.getChildAt(tab_postion);

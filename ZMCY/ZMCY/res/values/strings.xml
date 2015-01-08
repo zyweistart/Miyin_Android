@@ -27,9 +27,10 @@
     <string name="product_led">LED照明</string>
     <string name="activities_mall">商城</string>
     <string name="activities_exhibition">展会</string>
-    <string name="experts_list">专家列表</string>
-    <string name="experts_answer">专家解答</string>
-    <string name="experts_cover">能人自荐</string>
+    <string name="experts_list">专家</string>
+    <string name="experts_answer">问答</string>
+    <string name="experts_ableperson">能人</string>
+    <string name="experts_cover">自荐</string>
     
     <string name="pushtip">亲，有新消息到达,请注意查收</string>
     <string name="signin">签到</string>

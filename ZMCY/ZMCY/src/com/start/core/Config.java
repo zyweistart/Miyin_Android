@@ -21,6 +21,8 @@ public class Config {
 	public static final String MallURL=AppContext.getInstance().getServerURL()+"/106/ios_shop_list.html ";
 	//展会
 	public static final String ExhibitionURL=AppContext.getInstance().getServerURL()+"/60/ios_zhanhui.html";
+	//能人
+	public static final String EXPERTSURL1=AppContext.getInstance().getServerURL()+"/157/zhuanjia_list.html";
 	//专家自荐
 	public static final String EXPERTSURL=AppContext.getInstance().getServerURL()+"/63/ios_zhuanjia_list.html";
 	// 应用

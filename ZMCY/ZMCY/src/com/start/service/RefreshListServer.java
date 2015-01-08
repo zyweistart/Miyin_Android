@@ -13,7 +13,7 @@ import start.core.HandlerContext.HandleContextListener;
 import start.utils.TimeUtils;
 import start.widget.xlistview.XListView;
 import start.widget.xlistview.XListView.IXListViewListener;
-import android.content.Context;
+import android.app.Activity;
 import android.os.Message;
 import android.text.TextUtils;
 
@@ -22,7 +22,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	private Boolean isDataLoadDone,isHideLoadMore;
 	private int mCurrentPage;
 	private String cacheTag;
-	private Context mContext;
+	private Activity mContext;
 	private XListView mCurrentListView;
 	private HandlerContext mExternalHandlerContext;
 	private HandlerContext mHandlerContext;
@@ -30,7 +30,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	private AppListAdapter mBaseListAdapter;
 	private List<Map<String,Object>> mItemDatas = new ArrayList<Map<String,Object>>();
 	
-	public RefreshListServer(Context activity,HandlerContext handlerContext,XListView listView,AppListAdapter listAdapter){
+	public RefreshListServer(Activity activity,HandlerContext handlerContext,XListView listView,AppListAdapter listAdapter){
 		this.mContext=activity;
 		this.mExternalHandlerContext=handlerContext;
 		this.mCurrentListView=listView;
@@ -64,7 +64,13 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 					}else{
 						getItemDatas().clear();
 					}
-					getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+					mContext.runOnUiThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+						}
+					});
 				}catch(AppException e){
 					
 				}

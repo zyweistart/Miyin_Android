@@ -39,6 +39,7 @@ public class ExpertsActivity extends BaseActivity implements
 	private Button main_head_1;
 	private Button main_head_2;
 	private Button main_head_3;
+	private Button main_head_4;
 
 	private XListView mExpertsListView;
 	private RefreshListServer mExpertsRefreshListServer;
@@ -46,7 +47,7 @@ public class ExpertsActivity extends BaseActivity implements
 	private XListView mQuestionListView;
 	private RefreshListServer mQuestionRefreshListServer;
 
-	private WebView mWebView;
+	private WebView mWebView1,mWebView2;
 
 	private int type = 1;
 
@@ -62,8 +63,11 @@ public class ExpertsActivity extends BaseActivity implements
 		main_head_2.setText(getString(R.string.experts_answer));
 		main_head_2.setVisibility(View.VISIBLE);
 		main_head_3 = (Button) findViewById(R.id.head_3);
-		main_head_3.setText(getString(R.string.experts_cover));
+		main_head_3.setText(getString(R.string.experts_ableperson));
 		main_head_3.setVisibility(View.VISIBLE);
+		main_head_4 = (Button) findViewById(R.id.head_4);
+		main_head_4.setText(getString(R.string.experts_cover));
+		main_head_4.setVisibility(View.VISIBLE);
 
 		mExpertsListView = (XListView) findViewById(R.id.xlv_listview);
 		mExpertsListView.setOnItemClickListener(new OnItemClickListener() {
@@ -112,10 +116,21 @@ public class ExpertsActivity extends BaseActivity implements
 		mQuestionRefreshListServer.setCacheTag(TAG+"Question");
 		mQuestionRefreshListServer.setRefreshListServerListener(this);
 
-		mWebView = (WebView) findViewById(R.id.wvcontent);
-		mWebView.getSettings().setJavaScriptEnabled(true);
+		mWebView1 = (WebView) findViewById(R.id.wvcontent1);
+		mWebView1.getSettings().setJavaScriptEnabled(true);
 
-		mWebView.setWebViewClient(new WebViewClient() {
+		mWebView1.setWebViewClient(new WebViewClient() {
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				// 重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
+				view.loadUrl(url);
+				return true;
+			}
+		});
+		
+		mWebView2 = (WebView) findViewById(R.id.wvcontent2);
+		mWebView2.getSettings().setJavaScriptEnabled(true);
+
+		mWebView2.setWebViewClient(new WebViewClient() {
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				// 重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
 				view.loadUrl(url);
@@ -128,17 +143,18 @@ public class ExpertsActivity extends BaseActivity implements
 		if(getAppContext().currentUser().isLogin()){
 			mQuestionRefreshListServer.initLoad();
 		}
-		mWebView.loadUrl(Config.EXPERTSURL);
+		mWebView1.loadUrl(Config.EXPERTSURL1);
+		mWebView2.loadUrl(Config.EXPERTSURL);
 	}
 
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.head_1) {
-			// 专家列表
+			// 专家
 			type = 1;
 			setHeadButtonEnabled(type);
 		} else if (v.getId() == R.id.head_2) {
-			// 专家解答
+			// 回答 
 			if(getAppContext().currentUser().isLogin()){
 				type = 2;
 				setHeadButtonEnabled(type);
@@ -146,8 +162,12 @@ public class ExpertsActivity extends BaseActivity implements
 				goLoginResult(REQUEST_LOGIN_CODE,getString(R.string.nologin));
 			}
 		} else if (v.getId() == R.id.head_3) {
-			// 专家自荐
+			// 能人
 			type=3;
+			setHeadButtonEnabled(type);
+		} else if (v.getId() == R.id.head_4) {
+			// 自荐
+			type=4;
 			setHeadButtonEnabled(type);
 		} else {
 			super.onClick(v);
@@ -170,9 +190,11 @@ public class ExpertsActivity extends BaseActivity implements
 		main_head_1.setEnabled(index == 1 ? false : true);
 		main_head_2.setEnabled(index == 2 ? false : true);
 		main_head_3.setEnabled(index == 3 ? false : true);
+		main_head_4.setEnabled(index == 4 ? false : true);
 		mExpertsListView.setVisibility(!main_head_1.isEnabled() ?View.VISIBLE:View.GONE);
 		mQuestionListView.setVisibility(!main_head_2.isEnabled() ?View.VISIBLE:View.GONE);
-		mWebView.setVisibility(!main_head_3.isEnabled()?View.VISIBLE:View.GONE);
+		mWebView1.setVisibility(!main_head_3.isEnabled()?View.VISIBLE:View.GONE);
+		mWebView2.setVisibility(!main_head_4.isEnabled()?View.VISIBLE:View.GONE);
 	}
 
 	public RefreshListServer getRefreshListServer() {
