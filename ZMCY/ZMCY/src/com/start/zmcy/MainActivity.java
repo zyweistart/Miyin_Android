@@ -224,6 +224,10 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 	 *  选择的Column里面的Tab
 	 * */
 	private void selectTab(int tab_postion) {
+		if (mMainMenu.isShown()) {
+			mMainMenu.startAnimation(mHiddenAction);   
+			mMainMenu.setVisibility(View.GONE);
+		}
 		columnSelectIndex = tab_postion;
 		for (int i = 0; i < mRadioGroup_content.getChildCount(); i++) {
 			View checkView = mRadioGroup_content.getChildAt(tab_postion);
