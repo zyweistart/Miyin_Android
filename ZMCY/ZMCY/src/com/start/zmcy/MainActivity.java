@@ -192,12 +192,10 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT , LayoutParams.WRAP_CONTENT);
 			params.leftMargin = 5;
 			params.rightMargin = 5;
-//			TextView localTextView = (TextView) mInflater.inflate(R.layout.column_radio_item, null);
 			TextView columnTextView = new TextView(this);
 //			columnTextView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 			columnTextView.setTextAppearance(this, R.style.top_category_scroll_view_item_text);
-//			localTextView.setBackground(getResources().getDrawable(R.drawable.top_category_scroll_text_view_bg));
-			columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
+//			columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
 			columnTextView.setGravity(Gravity.CENTER);
 			columnTextView.setPadding(5, 5, 5, 5);
 			columnTextView.setId(i);

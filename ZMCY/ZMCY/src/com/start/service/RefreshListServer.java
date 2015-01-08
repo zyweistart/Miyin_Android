@@ -47,35 +47,37 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	 * 初始化加载
 	 */
 	public void initLoad(){
-//		getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				try{
-					if(!TextUtils.isEmpty(getCacheTag())){
-						String responseString=AppContext.getSharedPreferences().getString(getCacheTag(),AppConstant.EMPTYSTR);
-						if(!AppConstant.EMPTYSTR.equals(responseString)){
-							Response response=new Response(null);
-							response.setResponseString(responseString);
-							response.resolveJson();
-							resolve(response);
-						}
-					}else{
-						getItemDatas().clear();
-					}
-					mContext.runOnUiThread(new Runnable() {
-						
-						@Override
-						public void run() {
-							getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
-						}
-					});
-				}catch(AppException e){
-					
-				}
-			}
-		}).start();
+		getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+//		if(!TextUtils.isEmpty(getCacheTag())){
+//			new Thread(new Runnable() {
+//				
+//				@Override
+//				public void run() {
+//					try{
+//						String responseString=AppContext.getSharedPreferences().getString(getCacheTag(),AppConstant.EMPTYSTR);
+//						if(!AppConstant.EMPTYSTR.equals(responseString)){
+//							Response response=new Response(null);
+//							response.setResponseString(responseString);
+//							response.resolveJson();
+//							resolve(response);
+//						}
+//						mContext.runOnUiThread(new Runnable() {
+//							
+//							@Override
+//							public void run() {
+//								getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+//							}
+//						});
+//					}catch(AppException e){
+//						
+//					}
+//				}
+//			}).start();
+//		}else{
+//			getItemDatas().clear();
+//			getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+//		}
+		
 	}
 	
 	@Override

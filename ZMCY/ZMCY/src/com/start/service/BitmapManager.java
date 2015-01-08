@@ -181,8 +181,7 @@ public class BitmapManager {
 				//指定显示图片的高宽
 				bitmap = Bitmap.createScaledBitmap(bitmap, width, height, true);
 			} 
-			//TODO:放入缓存
-//			cache.put(url, new SoftReference<Bitmap>(bitmap));
+			cache.put(url, new SoftReference<Bitmap>(bitmap));
 		} catch (AppException e) {
 			e.printStackTrace();
 		}
