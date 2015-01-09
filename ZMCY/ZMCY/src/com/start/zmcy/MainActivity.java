@@ -179,6 +179,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 				this.loadChannelData();
 				this.initTabColumn();
 				mContentFragmentPagerAdapter.setFramentsNotifyDataSetChanged(mBaseFragments);
+				mViewPager.setCurrentItem(columnSelectIndex);
 			}
 		}
 	}
