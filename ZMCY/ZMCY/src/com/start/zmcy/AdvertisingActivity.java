@@ -50,7 +50,7 @@ public class AdvertisingActivity extends BaseActivity{
 			BitmapFactory.Options options = new BitmapFactory.Options();
 			options.inSampleSize = 2;
 			mAdvertising.setTag(ai.getUrl());
-			mAdvertising.setBackground(new BitmapDrawable(BitmapFactory.decodeFile(myJpgPath, options)));
+			mAdvertising.setBackgroundDrawable(new BitmapDrawable(BitmapFactory.decodeFile(myJpgPath, options)));
 			AlphaAnimation aa = new AlphaAnimation(0.3f,1.0f);
 			aa.setDuration(2000);
 			mAdvertising.startAnimation(aa);

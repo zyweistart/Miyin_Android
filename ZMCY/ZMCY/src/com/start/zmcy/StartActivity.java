@@ -58,6 +58,7 @@ public class StartActivity extends BaseActivity{
      * 检查是否需要换图片
      * @param view
      */
+	@SuppressWarnings("deprecation")
 	private void check(LinearLayout view) {
 	    	String path = FileUtils.getAppCache(this, "wellcomeback");
 	    	List<File> files = FileUtils.listPathFiles(path);
@@ -66,7 +67,7 @@ public class StartActivity extends BaseActivity{
 	    		long time[] = getTime(f.getName());
 	    		long today = TimeUtils.getToday();
 	    		if (today >= time[0] && today <= time[1]) {
-	    			view.setBackground(Drawable.createFromPath(f.getAbsolutePath()));
+	    			view.setBackgroundDrawable(Drawable.createFromPath(f.getAbsolutePath()));
 	    		}
 	    	}
     }
