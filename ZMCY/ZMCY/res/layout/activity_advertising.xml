@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/advertising"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_activity"
-    android:orientation="vertical" >
+    android:clickable="true"
+    android:onClick="onClick">
     
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:textSize="18.0dip"
+        android:textColor="#a3a3a3"
+        android:padding="10.0dip"
+        android:layout_margin="15.0dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/selector_button_color_transparent"
+        android:text="跳过"/>
+    
+</RelativeLayout>

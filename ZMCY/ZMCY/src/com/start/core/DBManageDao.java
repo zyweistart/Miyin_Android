@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.start.service.bean.AdvertisingItem;
 import com.start.service.bean.ChannelItem;
 
 public  class DBManageDao {
@@ -36,6 +37,54 @@ public  class DBManageDao {
 	
 	public void deleteAllChannelItem() {
 		getSQLiteDatabase().delete(ChannelItem.TABLENAME, null, null);
+	}
+	
+	/**
+	 * 保存广告
+	 * @param ci
+	 */
+	public void saveAdvertisingItem(AdvertisingItem ci){
+		String str="select count(*)  from "+AdvertisingItem.TABLENAME+" where fileName='"+ci.getFileName()+"'";
+        Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
+        cursor.moveToFirst();
+        if(cursor.getLong(0)==0){
+    		ContentValues values = new ContentValues();
+    		values.put("fileName", ci.getFileName());
+    		values.put("url", ci.getUrl());
+    		values.put("startDay", ci.getStartDay());
+    		values.put("endDay", ci.getEndDay());
+    		getSQLiteDatabase().insert(AdvertisingItem.TABLENAME, null, values);
+        }
+	}
+	
+	/**
+	 * 获取当前时间范围内的广告列表
+	 * @param currentDay
+	 * @return
+	 */
+	public List<AdvertisingItem> findAdvertisingItemAll(String currentDay) {
+		List<AdvertisingItem> channelItems = new ArrayList<AdvertisingItem>();
+		Cursor cursor = getSQLiteDatabase().query(AdvertisingItem.TABLENAME,
+				new String[] { "fileName", "url","startDay", "endDay" },"startDay<=? and ?<=endDay", new String[]{currentDay,currentDay}, null, null, "id desc");
+		try {
+			if (cursor.moveToFirst()) {
+				do {
+					AdvertisingItem ci = new AdvertisingItem();
+					ci.setFileName(cursor.getString(cursor.getColumnIndex("fileName")));
+					ci.setUrl(cursor.getString(cursor.getColumnIndex("url")));
+					ci.setStartDay(cursor.getString(cursor.getColumnIndex("startDay")));
+					ci.setEndDay(cursor.getString(cursor.getColumnIndex("endDay")));
+					channelItems.add(ci);
+				} while (cursor.moveToNext());
+			}
+		} finally {
+			cursor.close();
+		}
+		return channelItems;
+	}
+	
+	public void deleteAdvertising(String fileName) {
+		getSQLiteDatabase().delete(AdvertisingItem.TABLENAME, "fileName=?", new String[]{fileName});
 	}
 	
 	public void saveChannelItem(ChannelItem ci){

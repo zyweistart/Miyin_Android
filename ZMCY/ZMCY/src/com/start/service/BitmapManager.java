@@ -178,7 +178,7 @@ public class BitmapManager {
      * @param width
      * @param height
      */
-    private Bitmap downloadBitmap(String url, int width, int height) {   
+    public Bitmap downloadBitmap(String url, int width, int height) {   
         Bitmap bitmap = null;
         try {
 			//http加载图片
