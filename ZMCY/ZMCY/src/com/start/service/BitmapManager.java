@@ -20,8 +20,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.CoreProtocolPNames;
 
-import com.start.zmcy.BaseContext;
-
 import start.core.AppConstant;
 import start.core.AppException;
 import start.utils.FileUtils;
@@ -30,6 +28,8 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
+
+import com.start.zmcy.BaseContext;
 /**
  * 异步线程加载图片工具类
  * 使用说明：
@@ -103,12 +103,18 @@ public class BitmapManager {
         } else {  
         	//加载SD卡中的图片缓存
         	String filename = FileUtils.getFileName(url);
-        	String filepath =BaseContext.getInstance().getStorageDirectory("images") + File.separator + filename;
+        	String filepath =BaseContext.getInstance().getStorageDirectory("images")  + filename;
     		File file = new File(filepath);
     		if(file.exists()){
 				//显示SD卡中的图片缓存
-    			Bitmap bmp = ImageUtils.getBitmap(imageView.getContext(), filename);
-        		imageView.setImageBitmap(bmp);
+    			Bitmap bmp = ImageUtils.getBitmap(imageView.getContext(), file);
+    			if(bmp==null){
+    				//线程加载网络图片
+            		imageView.setImageBitmap(defaultBmp);
+            		queueJob(url, imageView, width, height);
+    			}else{
+    				imageView.setImageBitmap(bmp);
+    			}
         	}else{
 				//线程加载网络图片
         		imageView.setImageBitmap(defaultBmp);
@@ -147,8 +153,8 @@ public class BitmapManager {
                         try {
                         	//向SD卡中写入图片缓存
 //							ImageUtils.saveImage(imageView.getContext(), FileUtils.getFileName(url), (Bitmap) msg.obj);
-							String filePath=BaseContext.getInstance().getStorageDirectory("images") + File.separator + FileUtils.getFileName(url);
-							ImageUtils.saveImageToSD(imageView.getContext(), filePath, (Bitmap) msg.obj, 1);
+							String filePath=BaseContext.getInstance().getStorageDirectory("images")+ FileUtils.getFileName(url);
+							ImageUtils.saveImageToSD(imageView.getContext(), filePath, (Bitmap) msg.obj, 100);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -207,12 +213,7 @@ public class BitmapManager {
 					throw AppException.http(statusCode);
 				}
 		        InputStream inStream = response.getEntity().getContent();
-		        
-		        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-		        bitmapOptions.inSampleSize = 4;
-		        bitmap = BitmapFactory.decodeStream(inStream, null , bitmapOptions);
-		        
-//		        bitmap = BitmapFactory.decodeStream(inStream);
+		        bitmap = BitmapFactory.decodeStream(inStream);
 		        inStream.close();
 		        break;
 			} catch (Exception e) {

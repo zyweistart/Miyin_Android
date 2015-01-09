@@ -141,11 +141,13 @@ public class ImageUtils {
 	 * @param fileName
 	 * @return
 	 */
-	public static Bitmap getBitmap(Context context, String fileName) {
+	public static Bitmap getBitmap(Context context, File file) {
 		FileInputStream fis = null;
 		Bitmap bitmap = null;
 		try {
-			fis = context.openFileInput(fileName);
+			
+//			fis = context.openFileInput(fileName);
+			fis=new FileInputStream(file);
 			bitmap = BitmapFactory.decodeStream(fis);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

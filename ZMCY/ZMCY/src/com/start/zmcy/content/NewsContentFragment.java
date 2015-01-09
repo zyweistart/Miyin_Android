@@ -83,7 +83,6 @@ public class NewsContentFragment  extends BaseFragment implements RefreshListSer
 	
 	@Override
 	public void onLoading(final int HANDLER) {
-//		mActivity.getHandlerContext().makeTextLong(mChannelItem.getName()+"    "+mChannelItem.getId());
 		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mRefreshListServer.getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Id", String.valueOf(mChannelItem.getId()));

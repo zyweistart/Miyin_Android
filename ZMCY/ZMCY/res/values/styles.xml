@@ -143,7 +143,6 @@
     
     <style name="top_category_scroll_view_item_text">
         <item name="android:textSize">20.0dip</item>
-        <item name="android:textStyle" >bold</item>
         <item name="android:gravity">center</item>
     </style>
     
