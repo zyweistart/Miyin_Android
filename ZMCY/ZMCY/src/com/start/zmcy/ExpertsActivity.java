@@ -209,7 +209,7 @@ public class ExpertsActivity extends BaseActivity implements
 
 	@Override
 	public void onLoading(final int HANDLER) {
-		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,mExpertsRefreshListServer.getHandlerContext());
+		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,getRefreshListServer().getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Id", getCategoryId());
 		if(type==2&&getAppContext().currentUser().isLogin()){
