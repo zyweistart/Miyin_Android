@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/selector_listview_item"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="false"
     android:orientation="vertical" >
 
     <start.widget.StartViewPager
@@ -25,49 +27,42 @@
             android:contentDescription="@string/empty" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5.0dip"
             android:orientation="vertical" >
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/experts_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/experts_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textSize="16.0dip" />
-
-                    <TextView
-                        android:id="@+id/experts_pro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:textColor="#646464"
-                        android:textSize="16.0dip" />
-                </LinearLayout>
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="16.0dip" />
 
                 <Button
                     android:id="@+id/experts_consultation"
+                    style="@style/button1"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                   	style="@style/button1"
-                    android:text="@string/consultation"
-                    android:visibility="gone"/>
+                    android:text="@string/consultation" />
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/experts_pro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="#646464"
+                android:textSize="16.0dip" />
 
             <TextView
                 android:id="@+id/experts_description"

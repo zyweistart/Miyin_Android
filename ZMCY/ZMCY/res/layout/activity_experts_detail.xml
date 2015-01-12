@@ -29,26 +29,34 @@
                     android:contentDescription="@string/empty"
                     android:src="@drawable/default_experts" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5.0dip" >
+                    android:layout_marginLeft="5.0dip"
+                    android:orientation="vertical" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical" >
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
 
-                        <TextView
-                            android:id="@+id/experts_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textSize="16.0dip" />
+                            <TextView
+                                android:id="@+id/experts_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:textSize="16.0dip" />
+
+                            <Button
+                                android:id="@+id/experts_consultation"
+                                style="@style/button1"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:text="@string/consultation" />
+                        </RelativeLayout>
 
                         <TextView
                             android:id="@+id/experts_pro"
@@ -59,28 +67,19 @@
                             android:textColor="#646464"
                             android:textSize="16.0dip" />
                     </LinearLayout>
-
-                    <Button
-                        android:id="@+id/experts_consultation"
-                        style="@style/button1"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:text="@string/consultation"/>
-                </RelativeLayout>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1.0dip"
                 android:layout_margin="5.0dip"
-                android:background="#646464"/>
-            
+                android:background="#e5e5e5" />
+
             <TextView
                 android:id="@+id/experts_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5.0dip"
-                android:maxLines="0"
                 android:ellipsize="end"
                 android:textColor="#646464"
                 android:textSize="16.0dip" />
