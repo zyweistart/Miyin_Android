@@ -1,5 +1,10 @@
 package com.start.zmcy;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import start.core.AppContext;
+import start.core.AppException;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,7 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
+import com.start.core.Constant;
 import com.start.service.BitmapManager;
+import com.start.service.HttpRunnable;
+import com.start.service.HttpServer;
+import com.start.service.Response;
 
 /**
  * 专家详细页
@@ -18,6 +27,7 @@ import com.start.service.BitmapManager;
 public class ExpertsDetailActivity extends BaseActivity{
 	
 	public static final String EXPERTSID="EXPERTSID";
+	public static final String EXPERTSCATEGORYID="EXPERTSCATEGORYID";
 	public static final String EXPERTSIMAGE="EXPERTSIMAGE";
 	public static final String EXPERTSNAME="EXPERTSNAME";
 	public static final String EXPERTSPRO="EXPERTSPRO";
@@ -27,7 +37,7 @@ public class ExpertsDetailActivity extends BaseActivity{
 	private TextView experts_name,experts_pro,experts_description;
 	private Button experts_consultation;
 	
-	private String expertsId,expertsImage,expertsName,expertsPro,expertsDescription;
+	private String expertsId,expertsCategoryId,expertsImage,expertsName,expertsPro,expertsDescription;
 	
 	private static BitmapManager mExpertsBitmapManager;
 	
@@ -51,6 +61,7 @@ public class ExpertsDetailActivity extends BaseActivity{
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
 			expertsId=bundle.getString(EXPERTSID);
+			expertsCategoryId=bundle.getString(EXPERTSCATEGORYID);
 			expertsImage=bundle.getString(EXPERTSIMAGE);
 			expertsName=bundle.getString(EXPERTSNAME);
 			expertsPro=bundle.getString(EXPERTSPRO);
@@ -61,7 +72,26 @@ public class ExpertsDetailActivity extends BaseActivity{
 			}
 			experts_name.setText(expertsName);
 			experts_pro.setText(expertsPro);
-			experts_description.setText(expertsDescription);
+			
+			HttpServer hServer = new HttpServer(Constant.URL.GetInfo,getHandlerContext());
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("Id", expertsId);
+			params.put("classId",expertsCategoryId);
+			hServer.setParams(params);
+			hServer.get(new HttpRunnable() {
+
+				@Override
+				public void run(Response response) throws AppException {
+					final String description=String.valueOf(response.getData("description"));
+					runOnUiThread(new Runnable() {
+						public void run() {
+							experts_description.setText(description);
+						}
+					});
+				}
+				
+			});
+			
 		}else{
 			finish();
 		}
