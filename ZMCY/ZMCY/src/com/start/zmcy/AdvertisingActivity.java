@@ -23,6 +23,7 @@ public class AdvertisingActivity extends BaseActivity{
 	private List<AdvertisingItem> mAdvertisingItems;
 	
 	private RelativeLayout mAdvertising;
+	private Boolean skipflag=false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +100,12 @@ public class AdvertisingActivity extends BaseActivity{
 	}
 	
 	public void goMain(){
-		index=mAdvertisingItems.size();
-		Intent intent=new Intent(AdvertisingActivity.this,MainActivity.class);
-		startActivity(intent);
-		finish();
+		if(!skipflag){
+			skipflag=true;
+			index=mAdvertisingItems.size();
+			Intent intent=new Intent(AdvertisingActivity.this,MainActivity.class);
+			startActivity(intent);
+			finish();
+		}
 	}
 }

@@ -18,13 +18,13 @@ public class Config {
 	//LED光源
 	public static final String LIGHTSOURCEURL=AppContext.getInstance().getServerURL()+"/75/ios_qiye_list.html";
 	//商城
-	public static final String MallURL=AppContext.getInstance().getServerURL()+"/106/ios_shop_list.html ";
+	public static final String MallURL=AppContext.getInstance().getServerURL()+"/156/ios_shop_list.html";
 	//展会
 	public static final String ExhibitionURL=AppContext.getInstance().getServerURL()+"/60/ios_zhanhui.html";
 	//能人
-	public static final String EXPERTSURL1=AppContext.getInstance().getServerURL()+"/157/zhuanjia_list.html";
-	//专家自荐
-	public static final String EXPERTSURL=AppContext.getInstance().getServerURL()+"/63/ios_zhuanjia_list.html";
+	public static final String EXPERTSURL1=AppContext.getInstance().getServerURL()+"/157/ios_nengren_list.html";
+	//自荐
+	public static final String EXPERTSURL=AppContext.getInstance().getServerURL()+"/65/ios_zijian.html";
 	// 应用
 	public static final String APPURL=AppContext.getInstance().getServerURL()+"/66/ios_yingyong.html";
 
