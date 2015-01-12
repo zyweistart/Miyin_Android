@@ -1,68 +1,86 @@
 package com.start.zmcy;
 
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
+import com.start.service.BitmapManager;
 
 /**
  * 专家详细页
  */
 public class ExpertsDetailActivity extends BaseActivity{
 	
-	private TextView mHeadChildTitle;
-	private Button mHeadMore;
-	
 	public static final String EXPERTSID="EXPERTSID";
-	public static final String CATEGORYID="CATEGORYID";
+	public static final String EXPERTSIMAGE="EXPERTSIMAGE";
+	public static final String EXPERTSNAME="EXPERTSNAME";
+	public static final String EXPERTSPRO="EXPERTSPRO";
+	public static final String EXPERTSDESCRIPTION="EXPERTSDESCRIPTION";
+	
+	private ImageView experts_head;
+	private TextView experts_name,experts_pro,experts_description;
+	private Button experts_consultation;
+	
+	private String expertsId,expertsImage,expertsName,expertsPro,expertsDescription;
+	
+	private static BitmapManager mExpertsBitmapManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_experts_detail);
-		setMainHeadTitle(getString(R.string.newsdetail));
-		mHeadMore=(Button)findViewById(R.id.head_more);
-		mHeadMore.setVisibility(View.VISIBLE);
-		mHeadChildTitle=(TextView)findViewById(R.id.head_child_title);
-		mHeadChildTitle.setVisibility(View.VISIBLE);
+		setMainHeadTitle(getString(R.string.experts_list));
+		
+		experts_head=(ImageView)findViewById(R.id.experts_head);
+		experts_name=(TextView)findViewById(R.id.experts_name);
+		experts_pro=(TextView)findViewById(R.id.experts_pro);
+		experts_description=(TextView)findViewById(R.id.experts_description);
+		experts_consultation=(Button)findViewById(R.id.experts_consultation);
+		experts_consultation.setOnClickListener(this);
+		
+		if(mExpertsBitmapManager==null){
+			mExpertsBitmapManager = new BitmapManager(BitmapFactory.decodeResource(getResources(), R.drawable.default_experts));
+		}
 		
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
-//			String id=bundle.getString(EXPERTSID);
-//			String categoryid=bundle.getString(CATEGORYID);
+			expertsId=bundle.getString(EXPERTSID);
+			expertsImage=bundle.getString(EXPERTSIMAGE);
+			expertsName=bundle.getString(EXPERTSNAME);
+			expertsPro=bundle.getString(EXPERTSPRO);
+			expertsDescription=bundle.getString(EXPERTSDESCRIPTION);
 			
-//			HttpServer hServer = new HttpServer(Constant.URL.GetInfo,getHandlerContext());
-//			Map<String, String> params = new HashMap<String, String>();
-//			params.put("Id", id);
-//			params.put("classId",categoryid);
-//			hServer.setParams(params);
-//			hServer.get(new HttpRunnable() {
-//
-//				@Override
-//				public void run(Response response) throws AppException {
-//					try {
-//						JSONArray jsonArray=(JSONArray)response.getData("Table");
-//						JSONObject jo=jsonArray.getJSONObject(0);
-//						shareContent="友盟社会化组件（SDK）让移动应用快速整合社交分享功能，http://www.umeng.com/social";
-//						shareImageUrl="http://www.umeng.com/images/pic/banner_module_social.png";
-//						final String evaluation=jo.getString("hit");
-//						runOnUiThread(new Runnable() {
-//							public void run() {
-//								mHeadChildTitle.setText(evaluation+"评");
-//							}
-//						});
-//					} catch (JSONException e) {
-//						throw AppException.json(e);
-//					}
-//				}
-//				
-//			});
-			
+			if(!TextUtils.isEmpty(expertsImage)){
+				mExpertsBitmapManager.loadBitmap(expertsImage, experts_head);
+			}
+			experts_name.setText(expertsName);
+			experts_pro.setText(expertsPro);
+			experts_description.setText(expertsDescription);
 		}else{
 			finish();
 		}
  	}
 	
+	@Override
+	public void onClick(View v) {
+		if(v.getId()==R.id.head_back){
+			finish();
+		}else if(v.getId()==R.id.experts_consultation){
+			Bundle bundle=new Bundle();
+			bundle.putString(ConsultationActivity.CONSOLTATIONID, expertsId);
+			Intent intent=new Intent(this,ConsultationActivity.class);
+			intent.putExtras(bundle);
+			if(!getAppContext().currentUser().isLogin()){
+				goLogin(intent,getString(R.string.nologin));
+				return;
+			}
+			startActivity(intent);
+		}
+	}
 }

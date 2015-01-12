@@ -74,17 +74,20 @@ public class ExpertsActivity extends BaseActivity implements
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				if(id>0){
+//				if(id>0){
 					ExpertsHolderView hv=(ExpertsHolderView)view.getTag();
 					Bundle bundle=new Bundle();
 					bundle.putString(ExpertsDetailActivity.EXPERTSID, hv.id);
-					bundle.putString(ExpertsDetailActivity.CATEGORYID, hv.categoryid);
+					bundle.putString(ExpertsDetailActivity.EXPERTSIMAGE, hv.head);
+					bundle.putString(ExpertsDetailActivity.EXPERTSNAME, hv.name);
+					bundle.putString(ExpertsDetailActivity.EXPERTSPRO, hv.pro);
+					bundle.putString(ExpertsDetailActivity.EXPERTSDESCRIPTION, hv.description);
 					Intent intent=new Intent(ExpertsActivity.this,ExpertsDetailActivity.class);
 					intent.putExtras(bundle);
 					startActivity(intent);
-				}else{
-					mExpertsRefreshListServer.getCurrentListView().startLoadMore();
-				}
+//				}else{
+//					mExpertsRefreshListServer.getCurrentListView().startLoadMore();
+//				}
 			}
 		});
 		mExpertsRefreshListServer = new RefreshListServer(this, getHandlerContext(),

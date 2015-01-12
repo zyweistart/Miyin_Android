@@ -65,7 +65,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                    	style="@style/button1"
-                    android:text="@string/consultation"/>
+                    android:text="@string/consultation"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
             <TextView

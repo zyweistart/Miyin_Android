@@ -2,9 +2,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_activity"  >
-    
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
     <include layout="@layout/module_header_title" />
-     
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5.0dip" >
+
+                <ImageView
+                    android:id="@+id/experts_head"
+                    android:layout_width="100.0dip"
+                    android:layout_height="100.0dip"
+                    android:contentDescription="@string/empty"
+                    android:src="@drawable/default_experts" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5.0dip" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/experts_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textSize="16.0dip" />
+
+                        <TextView
+                            android:id="@+id/experts_pro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:textColor="#646464"
+                            android:textSize="16.0dip" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/experts_consultation"
+                        style="@style/button1"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/consultation"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0dip"
+                android:layout_margin="5.0dip"
+                android:background="#646464"/>
+            
+            <TextView
+                android:id="@+id/experts_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5.0dip"
+                android:maxLines="0"
+                android:ellipsize="end"
+                android:textColor="#646464"
+                android:textSize="16.0dip" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

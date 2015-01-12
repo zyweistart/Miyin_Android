@@ -123,17 +123,20 @@ public class ExpertsListAdapter extends AppListAdapter{
 		}else{
 			setItemVisibility(holder,2);
 			holder.id=String.valueOf(data.get(ID));
+			holder.name=String.valueOf(data.get(NAME));
+			holder.pro=String.valueOf(data.get(JOBTITLE));
+			holder.description=String.valueOf(data.get(DESCRIPTION));
 			holder.categoryid=String.valueOf(data.get(CATEGORYID));
-			
 			String url=AppContext.getInstance().getServerURL()+String.valueOf(data.get(IMAGEURL));
+			holder.head=url;
 			if(TextUtils.isEmpty(url)){
 				holder.experts_head.setBackgroundResource(R.drawable.default_experts);
 			}else{
 				mExpertsBitmapManager.loadBitmap(url, holder.experts_head);
 			}
-			holder.experts_name.setText(String.valueOf(data.get(NAME)));
-			holder.experts_pro.setText(String.valueOf(data.get(JOBTITLE)));
-			holder.experts_description.setText(String.valueOf(data.get(DESCRIPTION)));
+			holder.experts_name.setText(holder.name);
+			holder.experts_pro.setText(holder.pro);
+			holder.experts_description.setText(holder.description);
 			holder.experts_consultation.setTag(holder);
 			holder.experts_consultation.setOnClickListener(new OnClickListener() {
 				
@@ -161,6 +164,10 @@ public class ExpertsListAdapter extends AppListAdapter{
 		public String id;
 		public String categoryid;
 		public String url;
+		public String head;
+		public String name;
+		public String pro;
+		public String description;
 	}
 	
 	public class ExpertsHolderView extends BannerHolder {
