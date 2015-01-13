@@ -3,13 +3,13 @@ package com.start.zmcy;
 import java.util.HashMap;
 import java.util.Map;
 
-import start.core.AppContext;
 import start.core.AppException;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,10 +34,11 @@ public class ExpertsDetailActivity extends BaseActivity{
 	public static final String EXPERTSDESCRIPTION="EXPERTSDESCRIPTION";
 	
 	private ImageView experts_head;
-	private TextView experts_name,experts_pro,experts_description;
+	private TextView experts_name,experts_pro;
+	private WebView experts_description;
 	private Button experts_consultation;
 	
-	private String expertsId,expertsCategoryId,expertsImage,expertsName,expertsPro,expertsDescription;
+	private String expertsId,expertsCategoryId,expertsImage,expertsName,expertsPro;
 	
 	private static BitmapManager mExpertsBitmapManager;
 	
@@ -50,7 +51,7 @@ public class ExpertsDetailActivity extends BaseActivity{
 		experts_head=(ImageView)findViewById(R.id.experts_head);
 		experts_name=(TextView)findViewById(R.id.experts_name);
 		experts_pro=(TextView)findViewById(R.id.experts_pro);
-		experts_description=(TextView)findViewById(R.id.experts_description);
+		experts_description=(WebView)findViewById(R.id.experts_description);
 		experts_consultation=(Button)findViewById(R.id.experts_consultation);
 		experts_consultation.setOnClickListener(this);
 		
@@ -65,7 +66,6 @@ public class ExpertsDetailActivity extends BaseActivity{
 			expertsImage=bundle.getString(EXPERTSIMAGE);
 			expertsName=bundle.getString(EXPERTSNAME);
 			expertsPro=bundle.getString(EXPERTSPRO);
-			expertsDescription=bundle.getString(EXPERTSDESCRIPTION);
 			
 			if(!TextUtils.isEmpty(expertsImage)){
 				mExpertsBitmapManager.loadBitmap(expertsImage, experts_head);
@@ -82,10 +82,10 @@ public class ExpertsDetailActivity extends BaseActivity{
 
 				@Override
 				public void run(Response response) throws AppException {
-					final String description=String.valueOf(response.getData("description"));
+					final String description=String.valueOf(response.getData("content"));
 					runOnUiThread(new Runnable() {
 						public void run() {
-							experts_description.setText(description);
+							experts_description.loadDataWithBaseURL(null, description, "text/html", "utf-8", null);
 						}
 					});
 				}

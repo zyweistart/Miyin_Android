@@ -78,7 +78,7 @@ public class ExpertsActivity extends BaseActivity implements
 					ExpertsHolderView hv=(ExpertsHolderView)view.getTag();
 					Bundle bundle=new Bundle();
 					bundle.putString(ExpertsDetailActivity.EXPERTSID, hv.id);
-					bundle.putString(ExpertsDetailActivity.EXPERTSCATEGORYID, getCategoryId());
+					bundle.putString(ExpertsDetailActivity.EXPERTSCATEGORYID, hv.categoryid);
 					bundle.putString(ExpertsDetailActivity.EXPERTSIMAGE, hv.head);
 					bundle.putString(ExpertsDetailActivity.EXPERTSNAME, hv.name);
 					bundle.putString(ExpertsDetailActivity.EXPERTSPRO, hv.pro);
