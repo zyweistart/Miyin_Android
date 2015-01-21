@@ -46,9 +46,9 @@ public class Register1Activity extends BaseActivity {
 	
 	public static final int SENDMESSAGETIMEOUT=0x4732847;
 	
-	private static final String MESSAGE1="您即将定制信元无线提供的音证宝服务";
+	private static final String MESSAGE1="您即将定制信元无线提供的音证宝";
 	private static final String MESSAGE2="您已成功定制信元无线提供的音证宝";
-	private static final String MESSAGE4="您已定制了信元无线提供的音证宝服务";
+	private static final String MESSAGE4="您已定制了信元无线提供的音证宝";
 	private static final String MESSAGE3="对不起，您定制信元无线的音证宝产品失败";
 	
 	protected String phone;
