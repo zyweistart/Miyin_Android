@@ -5,8 +5,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ListView;
 
 import com.start.core.BaseActivity;
 import com.start.service.bean.StrangeWordItem;
@@ -19,30 +18,32 @@ import com.start.service.bean.StrangeWordStatisticsItem;
  */
 public class StrangeWordsActivity extends BaseActivity{
 	
+	private ListView mListView;
+	private StrangeWordsAdapter mAdapter;
 	private List<StrangeWordStatisticsItem> mStrangeWordStatisticsItems;
-	private Button btn_strange_words1,btn_strange_words2,btn_strange_words3,btn_strange_words4;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_strange_words);
-		btn_strange_words1=(Button)findViewById(R.id.btn_strange_words1);
-		btn_strange_words2=(Button)findViewById(R.id.btn_strange_words2);
-		btn_strange_words3=(Button)findViewById(R.id.btn_strange_words3);
-		btn_strange_words4=(Button)findViewById(R.id.btn_strange_words4);
+		
+		mListView=(ListView)findViewById(R.id.listview_strange_words);
 		
 		mStrangeWordStatisticsItems=BaseContext.getDBManager().findStrangeWordStatistic(getAppContext().currentUser().getCacheAccount());
+		mAdapter=new StrangeWordsAdapter(this);
+		mAdapter.setStrangeWordStatisticsItems(mStrangeWordStatisticsItems);
+		mListView.setAdapter(mAdapter);
 		
-		for(int i=0;i<mStrangeWordStatisticsItems.size();i++){
-			StrangeWordStatisticsItem sws=mStrangeWordStatisticsItems.get(0);
-			if(i==0){
-				btn_strange_words1.setVisibility(View.VISIBLE);
-				btn_strange_words1.setText(sws.getJoinTime()+"-"+sws.getWordCount()+"个生词");
-			}else if(i==1){
-				btn_strange_words2.setVisibility(View.VISIBLE);
-				btn_strange_words2.setText(sws.getJoinTime()+"-"+sws.getWordCount()+"个生词");
-			}
-		}
+//		for(int i=0;i<mStrangeWordStatisticsItems.size();i++){
+//			StrangeWordStatisticsItem sws=mStrangeWordStatisticsItems.get(0);
+//			if(i==0){
+//				btn_strange_words1.setVisibility(View.VISIBLE);
+//				btn_strange_words1.setText(sws.getJoinTime()+"-"+sws.getWordCount()+"个生词");
+//			}else if(i==1){
+//				btn_strange_words2.setVisibility(View.VISIBLE);
+//				btn_strange_words2.setText(sws.getJoinTime()+"-"+sws.getWordCount()+"个生词");
+//			}
+//		}
 		
 //		for(StrangeWordStatisticsItem sws : mStrangeWordStatisticsItems){
 //			Log.v(TAG,""+sws);
@@ -75,22 +76,22 @@ public class StrangeWordsActivity extends BaseActivity{
 //		}
 	}
 	
-	@Override
-	public void onClick(View v) {
-		if(v.getId()==R.id.btn_strange_words1){
-			StrangeWordStatisticsItem sws=mStrangeWordStatisticsItems.get(0);
-			//去复习
-			goListenLook(sws);
-			//去测试
-//			goTest(sws);
-		}else if(v.getId()==R.id.btn_strange_words2){
-			
-		}else if(v.getId()==R.id.btn_strange_words3){
-			
-		}else if(v.getId()==R.id.btn_strange_words4){
-			
-		}
-	}
+//	@Override
+//	public void onClick(View v) {
+//		if(v.getId()==R.id.btn_strange_words1){
+//			StrangeWordStatisticsItem sws=mStrangeWordStatisticsItems.get(0);
+//			//去复习
+//			goListenLook(sws);
+//			//去测试
+////			goTest(sws);
+//		}else if(v.getId()==R.id.btn_strange_words2){
+//			
+//		}else if(v.getId()==R.id.btn_strange_words3){
+//			
+//		}else if(v.getId()==R.id.btn_strange_words4){
+//			
+//		}
+//	}
 	
 	public void goListenLook(StrangeWordStatisticsItem sws){
 		List<StrangeWordItem> words=BaseContext.getDBManager().findAllByStrangeWordItem(sws.getUserName(),sws.getJoinTime());

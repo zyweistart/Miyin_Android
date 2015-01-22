@@ -3,27 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_activity"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:padding="10.0dip">
 
-    <Button
-        android:id="@+id/btn_strange_words1"
-        style="@style/button_style_rectangle"
-        android:background="@drawable/selector_button_color_red"
-        android:visibility="gone" />
-    <Button
-        android:id="@+id/btn_strange_words2"
-        style="@style/button_style_rectangle"
-        android:background="@drawable/selector_button_color_red" 
-        android:visibility="gone"/>
-    <Button
-        android:id="@+id/btn_strange_words3"
-        style="@style/button_style_rectangle"
-        android:background="@drawable/selector_button_color_red" 
-        android:visibility="gone"/>
-    <Button
-        android:id="@+id/btn_strange_words4"
-        style="@style/button_style_rectangle"
-        android:background="@drawable/selector_button_color_red" 
-        android:visibility="gone"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单词本"/>
+        
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview_strange_words"
+        style="@style/listview1" />
 
 </LinearLayout>
