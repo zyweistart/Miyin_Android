@@ -58,7 +58,7 @@
             <Button
                 android:id="@+id/specialtraining"
                 style="@style/button_style_square"
-                android:background="@drawable/selector_button_grey"
+                android:background="@drawable/selector_button_color_grey"
                 android:drawableTop="@drawable/ic_testvocabulary"
                 android:text="@string/specialtraining" />
         </LinearLayout>

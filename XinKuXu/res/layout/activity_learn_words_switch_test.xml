@@ -205,6 +205,7 @@
                     android:layout_height="10.0dip" />
 
                 <LinearLayout
+                    android:id="@+id/frame_et_section"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >

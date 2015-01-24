@@ -42,7 +42,9 @@
         <item name="android:onClick">onClick</item>
         <item name="android:padding">5.0dip</item>
         <item name="android:layout_margin">5.0dip</item>
-        <item name="android:gravity">center</item>>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
     </style>
     <style name="button_style_square">
         <item name="android:layout_width">150.0dip</item>

@@ -28,7 +28,11 @@ public class LearnWordsSwitchActivity extends BaseActivity{
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}else if(v.getId()==R.id.btn_words123){
-			getHandlerContext().makeTextLong("单词123即将上线");
+			Bundle bundle=new Bundle();
+			bundle.putInt(LearnWordsSwitchTestActivity.TESTSWITCHTYPE, 2);
+			Intent intent=new Intent(this,LearnWordsSwitchTestActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
 		}else if(v.getId()==R.id.btn_testeveryday){
 			Bundle bundle=new Bundle();
 			bundle.putInt(LearnWordsSwitchTestActivity.TESTSWITCHTYPE, 1);

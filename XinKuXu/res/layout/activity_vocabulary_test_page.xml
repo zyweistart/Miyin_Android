@@ -11,11 +11,29 @@
         android:layout_height="0.0dip"
         android:layout_weight="1" >
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:orientation="horizontal" >
+            android:textColor="#413f40"
+            android:textSize="16.0dip"
+            android:text="可能不认识，可以跳过" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10.0dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txt_current_word_process"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="#413f40"
+                android:textSize="16.0dip" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -35,21 +53,19 @@
                 android:id="@+id/problem_words"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="apple"
                 android:layout_gravity="center_horizontal"
                 android:textColor="#08a1db"
                 android:textSize="65.0dip"
                 android:textStyle="bold" />
 
-            <View 
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="20.0dip"/>
-            
+                android:layout_height="20.0dip" />
+
             <TextView
                 android:id="@+id/problem_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="当前第1个单词"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/test_textcolor"
                 android:textSize="16.0dip" />
@@ -73,17 +89,20 @@
                 android:orientation="horizontal" >
 
                 <Button
+                    android:id="@+id/btn_answer_1"
                     style="@style/button_style_rectangle"
                     android:background="@drawable/selector_button_color_transparent"
-                    android:textColor="@color/test_textcolor"
-                    android:text="@string/cannotskip" />
+                    android:text="@string/cannotskip"
+                    android:textColor="@color/test_textcolor" />
 
                 <Button
+                    android:id="@+id/btn_answer_2"
                     style="@style/button_style_rectangle"
                     android:background="@drawable/selector_button_color_red"
                     android:text="@string/levelname8" />
 
                 <Button
+                    android:id="@+id/btn_answer_3"
                     style="@style/button_style_rectangle"
                     android:background="@drawable/selector_button_color_red"
                     android:text="@string/levelname8" />
@@ -95,16 +114,19 @@
                 android:orientation="horizontal" >
 
                 <Button
+                    android:id="@+id/btn_answer_4"
                     style="@style/button_style_rectangle"
                     android:background="@drawable/selector_button_color_red"
                     android:text="@string/levelname7" />
 
                 <Button
+                    android:id="@+id/btn_answer_5"
                     style="@style/button_style_rectangle"
                     android:background="@drawable/selector_button_color_red"
                     android:text="@string/levelname8" />
 
                 <Button
+                    android:id="@+id/btn_answer_6"
                     style="@style/button_style_rectangle"
                     android:background="@drawable/selector_button_color_red"
                     android:text="@string/levelname8" />

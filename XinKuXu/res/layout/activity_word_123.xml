@@ -3,14 +3,117 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_activity"
-    android:orientation="vertical"
-    android:padding="20.0dip" >
+    android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/frame_learn"
+    <LinearLayout
+        android:id="@+id/frame_step_one"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" >
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/txt_current_word_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="#413f40"
+                android:textSize="16.0dip" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10.0dip"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_current_word_process"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#413f40"
+                    android:textSize="16.0dip" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="4"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txt_current_word_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="apple "
+                android:textColor="#413f40"
+                android:textSize="60.0dip" />
+
+            <TextView
+                android:id="@+id/txt_current_word_exampleenglish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20.0dip"
+                android:textColor="#413f40"
+                android:textSize="26.0dip"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txt_current_word_chinesesignificance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20.0dip"
+                android:textColor="#413f40"
+                android:textSize="26.0dip"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/txt_current_word_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10.0dip"
+                android:contentDescription="@string/empty"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_margin="10.0dip"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_understanding"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_red"
+                android:text="@string/understanding" />
+
+            <Button
+                android:id="@+id/btn_prompt"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_grey"
+                android:text="@string/prompt" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/frame_step_two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20.0dip" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -213,18 +316,6 @@
             android:orientation="horizontal" >
 
             <ImageButton
-                android:id="@+id/btn_previous"
-                android:layout_width="150.0dip"
-                android:layout_height="wrap_content"
-                android:layout_margin="5.0dip"
-                android:background="@drawable/selector_button_color_lightgrey"
-                android:contentDescription="@string/empty"
-                android:onClick="onClick"
-                android:padding="10.0dip"
-                android:src="@drawable/ic_arrow_left"
-                android:visibility="gone" />
-
-            <ImageButton
                 android:id="@+id/btn_next"
                 android:layout_width="150.0dip"
                 android:layout_height="wrap_content"
@@ -236,102 +327,5 @@
                 android:src="@drawable/ic_arrow_right" />
         </LinearLayout>
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/frame_done"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.0dip"
-            android:layout_weight="1" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:contentDescription="@string/empty"
-                android:src="@drawable/logo" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.0dip"
-            android:layout_weight="1" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="恭喜你学习完"
-                        android:textColor="@color/black"
-                        android:textSize="35.0dip"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_learn_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#e82626"
-                        android:textSize="35.0dip"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="个单词，"
-                        android:textColor="@color/black"
-                        android:textSize="35.0dip"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="要不要测试下成果？"
-                    android:textColor="@color/black"
-                    android:textSize="35.0dip"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.0dip"
-            android:layout_weight="1" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/immediatetest"
-                    style="@style/button_style_rectangle"
-                    android:background="@drawable/selector_button_color_red"
-                    android:text="@string/immediatetest" />
-
-                <Button
-                    android:id="@+id/waitagain"
-                    style="@style/button_style_rectangle"
-                    android:background="@drawable/selector_button_color_grey"
-                    android:text="@string/waitagain" />
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
 
 </LinearLayout>

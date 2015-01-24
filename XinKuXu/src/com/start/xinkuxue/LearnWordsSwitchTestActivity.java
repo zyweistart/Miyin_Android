@@ -36,7 +36,9 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 	private WordService mWordService;
 	private Integer mWordCount;
 	
-	private TextView tip2;
+	protected TextView tip2;
+	protected LinearLayout frame_et_section;
+	private int mSwitchType;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,8 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 		if(bundle!=null){
 			frame_test_start1=(LinearLayout)findViewById(R.id.frame_test_start1);
 			frame_test_start2=(LinearLayout)findViewById(R.id.frame_test_start2);
-			if(bundle.getInt(TESTSWITCHTYPE)==0){
+			mSwitchType=bundle.getInt(TESTSWITCHTYPE);
+			if(mSwitchType==0||mSwitchType==2){
 				et_word_start_index=(CustomEditText)findViewById(R.id.et_word_start_index);
 				et_word_end_index=(CustomEditText)findViewById(R.id.et_word_end_index);
 				frame_test_start1.setVisibility(View.VISIBLE);
@@ -63,6 +66,7 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				et_word_end_index.setText(String.valueOf(mWordCount));
 			}else{
 				tip2=(TextView)findViewById(R.id.tip2);
+				frame_et_section=(LinearLayout)findViewById(R.id.frame_et_section);
 				et_test_start_index=(CustomEditText)findViewById(R.id.et_test_start_index);
 				et_test_start_index.addTextChangedListener(new CustomTextWatcher());
 				et_test_end_index=(CustomEditText)findViewById(R.id.et_test_end_index);
@@ -78,7 +82,9 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 				frame_test_start2.setVisibility(View.VISIBLE);
 				et_test_start_index.setText("1");
 				et_test_end_index.setText(String.valueOf(mWordCount));
-				et_section.setText("5");
+				et_section.setText("1");
+//				tip2.setVisibility(View.GONE);
+//				frame_et_section.setVisibility(View.GONE);
 			}
 		}else{
 			finish();
@@ -110,7 +116,12 @@ public class LearnWordsSwitchTestActivity extends BaseActivity{
 			}
 			Bundle bundle=new Bundle();
 			bundle.putStringArray(LearnWordsListenLookActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
-			Intent intent=new Intent(this,LearnWordsListenLookActivity.class);
+			Intent intent;
+			if(mSwitchType==0){
+				intent=new Intent(this,LearnWordsListenLookActivity.class);
+			}else{
+				intent=new Intent(this,Word123Activity.class);
+			}
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();
