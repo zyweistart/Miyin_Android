@@ -43,10 +43,10 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".LearnWordsListenLookActivity"
+            android:name=".ListenLookLearnWordActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".LearnWordsSwitchActivity"
+            android:name=".LearnWordSwitchActivity"
             android:screenOrientation="landscape"/>
         <activity
             android:name=".LearnWordsSwitchTestActivity"

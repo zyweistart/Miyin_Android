@@ -65,7 +65,7 @@ public class VocabularySwitchDifficultyActivity extends BaseActivity{
 			ids.add(String.valueOf(i));
 		}
 		Bundle bundle=new Bundle();
-		bundle.putStringArray(LearnWordsListenLookActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+		bundle.putStringArray(ListenLookLearnWordActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
 		Intent intent=new Intent(this,VocabularySwitchDifficultyTestPageActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);

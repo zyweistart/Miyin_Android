@@ -9,7 +9,7 @@ import android.view.View;
  * @author zhenyao
  *
  */
-public class StrangeWordsListenLookActivity extends LearnWordsListenLookActivity{
+public class StrangeWordsListenLookActivity extends ListenLookLearnWordActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

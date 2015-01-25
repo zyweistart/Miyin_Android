@@ -32,6 +32,19 @@
         <item name="android:drawableRight">@drawable/ic_input_clear</item>
         <item name="android:background">@drawable/bg_frame_color_grey</item>
     </style>
+    <style name="button_style_rectangle_1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+    </style>
      <style name="button_style_rectangle">
         <item name="android:layout_width">270.0dip</item>
         <item name="android:layout_height">80.0dip</item>

@@ -11,7 +11,7 @@ import com.start.core.BaseActivity;
  * @author start
  *
  */
-public class LearnWordsSwitchActivity extends BaseActivity{
+public class LearnWordSwitchActivity extends BaseActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -23,7 +23,7 @@ import com.start.service.bean.WordItem;
  * @author start
  *
  */
-public class LearnWordsListenLookActivity extends BaseActivity{
+public class ListenLookLearnWordActivity extends BaseActivity{
 	
 	public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	

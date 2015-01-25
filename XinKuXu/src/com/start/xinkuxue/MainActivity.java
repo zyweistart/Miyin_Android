@@ -17,7 +17,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.learnwords){
-			Intent intent=new Intent(this,LearnWordsSwitchActivity.class);
+			Intent intent=new Intent(this,LearnWordSwitchActivity.class);
 			startActivity(intent);
 		}else if(v.getId()==R.id.testvocabulary){
 			Intent intent=new Intent(this,VocabularySwitchTestActivity.class);
