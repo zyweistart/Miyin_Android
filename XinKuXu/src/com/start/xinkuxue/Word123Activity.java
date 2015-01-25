@@ -110,8 +110,8 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 			}
 		}else if(v.getId()==R.id.immediatetest){
 			Bundle bundle=new Bundle();
-			bundle.putInt(LearnWordsSwitchTestActivity.TESTSWITCHTYPE, 1);
-			Intent intent=new Intent(this,LearnWordsSwitchTestActivity.class);
+			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 1);
+			Intent intent=new Intent(this,WordSwitchSectionActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();

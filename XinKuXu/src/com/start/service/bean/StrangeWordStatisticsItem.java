@@ -19,6 +19,8 @@ public class StrangeWordStatisticsItem {
 	 */
 	public String wordCount;
 	
+	private String type;
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -41,6 +43,14 @@ public class StrangeWordStatisticsItem {
 	
 	public void setWordCount(String wordCount) {
 		this.wordCount = wordCount;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

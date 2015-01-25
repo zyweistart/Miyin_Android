@@ -23,20 +23,20 @@ public class LearnWordSwitchActivity extends BaseActivity{
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_listenlooklearnwords){
 			Bundle bundle=new Bundle();
-			bundle.putInt(LearnWordsSwitchTestActivity.TESTSWITCHTYPE, 0);
-			Intent intent=new Intent(this,LearnWordsSwitchTestActivity.class);
+			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 0);
+			Intent intent=new Intent(this,WordSwitchSectionActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}else if(v.getId()==R.id.btn_words123){
 			Bundle bundle=new Bundle();
-			bundle.putInt(LearnWordsSwitchTestActivity.TESTSWITCHTYPE, 2);
-			Intent intent=new Intent(this,LearnWordsSwitchTestActivity.class);
+			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 2);
+			Intent intent=new Intent(this,WordSwitchSectionActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}else if(v.getId()==R.id.btn_testeveryday){
 			Bundle bundle=new Bundle();
-			bundle.putInt(LearnWordsSwitchTestActivity.TESTSWITCHTYPE, 1);
-			Intent intent=new Intent(this,LearnWordsSwitchTestActivity.class);
+			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 1);
+			Intent intent=new Intent(this,WordSwitchSectionActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}else{

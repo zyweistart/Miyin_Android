@@ -504,7 +504,7 @@ public class WordsTestPageActivity extends BaseActivity{
 	}
 	
 	public void joinWords(){
-		BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mCurrentWordId), getAppContext().currentUser().getCacheAccount());
+		BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mCurrentWordId), getAppContext().currentUser().getCacheAccount(),"2");
 	}
 	
 }

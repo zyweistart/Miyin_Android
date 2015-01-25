@@ -15,21 +15,30 @@ import com.start.service.bean.StrangeWordStatisticsItem;
  */
 public class StrangeWordsActivity extends BaseActivity{
 	
+	public static final String BUNDLE_TYPE="BUNDLE_TYPE";
 	private ListView mListView;
 	private StrangeWordsAdapter mAdapter;
 	private List<StrangeWordStatisticsItem> mStrangeWordStatisticsItems;
+	private String type;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_strange_words);
 		
-		mListView=(ListView)findViewById(R.id.listview_strange_words);
-		
-		mStrangeWordStatisticsItems=BaseContext.getDBManager().findStrangeWordStatistic(getAppContext().currentUser().getCacheAccount());
-		mAdapter=new StrangeWordsAdapter(this);
-		mAdapter.setStrangeWordStatisticsItems(mStrangeWordStatisticsItems);
-		mListView.setAdapter(mAdapter);
+		Bundle bundle=getIntent().getExtras();
+		if(bundle!=null){
+			type=bundle.getString(BUNDLE_TYPE);
+			
+			mListView=(ListView)findViewById(R.id.listview_strange_words);
+			
+			mStrangeWordStatisticsItems=BaseContext.getDBManager().findStrangeWordStatistic(getAppContext().currentUser().getCacheAccount(),type);
+			mAdapter=new StrangeWordsAdapter(this,type);
+			mAdapter.setStrangeWordStatisticsItems(mStrangeWordStatisticsItems);
+			mListView.setAdapter(mAdapter);
+		}else{
+			finish();
+		}
 	}
 	
 }

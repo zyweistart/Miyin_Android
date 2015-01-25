@@ -20,9 +20,11 @@ public class StrangeWordsAdapter extends BaseAdapter{
 
 	private Activity mActivity;
 	private List<StrangeWordStatisticsItem> mItemDatas;
+	private String type;
 	
-	public StrangeWordsAdapter(Activity activity){
+	public StrangeWordsAdapter(Activity activity,String type){
 		this.mActivity=activity;
+		this.type=type;
 	}
 
 	public void setStrangeWordStatisticsItems(List<StrangeWordStatisticsItem> items){
@@ -89,12 +91,13 @@ public class StrangeWordsAdapter extends BaseAdapter{
 	}
 	
 	public void goListenLook(StrangeWordStatisticsItem sws){
-		List<StrangeWordItem> words=BaseContext.getDBManager().findAllByStrangeWordItem(sws.getUserName(),sws.getJoinTime());
+		List<StrangeWordItem> words=BaseContext.getDBManager().findAllByStrangeWordItem(sws.getUserName(),sws.getJoinTime(),this.type);
 		List<String> ids=new ArrayList<String>();
 		for(StrangeWordItem s :words){
 			ids.add(s.getIndex());
 		}
 		Bundle bundle=new Bundle();
+		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_JOINTIME, sws.getType());
 		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_JOINTIME, sws.getJoinTime());
 		bundle.putStringArray(StrangeWordsListenLookActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
 		Intent intent=new Intent(mActivity,StrangeWordsListenLookActivity.class);

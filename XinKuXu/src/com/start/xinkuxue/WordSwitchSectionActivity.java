@@ -20,11 +20,11 @@ import com.start.core.BaseActivity;
 import com.start.service.WordService;
 
 /**
- * 单词测试选择界面
+ * 单词区间选择界面
  * @author start
  *
  */
-public class LearnWordsSwitchTestActivity extends BaseActivity{
+public class WordSwitchSectionActivity extends BaseActivity{
 	
 	public static final String TESTSWITCHTYPE="TESTSWITCHTYPE";
 	

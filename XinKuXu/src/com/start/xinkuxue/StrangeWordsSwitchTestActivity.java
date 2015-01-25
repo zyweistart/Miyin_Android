@@ -19,10 +19,11 @@ import com.start.service.bean.StrangeWordItem;
 public class StrangeWordsSwitchTestActivity extends BaseActivity{
 	
 	public static final String BUNDLE_JOINTIME="BUNDLE_JOINTIME";
+	public static final String BUNDLE_TYPE="BUNDLE_TYPE";
 	
 	protected Bundle mBundle;
 	
-	private String mJoinTime;
+	private String mJoinTime,mType;
 	
 	private CheckBox cb_switch_a,cb_switch_b,cb_switch_c,cb_switch_d,cb_switch_e;
 	
@@ -38,6 +39,7 @@ public class StrangeWordsSwitchTestActivity extends BaseActivity{
 		mBundle=getIntent().getExtras();
 		if(mBundle!=null){
 			mJoinTime=mBundle.getString(BUNDLE_JOINTIME);
+			mType=mBundle.getString(BUNDLE_TYPE);
 		}else{
 			finish();
 		}
@@ -66,7 +68,7 @@ public class StrangeWordsSwitchTestActivity extends BaseActivity{
 				getHandlerContext().makeTextLong(getString(R.string.testmethodtip));
 				return;
 			}
-			List<StrangeWordItem> words=BaseContext.getDBManager().findAllByStrangeWordItem(getAppContext().currentUser().getCacheAccount(),mJoinTime);
+			List<StrangeWordItem> words=BaseContext.getDBManager().findAllByStrangeWordItem(getAppContext().currentUser().getCacheAccount(),mJoinTime,mType);
 			List<String> ids=new ArrayList<String>();
 			for(StrangeWordItem s :words){
 				ids.add(s.getIndex());

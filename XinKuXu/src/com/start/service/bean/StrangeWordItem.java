@@ -29,6 +29,10 @@ public class StrangeWordItem implements Serializable {
 	 */
 	public String joinTime;
 	/**
+	 * 类型1:生词本2：错词本
+	 */
+	private String type;
+	/**
 	 * 临时变量
 	 */
 	public String temp1;
@@ -65,6 +69,14 @@ public class StrangeWordItem implements Serializable {
 		this.joinTime = joinTime;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getTemp1() {
 		return temp1;
 	}
@@ -81,7 +93,8 @@ public class StrangeWordItem implements Serializable {
 		strBuilder.append("id integer primary key autoincrement,");
 		strBuilder.append("pindex varchar,");
 		strBuilder.append("userName varchar,");
-		strBuilder.append("joinTime varchar");
+		strBuilder.append("joinTime varchar,");
+		strBuilder.append("type varchar");
 		strBuilder.append(")");
 		return strBuilder.toString();
 	}

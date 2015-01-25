@@ -49,15 +49,15 @@
             android:name=".LearnWordSwitchActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".LearnWordsSwitchTestActivity"
+            android:name=".WordSwitchSectionActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".VocabularySwitchTestActivity"
+            android:name=".VocabularySwitchActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".VocabularySwitchDifficultyActivity"
+            android:name=".VocabularyLevelSwitchActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity

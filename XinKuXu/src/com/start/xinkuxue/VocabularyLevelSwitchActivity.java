@@ -14,7 +14,7 @@ import com.start.core.BaseActivity;
  * @author start
  *
  */
-public class VocabularySwitchDifficultyActivity extends BaseActivity{
+public class VocabularyLevelSwitchActivity extends BaseActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
