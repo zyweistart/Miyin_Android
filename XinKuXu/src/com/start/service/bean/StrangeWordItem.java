@@ -12,6 +12,10 @@ public class StrangeWordItem implements Serializable {
 	private static final long serialVersionUID = -6465237897027410019L;
 	
 	public static final String TABLENAME="StrangeWords";
+	
+	public static final String CATEGORY_ERROR="1";
+	public static final String CATEGORY_WORDS="2";
+	
 	/**
 	 * 序号
 	 */

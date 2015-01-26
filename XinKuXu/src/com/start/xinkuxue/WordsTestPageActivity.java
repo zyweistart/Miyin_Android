@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.service.WordService;
+import com.start.service.bean.StrangeWordItem;
 import com.start.service.bean.WordItem;
 
 /**
@@ -504,7 +505,7 @@ public class WordsTestPageActivity extends BaseActivity{
 	}
 	
 	public void joinWords(){
-		BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mCurrentWordId), getAppContext().currentUser().getCacheAccount(),"2");
+		BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mCurrentWordId), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_ERROR);
 	}
 	
 }

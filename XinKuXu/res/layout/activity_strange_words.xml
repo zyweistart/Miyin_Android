@@ -14,19 +14,11 @@
         android:orientation="horizontal" >
         
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30.0dip"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/bg_color_grey"
-            android:text="@string/w"/>
-        
-        <TextView
+            android:id="@+id/word_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="45.0dip"
-            android:textColor="#666666"
-            android:text="@string/newwords"/>
+            android:textColor="#666666"/>
         
     </LinearLayout>
 

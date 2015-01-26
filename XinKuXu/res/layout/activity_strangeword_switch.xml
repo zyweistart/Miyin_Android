@@ -32,16 +32,16 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/btn_vocabularytest"
+                android:id="@+id/btn_errorwordcategory"
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_red"
-                android:text="@string/vocabularytest" />
+                android:text="@string/errorwordcategory" />
 
             <Button
-                android:id="@+id/btn_practicetest"
+                android:id="@+id/btn_wordcategory"
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_blue"
-                android:text="@string/practicetest" />
+                android:text="@string/wordcategory" />
         </LinearLayout>
     </RelativeLayout>
 

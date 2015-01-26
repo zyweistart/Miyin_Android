@@ -25,6 +25,8 @@
     <string name="kuxuememorymethod">酷学记忆法</string>
     <string name="vocabularytest">词汇量测试</string>
     <string name="practicetest">练习测试</string>
+    <string name="wordcategory">单词本</string>
+    <string name="errorwordcategory">错词本</string>
     <string name="cannotskip">不会，跳过</string>
     <string name="addtonewword">加入生词本</string>
     <string name="immediatetest">立即测试</string>

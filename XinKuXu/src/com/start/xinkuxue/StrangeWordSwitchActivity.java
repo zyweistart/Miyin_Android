@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.start.core.BaseActivity;
+import com.start.service.bean.StrangeWordItem;
 
 /**
  * 单词本
@@ -21,13 +22,16 @@ public class StrangeWordSwitchActivity extends BaseActivity{
 	
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.btn_vocabularytest){
-			Intent intent=new Intent(this,VocabularyLevelSwitchActivity.class);
-			startActivity(intent);
-		}else if(v.getId()==R.id.btn_practicetest){
+		if(v.getId()==R.id.btn_wordcategory){
 			Bundle bundle=new Bundle();
-			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 1);
-			Intent intent=new Intent(this,WordSwitchSectionActivity.class);
+			bundle.putString(StrangeWordsActivity.BUNDLE_TYPE, StrangeWordItem.CATEGORY_WORDS);
+			Intent intent=new Intent(this,StrangeWordsActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}else if(v.getId()==R.id.btn_errorwordcategory){
+			Bundle bundle=new Bundle();
+			bundle.putString(StrangeWordsActivity.BUNDLE_TYPE, StrangeWordItem.CATEGORY_ERROR);
+			Intent intent=new Intent(this,StrangeWordsActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}else{

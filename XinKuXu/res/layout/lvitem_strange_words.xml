@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="0.0dip"
-        android:layout_height="45.0dip"
+        android:layout_height="65.0dip"
         android:layout_weight="5"
         android:background="#f0f0f0"
         android:orientation="horizontal"
@@ -17,7 +17,7 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20.0dip"
+            android:textSize="23.0dip"
             android:textColor="#666666"
             android:layout_gravity="center_vertical"/>
         <View
@@ -27,14 +27,14 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20.0dip"
+            android:textSize="23.0dip"
             android:textColor="#666666"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0.0dip"
-        android:layout_height="45.0dip"
+        android:layout_height="65.0dip"
         android:layout_weight="3"
         android:orientation="horizontal" >
         <Button

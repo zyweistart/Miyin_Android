@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity {
 			Intent intent=new Intent(this,VocabularySwitchActivity.class);
 			startActivity(intent);
 		}else if(v.getId()==R.id.newwords){
-			Intent intent=new Intent(this,StrangeWordsActivity.class);
+			Intent intent=new Intent(this,StrangeWordSwitchActivity.class);
 			startActivity(intent);
 		}else if(v.getId()==R.id.specialtraining){
 			getHandlerContext().makeTextShort("特训营,即将上线");
