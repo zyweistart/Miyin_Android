@@ -212,6 +212,15 @@
             android:layout_alignParentRight="true"
             android:orientation="horizontal" >
 
+            <Button
+                android:id="@+id/btn_addtonewword"
+                style="@style/button_style_rectangle"
+                android:layout_width="150.0dip"
+                android:layout_height="50.0dip"
+                android:textSize="20.0dip"
+                android:background="@drawable/selector_button_color_red"
+                android:text="@string/addtonewword" />
+
             <ImageButton
                 android:id="@+id/btn_previous"
                 android:layout_width="150.0dip"
@@ -222,7 +231,7 @@
                 android:onClick="onClick"
                 android:padding="10.0dip"
                 android:src="@drawable/ic_arrow_left"
-                android:visibility="gone" />
+                android:visibility="invisible" />
 
             <ImageButton
                 android:id="@+id/btn_next"

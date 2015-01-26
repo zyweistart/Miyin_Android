@@ -52,12 +52,15 @@ public  class DBManageDao {
         return cursor.getLong(0);
 	}
 	
-	public void joinToStrangeWord(String wordId,String userName,String type){
-		//一个单词一个用户仅添加一次
+	public boolean isJoin(String wordId,String userName,String type){
 		String str="select count(*)  from "+StrangeWordItem.TABLENAME+" where pindex='"+wordId+"' and userName='"+userName+"' and type="+type;
         Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
         cursor.moveToFirst();
-        if(cursor.getLong(0)==0){
+        return cursor.getLong(0)==0;
+	}
+	
+	public void joinToStrangeWord(String wordId,String userName,String type){
+        if(isJoin(wordId,userName,type)){
         	ContentValues values = new ContentValues();
     		values.put("pindex", wordId);
     		values.put("userName", userName);

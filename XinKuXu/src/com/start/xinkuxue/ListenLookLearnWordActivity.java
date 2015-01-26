@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.service.WordService;
+import com.start.service.bean.StrangeWordItem;
 import com.start.service.bean.WordItem;
 
 /**
@@ -32,6 +34,7 @@ public class ListenLookLearnWordActivity extends BaseActivity{
 	
 	private ImageView iv_word,iv_memory_method;
 	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
+	private Button btn_addtonewword;
 	private ImageButton btn_previous;
 	private TextView txt_learn_count;
 	private WordService mWordService;
@@ -57,6 +60,7 @@ public class ListenLookLearnWordActivity extends BaseActivity{
 		txt_exampleChinese=(TextView)findViewById(R.id.txt_exampleChinese);
 		txt_memoryMethodA=(TextView)findViewById(R.id.txt_memoryMethodA);
 		txt_memoryMethodB=(TextView)findViewById(R.id.txt_memoryMethodB);
+		btn_addtonewword=(Button)findViewById(R.id.btn_addtonewword);
 		btn_previous=(ImageButton)findViewById(R.id.btn_previous);
 		txt_learn_count=(TextView)findViewById(R.id.txt_learn_count);
 		frame_learn=(RelativeLayout)findViewById(R.id.frame_learn);
@@ -108,7 +112,7 @@ public class ListenLookLearnWordActivity extends BaseActivity{
 			closeAudio();
 			currentIndex--;
 			if(currentIndex<1){
-				btn_previous.setVisibility(View.GONE);
+				btn_previous.setVisibility(View.INVISIBLE);
 			}
 			showWordDetail();
 		}else if(v.getId()==R.id.btn_next){
@@ -128,6 +132,10 @@ public class ListenLookLearnWordActivity extends BaseActivity{
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();
+		}else if(v.getId()==R.id.btn_addtonewword){
+			BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mWordItem.getId()), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_WORDS);
+			btn_addtonewword.setVisibility(View.GONE);
+			getHandlerContext().makeTextShort("已加入单词本");
 		}else if(v.getId()==R.id.waitagain){
 			finish();
 		}else{
@@ -145,6 +153,11 @@ public class ListenLookLearnWordActivity extends BaseActivity{
 		mWordItem=mWordService.findById(Integer.parseInt(mAnswerArray[currentIndex]));
 		if(mWordItem==null){
 			return;
+		}
+		if(BaseContext.getDBManager().isJoin(String.valueOf(mWordItem.getId()), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_WORDS)){
+			btn_addtonewword.setVisibility(View.VISIBLE);
+		}else{
+			btn_addtonewword.setVisibility(View.GONE);
 		}
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 2;
