@@ -1,4 +1,4 @@
-package com.start.xinkuxue;
+package com.start.xinkuxue.vocabulary;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,13 +20,16 @@ import com.start.core.BaseActivity;
 import com.start.service.WordService;
 import com.start.service.bean.StrangeWordItem;
 import com.start.service.bean.WordItem;
+import com.start.xinkuxue.BaseContext;
+import com.start.xinkuxue.R;
 
 /**
- * 测试单词页面A
+ * 练习测试
+ * 
  * @author start
  *
  */
-public class WordsTestPageActivity extends BaseActivity{
+public class VocabularyTestActivity extends BaseActivity{
 	
 	//测试类型
 	public static final String BUNDLE_WORDS="BUNDLE_TEST_TYPE";
@@ -496,9 +499,9 @@ public class WordsTestPageActivity extends BaseActivity{
 	
 	public void toDonePage(){
 		Bundle bundle=new Bundle();
-		bundle.putInt(WordsTestPageDoneActivity.RIGHTCOUNT, mRightCount);
-		bundle.putInt(WordsTestPageDoneActivity.ANSWERCOUNT, mAnswerArray.length);
-		Intent intent=new Intent(WordsTestPageActivity.this,WordsTestPageDoneActivity.class);
+		bundle.putInt(VocabularyTestGoResultsActivity.RIGHTCOUNT, mRightCount);
+		bundle.putInt(VocabularyTestGoResultsActivity.ANSWERCOUNT, mAnswerArray.length);
+		Intent intent=new Intent(this,VocabularyTestGoResultsActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
 		finish();

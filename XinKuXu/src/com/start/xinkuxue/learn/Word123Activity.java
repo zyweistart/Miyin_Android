@@ -121,8 +121,8 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 			nextWord();
 		}else if(v.getId()==R.id.immediatetest){
 			Bundle bundle=new Bundle();
-			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 1);
-			Intent intent=new Intent(this,WordSwitchSectionActivity.class);
+			bundle.putInt(WordListenLookSectionActivity.TESTSWITCHTYPE, 1);
+			Intent intent=new Intent(this,WordTestSectionActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();

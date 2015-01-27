@@ -1,16 +1,15 @@
-package com.start.xinkuxue;
+package com.start.xinkuxue.learn;
 
 import java.io.File;
 import java.io.IOException;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -18,55 +17,42 @@ import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.service.WordService;
+import com.start.service.bean.StrangeWordItem;
 import com.start.service.bean.WordItem;
+import com.start.xinkuxue.BaseContext;
+import com.start.xinkuxue.R;
 
-public class Word123Activity extends BaseActivity{
+/**
+ * 边听边看学单词
+ * @author start
+ *
+ */
+public class ListenLookWordActivity extends BaseActivity{
 	
-public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
+	public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	
 	private int currentIndex;
 	private String[] mAnswerArray;
 	
 	private ImageView iv_word,iv_memory_method;
 	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
+	private Button btn_addtonewword;
+	private ImageButton btn_previous;
+	private TextView txt_learn_count;
 	private WordService mWordService;
 	private WordItem mWordItem;
+	
+	private RelativeLayout frame_learn;
+	private LinearLayout frame_done;
 	
 	private MediaPlayer mMediaPlayer;
 	
 	protected Bundle mBundle;
-	private int step;
-	private LinearLayout frame_step_one;
-	private RelativeLayout frame_step_two;
-	private TextView txt_current_word_index,txt_current_word_process,txt_current_word_name,txt_current_word_exampleenglish,txt_current_word_chinesesignificance;
-	private ImageView txt_current_word_image,countdown;
-	
-	private int[] countdownimg={
-			R.drawable.countdown00,
-			R.drawable.countdown01,
-			R.drawable.countdown02,
-			R.drawable.countdown03,
-			R.drawable.countdown04,
-			R.drawable.countdown05,
-			R.drawable.countdown06,
-			R.drawable.countdown07,
-			R.drawable.countdown08};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_word_123);
-		frame_step_one=(LinearLayout)findViewById(R.id.frame_step_one);
-		frame_step_two=(RelativeLayout)findViewById(R.id.frame_step_two);
-		
-		txt_current_word_index=(TextView)findViewById(R.id.txt_current_word_index);
-		txt_current_word_process=(TextView)findViewById(R.id.txt_current_word_process);
-		txt_current_word_name=(TextView)findViewById(R.id.txt_current_word_name);
-		txt_current_word_exampleenglish=(TextView)findViewById(R.id.txt_current_word_exampleenglish);
-		txt_current_word_chinesesignificance=(TextView)findViewById(R.id.txt_current_word_chinesesignificance);
-		txt_current_word_image=(ImageView)findViewById(R.id.txt_current_word_image);
-		countdown=(ImageView)findViewById(R.id.countdown);
-		
+		setContentView(R.layout.activity_learn_words_listen_look);
 		iv_word=(ImageView)findViewById(R.id.iv_word);
 		iv_memory_method=(ImageView)findViewById(R.id.iv_memory_method);
 		txt_englishName=(TextView)findViewById(R.id.txt_englishName);
@@ -76,6 +62,13 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		txt_exampleChinese=(TextView)findViewById(R.id.txt_exampleChinese);
 		txt_memoryMethodA=(TextView)findViewById(R.id.txt_memoryMethodA);
 		txt_memoryMethodB=(TextView)findViewById(R.id.txt_memoryMethodB);
+		btn_addtonewword=(Button)findViewById(R.id.btn_addtonewword);
+		btn_previous=(ImageButton)findViewById(R.id.btn_previous);
+		txt_learn_count=(TextView)findViewById(R.id.txt_learn_count);
+		frame_learn=(RelativeLayout)findViewById(R.id.frame_learn);
+		frame_done=(LinearLayout)findViewById(R.id.frame_done);
+		frame_learn.setVisibility(View.VISIBLE);
+		frame_done.setVisibility(View.GONE);
 		try{
 			mWordService=new WordService(this);
 		}catch(Exception e){
@@ -86,8 +79,9 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		mBundle=getIntent().getExtras();
 		if(mBundle!=null){
 			mAnswerArray=mBundle.getStringArray(BUNDLE_ANSWER_ARRAY);
+			txt_learn_count.setText(String.valueOf(mAnswerArray.length));
 			currentIndex=0;
-			initWord();
+			showWordDetail();
 		}else{
 			finish();
 		}
@@ -116,18 +110,35 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 			}else{
 				getHandlerContext().makeTextShort(getString(R.string.word_data_not_audio));
 			}
-		}else if(v.getId()==R.id.btn_next||v.getId()==R.id.btn_understanding){
-			nextWord();
+		}else if(v.getId()==R.id.btn_previous){
+			closeAudio();
+			currentIndex--;
+			if(currentIndex<1){
+				btn_previous.setVisibility(View.INVISIBLE);
+			}
+			showWordDetail();
+		}else if(v.getId()==R.id.btn_next){
+			closeAudio();
+			if(mAnswerArray.length-1>currentIndex){
+				currentIndex++;
+				btn_previous.setVisibility(View.VISIBLE);
+				showWordDetail();
+			}else{
+				frame_learn.setVisibility(View.GONE);
+				frame_done.setVisibility(View.VISIBLE);
+			}
 		}else if(v.getId()==R.id.immediatetest){
 			Bundle bundle=new Bundle();
-			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 1);
-			Intent intent=new Intent(this,WordSwitchSectionActivity.class);
+			bundle.putInt(WordListenLookSectionActivity.TESTSWITCHTYPE, 1);
+			Intent intent=new Intent(this,WordTestSectionActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();
-		}else if(v.getId()==R.id.btn_prompt){
-			step++;
-			showWord();
+		}else if(v.getId()==R.id.btn_addtonewword){
+			BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mWordItem.getId()), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_WORDS);
+			btn_addtonewword.setVisibility(View.GONE);
+		}else if(v.getId()==R.id.waitagain){
+			finish();
 		}else{
 			super.onClick(v);
 		}
@@ -140,24 +151,22 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	}
 
 	public void showWordDetail(){
-		mCountDownTimer.cancel();
-		mCountDownTimer.start();
-		int current=currentIndex+1;
-		txt_current_word_index.setText("当前第"+(currentIndex+1)+"个单词");
-		txt_current_word_process.setText("测试进度："+String.valueOf(current+"/"+mAnswerArray.length));
 		mWordItem=mWordService.findById(Integer.parseInt(mAnswerArray[currentIndex]));
 		if(mWordItem==null){
 			return;
+		}
+		if(BaseContext.getDBManager().isJoin(String.valueOf(mWordItem.getId()), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_WORDS)){
+			btn_addtonewword.setVisibility(View.VISIBLE);
+		}else{
+			btn_addtonewword.setVisibility(View.GONE);
 		}
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 2;
 		String mImagePath = mWordService.getExampleImagePath(mWordItem.getId());
 		if(new File(mImagePath).exists()){
 			iv_word.setImageBitmap(BitmapFactory.decodeFile(mImagePath, options));
-			txt_current_word_image.setImageBitmap(BitmapFactory.decodeFile(mImagePath, options));
 		}else{
 			iv_word.setImageDrawable(getResources().getDrawable(R.drawable.default_words));
-			txt_current_word_image.setImageDrawable(getResources().getDrawable(R.drawable.default_words));
 		}
 		String mMemoryPath = mWordService.getMemoryImagePath(mWordItem.getId());
 		if(new File(mMemoryPath).exists()){
@@ -166,10 +175,6 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		}else{
 			iv_memory_method.setVisibility(View.GONE);
 		}
-		txt_current_word_name.setText(mWordItem.getEnglishName());
-		txt_current_word_exampleenglish.setText(mWordItem.getExampleEnglish());
-		txt_current_word_chinesesignificance.setText(mWordItem.getChineseSignificance());
-		
 		txt_englishName.setText(mWordItem.getEnglishName());
 		txt_phoneticSymbols.setText(mWordItem.getPhoneticSymbols());
 		txt_chineseSignificance.setText(mWordItem.getChineseSignificance());
@@ -180,7 +185,6 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	}
 	
 	public void closeAudio(){
-		mCountDownTimer.cancel();
 		if(mMediaPlayer!=null){
 			if(mMediaPlayer.isPlaying()){
 				mMediaPlayer.stop();
@@ -189,56 +193,5 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 			mMediaPlayer=null;
 		}
 	}
-	
-	public void showWord(){
-		frame_step_one.setVisibility(step!=4?View.VISIBLE:View.GONE);
-		frame_step_two.setVisibility(step==4?View.VISIBLE:View.GONE);
-		txt_current_word_exampleenglish.setVisibility(step==1?View.VISIBLE:View.GONE);
-		txt_current_word_image.setVisibility(step==2?View.VISIBLE:View.GONE);
-		txt_current_word_chinesesignificance.setVisibility(step==3?View.VISIBLE:View.GONE);
-	}
-
-	public void initWord(){
-		step=0;
-		showWord();
-		showWordDetail();
-	}
-	
-	/**
-	 * 下一个
-	 */
-	public void nextWord(){
-		closeAudio();
-		if(mAnswerArray.length-1>currentIndex){
-			currentIndex++;
-			initWord();
-		}else{
-			mCountDownTimer.cancel();
-			new AlertDialog.Builder(Word123Activity.this)
-					.setMessage("单词练习结束了,确定返回")
-					.setCancelable(false)
-					.setNegativeButton(R.string.sure,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int whichButton) {
-									finish();
-								}
-							}).show();
-		}
-	}
-	
-	private CountDownTimer mCountDownTimer=new CountDownTimer(9000,1000) {
-		
-		@Override
-		public void onTick(long millisUntilFinished) {
-			int n=(int)millisUntilFinished / 1000;
-			countdown.setImageResource(countdownimg[n-1]);
-		}
-		
-		@Override
-		public void onFinish() {
-			nextWord();
-		}
-	};
 	
 }

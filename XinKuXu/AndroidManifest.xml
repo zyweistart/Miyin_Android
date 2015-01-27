@@ -47,7 +47,7 @@
             android:name=".learn.LearnTypeSwitchActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".learn.WordSwitchSectionActivity"
+            android:name=".learn.WordListenLookSectionActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -55,6 +55,10 @@
             android:screenOrientation="landscape"/>
         <activity
             android:name=".learn.Word123Activity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".learn.WordTestSectionActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -80,6 +84,18 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".vocabulary.VocabularyLevelTestGoResultsActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".vocabulary.VocabularyTestSectionActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".vocabulary.VocabularyTestActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".vocabulary.VocabularyTestGoResultsActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 生词本 -->

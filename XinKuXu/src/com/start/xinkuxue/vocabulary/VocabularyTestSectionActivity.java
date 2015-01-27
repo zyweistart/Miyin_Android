@@ -1,4 +1,4 @@
-package com.start.xinkuxue;
+package com.start.xinkuxue.vocabulary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +18,18 @@ import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.service.WordService;
+import com.start.xinkuxue.R;
 
 /**
  * 单词区间选择界面
  * @author start
  *
  */
-public class WordSwitchSectionActivity extends BaseActivity{
-	
-	public static final String TESTSWITCHTYPE="TESTSWITCHTYPE";
+public class VocabularyTestSectionActivity extends BaseActivity{
 	
 	private LinearLayout frame_test_start1,frame_test_start2;
 
-	private CustomEditText et_word_start_index,et_word_end_index,et_test_start_index,et_test_end_index,et_section;
+	private CustomEditText et_test_start_index,et_test_end_index,et_section;
 	private CheckBox cb_switch_a,cb_switch_b,cb_switch_c,cb_switch_d,cb_switch_e;
 	
 	private WordService mWordService;
@@ -38,7 +37,6 @@ public class WordSwitchSectionActivity extends BaseActivity{
 	
 	protected TextView tip2;
 	protected LinearLayout frame_et_section;
-	private int mSwitchType;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,80 +50,33 @@ public class WordSwitchSectionActivity extends BaseActivity{
 			return;
 		}
 		mWordCount=mWordService.getWordCount();
-		Bundle bundle=getIntent().getExtras();
-		if(bundle!=null){
-			frame_test_start1=(LinearLayout)findViewById(R.id.frame_test_start1);
-			frame_test_start2=(LinearLayout)findViewById(R.id.frame_test_start2);
-			mSwitchType=bundle.getInt(TESTSWITCHTYPE);
-			if(mSwitchType==0||mSwitchType==2){
-				et_word_start_index=(CustomEditText)findViewById(R.id.et_word_start_index);
-				et_word_end_index=(CustomEditText)findViewById(R.id.et_word_end_index);
-				frame_test_start1.setVisibility(View.VISIBLE);
-				frame_test_start2.setVisibility(View.GONE);
-				et_word_start_index.setText("1");
-				et_word_end_index.setText(String.valueOf(mWordCount));
-			}else{
-				tip2=(TextView)findViewById(R.id.tip2);
-				frame_et_section=(LinearLayout)findViewById(R.id.frame_et_section);
-				et_test_start_index=(CustomEditText)findViewById(R.id.et_test_start_index);
-				et_test_start_index.addTextChangedListener(new CustomTextWatcher());
-				et_test_end_index=(CustomEditText)findViewById(R.id.et_test_end_index);
-				et_test_end_index.addTextChangedListener(new CustomTextWatcher());
-				cb_switch_a=(CheckBox)findViewById(R.id.cb_switch_a);
-				cb_switch_b=(CheckBox)findViewById(R.id.cb_switch_b);
-				cb_switch_c=(CheckBox)findViewById(R.id.cb_switch_c);
-				cb_switch_d=(CheckBox)findViewById(R.id.cb_switch_d);
-				cb_switch_e=(CheckBox)findViewById(R.id.cb_switch_e);
-				et_section=(CustomEditText)findViewById(R.id.et_section);
-				et_section.addTextChangedListener(new CustomTextWatcher());
-				frame_test_start1.setVisibility(View.GONE);
-				frame_test_start2.setVisibility(View.VISIBLE);
-				et_test_start_index.setText("1");
-				et_test_end_index.setText(String.valueOf(mWordCount));
-				et_section.setText("1");
-//				tip2.setVisibility(View.GONE);
-//				frame_et_section.setVisibility(View.GONE);
-			}
-		}else{
-			finish();
-		}
+		frame_test_start1=(LinearLayout)findViewById(R.id.frame_test_start1);
+		frame_test_start2=(LinearLayout)findViewById(R.id.frame_test_start2);
+		tip2=(TextView)findViewById(R.id.tip2);
+		frame_et_section=(LinearLayout)findViewById(R.id.frame_et_section);
+		et_test_start_index=(CustomEditText)findViewById(R.id.et_test_start_index);
+		et_test_start_index.addTextChangedListener(new CustomTextWatcher());
+		et_test_end_index=(CustomEditText)findViewById(R.id.et_test_end_index);
+		et_test_end_index.addTextChangedListener(new CustomTextWatcher());
+		cb_switch_a=(CheckBox)findViewById(R.id.cb_switch_a);
+		cb_switch_b=(CheckBox)findViewById(R.id.cb_switch_b);
+		cb_switch_c=(CheckBox)findViewById(R.id.cb_switch_c);
+		cb_switch_d=(CheckBox)findViewById(R.id.cb_switch_d);
+		cb_switch_e=(CheckBox)findViewById(R.id.cb_switch_e);
+		et_section=(CustomEditText)findViewById(R.id.et_section);
+		et_section.addTextChangedListener(new CustomTextWatcher());
+		frame_test_start1.setVisibility(View.GONE);
+		frame_test_start2.setVisibility(View.VISIBLE);
+		et_test_start_index.setText("1");
+		et_test_end_index.setText(String.valueOf(mWordCount));
+		et_section.setText("1");
+//		tip2.setVisibility(View.GONE);
+//		frame_et_section.setVisibility(View.GONE);
 	}
 	
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.btn_test_start1){
-			Integer start=Integer.parseInt(String.valueOf(et_word_start_index.getText()));
-			Integer end=Integer.parseInt(String.valueOf(et_word_end_index.getText()));
-			if(end<=start){
-				getHandlerContext().makeTextLong("结束区间必须大于开始区间");
-				return;
-			}
-			if(start<1){
-				et_word_start_index.setText("1");
-				getHandlerContext().makeTextLong("开始区间必须大于或等于1");
-				return;
-			}
-			if(mWordCount<end){
-				et_word_end_index.setText(String.valueOf(mWordCount));
-				getHandlerContext().makeTextLong("结束区间不能大于总单词数："+mWordCount);
-				return;
-			}
-			List<String> ids=new ArrayList<String>();
-			for(int i=start;i<=end;i++){
-				ids.add(String.valueOf(i));
-			}
-			Bundle bundle=new Bundle();
-			bundle.putStringArray(ListenLookLearnWordActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
-			Intent intent;
-			if(mSwitchType==0){
-				intent=new Intent(this,ListenLookLearnWordActivity.class);
-			}else{
-				intent=new Intent(this,Word123Activity.class);
-			}
-			intent.putExtras(bundle);
-			startActivity(intent);
-			finish();
-		}else if(v.getId()==R.id.btn_test_start2){
+		if(v.getId()==R.id.btn_test_start2){
 			String start=String.valueOf(et_test_start_index.getText());
 			String end=String.valueOf(et_test_end_index.getText());
 			if(TextUtils.isEmpty(start)||TextUtils.isEmpty(end)){
@@ -187,16 +138,20 @@ public class WordSwitchSectionActivity extends BaseActivity{
 			for(int i=0;i<mAnswerCount;i++){
 				ids.add(String.valueOf(s+i*se+rnRandom.nextInt(se)));
 			}
-			Bundle bundle=new Bundle();
-			bundle.putStringArray(WordsTestPageActivity.BUNDLE_WORDS, indexs.toArray(new String[indexs.size()]));
-			bundle.putStringArray(WordsTestPageActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
-			Intent intent=new Intent(this,WordsTestPageActivity.class);
-			intent.putExtras(bundle);
-			startActivity(intent);
-			finish();
+			goTestPage(indexs,ids);
 		}else{
 			super.onClick(v);
 		}
+	}
+	
+	public void goTestPage(List<String> indexs,List<String> ids){
+		Bundle bundle=new Bundle();
+		bundle.putStringArray(VocabularyTestActivity.BUNDLE_WORDS, indexs.toArray(new String[indexs.size()]));
+		bundle.putStringArray(VocabularyTestActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+		Intent intent=new Intent(this,VocabularyTestActivity.class);
+		intent.putExtras(bundle);
+		startActivity(intent);
+		finish();
 	}
 	
 	private class CustomTextWatcher implements TextWatcher {

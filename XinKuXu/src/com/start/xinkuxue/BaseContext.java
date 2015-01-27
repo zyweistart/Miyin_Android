@@ -2,7 +2,6 @@ package com.start.xinkuxue;
 
 import start.core.AppContext;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
 
 import com.start.core.CacheActivity;
 import com.start.core.DBManageDao;

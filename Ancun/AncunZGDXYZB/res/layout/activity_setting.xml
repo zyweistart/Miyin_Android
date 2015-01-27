@@ -53,14 +53,12 @@
                     android:id="@+id/setting_versioncheck"
                     style="@style/setting_frame"
                     android:drawableLeft="@drawable/ic_versioncheck"
-                    android:text="@string/versioncheck"
-                    android:visibility="gone" />
+                    android:text="@string/versioncheck"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1.0dip"
-                    android:background="@color/bg_frame"
-                    android:visibility="gone"  />
+                    android:background="@color/bg_frame"/>
 
                 <TextView
                     android:id="@+id/setting_comment"

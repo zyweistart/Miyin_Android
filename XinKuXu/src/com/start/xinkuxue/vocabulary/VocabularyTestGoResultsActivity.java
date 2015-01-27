@@ -1,6 +1,5 @@
-package com.start.xinkuxue;
+package com.start.xinkuxue.vocabulary;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,13 +7,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
+import com.start.xinkuxue.R;
 
 /**
- * 测试单词完成页面
+ * 词汇测试界面
+ * 
  * @author start
  *
  */
-public class WordsTestPageDoneActivity extends BaseActivity{
+public class VocabularyTestGoResultsActivity extends BaseActivity{
 	
 	public static final String ANSWERCOUNT="ANSWERCOUNT";
 	public static final String RIGHTCOUNT="RIGHTCOUNT";
@@ -61,11 +62,6 @@ public class WordsTestPageDoneActivity extends BaseActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_learnword){
-			Bundle bundle=new Bundle();
-			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 0);
-			Intent intent=new Intent(this,WordSwitchSectionActivity.class);
-			intent.putExtras(bundle);
-			startActivity(intent);
 			finish();
 		}else if(v.getId()==R.id.btn_waittry){
 			finish();
