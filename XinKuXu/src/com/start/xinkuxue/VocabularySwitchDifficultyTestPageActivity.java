@@ -203,7 +203,7 @@ public class VocabularySwitchDifficultyTestPageActivity extends BaseActivity {
 		return sortWordItems;
 	}
 	
-	private CountDownTimer mCountDownTimer=new CountDownTimer(10000,1000) {
+	private CountDownTimer mCountDownTimer=new CountDownTimer(9000,1000) {
 		
 		@Override
 		public void onTick(long millisUntilFinished) {
