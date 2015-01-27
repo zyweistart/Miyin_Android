@@ -45,14 +45,16 @@
         <!-- 单词学习 -->
         <activity
             android:name=".learn.LearnTypeSwitchActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".learn.WordListenLookSectionActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".learn.ListenLookWordActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".learn.Word123Activity"
             android:screenOrientation="landscape"
