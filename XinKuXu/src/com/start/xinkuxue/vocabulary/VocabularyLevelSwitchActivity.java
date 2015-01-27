@@ -21,7 +21,7 @@ public class VocabularyLevelSwitchActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_vocabulary_switch_difficulty);
+		setContentView(R.layout.activity_vocabulary_level_switch);
 	}
 	
 	@Override

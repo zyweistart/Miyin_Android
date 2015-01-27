@@ -41,7 +41,7 @@ public class VocabularyTestSectionActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_learn_words_switch_test);
+		setContentView(R.layout.activity_word_section);
 		try{
 			mWordService=new WordService(this);
 		}catch(Exception e){

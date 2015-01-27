@@ -17,7 +17,7 @@ public class LearnTypeSwitchActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_learn_words_switch);
+		setContentView(R.layout.activity_learn_type_switch);
 	}
 	
 	@Override

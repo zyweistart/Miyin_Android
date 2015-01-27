@@ -26,7 +26,7 @@ public class VocabularyLevelTestGoResultsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_vocabulary_test_page_go_results);
+		setContentView(R.layout.activity_vocabulary_level_go_results);
 		ivlevel=(ImageView)findViewById(R.id.ivlevel);
 		txtcount=(TextView)findViewById(R.id.txtcount);
 		Bundle bundle=getIntent().getExtras();

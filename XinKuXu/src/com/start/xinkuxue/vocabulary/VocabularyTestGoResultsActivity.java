@@ -29,7 +29,7 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_test_words_page_done);
+		setContentView(R.layout.activity_vocabulary_test_go_results);
 		frame_bg=(RelativeLayout)findViewById(R.id.frame_bg);
 		ivlevel=(ImageView)findViewById(R.id.ivlevel);
 		txtcount=(TextView)findViewById(R.id.txtcount);

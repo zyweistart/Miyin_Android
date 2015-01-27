@@ -52,7 +52,7 @@ public class ListenLookWordActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_learn_words_listen_look);
+		setContentView(R.layout.activity_listen_look_word);
 		iv_word=(ImageView)findViewById(R.id.iv_word);
 		iv_memory_method=(ImageView)findViewById(R.id.iv_memory_method);
 		txt_englishName=(TextView)findViewById(R.id.txt_englishName);

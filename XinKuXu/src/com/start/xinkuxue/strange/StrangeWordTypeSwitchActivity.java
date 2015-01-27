@@ -18,7 +18,7 @@ public class StrangeWordTypeSwitchActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_strangeword_switch);
+		setContentView(R.layout.activity_strange_word_type_switch);
 	}
 	
 	@Override

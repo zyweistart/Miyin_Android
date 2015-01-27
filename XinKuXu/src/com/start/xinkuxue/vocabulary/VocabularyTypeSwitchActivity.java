@@ -17,7 +17,7 @@ public class VocabularyTypeSwitchActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_vocabulary_switch_test);
+		setContentView(R.layout.activity_vocabulary_type_switch);
 	}
 	
 	@Override

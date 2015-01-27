@@ -67,7 +67,7 @@ public class VocabularyTestActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_test_words_page);
+		setContentView(R.layout.activity_vocabulary_test);
 		problem_picture=(ImageView)findViewById(R.id.problem_picture);
 		problem_words=(TextView)findViewById(R.id.problem_words);
 		problem_sentence=(TextView)findViewById(R.id.problem_sentence);

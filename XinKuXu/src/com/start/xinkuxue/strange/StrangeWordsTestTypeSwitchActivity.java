@@ -32,7 +32,7 @@ public class StrangeWordsTestTypeSwitchActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_strange_words_switch_test);
+		setContentView(R.layout.activity_strange_words_test_type_switch);
 		cb_switch_a=(CheckBox)findViewById(R.id.cb_switch_a);
 		cb_switch_b=(CheckBox)findViewById(R.id.cb_switch_b);
 		cb_switch_c=(CheckBox)findViewById(R.id.cb_switch_c);
