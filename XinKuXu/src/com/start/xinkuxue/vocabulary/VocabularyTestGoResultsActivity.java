@@ -2,6 +2,7 @@ package com.start.xinkuxue.vocabulary;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 	private ImageView ivlevel;
 	private TextView txtcount;
 	private TextView txttitle;
+	protected Button btn_learnword;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 		ivlevel=(ImageView)findViewById(R.id.ivlevel);
 		txtcount=(TextView)findViewById(R.id.txtcount);
 		txttitle=(TextView)findViewById(R.id.txttitle);
+		btn_learnword=(Button)findViewById(R.id.btn_learnword);
 		
 		Bundle bundle=getIntent().getExtras();
 		if(bundle==null){
