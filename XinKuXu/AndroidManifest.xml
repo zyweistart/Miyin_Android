@@ -44,25 +44,25 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 单词学习 -->
         <activity
-            android:name=".ListenLookLearnWordActivity"
+            android:name=".learn.LearnTypeSwitchActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".LearnWordSwitchActivity"
+            android:name=".learn.WordSwitchSectionActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".learn.ListenLookWordActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".WordSwitchSectionActivity"
+            android:name=".learn.Word123Activity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".WordsTestPageActivity"
+            android:name=".learn.WordTestActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".Word123Activity"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".WordsTestPageDoneActivity"
+            android:name=".learn.WordTestGoResultsActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 词汇测试 -->

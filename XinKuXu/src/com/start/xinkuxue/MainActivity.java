@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.start.core.BaseActivity;
+import com.start.xinkuxue.learn.LearnTypeSwitchActivity;
 import com.start.xinkuxue.strange.StrangeWordTypeSwitchActivity;
 import com.start.xinkuxue.vocabulary.VocabularyTypeSwitchActivity;
 
@@ -19,7 +20,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.learnwords){
-			Intent intent=new Intent(this,LearnWordSwitchActivity.class);
+			Intent intent=new Intent(this,LearnTypeSwitchActivity.class);
 			startActivity(intent);
 		}else if(v.getId()==R.id.testvocabulary){
 			Intent intent=new Intent(this,VocabularyTypeSwitchActivity.class);

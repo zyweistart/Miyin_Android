@@ -1,6 +1,6 @@
 package com.start.xinkuxue.strange;
 
-import com.start.xinkuxue.WordsTestPageDoneActivity;
+import com.start.xinkuxue.learn.WordTestGoResultsActivity;
 
 import android.os.Bundle;
 
@@ -9,7 +9,7 @@ import android.os.Bundle;
  * @author zhenyao
  *
  */
-public class StrangeWordsTestGoResultsActivity extends WordsTestPageDoneActivity{
+public class StrangeWordsTestGoResultsActivity extends WordTestGoResultsActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

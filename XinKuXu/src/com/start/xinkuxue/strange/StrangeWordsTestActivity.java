@@ -1,6 +1,6 @@
 package com.start.xinkuxue.strange;
 
-import com.start.xinkuxue.WordsTestPageActivity;
+import com.start.xinkuxue.learn.WordTestActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.os.Bundle;
  * @author zhenyao
  *
  */
-public class StrangeWordsTestActivity extends WordsTestPageActivity{
+public class StrangeWordsTestActivity extends WordTestActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

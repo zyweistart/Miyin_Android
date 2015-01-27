@@ -4,15 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.start.xinkuxue.ListenLookLearnWordActivity;
 import com.start.xinkuxue.R;
+import com.start.xinkuxue.learn.ListenLookWordActivity;
 
 /**
  * 生词本边读边听边写
  * @author zhenyao
  *
  */
-public class StrangeWordsListenLookLearnActivity extends ListenLookLearnWordActivity{
+public class StrangeWordsListenLookLearnActivity extends ListenLookWordActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

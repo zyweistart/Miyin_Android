@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.start.core.BaseActivity;
-import com.start.xinkuxue.ListenLookLearnWordActivity;
 import com.start.xinkuxue.R;
+import com.start.xinkuxue.learn.ListenLookWordActivity;
 
 /**
  * 词汇测试等级选择界面
@@ -67,7 +67,7 @@ public class VocabularyLevelSwitchActivity extends BaseActivity{
 			ids.add(String.valueOf(i));
 		}
 		Bundle bundle=new Bundle();
-		bundle.putStringArray(ListenLookLearnWordActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+		bundle.putStringArray(ListenLookWordActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
 		Intent intent=new Intent(this,VocabularyLevelTestActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);

@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.start.core.BaseActivity;
 import com.start.xinkuxue.R;
-import com.start.xinkuxue.WordSwitchSectionActivity;
+import com.start.xinkuxue.learn.WordSwitchSectionActivity;
 
 /**
  * 词汇测试界面
