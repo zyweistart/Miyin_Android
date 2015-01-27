@@ -81,27 +81,27 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".StrangeWordSwitchActivity"
+            android:name=".strange.StrangeWordSwitchActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".StrangeWordsActivity"
+            android:name=".strange.StrangeWordsActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".StrangeWordsListenLookActivity"
+            android:name=".strange.StrangeWordsListenLookActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".StrangeWordsSwitchTestActivity"
+            android:name=".strange.StrangeWordsSwitchTestActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".StrangeWordsTestPageActivity"
+            android:name=".strange.StrangeWordsTestPageActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".StrangeWordsTestPageDoneActivity"
+            android:name=".strange.StrangeWordsTestPageDoneActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         

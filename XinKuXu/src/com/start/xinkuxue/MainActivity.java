@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.start.core.BaseActivity;
+import com.start.xinkuxue.strange.StrangeWordSwitchActivity;
 
 public class MainActivity extends BaseActivity {
 

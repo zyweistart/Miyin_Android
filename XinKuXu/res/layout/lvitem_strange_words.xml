@@ -13,23 +13,26 @@
         android:background="#f0f0f0"
         android:orientation="horizontal"
         android:padding="10.0dip" >
+
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="23.0dip"
+            android:layout_gravity="center_vertical"
             android:textColor="#666666"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="23.0dip" />
+
         <View
             android:layout_width="20.0dip"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
+
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="23.0dip"
+            android:layout_gravity="center_vertical"
             android:textColor="#666666"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="23.0dip" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,16 +40,18 @@
         android:layout_height="65.0dip"
         android:layout_weight="3"
         android:orientation="horizontal" >
+
         <Button
             android:id="@+id/btnReview"
             style="@style/button_style_rectangle_1"
             android:background="@drawable/selector_button_color_red_noshape"
             android:text="@string/mygoreview" />
+
         <Button
             android:id="@+id/btnTest"
             style="@style/button_style_rectangle_1"
             android:background="@drawable/selector_button_color_blue_noshape"
-            android:text="@string/mygotest" /> 
+            android:text="@string/mygotest" />
     </LinearLayout>
 
 </LinearLayout>
