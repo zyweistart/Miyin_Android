@@ -16,23 +16,71 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <Button
+            <RelativeLayout
                 android:id="@+id/learnwords"
-                style="@style/button_style_square"
+                android:layout_width="170.0dip"
+                android:layout_height="170.0dip"
                 android:background="@drawable/selector_button_color_orange"
-                android:drawableTop="@drawable/ic_newwords"
-                android:text="@string/learnwords" />
+                android:clickable="true"
+                android:onClick="onClick" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/empty"
+                        android:src="@drawable/ic_newwords" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/learnwords"
+                        android:textColor="@color/white"
+                        android:textSize="22.0dip" />
+                </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="20.0dip"
                 android:layout_height="match_parent" />
 
-            <Button
+            <RelativeLayout
                 android:id="@+id/testvocabulary"
-                style="@style/button_style_square"
+                android:layout_width="170.0dip"
+                android:layout_height="170.0dip"
                 android:background="@drawable/selector_button_color_red"
-                android:drawableTop="@drawable/ic_specialtraining"
-                android:text="@string/testvocabulary" />
+                android:clickable="true"
+                android:onClick="onClick" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/empty"
+                        android:src="@drawable/ic_specialtraining" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/testvocabulary"
+                        android:textColor="@color/white"
+                        android:textSize="22.0dip" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
         <View
@@ -44,23 +92,71 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <Button
+            <RelativeLayout
                 android:id="@+id/newwords"
-                style="@style/button_style_square"
+                android:layout_width="170.0dip"
+                android:layout_height="170.0dip"
                 android:background="@drawable/selector_button_color_blue"
-                android:drawableTop="@drawable/ic_learnwords"
-                android:text="@string/newwords" />
+                android:clickable="true"
+                android:onClick="onClick" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/empty"
+                        android:src="@drawable/ic_learnwords" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/newwords"
+                        android:textColor="@color/white"
+                        android:textSize="22.0dip" />
+                </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="20.0dip"
                 android:layout_height="match_parent" />
 
-            <Button
+            <RelativeLayout
                 android:id="@+id/specialtraining"
-                style="@style/button_style_square"
+                android:layout_width="170.0dip"
+                android:layout_height="170.0dip"
                 android:background="@drawable/selector_button_color_grey"
-                android:drawableTop="@drawable/ic_testvocabulary"
-                android:text="@string/specialtraining" />
+                android:clickable="true"
+                android:onClick="onClick" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/empty"
+                        android:src="@drawable/ic_testvocabulary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/specialtraining"
+                        android:textColor="@color/white"
+                        android:textSize="22.0dip" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
