@@ -128,10 +128,7 @@ public class ListenLookWordActivity extends BaseActivity{
 				frame_done.setVisibility(View.VISIBLE);
 			}
 		}else if(v.getId()==R.id.immediatetest){
-			Bundle bundle=new Bundle();
-			bundle.putInt(WordListenLookSectionActivity.TESTSWITCHTYPE, 1);
 			Intent intent=new Intent(this,WordTestSectionActivity.class);
-			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();
 		}else if(v.getId()==R.id.btn_addtonewword){

@@ -9,7 +9,7 @@ import android.view.View;
 import com.start.xinkuxue.vocabulary.VocabularyTestSectionActivity;
 
 /**
- * 单词区间选择界面
+ * 每日测试区间选择界面
  * @author start
  *
  */

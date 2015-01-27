@@ -21,6 +21,11 @@ import com.start.service.WordService;
 import com.start.service.bean.WordItem;
 import com.start.xinkuxue.R;
 
+/**
+ * 单词123
+ * @author zhenyao
+ *
+ */
 public class Word123Activity extends BaseActivity{
 	
 public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
@@ -120,10 +125,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		}else if(v.getId()==R.id.btn_next||v.getId()==R.id.btn_understanding){
 			nextWord();
 		}else if(v.getId()==R.id.immediatetest){
-			Bundle bundle=new Bundle();
-			bundle.putInt(WordListenLookSectionActivity.TESTSWITCHTYPE, 1);
 			Intent intent=new Intent(this,WordTestSectionActivity.class);
-			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();
 		}else if(v.getId()==R.id.btn_prompt){
