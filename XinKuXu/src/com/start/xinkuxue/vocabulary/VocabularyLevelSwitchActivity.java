@@ -28,7 +28,7 @@ public class VocabularyLevelSwitchActivity extends BaseActivity{
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_levelname1){
 			//1-500
-			toTest(1,5);
+			toTest(1,500);
 		}else if(v.getId()==R.id.btn_levelname2){
 			//501-1000
 			toTest(501,1000);

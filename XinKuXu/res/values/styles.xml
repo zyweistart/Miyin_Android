@@ -166,6 +166,7 @@
         <item name="android:fadingEdge">none</item>
         <item name="android:fastScrollEnabled">true</item>
         <item name="android:scrollingCache">false</item>
+        <item name="android:divider">@drawable/bm_dottedline</item>
         <item name="android:cacheColorHint">@android:color/transparent</item>
         <item name="android:listSelector">@android:color/transparent</item>
     </style>
