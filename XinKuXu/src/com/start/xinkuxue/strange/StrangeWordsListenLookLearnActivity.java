@@ -1,15 +1,18 @@
-package com.start.xinkuxue;
+package com.start.xinkuxue.strange;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.start.xinkuxue.ListenLookLearnWordActivity;
+import com.start.xinkuxue.R;
 
 /**
  * 生词本边读边听边写
  * @author zhenyao
  *
  */
-public class StrangeWordsListenLookActivity extends ListenLookLearnWordActivity{
+public class StrangeWordsListenLookLearnActivity extends ListenLookLearnWordActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +22,7 @@ public class StrangeWordsListenLookActivity extends ListenLookLearnWordActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.immediatetest){
-			Intent intent=new Intent(this,StrangeWordsSwitchTestActivity.class);
+			Intent intent=new Intent(this,StrangeWordsTestTypeSwitchActivity.class);
 			intent.putExtras(mBundle);
 			startActivity(intent);
 			finish();

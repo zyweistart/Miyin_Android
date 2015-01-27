@@ -1,8 +1,11 @@
 package com.start.xinkuxue.strange;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import start.utils.TimeUtils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +20,6 @@ import com.start.service.bean.StrangeWordItem;
 import com.start.service.bean.StrangeWordStatisticsItem;
 import com.start.xinkuxue.BaseContext;
 import com.start.xinkuxue.R;
-import com.start.xinkuxue.R.id;
-import com.start.xinkuxue.R.layout;
 
 public class StrangeWordsAdapter extends BaseAdapter{
 
@@ -51,7 +52,14 @@ public class StrangeWordsAdapter extends BaseAdapter{
 			holder = (HolderView) convertView.getTag();
 		}
 		StrangeWordStatisticsItem data=mItemDatas.get(position);
-		holder.tvDate.setText(data.joinTime);
+		
+		SimpleDateFormat formatF = new SimpleDateFormat(TimeUtils.yyyyMMdd_F);
+		SimpleDateFormat formatC = new SimpleDateFormat(TimeUtils.yyyyMMdd_C);
+		try {
+			holder.tvDate.setText(formatC.format( formatF.parse(data.joinTime)));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		holder.tvTitle.setText("有"+data.wordCount+"个生词");
 		holder.btnReview.setTag(data);
 		holder.btnReview.setOnClickListener(new OnClickListener() {
@@ -101,19 +109,19 @@ public class StrangeWordsAdapter extends BaseAdapter{
 			ids.add(s.getIndex());
 		}
 		Bundle bundle=new Bundle();
-		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_TYPE, sws.getType());
-		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_JOINTIME, sws.getJoinTime());
-		bundle.putStringArray(StrangeWordsListenLookActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
-		Intent intent=new Intent(mActivity,StrangeWordsListenLookActivity.class);
+		bundle.putString(StrangeWordsTestTypeSwitchActivity.BUNDLE_TYPE, sws.getType());
+		bundle.putString(StrangeWordsTestTypeSwitchActivity.BUNDLE_JOINTIME, sws.getJoinTime());
+		bundle.putStringArray(StrangeWordsListenLookLearnActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+		Intent intent=new Intent(mActivity,StrangeWordsListenLookLearnActivity.class);
 		intent.putExtras(bundle);
 		mActivity.startActivity(intent);
 	}
 	
 	public void goTest(StrangeWordStatisticsItem sws){
 		Bundle bundle=new Bundle();
-		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_TYPE, sws.getType());
-		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_JOINTIME, sws.getJoinTime());
-		Intent intent=new Intent(mActivity,StrangeWordsSwitchTestActivity.class);
+		bundle.putString(StrangeWordsTestTypeSwitchActivity.BUNDLE_TYPE, sws.getType());
+		bundle.putString(StrangeWordsTestTypeSwitchActivity.BUNDLE_JOINTIME, sws.getJoinTime());
+		Intent intent=new Intent(mActivity,StrangeWordsTestTypeSwitchActivity.class);
 		intent.putExtras(bundle);
 		mActivity.startActivity(intent);
 	}

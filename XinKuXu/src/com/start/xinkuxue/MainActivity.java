@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.start.core.BaseActivity;
-import com.start.xinkuxue.strange.StrangeWordSwitchActivity;
+import com.start.xinkuxue.strange.StrangeWordTypeSwitchActivity;
+import com.start.xinkuxue.vocabulary.VocabularyTypeSwitchActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -21,10 +22,10 @@ public class MainActivity extends BaseActivity {
 			Intent intent=new Intent(this,LearnWordSwitchActivity.class);
 			startActivity(intent);
 		}else if(v.getId()==R.id.testvocabulary){
-			Intent intent=new Intent(this,VocabularySwitchActivity.class);
+			Intent intent=new Intent(this,VocabularyTypeSwitchActivity.class);
 			startActivity(intent);
 		}else if(v.getId()==R.id.newwords){
-			Intent intent=new Intent(this,StrangeWordSwitchActivity.class);
+			Intent intent=new Intent(this,StrangeWordTypeSwitchActivity.class);
 			startActivity(intent);
 		}else if(v.getId()==R.id.specialtraining){
 			getHandlerContext().makeTextShort("特训营,即将上线");

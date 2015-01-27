@@ -1,4 +1,4 @@
-package com.start.xinkuxue;
+package com.start.xinkuxue.strange;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,13 +6,14 @@ import android.view.View;
 
 import com.start.core.BaseActivity;
 import com.start.service.bean.StrangeWordItem;
+import com.start.xinkuxue.R;
 
 /**
- * 单词本
+ * 生词本选择
  * @author start
  *
  */
-public class StrangeWordSwitchActivity extends BaseActivity{
+public class StrangeWordTypeSwitchActivity extends BaseActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

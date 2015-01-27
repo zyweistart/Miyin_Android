@@ -42,6 +42,7 @@
             android:name=".MainActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 单词学习 -->
         <activity
             android:name=".ListenLookLearnWordActivity"
             android:screenOrientation="landscape"/>
@@ -50,22 +51,6 @@
             android:screenOrientation="landscape"/>
         <activity
             android:name=".WordSwitchSectionActivity"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".VocabularySwitchActivity"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".VocabularyLevelSwitchActivity"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".VocabularySwitchDifficultyTestPageActivity"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".VocabularySwitchDifficultyTestPageGoResultsActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -80,8 +65,26 @@
             android:name=".WordsTestPageDoneActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 词汇测试 -->
         <activity
-            android:name=".strange.StrangeWordSwitchActivity"
+            android:name=".vocabulary.VocabularyTypeSwitchActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".vocabulary.VocabularyLevelSwitchActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".vocabulary.VocabularyLevelTestActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".vocabulary.VocabularyLevelTestGoResultsActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 生词本 -->
+        <activity
+            android:name=".strange.StrangeWordTypeSwitchActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
@@ -89,19 +92,19 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".strange.StrangeWordsListenLookActivity"
+            android:name=".strange.StrangeWordsListenLookLearnActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".strange.StrangeWordsSwitchTestActivity"
+            android:name=".strange.StrangeWordsTestTypeSwitchActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".strange.StrangeWordsTestPageActivity"
+            android:name=".strange.StrangeWordsTestActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".strange.StrangeWordsTestPageDoneActivity"
+            android:name=".strange.StrangeWordsTestGoResultsActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         

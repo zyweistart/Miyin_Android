@@ -1,4 +1,4 @@
-package com.start.xinkuxue;
+package com.start.xinkuxue.strange;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +10,15 @@ import android.widget.CheckBox;
 
 import com.start.core.BaseActivity;
 import com.start.service.bean.StrangeWordItem;
+import com.start.xinkuxue.BaseContext;
+import com.start.xinkuxue.R;
 
 /**
  * 生词本测试方法选择
  * @author zhenyao
  *
  */
-public class StrangeWordsSwitchTestActivity extends BaseActivity{
+public class StrangeWordsTestTypeSwitchActivity extends BaseActivity{
 	
 	public static final String BUNDLE_JOINTIME="BUNDLE_JOINTIME";
 	public static final String BUNDLE_TYPE="BUNDLE_TYPE";
@@ -74,9 +76,9 @@ public class StrangeWordsSwitchTestActivity extends BaseActivity{
 				ids.add(s.getIndex());
 			}
 			Bundle bundle=new Bundle();
-			bundle.putStringArray(StrangeWordsTestPageActivity.BUNDLE_WORDS, indexs.toArray(new String[indexs.size()]));
-			bundle.putStringArray(StrangeWordsTestPageActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
-			Intent intent=new Intent(this,StrangeWordsTestPageActivity.class);
+			bundle.putStringArray(StrangeWordsTestActivity.BUNDLE_WORDS, indexs.toArray(new String[indexs.size()]));
+			bundle.putStringArray(StrangeWordsTestActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
+			Intent intent=new Intent(this,StrangeWordsTestActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();

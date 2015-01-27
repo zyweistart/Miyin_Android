@@ -12,12 +12,9 @@ import com.start.service.bean.StrangeWordItem;
 import com.start.service.bean.StrangeWordStatisticsItem;
 import com.start.xinkuxue.BaseContext;
 import com.start.xinkuxue.R;
-import com.start.xinkuxue.R.id;
-import com.start.xinkuxue.R.layout;
-import com.start.xinkuxue.R.string;
 
 /**
- * 生词本
+ * 生词本数据列表
  * @author zhenyao
  *
  */
