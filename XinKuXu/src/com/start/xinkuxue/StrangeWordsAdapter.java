@@ -97,7 +97,7 @@ public class StrangeWordsAdapter extends BaseAdapter{
 			ids.add(s.getIndex());
 		}
 		Bundle bundle=new Bundle();
-		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_JOINTIME, sws.getType());
+		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_TYPE, sws.getType());
 		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_JOINTIME, sws.getJoinTime());
 		bundle.putStringArray(StrangeWordsListenLookActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
 		Intent intent=new Intent(mActivity,StrangeWordsListenLookActivity.class);
@@ -107,6 +107,7 @@ public class StrangeWordsAdapter extends BaseAdapter{
 	
 	public void goTest(StrangeWordStatisticsItem sws){
 		Bundle bundle=new Bundle();
+		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_TYPE, sws.getType());
 		bundle.putString(StrangeWordsSwitchTestActivity.BUNDLE_JOINTIME, sws.getJoinTime());
 		Intent intent=new Intent(mActivity,StrangeWordsSwitchTestActivity.class);
 		intent.putExtras(bundle);

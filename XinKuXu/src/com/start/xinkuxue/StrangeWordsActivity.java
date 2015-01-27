@@ -3,6 +3,7 @@ package com.start.xinkuxue;
 import java.util.List;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ public class StrangeWordsActivity extends BaseActivity{
 	private StrangeWordsAdapter mAdapter;
 	private List<StrangeWordStatisticsItem> mStrangeWordStatisticsItems;
 	private String type;
-	private TextView word_title;
+	private TextView word_title,txt_nodata;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,20 @@ public class StrangeWordsActivity extends BaseActivity{
 			}else{
 				word_title.setText(R.string.wordcategory);
 			}
-			
+			txt_nodata=(TextView)findViewById(R.id.txt_nodata);
 			mListView=(ListView)findViewById(R.id.listview_strange_words);
 			
 			mStrangeWordStatisticsItems=BaseContext.getDBManager().findStrangeWordStatistic(getAppContext().currentUser().getCacheAccount(),type);
-			mAdapter=new StrangeWordsAdapter(this,type);
-			mAdapter.setStrangeWordStatisticsItems(mStrangeWordStatisticsItems);
-			mListView.setAdapter(mAdapter);
+			if(mStrangeWordStatisticsItems.isEmpty()){
+				txt_nodata.setVisibility(View.VISIBLE);
+				mListView.setVisibility(View.GONE);
+			}else{
+				mAdapter=new StrangeWordsAdapter(this,type);
+				mAdapter.setStrangeWordStatisticsItems(mStrangeWordStatisticsItems);
+				mListView.setAdapter(mAdapter);
+				txt_nodata.setVisibility(View.GONE);
+				mListView.setVisibility(View.VISIBLE);
+			}
 		}else{
 			finish();
 		}

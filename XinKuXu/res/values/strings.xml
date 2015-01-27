@@ -25,10 +25,11 @@
     <string name="kuxuememorymethod">酷学记忆法</string>
     <string name="vocabularytest">词汇量测试</string>
     <string name="practicetest">练习测试</string>
+    <string name="nodata">暂无记录</string>
     <string name="wordcategory">单词本</string>
     <string name="errorwordcategory">错词本</string>
     <string name="cannotskip">不会，跳过</string>
-    <string name="addtonewword">加入生词本</string>
+    <string name="addtonewword">加入单词本</string>
     <string name="immediatetest">立即测试</string>
     <string name="waitagain">稍候再说</string>
     <string name="testmethodtip">测试方法必须大于等于3种</string>
@@ -47,16 +48,20 @@
     <string name="fillanswer">填空</string>
     <string name="mygoreview">我要复习</string>
     <string name="mygotest">我要测试</string>
+    <string name="gohome">返回主页</string>
+    <string name="anothertest">再测一次</string>
+    <string name="learnword">复习单词</string>
+    <string name="waittry">过会再练</string>
     
-    <string name="levelname1">初一初级</string>
-    <string name="levelname2">初一中级</string>
-    <string name="levelname3">初二初级</string>
-    <string name="levelname4">初二中级</string>
-    <string name="levelname5">初三初级</string>
-    <string name="levelname6">初三中级</string>
-    <string name="levelname7">高一初级</string>
-    <string name="levelname8">高二初级</string>
-    <string name="levelname9">高三初级</string>
-    <string name="levelname10">高三中级</string>
+    <string name="levelname1">单词一级</string>
+    <string name="levelname2">单词二级</string>
+    <string name="levelname3">单词三级</string>
+    <string name="levelname4">单词四级</string>
+    <string name="levelname5">单词五级</string>
+    <string name="levelname6">单词六级</string>
+    <string name="levelname7">单词七级</string>
+    <string name="levelname8">单词八级</string>
+    <string name="levelname9">单词九级</string>
+    <string name="levelname10">单词十级</string>
     
 </resources>

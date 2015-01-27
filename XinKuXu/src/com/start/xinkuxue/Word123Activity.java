@@ -3,10 +3,13 @@ package com.start.xinkuxue;
 import java.io.File;
 import java.io.IOException;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,7 +39,19 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	private LinearLayout frame_step_one;
 	private RelativeLayout frame_step_two;
 	private TextView txt_current_word_index,txt_current_word_process,txt_current_word_name,txt_current_word_exampleenglish,txt_current_word_chinesesignificance;
-	private ImageView txt_current_word_image;
+	private ImageView txt_current_word_image,countdown;
+	
+	private int[] countdownimg={
+			R.drawable.countdown00,
+			R.drawable.countdown01,
+			R.drawable.countdown02,
+			R.drawable.countdown03,
+			R.drawable.countdown04,
+			R.drawable.countdown05,
+			R.drawable.countdown06,
+			R.drawable.countdown07,
+			R.drawable.countdown08};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +65,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		txt_current_word_exampleenglish=(TextView)findViewById(R.id.txt_current_word_exampleenglish);
 		txt_current_word_chinesesignificance=(TextView)findViewById(R.id.txt_current_word_chinesesignificance);
 		txt_current_word_image=(ImageView)findViewById(R.id.txt_current_word_image);
+		countdown=(ImageView)findViewById(R.id.countdown);
 		
 		iv_word=(ImageView)findViewById(R.id.iv_word);
 		iv_memory_method=(ImageView)findViewById(R.id.iv_memory_method);
@@ -101,13 +117,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 				getHandlerContext().makeTextShort(getString(R.string.word_data_not_audio));
 			}
 		}else if(v.getId()==R.id.btn_next||v.getId()==R.id.btn_understanding){
-			closeAudio();
-			if(mAnswerArray.length-1>currentIndex){
-				currentIndex++;
-				initWord();
-			}else{
-				getHandlerContext().makeTextLong("单词练习结束了");
-			}
+			nextWord();
 		}else if(v.getId()==R.id.immediatetest){
 			Bundle bundle=new Bundle();
 			bundle.putInt(WordSwitchSectionActivity.TESTSWITCHTYPE, 1);
@@ -130,6 +140,8 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	}
 
 	public void showWordDetail(){
+		mCountDownTimer.cancel();
+		mCountDownTimer.start();
 		int current=currentIndex+1;
 		txt_current_word_index.setText("当前第"+(currentIndex+1)+"个单词");
 		txt_current_word_process.setText("测试进度："+String.valueOf(current+"/"+mAnswerArray.length));
@@ -168,6 +180,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	}
 	
 	public void closeAudio(){
+		mCountDownTimer.cancel();
 		if(mMediaPlayer!=null){
 			if(mMediaPlayer.isPlaying()){
 				mMediaPlayer.stop();
@@ -190,5 +203,42 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		showWord();
 		showWordDetail();
 	}
+	
+	/**
+	 * 下一个
+	 */
+	public void nextWord(){
+		closeAudio();
+		if(mAnswerArray.length-1>currentIndex){
+			currentIndex++;
+			initWord();
+		}else{
+			mCountDownTimer.cancel();
+			new AlertDialog.Builder(Word123Activity.this)
+					.setMessage("单词练习结束了,确定返回")
+					.setCancelable(false)
+					.setNegativeButton(R.string.sure,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int whichButton) {
+									finish();
+								}
+							}).show();
+		}
+	}
+	
+	private CountDownTimer mCountDownTimer=new CountDownTimer(10000,1000) {
+		
+		@Override
+		public void onTick(long millisUntilFinished) {
+			int n=(int)millisUntilFinished / 1000;
+			countdown.setImageResource(countdownimg[n-1]);
+		}
+		
+		@Override
+		public void onFinish() {
+			nextWord();
+		}
+	};
 	
 }

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
@@ -27,10 +30,22 @@ public class VocabularySwitchDifficultyTestPageActivity extends BaseActivity {
 
 	private TextView txt_current_word_process;
 	private TextView problem_words,problem_tip;
+	private ImageView countdown;
 	private Random rnTestRandom;
 	private int mCurrentWordId;
 	private int mCurrentRightWordItemIndex;
 	private WordItem mCurrentRightWordItem;
+
+	private int[] countdownimg={
+			R.drawable.countdown00,
+			R.drawable.countdown01,
+			R.drawable.countdown02,
+			R.drawable.countdown03,
+			R.drawable.countdown04,
+			R.drawable.countdown05,
+			R.drawable.countdown06,
+			R.drawable.countdown07,
+			R.drawable.countdown08};
 
 	//题目列表
 	private String[] mAnswerArray;
@@ -53,6 +68,7 @@ public class VocabularySwitchDifficultyTestPageActivity extends BaseActivity {
 		btn_answer_4 = (Button) findViewById(R.id.btn_answer_4);
 		btn_answer_5 = (Button) findViewById(R.id.btn_answer_5);
 		btn_answer_6 = (Button) findViewById(R.id.btn_answer_6);
+		countdown=(ImageView)findViewById(R.id.countdown);
 		try {
 			mWordService = new WordService(this);
 		} catch (Exception e) {
@@ -69,6 +85,12 @@ public class VocabularySwitchDifficultyTestPageActivity extends BaseActivity {
 		}
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mCountDownTimer.cancel();
+	}
+	
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_answer_1){
@@ -92,13 +114,22 @@ public class VocabularySwitchDifficultyTestPageActivity extends BaseActivity {
 		}
 		mCurrentWordIndex++;
 		if(mCurrentWordIndex>=mAnswerArray.length){
-			getHandlerContext().makeTextLong("测试结束了");
+			mCountDownTimer.cancel();
+			Bundle bundle=new Bundle();
+			bundle.putInt(VocabularySwitchDifficultyTestPageGoResultsActivity.BUNDLE_ANSWER_COUNT,mAnswerArray.length);
+			bundle.putInt(VocabularySwitchDifficultyTestPageGoResultsActivity.BUNDLE_ANSWER_RIGHTCOUNT,mRightCount);
+			Intent intent=new Intent(this,VocabularySwitchDifficultyTestPageGoResultsActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+			finish();
 		}else{
 			showWord();
 		}
 	}
 	
 	public void showWord() {
+		mCountDownTimer.cancel();
+		mCountDownTimer.start();
 		txt_current_word_process.setText("测试进度："+(mCurrentWordIndex+1)+"/"+mAnswerArray.length);
 		problem_tip.setText("当前第"+(mCurrentWordIndex+1)+"个单词");
 		mCurrentWordId=Integer.parseInt(mAnswerArray[mCurrentWordIndex]);
@@ -171,5 +202,19 @@ public class VocabularySwitchDifficultyTestPageActivity extends BaseActivity {
 		}
 		return sortWordItems;
 	}
-
+	
+	private CountDownTimer mCountDownTimer=new CountDownTimer(10000,1000) {
+		
+		@Override
+		public void onTick(long millisUntilFinished) {
+			int n=(int)millisUntilFinished / 1000;
+			countdown.setImageResource(countdownimg[n-1]);
+		}
+		
+		@Override
+		public void onFinish() {
+			nextWord(-1);
+		}
+	};
+	
 }

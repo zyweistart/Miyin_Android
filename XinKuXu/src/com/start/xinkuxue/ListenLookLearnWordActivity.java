@@ -135,7 +135,6 @@ public class ListenLookLearnWordActivity extends BaseActivity{
 		}else if(v.getId()==R.id.btn_addtonewword){
 			BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mWordItem.getId()), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_WORDS);
 			btn_addtonewword.setVisibility(View.GONE);
-			getHandlerContext().makeTextShort("已加入单词本");
 		}else if(v.getId()==R.id.waitagain){
 			finish();
 		}else{
