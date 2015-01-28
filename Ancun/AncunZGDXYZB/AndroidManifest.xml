@@ -159,6 +159,12 @@
             android:name=".LockSetupActivity"
             android:screenOrientation="portrait" />
         
+        <!-- 应用宝   除了腾讯包 其它包这段代码要去掉 -->
+        <meta-data android:name="TA_APPKEY"
+            android:value="Aqc1103724498"/>
+        <meta-data android:name="InstallChannel"
+            android:value="LT-TENGXUNQQ"/>
+        
     </application>
 
 </manifest>
