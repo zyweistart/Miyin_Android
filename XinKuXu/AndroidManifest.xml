@@ -125,6 +125,7 @@
             android:name=".strange.StrangeWordsTestGoResultsActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 特训营 -->
         
     </application>
 
