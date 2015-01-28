@@ -13,6 +13,8 @@ import com.start.xinkuxue.vocabulary.VocabularyTestGoResultsActivity;
  */
 public class StrangeWordsTestGoResultsActivity extends VocabularyTestGoResultsActivity{
 	
+	public static final String BUNDLE_TYPE="BUNDLE_TYPE";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,7 +24,8 @@ public class StrangeWordsTestGoResultsActivity extends VocabularyTestGoResultsAc
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_learnword){
-			getHandlerContext().makeTextLong(getString(R.string.mygoreview));
+			String type=mBundle.getString(BUNDLE_TYPE);
+			getHandlerContext().makeTextLong(getString(R.string.mygoreview)+type);
 		}else if(v.getId()==R.id.btn_waittry){
 			finish();
 		}else{

@@ -18,9 +18,7 @@ import android.widget.TextView;
 
 import com.start.core.BaseActivity;
 import com.start.service.WordService;
-import com.start.service.bean.StrangeWordItem;
 import com.start.service.bean.WordItem;
-import com.start.xinkuxue.BaseContext;
 import com.start.xinkuxue.R;
 
 /**
@@ -47,12 +45,12 @@ public class VocabularyTestActivity extends BaseActivity{
 	//测试类型(1:中-英 2:英-中 3:图-英 4:英-图 5:填空)
 	private String[] mTestType;
 	//当前单词的ID，单词游标索引
-	private int mCurrentWordId,mAnswerIndex;
+	protected int mCurrentWordId,mAnswerIndex;
 	
 	private int mCurrentRightWordItemIndex;
 	private WordItem mCurrentRightWordItem;
 	private String mTitle,mAName,mBName,mCName,mDName;
-	
+	protected Bundle mBundle;
 	private ImageView problem_picture;
 	private TextView problem_words,problem_sentence;
 	private LinearLayout answer_frame_text;
@@ -93,11 +91,11 @@ public class VocabularyTestActivity extends BaseActivity{
 		frame_picture_selector_answer_d=(LinearLayout)findViewById(R.id.frame_picture_selector_answer_d);
 		frame_picture_selector_answer_cannotskip=(TextView)findViewById(R.id.frame_picture_selector_answer_cannotskip);
 		
-		Bundle bundle=getIntent().getExtras();
-		if(bundle!=null){
+		mBundle=getIntent().getExtras();
+		if(mBundle!=null){
 			rnTestRandom=new Random();
-			mTestType=bundle.getStringArray(BUNDLE_WORDS);
-			mAnswerArray=bundle.getStringArray(BUNDLE_ANSWER_ARRAY);
+			mTestType=mBundle.getStringArray(BUNDLE_WORDS);
+			mAnswerArray=mBundle.getStringArray(BUNDLE_ANSWER_ARRAY);
 			try{
 				mWordService=new WordService(this);
 			}catch(Exception e){
@@ -499,6 +497,7 @@ public class VocabularyTestActivity extends BaseActivity{
 	
 	public void toDonePage(){
 		Bundle bundle=new Bundle();
+		bundle.putAll(mBundle);
 		bundle.putInt(VocabularyTestGoResultsActivity.RIGHTCOUNT, mRightCount);
 		bundle.putInt(VocabularyTestGoResultsActivity.ANSWERCOUNT, mAnswerArray.length);
 		Intent intent=new Intent(this,VocabularyTestGoResultsActivity.class);
@@ -507,8 +506,11 @@ public class VocabularyTestActivity extends BaseActivity{
 		finish();
 	}
 	
+	/**
+	 * 加入生词本
+	 */
 	public void joinWords(){
-		BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mCurrentWordId), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_ERROR);
+		
 	}
 	
 }

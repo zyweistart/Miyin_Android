@@ -27,7 +27,7 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 	private TextView txtcount;
 	private TextView txttitle;
 	protected Button btn_learnword;
-	
+	protected Bundle mBundle;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,12 +38,12 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 		txttitle=(TextView)findViewById(R.id.txttitle);
 		btn_learnword=(Button)findViewById(R.id.btn_learnword);
 		
-		Bundle bundle=getIntent().getExtras();
-		if(bundle==null){
+		mBundle=getIntent().getExtras();
+		if(mBundle==null){
 			finish();
 		}else{
-			mAnswerCount=bundle.getInt(ANSWERCOUNT);
-			mRightCount=bundle.getInt(RIGHTCOUNT);
+			mAnswerCount=mBundle.getInt(ANSWERCOUNT);
+			mRightCount=mBundle.getInt(RIGHTCOUNT);
 			int result=100/mAnswerCount*mRightCount;
 			if(result==100){
 				frame_bg.setBackgroundResource(R.drawable.bm_level_3);

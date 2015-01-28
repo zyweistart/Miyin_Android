@@ -19,9 +19,9 @@ import com.start.xinkuxue.R;
  *
  */
 public class StrangeWordsTestTypeSwitchActivity extends BaseActivity{
-	
-	public static final String BUNDLE_JOINTIME="BUNDLE_JOINTIME";
+
 	public static final String BUNDLE_TYPE="BUNDLE_TYPE";
+	public static final String BUNDLE_JOINTIME="BUNDLE_JOINTIME";
 	
 	protected Bundle mBundle;
 	
@@ -76,6 +76,7 @@ public class StrangeWordsTestTypeSwitchActivity extends BaseActivity{
 				ids.add(s.getIndex());
 			}
 			Bundle bundle=new Bundle();
+			bundle.putString(StrangeWordsTestActivity.BUNDLE_TYPE, mType);
 			bundle.putStringArray(StrangeWordsTestActivity.BUNDLE_WORDS, indexs.toArray(new String[indexs.size()]));
 			bundle.putStringArray(StrangeWordsTestActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
 			Intent intent=new Intent(this,StrangeWordsTestActivity.class);
