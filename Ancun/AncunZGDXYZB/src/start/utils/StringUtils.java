@@ -27,22 +27,24 @@ public class StringUtils {
      * DES加密
      */
     public static String doKeyEncrypt(String str,InputStream deskey){
-    	try {
-			return DES.encrypt(str, deskey);
-		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
-		}
+//    	try {
+//			return DES.encrypt(str, deskey);
+//		} catch (Exception e) {
+//			throw new RuntimeException(e.getMessage());
+//		}
+    	return "";
 	}
     
     /**
      * DES解密
      */
 	public static String doKeyDecrypt(String str,InputStream deskey){
-		try {
-			return DES.decrypt(str, deskey);
-		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
-		}
+//		try {
+//			return DES.decrypt(str, deskey);
+//		} catch (Exception e) {
+//			throw new RuntimeException(e.getMessage());
+//		}
+		return "";
 	}
 	
 	/**
