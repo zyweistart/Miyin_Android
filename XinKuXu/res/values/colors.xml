@@ -11,4 +11,7 @@
 	<color name="bg_header">#005dde</color>
    	<color name="bg_activity">#e2e3e7</color>
    	
+   	<color name="bg_grey_p_2">#b6b6b6</color>
+   	<color name="bg_grey_n_2">#3f3f3f</color>
+   	
 </resources>

@@ -7,20 +7,20 @@ import com.start.core.BaseActivity;
 import com.start.xinkuxue.R;
 
 /**
- * 设置
+ * 留言板
  * @author zhenyao
  *
  */
-public class SettingActivity extends BaseActivity{
+public class MessageActivity extends BaseActivity{
 
 	private TextView tvTitle;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_setting);
+		setContentView(R.layout.activity_message);
 		tvTitle=(TextView)findViewById(R.id.tvTitle);
-		tvTitle.setText("设置");
+		tvTitle.setText("留言板");
 	}
 	
 }

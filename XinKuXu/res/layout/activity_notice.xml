@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
+    <include layout="@layout/head_training" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/left_frame"
+            android:layout_width="200.0dip"
+            android:layout_height="match_parent"
+            android:background="@color/bg_grey_n_2"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvnotice1"
+                style="@style/item_selector"
+                android:text="@string/notice1"/>
+
+            <TextView
+                android:id="@+id/tvnotice2"
+                style="@style/item_selector"
+                android:text="@string/notice2"/>
+
+            <TextView
+                android:id="@+id/tvnotice3 "
+                style="@style/item_selector"
+                android:text="@string/notice3"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

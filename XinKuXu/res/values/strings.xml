@@ -53,6 +53,10 @@
     <string name="learnword">复习单词</string>
     <string name="waittry">过会再练</string>
     
+    <string name="notice1">特训营须知</string>
+    <string name="notice2">特训营新闻</string>
+    <string name="notice3">特训营通知</string>
+    
     <string name="levelname1">单词一级</string>
     <string name="levelname2">单词二级</string>
     <string name="levelname3">单词三级</string>

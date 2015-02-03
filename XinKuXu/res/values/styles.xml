@@ -145,6 +145,17 @@
         <item name="android:layout_gravity">right</item>
         <item name="android:background">@drawable/selector_button_4</item>
     </style>
+    <style name="item_selector">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">20.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">10.0dip</item>
+        <item name="android:background">@drawable/selector_button_color_grey_2</item>
+    </style>
     <style name="listview1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -155,6 +166,19 @@
         <item name="android:scrollingCache">false</item>
         <item name="android:divider">@null</item>
         <item name="android:dividerHeight">10.0dip</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+    </style>
+    <style name="listview2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:choiceMode">singleChoice</item>
+        <item name="android:dividerHeight">1.0dip</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:scrollingCache">false</item>
+        <item name="android:divider">#5b5b5b</item>
         <item name="android:cacheColorHint">@android:color/transparent</item>
         <item name="android:listSelector">@android:color/transparent</item>
     </style>
