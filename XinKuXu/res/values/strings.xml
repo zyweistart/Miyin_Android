@@ -57,6 +57,13 @@
     <string name="notice2">特训营新闻</string>
     <string name="notice3">特训营通知</string>
     
+    <string name="scoreboard1">TOP10与个人排名</string>
+    <string name="scoreboard2">团队积分榜</string>
+    
+    <string name="aboutus">关于我们</string>
+    <string name="personalinfo">个人信息</string>
+    <string name="othersetting">其它设置</string>
+    
     <string name="levelname1">单词一级</string>
     <string name="levelname2">单词二级</string>
     <string name="levelname3">单词三级</string>

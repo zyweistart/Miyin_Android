@@ -10,11 +10,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffff00"
         android:orientation="horizontal" >
-        
-        
-        
+
+        <LinearLayout
+            android:id="@+id/left_frame"
+            android:layout_width="200.0dip"
+            android:layout_height="match_parent"
+            android:background="@color/bg_grey_n_2"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvaboutus"
+                style="@style/item_selector"
+                android:text="@string/aboutus" />
+
+            <TextView
+                android:id="@+id/tvpersonalinfo"
+                style="@style/item_selector"
+                android:text="@string/personalinfo" />
+
+            <TextView
+                android:id="@+id/tvothersetting"
+                style="@style/item_selector"
+                android:text="@string/othersetting" />
+        </LinearLayout>
+
+        <start.widget.xlistview.XListView
+            android:id="@+id/xlv_listview_1"
+            style="@style/listview3" />
+
+        <start.widget.xlistview.XListView
+            android:id="@+id/xlv_listview_2"
+            style="@style/listview3"
+            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>

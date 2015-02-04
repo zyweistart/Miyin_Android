@@ -13,7 +13,6 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:id="@+id/left_frame"
             android:layout_width="200.0dip"
             android:layout_height="match_parent"
             android:background="@color/bg_grey_n_2"
@@ -22,18 +21,32 @@
             <TextView
                 android:id="@+id/tvnotice1"
                 style="@style/item_selector"
-                android:text="@string/notice1"/>
+                android:text="@string/notice1" />
 
             <TextView
                 android:id="@+id/tvnotice2"
                 style="@style/item_selector"
-                android:text="@string/notice2"/>
+                android:text="@string/notice2" />
 
             <TextView
                 android:id="@+id/tvnotice3 "
                 style="@style/item_selector"
-                android:text="@string/notice3"/>
+                android:text="@string/notice3" />
         </LinearLayout>
+
+        <start.widget.xlistview.XListView
+            android:id="@+id/xlv_listview_1"
+            style="@style/listview3" />
+
+        <start.widget.xlistview.XListView
+            android:id="@+id/xlv_listview_2"
+            style="@style/listview3"
+            android:visibility="gone" />
+
+        <start.widget.xlistview.XListView
+            android:id="@+id/xlv_listview_3"
+            style="@style/listview3"
+            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>
