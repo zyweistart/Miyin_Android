@@ -18,7 +18,6 @@ import com.start.xinkuxue.learn.LearnTypeSwitchActivity;
 import com.start.xinkuxue.strange.StrangeWordTypeSwitchActivity;
 import com.start.xinkuxue.training.MessageActivity;
 import com.start.xinkuxue.training.NoticeActivity;
-import com.start.xinkuxue.training.ProccessActivity;
 import com.start.xinkuxue.training.ScoreboardActivity;
 import com.start.xinkuxue.training.SettingActivity;
 import com.start.xinkuxue.training.TrainingAdapter;
@@ -55,7 +54,7 @@ public class MainActivity extends BaseActivity {
 		mItemDatas.add("公告栏");
 		mItemDatas.add("积分榜");
 		mItemDatas.add("留言板");
-		mItemDatas.add("流程");
+//		mItemDatas.add("流程");
 		mItemDatas.add("设置");
 		mLVTraining.setAdapter(new TrainingAdapter(MainActivity.this,mItemDatas));
 		mLVTraining.setOnItemClickListener(new OnItemClickListener() {
@@ -69,8 +68,8 @@ public class MainActivity extends BaseActivity {
 				}else if(position==3){
 					startActivity(new Intent(MainActivity.this,MessageActivity.class));
 				}else if(position==4){
-					startActivity(new Intent(MainActivity.this,ProccessActivity.class));
-				}else if(position==5){
+//					startActivity(new Intent(MainActivity.this,ProccessActivity.class));
+//				}else if(position==5){
 					startActivity(new Intent(MainActivity.this,SettingActivity.class));
 				}
 			}

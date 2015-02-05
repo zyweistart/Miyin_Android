@@ -32,6 +32,17 @@
         <item name="android:drawableRight">@drawable/ic_input_clear</item>
         <item name="android:background">@drawable/bg_frame_color_grey</item>
     </style>
+    <style name="edittext_input_1">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">#dbd8d8</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ems">10</item>
+        <item name="android:drawableRight">@drawable/ic_input_clear</item>
+        <item name="android:background">@drawable/bg_frame_color_grey</item>
+    </style>
     <style name="button_style_rectangle_1">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
@@ -155,6 +166,14 @@
         <item name="android:onClick">onClick</item>
         <item name="android:padding">10.0dip</item>
         <item name="android:background">@drawable/selector_button_color_grey_2</item>
+    </style>
+    <style name="textview1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">#696969</item>
+        <item name="android:padding">5.0dip</item>
     </style>
     <style name="listview1">
         <item name="android:layout_width">match_parent</item>

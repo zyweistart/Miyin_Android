@@ -13,7 +13,6 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:id="@+id/left_frame"
             android:layout_width="200.0dip"
             android:layout_height="match_parent"
             android:background="@color/bg_grey_n_2"
@@ -32,17 +31,209 @@
             <TextView
                 android:id="@+id/tvothersetting"
                 style="@style/item_selector"
-                android:text="@string/othersetting" />
+                android:text="@string/othersetting"
+                android:visibility="gone" />
         </LinearLayout>
 
-        <start.widget.xlistview.XListView
-            android:id="@+id/xlv_listview_1"
-            style="@style/listview3" />
+        <LinearLayout
+            android:id="@+id/personal_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone" >
 
-        <start.widget.xlistview.XListView
-            android:id="@+id/xlv_listview_2"
-            style="@style/listview3"
-            android:visibility="gone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/textview1"
+                    android:text="个人积分：" />
+
+                <TextView
+                    style="@style/textview1"
+                    android:text="50分"
+                    android:textColor="#ff0000" />
+
+                <View
+                    android:layout_width="30.0dip"
+                    android:layout_height="20.0dip" />
+
+                <TextView
+                    style="@style/textview1"
+                    android:text="个人排名：" />
+
+                <TextView
+                    style="@style/textview1"
+                    android:text="第50名"
+                    android:textColor="#ff0000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/textview1"
+                    android:text="个人所属团队积分：" />
+
+                <TextView
+                    style="@style/textview1"
+                    android:text="500分"
+                    android:textColor="#ff0000" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/textview1"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10.0dip"
+                android:layout_marginTop="10.0dip"
+                android:background="#c4c4c4"
+                android:text="个人基本信息" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/account"
+                        android:textColor="#504f4f"
+                        android:textSize="18.0dip" />
+
+                    <start.widget.CustomEditText
+                        android:id="@+id/et_title"
+                        style="@style/edittext_input_1"
+                        android:layout_width="200.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="10.0dip" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5.0dip" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/password"
+                        android:textColor="#504f4f"
+                        android:textSize="18.0dip" />
+
+                    <start.widget.CustomEditText
+                        android:id="@+id/et_password"
+                        style="@style/edittext_input_1"
+                        android:layout_width="200.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="10.0dip" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5.0dip" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/age"
+                        android:textColor="#504f4f"
+                        android:textSize="18.0dip" />
+
+                    <start.widget.CustomEditText
+                        android:id="@+id/et_age"
+                        style="@style/edittext_input_1"
+                        android:layout_width="200.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="10.0dip"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5.0dip" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/classes"
+                        android:textColor="@color/learn_words_switch_test_textcolor"
+                        android:textSize="18.0dip" />
+
+                    <start.widget.CustomEditText
+                        android:id="@+id/et_classes"
+                        style="@style/edittext_input_1"
+                        android:layout_width="200.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="10.0dip" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5.0dip" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/englishlevel"
+                        android:textColor="#504f4f"
+                        android:textSize="18.0dip" />
+
+                    <start.widget.CustomEditText
+                        android:id="@+id/et_englishlevel"
+                        style="@style/edittext_input_1"
+                        android:layout_width="200.0dip"
+                        android:layout_height="40.0dip"
+                        android:layout_marginLeft="10.0dip" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="15.0dip" />
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    style="@style/button_style_rectangle"
+                    android:layout_height="45.0dip"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/selector_button_color_red"
+                    android:text="@string/submit" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

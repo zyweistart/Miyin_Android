@@ -53,6 +53,15 @@
     <string name="learnword">复习单词</string>
     <string name="waittry">过会再练</string>
     
+    <string name="account">账号：</string>
+    <string name="password">密码：</string>
+    <string name="age">年龄：</string>
+    <string name="classes">班级：</string>
+    <string name="englishlevel">等级：</string>
+    
+    <string name="message_title">主题</string>
+    <string name="message_content">内容</string>
+    
     <string name="notice1">特训营须知</string>
     <string name="notice2">特训营新闻</string>
     <string name="notice3">特训营通知</string>

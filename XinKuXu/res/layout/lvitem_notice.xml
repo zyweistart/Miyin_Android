@@ -4,12 +4,14 @@
     android:layout_height="30.0dip"
     android:baselineAligned="false"
     android:padding="10.0dip"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@drawable/bm_notice_item">
     
     <TextView
         android:id="@+id/tvName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableRight="@drawable/arror_notice"
         android:layout_gravity="center_vertical"
         android:ellipsize="end"
         android:singleLine="true"
