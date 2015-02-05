@@ -43,6 +43,15 @@
         <item name="android:drawableRight">@drawable/ic_input_clear</item>
         <item name="android:background">@drawable/bg_frame_color_grey</item>
     </style>
+    <style name="edittext_input_2">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">#dbd8d8</item>
+        <item name="android:maxLength">150</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:drawableRight">@drawable/ic_input_clear</item>
+        <item name="android:background">@drawable/bg_frame_color_grey</item>
+    </style>
     <style name="button_style_rectangle_1">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
