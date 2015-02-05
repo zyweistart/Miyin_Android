@@ -240,7 +240,7 @@
                     android:layout_width="150.0dip"
                     android:layout_height="wrap_content"
                     android:layout_margin="5.0dip"
-                    android:background="@drawable/selector_button_color_lightgrey"
+                    android:background="@drawable/selector_button_color_grey"
                     android:contentDescription="@string/empty"
                     android:onClick="onClick"
                     android:padding="10.0dip"

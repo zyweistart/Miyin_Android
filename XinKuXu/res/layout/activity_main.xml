@@ -17,7 +17,6 @@
         <ListView
             android:id="@+id/listview_training"
             style="@style/listview2" />
-        
     </LinearLayout>
 
     <LinearLayout
@@ -52,13 +51,17 @@
                         android:contentDescription="@string/empty"
                         android:src="@drawable/ic_newwords" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20.0dip" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/learnwords"
                         android:textColor="@color/white"
-                        android:textSize="22.0dip" />
+                        android:textSize="25.0dip" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -87,13 +90,17 @@
                         android:contentDescription="@string/empty"
                         android:src="@drawable/ic_specialtraining" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20.0dip" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/testvocabulary"
                         android:textColor="@color/white"
-                        android:textSize="22.0dip" />
+                        android:textSize="25.0dip" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
@@ -128,13 +135,17 @@
                         android:contentDescription="@string/empty"
                         android:src="@drawable/ic_learnwords" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20.0dip" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/newwords"
                         android:textColor="@color/white"
-                        android:textSize="22.0dip" />
+                        android:textSize="25.0dip" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -163,13 +174,17 @@
                         android:contentDescription="@string/empty"
                         android:src="@drawable/ic_testvocabulary" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20.0dip" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/specialtraining"
                         android:textColor="@color/white"
-                        android:textSize="22.0dip" />
+                        android:textSize="25.0dip" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
