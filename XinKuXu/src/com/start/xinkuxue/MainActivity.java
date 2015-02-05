@@ -3,6 +3,9 @@ package com.start.xinkuxue;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -61,7 +64,25 @@ public class MainActivity extends BaseActivity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				if(position==1){
+				if(position==0){
+					new AlertDialog.Builder(MainActivity.this)
+					 .setMessage(R.string.exittip)
+					 .setPositiveButton(R.string.cancle, new OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					}).setNegativeButton(R.string.sure, new OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							getAppContext().currentUser().clearCacheUser();
+							startActivity(new Intent(MainActivity.this,LoginActivity.class));
+							finish();
+						}
+					}).show();
+				}else if(position==1){
 					startActivity(new Intent(MainActivity.this,NoticeActivity.class));
 				}else if(position==2){
 					startActivity(new Intent(MainActivity.this,ScoreboardActivity.class));

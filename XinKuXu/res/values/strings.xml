@@ -19,7 +19,7 @@
     <string name="listenlooklearnwords">边听边看学单词</string>
     <string name="words123">单词123</string>
     <string name="testeveryday">每日测试</string>
-    <string name="teststart">开始测试</string>
+    <string name="teststart">开始学习</string>
     <string name="china">中</string>
     <string name="cases">例</string>
     <string name="kuxuememorymethod">酷学记忆法</string>
@@ -52,6 +52,7 @@
     <string name="anothertest">再测一次</string>
     <string name="learnword">复习单词</string>
     <string name="waittry">过会再练</string>
+    <string name="exittip">确认要退出登录吗？</string>
     
     <string name="account">账号：</string>
     <string name="password">密码：</string>
@@ -60,7 +61,9 @@
     <string name="englishlevel">等级：</string>
     
     <string name="message_title">主题</string>
+    <string name="message_title_hint">请输入主题</string>
     <string name="message_content">内容</string>
+    <string name="message_content_hint">请输入内容</string>
     
     <string name="notice1">特训营须知</string>
     <string name="notice2">特训营新闻</string>

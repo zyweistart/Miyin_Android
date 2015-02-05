@@ -16,7 +16,7 @@ public class User {
 //	public static final String USER_ACCESSID_LOCAL = AppContext.getInstance().isTestEnvironmental() ? 
 //			"930bb8937c42109377e73bea7b92f88c":"3c075d12a568dbc5be68902f99c24393";
 	public static final String USER_ACCESSKEY_LOCAL =AppContext.getInstance().isTestEnvironmental() ? 
-			"930bb8937c42109377e73bea7b92f88c":"930bb8937c42109377e73bea7b92f88c";
+			"16c75872e1ab71ecae205753d4d38991":"930bb8937c42109377e73bea7b92f88c";
 	
 	private Boolean login;
 	private static User mUser;

@@ -53,6 +53,7 @@
             android:layout_width="400.0dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10.0dip"
+            android:gravity="left"
             android:inputType="textMultiLine"
             android:maxLines="8"
             android:minLines="8" />

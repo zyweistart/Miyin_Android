@@ -35,7 +35,7 @@ public class NoticeDetailActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notice_detail);
 		tvTitle=(TextView)findViewById(R.id.tvTitle);
-		tvTitle.setText("详情");
+		tvTitle.setText("公告");
 		
 		mWebView = (WebView) findViewById(R.id.wvcontent);
 		mWebView.getSettings().setJavaScriptEnabled(true);

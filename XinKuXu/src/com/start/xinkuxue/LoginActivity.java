@@ -13,11 +13,6 @@ import com.start.service.AppServer;
 
 public class LoginActivity extends BaseActivity{
 	
-	public static final int RESULT_LOGIN_SUCCESS=222;
-	
-	public static final int QQ_LOGIN=1;
-	public static final int WX_LOGIN=2;
-	
 	/**
 	 * 提示信息
 	 */

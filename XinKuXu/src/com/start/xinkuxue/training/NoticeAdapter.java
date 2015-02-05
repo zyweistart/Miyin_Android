@@ -34,7 +34,9 @@ public class NoticeAdapter extends AppListAdapter{
 			holder = (HolderView) convertView.getTag();
 		}
 		Map<String,Object> data=mItemDatas.get(position);
-		holder.tvName.setText(data+"");
+		holder.categoryId=String.valueOf(data.get("ClassId"));
+		holder.Id=String.valueOf(data.get("Id"));
+		holder.tvName.setText(String.valueOf(data.get("title")));
 		return convertView;
 	}
 	

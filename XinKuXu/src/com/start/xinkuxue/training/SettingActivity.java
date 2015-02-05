@@ -1,5 +1,6 @@
 package com.start.xinkuxue.training;
 
+import start.widget.CustomEditText;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -21,6 +22,7 @@ public class SettingActivity extends BaseActivity{
 	private TextView tvTitle,tvaboutus,tvpersonalinfo,tvothersetting;
 	private LinearLayout personal_frame;
 	private WebView mWebView;
+	private CustomEditText et_account,et_password,et_age,et_classes,et_englishlevel;
 	
 	
 	@Override
@@ -33,6 +35,12 @@ public class SettingActivity extends BaseActivity{
 		tvpersonalinfo=(TextView)findViewById(R.id.tvpersonalinfo);
 		tvothersetting=(TextView)findViewById(R.id.tvothersetting);
 		personal_frame=(LinearLayout)findViewById(R.id.personal_frame);
+		
+		et_account=(CustomEditText)findViewById(R.id.et_account);
+		et_password=(CustomEditText)findViewById(R.id.et_password);
+		et_age=(CustomEditText)findViewById(R.id.et_age);
+		et_classes=(CustomEditText)findViewById(R.id.et_classes);
+		et_englishlevel=(CustomEditText)findViewById(R.id.et_englishlevel);
 		
 		mWebView = (WebView) findViewById(R.id.wvcontent);
 		mWebView.getSettings().setJavaScriptEnabled(true);
@@ -62,6 +70,12 @@ public class SettingActivity extends BaseActivity{
 		}else if(v.getId()==R.id.tvothersetting){
 			type=2;
 			setEnabledByIndex();
+		}else if(v.getId()==R.id.btn_submit){
+			String account=String.valueOf(et_account.getText());
+			String password=String.valueOf(et_password.getText());
+			String age=String.valueOf(et_age.getText());
+			String classes=String.valueOf(et_classes.getText());
+			String englishlevel=String.valueOf(et_englishlevel.getText());
 		}
 	}
 	

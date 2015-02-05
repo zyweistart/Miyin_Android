@@ -6,6 +6,7 @@ import java.util.List;
 import start.widget.CustomEditText;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -59,8 +60,14 @@ public class WordListenLookSectionActivity extends BaseActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_test_start1){
-			Integer start=Integer.parseInt(String.valueOf(et_word_start_index.getText()));
-			Integer end=Integer.parseInt(String.valueOf(et_word_end_index.getText()));
+			String s=String.valueOf(et_word_start_index.getText());
+			String e=String.valueOf(et_word_end_index.getText());
+			if(TextUtils.isEmpty(s)||TextUtils.isEmpty(e)){
+				getHandlerContext().makeTextLong("区间不能为空");
+				return;
+			}
+			Integer start=Integer.parseInt(s);
+			Integer end=Integer.parseInt(e);
 			if(end<=start){
 				getHandlerContext().makeTextLong("结束区间必须大于开始区间");
 				return;
