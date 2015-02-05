@@ -31,7 +31,7 @@ public class BaseContext extends AppContext {
 
 	@Override
 	public String getServerURL() {
-		return isTestEnvironmental() ? "http://api.020leader.com":"http://api.020leader.com";
+		return isTestEnvironmental() ? "http://121.41.60.234:8088/":"http://121.41.60.234:8088/";
 	}
 
 	@Override

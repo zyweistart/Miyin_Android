@@ -147,9 +147,6 @@ public class NoticeActivity extends BaseActivity implements RefreshListServerLis
 		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,getRefreshListServer().getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Id", getCategoryId());
-		if(type==2&&getAppContext().currentUser().isLogin()){
-			params.put("access_token", User.ACCESSKEY);
-		}
 		params.put("index",String.valueOf(getRefreshListServer().getCurrentPage() + 1));
 //		params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
@@ -172,11 +169,11 @@ public class NoticeActivity extends BaseActivity implements RefreshListServerLis
 	
 	public String getCategoryId(){
 		if(type==0){
-			return "9";
+			return "3";
 		}else if(type==1){
-			return "9";
+			return "4";
 		}else{
-			return "9";
+			return "5";
 		}
 	}
 	
