@@ -205,45 +205,60 @@
                 android:textSize="16.0dip" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:orientation="horizontal" >
+            android:layout_alignParentBottom="true">
 
-            <Button
-                android:id="@+id/btn_addtonewword"
-                style="@style/button_style_rectangle"
-                android:layout_width="150.0dip"
-                android:layout_height="50.0dip"
-                android:textSize="20.0dip"
-                android:background="@drawable/selector_button_color_red"
-                android:text="@string/addtonewword" />
-
-            <ImageButton
-                android:id="@+id/btn_previous"
-                android:layout_width="150.0dip"
+            <TextView
+                android:id="@+id/txt_id"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5.0dip"
-                android:background="@drawable/selector_button_color_lightgrey"
-                android:contentDescription="@string/empty"
-                android:onClick="onClick"
-                android:padding="10.0dip"
-                android:src="@drawable/ic_arrow_left"
-                android:visibility="invisible" />
+                android:layout_marginLeft="20.0dip"
+                android:textColor="@color/black"
+                android:textSize="35.0dip"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true" />
 
-            <ImageButton
-                android:id="@+id/btn_next"
-                android:layout_width="150.0dip"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5.0dip"
-                android:background="@drawable/selector_button_color_red"
-                android:contentDescription="@string/empty"
-                android:onClick="onClick"
-                android:padding="10.0dip"
-                android:src="@drawable/ic_arrow_right" />
-        </LinearLayout>
+                android:orientation="horizontal"
+            	android:layout_alignParentRight="true"  >
+
+                <Button
+                    android:id="@+id/btn_addtonewword"
+                    style="@style/button_style_rectangle"
+                    android:layout_width="150.0dip"
+                    android:layout_height="50.0dip"
+                    android:background="@drawable/selector_button_color_red"
+                    android:text="@string/addtonewword"
+                    android:textSize="20.0dip" />
+
+                <ImageButton
+                    android:id="@+id/btn_previous"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5.0dip"
+                    android:background="@drawable/selector_button_color_lightgrey"
+                    android:contentDescription="@string/empty"
+                    android:onClick="onClick"
+                    android:padding="10.0dip"
+                    android:src="@drawable/ic_arrow_left"
+                    android:visibility="invisible" />
+
+                <ImageButton
+                    android:id="@+id/btn_next"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5.0dip"
+                    android:background="@drawable/selector_button_color_red"
+                    android:contentDescription="@string/empty"
+                    android:onClick="onClick"
+                    android:padding="10.0dip"
+                    android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
     <LinearLayout

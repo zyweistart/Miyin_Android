@@ -38,7 +38,7 @@ public class ListenLookWordActivity extends BaseActivity{
 	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
 	private Button btn_addtonewword;
 	private ImageButton btn_previous;
-	private TextView txt_learn_count;
+	private TextView txt_learn_count,txt_id;
 	private WordService mWordService;
 	private WordItem mWordItem;
 	
@@ -65,6 +65,7 @@ public class ListenLookWordActivity extends BaseActivity{
 		btn_addtonewword=(Button)findViewById(R.id.btn_addtonewword);
 		btn_previous=(ImageButton)findViewById(R.id.btn_previous);
 		txt_learn_count=(TextView)findViewById(R.id.txt_learn_count);
+		txt_id=(TextView)findViewById(R.id.txt_id);
 		frame_learn=(RelativeLayout)findViewById(R.id.frame_learn);
 		frame_done=(LinearLayout)findViewById(R.id.frame_done);
 		frame_learn.setVisibility(View.VISIBLE);
@@ -172,6 +173,15 @@ public class ListenLookWordActivity extends BaseActivity{
 		}else{
 			iv_memory_method.setVisibility(View.GONE);
 		}
+		String id=mWordItem.getId();
+		if(id.length()==1){
+			id="000"+id;
+		}else if(id.length()==2){
+			id="00"+id;
+		}else if(id.length()==3){
+			id="0"+id;
+		}
+		txt_id.setText(id);
 		txt_englishName.setText(mWordItem.getEnglishName());
 		txt_phoneticSymbols.setText(mWordItem.getPhoneticSymbols());
 		txt_chineseSignificance.setText(mWordItem.getChineseSignificance());

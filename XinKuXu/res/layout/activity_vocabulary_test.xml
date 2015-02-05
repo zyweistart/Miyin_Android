@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="30.0dip"
             android:textColor="@color/black"
             android:textSize="35.0dip"
             android:textStyle="bold"
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="30.0dip"
             android:textColor="@color/black"
             android:textSize="30.0dip" />
     </RelativeLayout>

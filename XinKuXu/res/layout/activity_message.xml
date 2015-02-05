@@ -7,68 +7,80 @@
 
     <include layout="@layout/head_training" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20.0dip"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="100.0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:gravity="right|center_vertical"
-            android:text="@string/message_title"
-            android:textColor="@color/learn_words_switch_test_textcolor"
-            android:textSize="18.0dip" />
-
-        <start.widget.CustomEditText
-            android:id="@+id/et_title"
-            style="@style/edittext_input_1"
-            android:layout_width="400.0dip"
-            android:layout_height="40.0dip"
-            android:layout_marginLeft="10.0dip" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20.0dip"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="100.0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:gravity="right|center_vertical"
-            android:text="@string/message_content"
-            android:textColor="@color/learn_words_switch_test_textcolor"
-            android:textSize="18.0dip" />
-
-        <start.widget.CustomEditText
-            android:id="@+id/et_content"
-            style="@style/edittext_input_2"
-            android:layout_width="400.0dip"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10.0dip"
-            android:gravity="left"
-            android:inputType="textMultiLine"
-            android:maxLines="8"
-            android:minLines="8" />
-    </LinearLayout>
-
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40.0dip" />
+        android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/btn_submit"
-        style="@style/button_style_rectangle"
-        android:layout_height="45.0dip"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/selector_button_color_red"
-        android:text="@string/submit" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20.0dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="100.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:gravity="right|center_vertical"
+                    android:text="@string/message_title"
+                    android:textColor="@color/learn_words_switch_test_textcolor"
+                    android:textSize="18.0dip" />
+
+                <start.widget.CustomEditText
+                    android:id="@+id/et_title"
+                    style="@style/edittext_input_1"
+                    android:layout_width="400.0dip"
+                    android:layout_height="40.0dip"
+                    android:layout_marginLeft="10.0dip" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20.0dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="100.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:gravity="right|center_vertical"
+                    android:text="@string/message_content"
+                    android:textColor="@color/learn_words_switch_test_textcolor"
+                    android:textSize="18.0dip" />
+
+                <start.widget.CustomEditText
+                    android:id="@+id/et_content"
+                    style="@style/edittext_input_2"
+                    android:layout_width="400.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:gravity="left"
+                    android:inputType="textMultiLine"
+                    android:maxLines="8"
+                    android:minLines="8" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40.0dip" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/button_style_rectangle"
+                android:layout_height="45.0dip"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/selector_button_color_red"
+                android:text="@string/submit" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
