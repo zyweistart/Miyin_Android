@@ -51,7 +51,7 @@ public class ScoreboardAdapter extends AppListAdapter{
 		holder.tvId.setTextColor(textcolor);
 		holder.tvName.setTextColor(textcolor);
 		holder.tvScore.setTextColor(textcolor);
-		Map<String,Object> data=mItemDatas.get(position);
+//		Map<String,Object> data=mItemDatas.get(position);
 		holder.tvId.setText("1");
 		holder.tvName.setText("jdk晨");
 		holder.tvScore.setText("20000");

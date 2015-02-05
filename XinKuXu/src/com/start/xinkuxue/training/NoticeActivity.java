@@ -20,7 +20,6 @@ import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
 import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
-import com.start.service.User;
 import com.start.xinkuxue.R;
 import com.start.xinkuxue.training.NoticeAdapter.HolderView;
 
