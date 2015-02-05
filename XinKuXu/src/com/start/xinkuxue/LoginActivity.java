@@ -80,7 +80,7 @@ public class LoginActivity extends BaseActivity{
 			}
 			login(account,AppServer.MD5(password),true);
 		}else if(v.getId()==R.id.btn_register){
-			getHandlerContext().makeTextLong("暂无注册功能");
+			getHandlerContext().makeTextLong("暂无注册功能，账号由后台统一开通");
 		}else{
 			super.onClick(v);
 		}

@@ -39,6 +39,7 @@ public class NoticeAdapter extends AppListAdapter{
 	}
 	
 	public class HolderView{
+		public String categoryId,Id;
 		private TextView tvName;
 	}
 

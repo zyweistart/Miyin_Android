@@ -5,5 +5,6 @@
     </issue>
     <issue id="NewApi" severity="ignore" />
     <issue id="ResourceAsColor" severity="ignore" />
+    <issue id="SetJavaScriptEnabled" severity="ignore" />
     <issue id="SimpleDateFormat" severity="ignore" />
 </lint>

@@ -27,6 +27,7 @@ import com.start.xinkuxue.R;
 public class ScoreboardActivity extends BaseActivity implements RefreshListServerListener{
 
 	private int type;
+	private boolean load2;
 	private TextView tvTitle,tvscoreboard1,tvscoreboard2,tv1,tv2,tv3;
 	private XListView xlv_listview_1,xlv_listview_2;
 	private RefreshListServer mRefreshListServer1,mRefreshListServer2;
@@ -69,6 +70,10 @@ public class ScoreboardActivity extends BaseActivity implements RefreshListServe
 		}else if(v.getId()==R.id.tvscoreboard2){
 			type=1;
 			setEnabledByIndex();
+			if(!load2){
+				mRefreshListServer2.initLoad();
+				load2=true;
+			}
 		}
 	}
 	

@@ -35,6 +35,11 @@
                 android:visibility="gone" />
         </LinearLayout>
 
+        <WebView
+            android:id="@+id/wvcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <LinearLayout
             android:id="@+id/personal_frame"
             android:layout_width="match_parent"
