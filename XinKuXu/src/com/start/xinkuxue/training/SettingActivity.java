@@ -110,7 +110,7 @@ public class SettingActivity extends BaseActivity{
 								et_englishlevel.setText(getAppContext().currentUser().getInfo().get("EnglishLevel"));
 								txt_personal_integral.setText(getAppContext().currentUser().getInfo().get("integral")+"分");
 								txt_personal_ranking.setText("");
-								txt_team_ranking.setText(getAppContext().currentUser().getInfo().get("integral")+"分");
+								txt_team_ranking.setText(getAppContext().currentUser().getInfo().get("teamPoints")+"分");
 								type=1;
 								setEnabledByIndex();
 							}
@@ -145,6 +145,7 @@ public class SettingActivity extends BaseActivity{
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("access_token", User.ACCESSKEY);
 			params.put("pwd", password);
+			params.put("pwd2", password);
 			params.put("age", age);
 			params.put("Bclass", classes);
 			params.put("EnglishLevel", englishlevel);
