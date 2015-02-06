@@ -82,8 +82,8 @@ public class ScoreboardActivity extends BaseActivity implements RefreshListServe
 		tvscoreboard2.setEnabled(type==1?false:true);
 		xlv_listview_2.setVisibility(type==1?View.VISIBLE:View.GONE);
 		if(type==0){
-			tv1.setText("姓名");
-			tv2.setText("原由");
+			tv1.setText("名次");
+			tv2.setText("姓名");
 			tv3.setText("积分");
 		}else{
 			tv1.setText("名次");
