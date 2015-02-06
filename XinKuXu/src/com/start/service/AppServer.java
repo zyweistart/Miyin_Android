@@ -1,10 +1,17 @@
 package com.start.service;
 
+import java.io.File;
 import java.util.regex.Pattern;
 
+import jxl.Sheet;
+import jxl.Workbook;
 import start.utils.MD5;
+import android.content.Context;
+import android.util.Log;
 
 import com.start.core.BaseActivity;
+import com.start.service.bean.WordItem;
+import com.start.xinkuxue.BaseContext;
 
 public class AppServer {
 
@@ -57,4 +64,36 @@ public class AppServer {
 		return textStr.trim();
 	}
 
+	public static void importExcelWord(Context context) {
+		try {
+			WordService mWordService=new WordService(context);
+			String path=BaseContext.getInstance().getStorageDirectory("data")+"20141213.xls";
+			Workbook book = Workbook.getWorkbook(new File(path));
+			// 获得第一个工作表对象
+			Sheet sheet = book.getSheet(0);
+			int Rows = sheet.getRows();
+			for (int i = 1; i < Rows; ++i) {
+				WordItem w=new WordItem();
+				w.setId((sheet.getCell(0, i)).getContents());
+				w.setEnglishName((sheet.getCell(1, i)).getContents());
+				w.setPhoneticSymbols((sheet.getCell(2, i)).getContents());
+				w.setChineseSignificance((sheet.getCell(3, i)).getContents());
+				w.setExampleEnglish((sheet.getCell(4, i)).getContents());
+				w.setExampleChinese((sheet.getCell(5, i)).getContents());
+				w.setFillProblem((sheet.getCell(6, i)).getContents().replaceAll("        ", "_________"));
+				w.setFillAnswer((sheet.getCell(7, i)).getContents());
+				w.setMemoryMethodA((sheet.getCell(8, i)).getContents());
+				w.setMemoryMethodB((sheet.getCell(9, i)).getContents());
+//				Log.v(TAG,w.getFillProblem());
+				mWordService.saveToWordItem(w);
+				Log.v("AppServer","第"+w.getId()+"条数据插入成功");
+			}
+			Log.v("AppServer","导出成功");
+			book.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+	
 }

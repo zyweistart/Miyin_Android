@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -60,6 +61,21 @@ public class WordService {
         Cursor cursor = mSQLiteDatabase.rawQuery(str,null);
         cursor.moveToFirst();
         return cursor.getInt(0);
+	}
+	
+	public void saveToWordItem(WordItem wi){
+		ContentValues values = new ContentValues();
+		values.put("id", wi.getId());
+		values.put("englishName", wi.getEnglishName());
+		values.put("phoneticSymbols", wi.getPhoneticSymbols());
+		values.put("chineseSignificance", wi.getChineseSignificance());
+		values.put("exampleEnglish", wi.getExampleEnglish());
+		values.put("exampleChinese", wi.getExampleChinese());
+		values.put("fillProblem", wi.getFillProblem());
+		values.put("fillAnswer", wi.getFillAnswer());
+		values.put("memoryMethodA", wi.getMemoryMethodA());
+		values.put("memoryMethodB", wi.getMemoryMethodB());
+		mSQLiteDatabase.insert(WordItem.TABLENAME, null, values);
 	}
 	
 	public WordItem findById(int id) {
