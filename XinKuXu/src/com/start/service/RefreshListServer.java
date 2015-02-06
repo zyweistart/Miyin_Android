@@ -13,7 +13,7 @@ import start.core.HandlerContext.HandleContextListener;
 import start.utils.TimeUtils;
 import start.widget.xlistview.XListView;
 import start.widget.xlistview.XListView.IXListViewListener;
-import android.content.Context;
+import android.app.Activity;
 import android.os.Message;
 import android.text.TextUtils;
 
@@ -22,7 +22,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	private Boolean isDataLoadDone,isHideLoadMore;
 	private int mCurrentPage;
 	private String cacheTag;
-	private Context mContext;
+	private Activity mContext;
 	private XListView mCurrentListView;
 	private HandlerContext mExternalHandlerContext;
 	private HandlerContext mHandlerContext;
@@ -30,7 +30,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	private AppListAdapter mBaseListAdapter;
 	private List<Map<String,Object>> mItemDatas = new ArrayList<Map<String,Object>>();
 	
-	public RefreshListServer(Context activity,HandlerContext handlerContext,XListView listView,AppListAdapter listAdapter){
+	public RefreshListServer(Activity activity,HandlerContext handlerContext,XListView listView,AppListAdapter listAdapter){
 		this.mContext=activity;
 		this.mExternalHandlerContext=handlerContext;
 		this.mCurrentListView=listView;
@@ -47,29 +47,37 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 	 * 初始化加载
 	 */
 	public void initLoad(){
-//		getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				try{
-					if(!TextUtils.isEmpty(getCacheTag())){
-						String responseString=AppContext.getSharedPreferences().getString(getCacheTag(),AppConstant.EMPTYSTR);
-						if(!AppConstant.EMPTYSTR.equals(responseString)){
-							Response response=new Response(null);
-							response.setResponseString(responseString);
-							response.resolveJson();
-							resolve(response);
-						}
-					}else{
-						getItemDatas().clear();
-					}
-					getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
-				}catch(AppException e){
-					
-				}
-			}
-		}).start();
+		getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+//		if(!TextUtils.isEmpty(getCacheTag())){
+//			new Thread(new Runnable() {
+//				
+//				@Override
+//				public void run() {
+//					try{
+//						String responseString=AppContext.getSharedPreferences().getString(getCacheTag(),AppConstant.EMPTYSTR);
+//						if(!AppConstant.EMPTYSTR.equals(responseString)){
+//							Response response=new Response(null);
+//							response.setResponseString(responseString);
+//							response.resolveJson();
+//							resolve(response);
+//						}
+//						mContext.runOnUiThread(new Runnable() {
+//							
+//							@Override
+//							public void run() {
+//								getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+//							}
+//						});
+//					}catch(AppException e){
+//						
+//					}
+//				}
+//			}).start();
+//		}else{
+//			getItemDatas().clear();
+//			getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_INIT_DATA);
+//		}
+		
 	}
 	
 	@Override
@@ -117,7 +125,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 						this.mCurrentListView.setPullLoadEnable(true);
 					}
 					this.mBaseListAdapter.setItemDatas(new ArrayList<Map<String,Object>>(getItemDatas()	));
-					this.mBaseListAdapter.notifyDataSetChanged();
+//					this.mBaseListAdapter.notifyDataSetChanged();
 				}
 				getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_END);
 				break;
@@ -133,7 +141,7 @@ public class RefreshListServer implements IXListViewListener,HandleContextListen
 					}
 					getItemDatas().clear();
 					this.mBaseListAdapter.setItemDatas(new ArrayList<Map<String,Object>>(getItemDatas()	));
-					this.mBaseListAdapter.notifyDataSetChanged();
+//					this.mBaseListAdapter.notifyDataSetChanged();
 				}
 			default:
 				getHandlerContext().getHandler().sendEmptyMessage(Handler.LOAD_END);

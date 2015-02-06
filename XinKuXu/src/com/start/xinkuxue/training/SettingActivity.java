@@ -33,10 +33,11 @@ import com.start.xinkuxue.R;
 public class SettingActivity extends BaseActivity{
 
 	private int type;
-	private TextView tvTitle,tvaboutus,tvpersonalinfo,tvothersetting;
+	private TextView tvTitle,tvaboutus,tvpersonalinfo,tvothersetting,txt_account;
+	private TextView txt_personal_integral,txt_personal_ranking,txt_team_ranking;
 	private LinearLayout personal_frame;
 	private WebView mWebView;
-	private CustomEditText et_account,et_password,et_age,et_classes,et_englishlevel;
+	private CustomEditText et_password,et_age,et_classes,et_englishlevel;
 	
 	
 	@Override
@@ -49,8 +50,10 @@ public class SettingActivity extends BaseActivity{
 		tvpersonalinfo=(TextView)findViewById(R.id.tvpersonalinfo);
 		tvothersetting=(TextView)findViewById(R.id.tvothersetting);
 		personal_frame=(LinearLayout)findViewById(R.id.personal_frame);
-		
-		et_account=(CustomEditText)findViewById(R.id.et_account);
+		txt_account=(TextView)findViewById(R.id.txt_account);
+		txt_personal_integral=(TextView)findViewById(R.id.txt_personal_integral);
+		txt_personal_ranking=(TextView)findViewById(R.id.txt_personal_ranking);
+		txt_team_ranking=(TextView)findViewById(R.id.txt_team_ranking);
 		et_password=(CustomEditText)findViewById(R.id.et_password);
 		et_age=(CustomEditText)findViewById(R.id.et_age);
 		et_classes=(CustomEditText)findViewById(R.id.et_classes);
@@ -71,11 +74,13 @@ public class SettingActivity extends BaseActivity{
 		setEnabledByIndex();
 		mWebView.loadUrl("http://www.baidu.com");
 		
-		et_account.setText(getAppContext().currentUser().getCacheAccount());
+		txt_account.setText(getAppContext().currentUser().getCacheAccount());
 		et_age.setText(getAppContext().currentUser().getInfo().get("age"));
 		et_classes.setText(getAppContext().currentUser().getInfo().get("Bclass"));
 		et_englishlevel.setText(getAppContext().currentUser().getInfo().get("EnglishLevel"));
-		
+		txt_personal_integral.setText("3分");
+		txt_personal_ranking.setText("第29名");
+		txt_team_ranking.setText("333分");
 	}
 	
 	@Override
@@ -108,7 +113,7 @@ public class SettingActivity extends BaseActivity{
 							
 							@Override
 							public void run() {
-								et_account.setText(getAppContext().currentUser().getCacheAccount());
+								txt_account.setText(getAppContext().currentUser().getCacheAccount());
 								et_age.setText(getAppContext().currentUser().getInfo().get("age"));
 								et_classes.setText(getAppContext().currentUser().getInfo().get("Bclass"));
 								et_englishlevel.setText(getAppContext().currentUser().getInfo().get("EnglishLevel"));
@@ -134,7 +139,7 @@ public class SettingActivity extends BaseActivity{
 			HttpServer hServer = new HttpServer(Constant.URL.UpdateUser,getHandlerContext());
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("access_token", User.ACCESSKEY);
-			params.put("password", password);
+			params.put("pwd", password);
 			params.put("age", age);
 			params.put("Bclass", classes);
 			params.put("EnglishLevel", englishlevel);

@@ -57,8 +57,8 @@
                     android:text="个人积分：" />
 
                 <TextView
+                    android:id="@+id/txt_personal_integral"
                     style="@style/textview1"
-                    android:text="50分"
                     android:textColor="#ff0000" />
 
                 <View
@@ -70,8 +70,8 @@
                     android:text="个人排名：" />
 
                 <TextView
+                    android:id="@+id/txt_personal_ranking"
                     style="@style/textview1"
-                    android:text="第50名"
                     android:textColor="#ff0000" />
             </LinearLayout>
 
@@ -85,8 +85,8 @@
                     android:text="个人所属团队积分：" />
 
                 <TextView
+                    android:id="@+id/txt_team_ranking"
                     style="@style/textview1"
-                    android:text="500分"
                     android:textColor="#ff0000" />
             </LinearLayout>
 
@@ -117,13 +117,13 @@
                         android:textColor="#504f4f"
                         android:textSize="18.0dip" />
 
-                    <start.widget.CustomEditText
-                        android:id="@+id/et_account"
-                        style="@style/edittext_input_1"
-                        android:enabled="false"
-                        android:layout_width="200.0dip"
-                        android:layout_height="40.0dip"
-                        android:layout_marginLeft="10.0dip" />
+                    <TextView
+                        android:id="@+id/txt_account"
+                        android:layout_width="100.0dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="#504f4f"
+                        android:textSize="18.0dip" />
                 </LinearLayout>
 
                 <View
