@@ -65,7 +65,8 @@
                 android:id="@+id/btn_learnword"
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_red"
-                android:text="@string/learnword" />
+                android:text="@string/learnword"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_waittry"

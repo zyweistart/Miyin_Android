@@ -2,6 +2,7 @@ package com.start.xinkuxue.vocabulary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,8 +64,16 @@ public class VocabularyLevelSwitchActivity extends BaseActivity{
 	
 	public void toTest(int start,int end){
 		List<String> ids=new ArrayList<String>();
-		for(int i=start;i<=end;i++){
-			ids.add(String.valueOf(i));
+//		for(int i=start;i<=end;i++){
+//			ids.add(String.valueOf(i));
+//		}
+		Random rnRandom=new Random();
+		//几选一
+		Integer se=5;
+		//答案总数
+		int mAnswerCount=(end-start+1)/se;
+		for(int i=0;i<mAnswerCount;i++){
+			ids.add(String.valueOf(start+i*se+rnRandom.nextInt(se)));
 		}
 		Bundle bundle=new Bundle();
 		bundle.putStringArray(ListenLookWordActivity.BUNDLE_ANSWER_ARRAY, ids.toArray(new String[ids.size()]));
