@@ -66,8 +66,6 @@ public class LoginActivity extends BaseActivity{
 				return;
 			}
 		}
-		et_login_account.setText("aa");
-		et_login_password.setText("1");
 		
 	}
 	

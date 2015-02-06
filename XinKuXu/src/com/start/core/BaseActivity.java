@@ -66,9 +66,7 @@ public class BaseActivity extends AppActivity {
 		Intent intent=new Intent(this,LoginActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
-		if(startIntent==null){
-			finish();
-		}
+		finish();
 	}
 	
 	public void goLoginResult(int requestCode,String message){
