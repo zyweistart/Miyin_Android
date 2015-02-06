@@ -16,7 +16,6 @@ import com.start.service.HttpServer;
 import com.start.service.RefreshListServer;
 import com.start.service.RefreshListServer.RefreshListServerListener;
 import com.start.service.Response;
-import com.start.service.User;
 import com.start.xinkuxue.R;
 
 /**
@@ -99,9 +98,6 @@ public class ScoreboardActivity extends BaseActivity implements RefreshListServe
 		HttpServer hServer = new HttpServer(Constant.URL.GetListALL,getRefreshListServer().getHandlerContext());
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Id", getCategoryId());
-		if(type==2&&getAppContext().currentUser().isLogin()){
-			params.put("access_token", User.ACCESSKEY);
-		}
 		params.put("index",String.valueOf(getRefreshListServer().getCurrentPage() + 1));
 //		params.put("size", String.valueOf(AppConstant.PAGESIZE));
 		hServer.setParams(params);
@@ -124,9 +120,9 @@ public class ScoreboardActivity extends BaseActivity implements RefreshListServe
 	
 	public String getCategoryId(){
 		if(type==0){
-			return "9";
+			return "1";
 		}else{
-			return "9";
+			return "2";
 		}
 	}
 	

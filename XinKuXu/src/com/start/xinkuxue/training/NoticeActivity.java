@@ -28,7 +28,7 @@ import com.start.xinkuxue.training.NoticeAdapter.HolderView;
  * @author zhenyao
  *
  */
-public class NoticeActivity extends BaseActivity implements RefreshListServerListener {
+public class NoticeActivity extends BaseActivity implements OnItemClickListener,RefreshListServerListener {
 
 	private int type = 1;
 	
@@ -49,43 +49,11 @@ public class NoticeActivity extends BaseActivity implements RefreshListServerLis
 		tvNotice3=(TextView)findViewById(R.id.tvnotice3);
 		
 		xlv_listview_1=(XListView)findViewById(R.id.xlv_listview_1);
-		xlv_listview_1.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				HolderView hv = (HolderView) view.getTag();
-				NoticeActivity.gotoNotice(NoticeActivity.this,hv.categoryId, hv.Id);
-			}
-
-		});
+		xlv_listview_1.setOnItemClickListener(this);
 		xlv_listview_2=(XListView)findViewById(R.id.xlv_listview_2);
-		xlv_listview_2.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				if (id > 0) {
-					HolderView hv = (HolderView) view.getTag();
-					NoticeActivity.gotoNotice(NoticeActivity.this,hv.categoryId, hv.Id);
-				} else {
-					mRefreshListServer2.getCurrentListView().startLoadMore();
-				}
-			}
-
-		});
+		xlv_listview_2.setOnItemClickListener(this);
 		xlv_listview_3=(XListView)findViewById(R.id.xlv_listview_3);
-		xlv_listview_3.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				if (id > 0) {
-					HolderView hv = (HolderView) view.getTag();
-					NoticeActivity.gotoNotice(NoticeActivity.this,hv.categoryId, hv.Id);
-				} else {
-					mRefreshListServer3.getCurrentListView().startLoadMore();
-				}
-			}
-
-		});
+		xlv_listview_3.setOnItemClickListener(this);
 		
 		mRefreshListServer1 = new RefreshListServer(NoticeActivity.this, getHandlerContext(),
 				xlv_listview_1, new NoticeAdapter(NoticeActivity.this));
@@ -186,13 +154,19 @@ public class NoticeActivity extends BaseActivity implements RefreshListServerLis
 		}
 	}
 	
-	public static void gotoNotice(Activity activity,String categoryId,String newsId){
+	public static void gotoNotice(Activity activity,String newsId,String categoryId){
 		Bundle bundle=new Bundle();
-		bundle.putString(NoticeDetailActivity.CATEGORYID, categoryId);
 		bundle.putString(NoticeDetailActivity.NEWSID, newsId);
+		bundle.putString(NoticeDetailActivity.CATEGORYID, categoryId);
 		Intent intent=new Intent(activity,NoticeDetailActivity.class);
 		intent.putExtras(bundle);
 		activity.startActivity(intent);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+		HolderView hv = (HolderView) view.getTag();
+		NoticeActivity.gotoNotice(NoticeActivity.this,hv.categoryId, hv.Id);
 	}
 	
 }
