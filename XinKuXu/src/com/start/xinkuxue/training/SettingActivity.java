@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import start.core.AppException;
 import start.widget.CustomEditText;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -95,7 +96,7 @@ public class SettingActivity extends BaseActivity{
 				public void run(Response response) throws AppException {
 					try{
 						Map<String, String> datas = new HashMap<String, String>();
-						JSONObject current=(JSONObject)response.getData("userInfo");
+						JSONObject current=(JSONObject)response.getJsonObject();
 						JSONArray names = current.names();
 						for (int j = 0; j < names.length(); j++) {
 							String name = names.getString(j);
@@ -126,6 +127,10 @@ public class SettingActivity extends BaseActivity{
 			String age=String.valueOf(et_age.getText());
 			String classes=String.valueOf(et_classes.getText());
 			String englishlevel=String.valueOf(et_englishlevel.getText());
+			if(TextUtils.isEmpty(password)){
+				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
+				return;
+			}
 			HttpServer hServer = new HttpServer(Constant.URL.UpdateUser,getHandlerContext());
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("access_token", User.ACCESSKEY);

@@ -134,4 +134,9 @@ public class Response {
 		}
 		return mListMapData;
 	}
+
+	public JSONObject getJsonObject() {
+		return mJsonObject;
+	}
+	
 }

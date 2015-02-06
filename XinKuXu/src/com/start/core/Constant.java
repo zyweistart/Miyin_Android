@@ -19,6 +19,7 @@ public final class Constant {
 		public static final String VersionCheck="VersionCheck";
 		public static final String UpdateUser="UpdateUser";
 		public static final String RefreshUser="RefreshUser";
+		public static final String SaveForm="SaveForm";
 	}
 	
 	public final class Handler {
