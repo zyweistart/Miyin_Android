@@ -5,7 +5,7 @@
     android:background="@color/bg_activity"
     android:orientation="vertical" >
 
-    <include layout="@layout/head_training" />
+    <include layout="@layout/head_training"  android:visibility="gone"/>
 
     <WebView
         android:id="@+id/wvcontent"

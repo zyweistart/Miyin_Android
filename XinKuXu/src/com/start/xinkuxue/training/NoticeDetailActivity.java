@@ -64,7 +64,7 @@ public class NoticeDetailActivity extends BaseActivity {
 				public void run(Response response) throws AppException {
 					runOnUiThread(new Runnable() {
 						public void run() {
-							String url=getAppContext().getServerURL()+"/"+categoryid+"/"+id+"/ios_news_ct.html";
+							String url=getAppContext().getServerURL()+"/"+categoryid+"/"+id+"/newsCont.html";
 							mWebView.loadUrl(url);
 						}
 					});

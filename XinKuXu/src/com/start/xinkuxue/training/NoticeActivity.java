@@ -166,7 +166,7 @@ public class NoticeActivity extends BaseActivity implements OnItemClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 		HolderView hv = (HolderView) view.getTag();
-		NoticeActivity.gotoNotice(NoticeActivity.this,hv.categoryId, hv.Id);
+		NoticeActivity.gotoNotice(NoticeActivity.this,hv.Id, hv.categoryId);
 	}
 	
 }

@@ -72,7 +72,9 @@ public class SettingActivity extends BaseActivity{
 		
 		type=0;
 		setEnabledByIndex();
-		mWebView.loadUrl("http://www.baidu.com");
+		
+		String url=getAppContext().getServerURL()+"/doc.html";
+		mWebView.loadUrl(url);
 		
 		txt_account.setText(getAppContext().currentUser().getCacheAccount());
 		et_age.setText(getAppContext().currentUser().getInfo().get("age"));
