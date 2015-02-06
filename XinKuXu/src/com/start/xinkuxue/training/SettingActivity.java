@@ -37,8 +37,7 @@ public class SettingActivity extends BaseActivity{
 	private TextView txt_personal_integral,txt_personal_ranking,txt_team_ranking;
 	private LinearLayout personal_frame;
 	private WebView mWebView;
-	private CustomEditText et_password,et_age,et_classes,et_englishlevel;
-	
+	private CustomEditText et_password,et_repassword,et_age,et_classes,et_englishlevel;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +54,7 @@ public class SettingActivity extends BaseActivity{
 		txt_personal_ranking=(TextView)findViewById(R.id.txt_personal_ranking);
 		txt_team_ranking=(TextView)findViewById(R.id.txt_team_ranking);
 		et_password=(CustomEditText)findViewById(R.id.et_password);
+		et_repassword=(CustomEditText)findViewById(R.id.et_repassword);
 		et_age=(CustomEditText)findViewById(R.id.et_age);
 		et_classes=(CustomEditText)findViewById(R.id.et_classes);
 		et_englishlevel=(CustomEditText)findViewById(R.id.et_englishlevel);
@@ -73,16 +73,7 @@ public class SettingActivity extends BaseActivity{
 		type=0;
 		setEnabledByIndex();
 		
-		String url=getAppContext().getServerURL()+"/doc.html";
-		mWebView.loadUrl(url);
-		
-		txt_account.setText(getAppContext().currentUser().getCacheAccount());
-		et_age.setText(getAppContext().currentUser().getInfo().get("age"));
-		et_classes.setText(getAppContext().currentUser().getInfo().get("Bclass"));
-		et_englishlevel.setText(getAppContext().currentUser().getInfo().get("EnglishLevel"));
-		txt_personal_integral.setText("3分");
-		txt_personal_ranking.setText("第29名");
-		txt_team_ranking.setText("333分");
+		mWebView.loadUrl(getAppContext().getServerURL()+"/doc.html");
 	}
 	
 	@Override
@@ -91,8 +82,6 @@ public class SettingActivity extends BaseActivity{
 			type=0;
 			setEnabledByIndex();
 		}else if(v.getId()==R.id.tvpersonalinfo){
-			type=1;
-			setEnabledByIndex();
 			HttpServer hServer = new HttpServer(Constant.URL.RefreshUser,getHandlerContext());
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("access_token", User.ACCESSKEY);
@@ -119,6 +108,11 @@ public class SettingActivity extends BaseActivity{
 								et_age.setText(getAppContext().currentUser().getInfo().get("age"));
 								et_classes.setText(getAppContext().currentUser().getInfo().get("Bclass"));
 								et_englishlevel.setText(getAppContext().currentUser().getInfo().get("EnglishLevel"));
+								txt_personal_integral.setText("3分");
+								txt_personal_ranking.setText("第29名");
+								txt_team_ranking.setText("333分");
+								type=1;
+								setEnabledByIndex();
 							}
 						});
 					}catch(JSONException e){
@@ -131,11 +125,20 @@ public class SettingActivity extends BaseActivity{
 			setEnabledByIndex();
 		}else if(v.getId()==R.id.btn_submit){
 			String password=String.valueOf(et_password.getText());
+			String repassword=String.valueOf(et_repassword.getText());
 			String age=String.valueOf(et_age.getText());
 			String classes=String.valueOf(et_classes.getText());
 			String englishlevel=String.valueOf(et_englishlevel.getText());
 			if(TextUtils.isEmpty(password)){
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
+				return;
+			}
+			if(TextUtils.isEmpty(repassword)){
+				getHandlerContext().makeTextLong(getString(R.string.repasswordhint));
+				return;
+			}
+			if(!password.equals(repassword)){
+				getHandlerContext().makeTextLong(getString(R.string.passworddiffhint));
 				return;
 			}
 			HttpServer hServer = new HttpServer(Constant.URL.UpdateUser,getHandlerContext());

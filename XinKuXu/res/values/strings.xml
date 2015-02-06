@@ -10,6 +10,7 @@
     <string name="nologin">您还没有登录</string>
     <string name="accounthint">请输入账号</string>
     <string name="passwordhint">请输入密码</string>
+    <string name="repasswordhint">请再次输入密码</string>
     <string name="passworddiffhint">两次密码不一致</string>
     <string name="learnwords">单词学习</string>
     <string name="testvocabulary">单词量测试</string>
@@ -56,6 +57,7 @@
     
     <string name="account">账号：</string>
     <string name="password">密码：</string>
+    <string name="repassword">重复：</string>
     <string name="age">年龄：</string>
     <string name="classes">班级：</string>
     <string name="englishlevel">等级：</string>

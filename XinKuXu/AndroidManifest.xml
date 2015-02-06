@@ -150,10 +150,6 @@
             android:name=".training.SettingActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".training.AboutUsActivity"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
         
     </application>
 
