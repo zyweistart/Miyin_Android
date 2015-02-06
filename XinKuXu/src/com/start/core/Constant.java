@@ -16,28 +16,9 @@ public final class Constant {
 		public static final String GetInfo="GetInfo";
 		public static final String GetListALL="GetListALL";
 		public static final String UserLogin="UserLogin";
-		public static final String RegUser="RegUser";
-		public static final String OAuthLogin="OAuthLogin";
-		public static final String FocusOrCollection="FocusOrCollection";
 		public static final String VersionCheck="VersionCheck";
-		public static final String UserSignIn="UserSignIn";
-		public static final String GetPushState="GetPushState";
-		public static final String ChangePushState="ChangePushState";
-		public static final String AskExperts="AskExperts";
-		//登录
-		//注册
-		//第三方应用注册登录(微信，QQ)
-		//收藏列表
-		//关注列表
-		//签到接口
-		//资讯列表接口
-		//专家列表接口
-		//专家咨询接口
-		//专家解答列表接口
-		//推送设置
-		//推送当前设置状态获取
-		//资讯搜索
-		//版本检测接口
+		public static final String UpdateUser="UpdateUser";
+		public static final String RefreshUser="RefreshUser";
 	}
 	
 	public final class Handler {
@@ -101,19 +82,6 @@ public final class Constant {
 		 * 版本最后检测日期
 		 */
 		public static final String SP_VERSION_DATA = "SP_VERSION_DATA";
-		
-		/**
-		 * 字体设置
-		 */
-		public static final String SP_SIZE_SETTING = "SP_SIZE_SETTING";
-		/**
-		 * 阅读模式 日间，夜间
-		 */
-		public static final String SP_READ_MODE = "SP_READ_MODE";
-		/**
-		 * 个推Clientid
-		 */
-		public static final String SP_GETUICLIENTID = "SP_GETUICLIENTID";
 		
 	}
 	

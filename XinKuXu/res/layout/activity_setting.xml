@@ -120,6 +120,7 @@
                     <start.widget.CustomEditText
                         android:id="@+id/et_account"
                         style="@style/edittext_input_1"
+                        android:enabled="false"
                         android:layout_width="200.0dip"
                         android:layout_height="40.0dip"
                         android:layout_marginLeft="10.0dip" />

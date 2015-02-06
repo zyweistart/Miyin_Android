@@ -57,14 +57,22 @@ public class MainActivity extends BaseActivity {
 		mItemDatas.add("公告栏");
 		mItemDatas.add("积分榜");
 		mItemDatas.add("留言板");
-//		mItemDatas.add("流程");
 		mItemDatas.add("设置");
+		mItemDatas.add("退出");
 		mLVTraining.setAdapter(new TrainingAdapter(MainActivity.this,mItemDatas));
 		mLVTraining.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				if(position==0){
+				if(position==1){
+					startActivity(new Intent(MainActivity.this,NoticeActivity.class));
+				}else if(position==2){
+					startActivity(new Intent(MainActivity.this,ScoreboardActivity.class));
+				}else if(position==3){
+					startActivity(new Intent(MainActivity.this,MessageActivity.class));
+				}else if(position==4){
+					startActivity(new Intent(MainActivity.this,SettingActivity.class));
+				}else if(position==5){
 					new AlertDialog.Builder(MainActivity.this)
 					 .setMessage(R.string.exittip)
 					 .setPositiveButton(R.string.cancle, new OnClickListener() {
@@ -82,16 +90,6 @@ public class MainActivity extends BaseActivity {
 							finish();
 						}
 					}).show();
-				}else if(position==1){
-					startActivity(new Intent(MainActivity.this,NoticeActivity.class));
-				}else if(position==2){
-					startActivity(new Intent(MainActivity.this,ScoreboardActivity.class));
-				}else if(position==3){
-					startActivity(new Intent(MainActivity.this,MessageActivity.class));
-				}else if(position==4){
-//					startActivity(new Intent(MainActivity.this,ProccessActivity.class));
-//				}else if(position==5){
-					startActivity(new Intent(MainActivity.this,SettingActivity.class));
 				}
 			}
 		});

@@ -48,9 +48,9 @@ public class TrainingAdapter extends BaseAdapter{
 		}else if(position==3){
 			holder.ivImage.setImageResource(R.drawable.ic_message);
 		}else if(position==4){
-			holder.ivImage.setImageResource(R.drawable.ic_proccess);
-		}else if(position==5){
 			holder.ivImage.setImageResource(R.drawable.ic_setting);
+		}else if(position==5){
+			holder.ivImage.setImageResource(R.drawable.ic_proccess);
 		}
 		holder.tvName.setText(data);
 		return convertView;

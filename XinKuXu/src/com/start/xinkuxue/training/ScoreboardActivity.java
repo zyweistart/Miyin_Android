@@ -120,7 +120,7 @@ public class ScoreboardActivity extends BaseActivity implements RefreshListServe
 	
 	public String getCategoryId(){
 		if(type==0){
-			return "1";
+			return "6";
 		}else{
 			return "2";
 		}
