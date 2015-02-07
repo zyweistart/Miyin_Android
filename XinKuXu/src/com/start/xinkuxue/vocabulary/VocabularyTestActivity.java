@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
+import com.start.service.AppServer;
 import com.start.service.WordService;
 import com.start.service.bean.WordItem;
 import com.start.xinkuxue.R;
@@ -307,7 +308,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		setStyleTextViewNormal(frame_text_selector_answer_c);
 		setStyleTextViewNormal(frame_text_selector_answer_d);
 		// 显示内容
-		problem_words.setText(mTitle);
+		problem_words.setText(AppServer.ToDBC(mTitle));
 		frame_text_selector_answer_a.setText(mAName);
 		frame_text_selector_answer_b.setText(mBName);
 		frame_text_selector_answer_c.setText(mCName);
@@ -322,7 +323,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		answer_frame_text.setVisibility(View.GONE);
 		answer_frame_picture.setVisibility(View.VISIBLE);
 		// 设置样式、显示内容
-		problem_words.setText(mTitle);
+		problem_words.setText(AppServer.ToDBC(mTitle));
 
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 2;
@@ -385,7 +386,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		setStyleTextViewNormal(frame_text_selector_answer_c);
 		setStyleTextViewNormal(frame_text_selector_answer_d);
 		// 显示内容
-		problem_sentence.setText(mTitle);
+		problem_sentence.setText(AppServer.ToDBC(mTitle));
 		frame_text_selector_answer_a.setText(mAName);
 		frame_text_selector_answer_b.setText(mBName);
 		frame_text_selector_answer_c.setText(mCName);

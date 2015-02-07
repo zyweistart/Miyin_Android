@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 import jxl.Sheet;
 import jxl.Workbook;
-import start.utils.MD5;
 import android.content.Context;
 import android.util.Log;
 
@@ -23,9 +22,18 @@ public class AppServer {
 		updateApplication.startCheck(status);
 	}
 	
-	public static String MD5(String password){
-		return MD5.md5(password).toLowerCase().substring(6,22);
-	}
+	public static String ToDBC(String input) {          
+        char[] c = input.toCharArray();
+        for (int i = 0; i < c.length; i++) {              
+        if (c[i] == 12288) {                 
+        c[i] = (char) 32;                  
+        continue;
+         }
+         if (c[i] > 65280 && c[i] < 65375)
+            c[i] = (char) (c[i] - 65248);
+        }
+        return new String(c);
+    }  
 	
 	public static String html2Text(String inputString) {
 		String htmlStr = inputString; // 含html标签的字符串

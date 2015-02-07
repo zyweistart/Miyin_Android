@@ -27,9 +27,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:orientation="horizontal" >
+            android:orientation="vertical" >
 
-            <TextView
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="本次测试题数"
@@ -68,12 +72,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ff0202"
-                android:textSize="35.0dip" />
+                android:textSize="35.0dip" />Ï
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txttitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:textColor="#353535"
                 android:textSize="35.0dip" />
         </LinearLayout>

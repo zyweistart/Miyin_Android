@@ -47,18 +47,21 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 			mAnswerCount=mBundle.getInt(ANSWERCOUNT);
 			mRightCount=mBundle.getInt(RIGHTCOUNT);
 			int result=100/mAnswerCount*mRightCount;
+			if(mAnswerCount==mRightCount){
+				result=100;
+			}
 			if(result==100){
 				frame_bg.setBackgroundResource(R.drawable.bm_level_3);
 				ivlevel.setImageResource(R.drawable.ic_level_icon_3);
-				txttitle.setText("，全中有奖！");
+				txttitle.setText("全中有奖！");
 			}else if(result>=80){
 				frame_bg.setBackgroundResource(R.drawable.bm_level_2);
 				ivlevel.setImageResource(R.drawable.ic_level_icon_2);
-				txttitle.setText("，顺利完成本日任务！");
+				txttitle.setText("顺利完成本日任务！");
 			}else{
 				frame_bg.setBackgroundResource(R.drawable.bm_level_1);
 				ivlevel.setImageResource(R.drawable.ic_level_icon_1);
-				txttitle.setText("，还需好好复习！");
+				txttitle.setText("还需好好复习！");
 			}
 			txtcount1.setText(String.valueOf(mAnswerCount));
 			txtcount2.setText(String.valueOf(mRightCount));
