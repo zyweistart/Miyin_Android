@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bm_words"
+    android:orientation="vertical"
+    android:padding="30.0dip" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_levelname1"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname1" />
+
+            <Button
+                android:id="@+id/btn_levelname2"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname2" />
+
+            <Button
+                android:id="@+id/btn_levelname3"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname3" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_levelname4"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname4" />
+
+            <Button
+                android:id="@+id/btn_levelname5"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname5" />
+
+            <Button
+                android:id="@+id/btn_levelname6"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname6" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_levelname7"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname7" />
+
+            <Button
+                android:id="@+id/btn_levelname8"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname8" />
+
+            <Button
+                android:id="@+id/btn_levelname9"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname9" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_levelname10"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname10" />
+
+            <Button
+                android:id="@+id/btn_levelname11"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:visibility="invisible"/>
+
+            <Button
+                android:id="@+id/btn_levelname12"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:visibility="invisible"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

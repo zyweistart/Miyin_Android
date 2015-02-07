@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <style name="Theme_Dialog_NoTitle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
+    <style name="edittext1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45.0dip</item>
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textColorHint">#dbd8d8</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ems">10</item>
+        <item name="android:drawableRight">@drawable/ic_input_clear</item>
+        <item name="android:background">@drawable/bg_frame</item>
+    </style>
+    <style name="edittext_input">
+        <item name="android:layout_width">120.0dip</item>
+        <item name="android:layout_height">40.0dip</item>
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">#dbd8d8</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ems">10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawableRight">@drawable/ic_input_clear</item>
+        <item name="android:background">@drawable/bg_frame_color_grey</item>
+    </style>
+    <style name="edittext_input_1">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">#dbd8d8</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ems">10</item>
+        <item name="android:drawableRight">@drawable/ic_input_clear</item>
+        <item name="android:background">@drawable/bg_frame_color_grey</item>
+    </style>
+    <style name="edittext_input_2">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">#dbd8d8</item>
+        <item name="android:maxLength">150</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:drawableRight">@drawable/ic_input_clear</item>
+        <item name="android:background">@drawable/bg_frame_color_grey</item>
+    </style>
+    <style name="button_style_rectangle_1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+    </style>
+     <style name="button_style_rectangle">
+        <item name="android:layout_width">280.0dip</item>
+        <item name="android:layout_height">85.0dip</item>
+        <item name="android:textSize">27.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:layout_margin">5.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="checkbox1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">@color/learn_words_switch_test_textcolor</item>
+        <item name="android:background">@null</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/selector_checkbox</item>
+        <item name="android:drawablePadding">4.0dip</item>
+    </style>
+    
+    <style name="main_function_selector_bg">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">5.0dip</item>
+    </style>
+    <style name="test_words_page_text_selector">
+        <item name="android:layout_width">400.dip</item>
+        <item name="android:layout_height">0.0dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">20.0dip</item>
+        <item name="android:textColor">#343434</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:paddingRight">10.0dip</item>
+        <item name="android:layout_margin">10.0dip</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:layout_gravity">right</item>
+    </style>
+    <style name="test_words_page_text_right_selector" parent="test_words_page_text_selector">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="test_words_page_text_error_selector" parent="test_words_page_text_selector">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="test_words_page_picture_frame_selector">
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+    <style name="test_words_page_imageview">
+        <item name="android:layout_width">150.0dip</item>
+        <item name="android:layout_height">150.0dip</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="test_words_page_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">3.0dip</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="test_words_page_picture_selector">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">3.0dip</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="test_words_page_cannot_selector">
+        <item name="android:layout_width">150.dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">15.0dip</item>
+        <item name="android:layout_margin">5.0dip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:background">@drawable/selector_button_4</item>
+    </style>
+    <style name="item_selector">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">20.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">10.0dip</item>
+        <item name="android:background">@drawable/selector_button_color_grey_2</item>
+    </style>
+    <style name="textview1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">18.0dip</item>
+        <item name="android:textColor">#696969</item>
+        <item name="android:padding">5.0dip</item>
+    </style>
+    <style name="listview1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:choiceMode">singleChoice</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:scrollingCache">false</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">10.0dip</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+    </style>
+    <style name="listview2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:choiceMode">singleChoice</item>
+        <item name="android:dividerHeight">1.0dip</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:scrollingCache">false</item>
+        <item name="android:divider">#5b5b5b</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+    </style>
+    <style name="listview3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:choiceMode">singleChoice</item>
+        <item name="android:dividerHeight">1.0dip</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:scrollingCache">false</item>
+        <item name="android:divider">@drawable/bm_dottedline</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+    </style>
+</resources>

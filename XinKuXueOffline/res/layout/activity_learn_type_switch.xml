@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bm_words"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20.0dip"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_listenlooklearnwords"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/listenlooklearnwords" />
+
+            <Button
+                android:id="@+id/btn_words123"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_orange"
+                android:text="@string/words123" />
+
+            <Button
+                android:id="@+id/btn_testeveryday"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_red"
+                android:text="@string/testeveryday" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

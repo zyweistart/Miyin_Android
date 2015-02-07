@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bm_words" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/empty"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="100.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="测试方式："
+                    android:textColor="@color/learn_words_switch_test_textcolor"
+                    android:textSize="18.0dip" />
+
+                <CheckBox
+                    android:id="@+id/cb_switch_a"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:checked="true"
+                    android:text="中->英" />
+
+                <CheckBox
+                    android:id="@+id/cb_switch_b"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:checked="true"
+                    android:text="英->中" />
+
+                <CheckBox
+                    android:id="@+id/cb_switch_c"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:checked="true"
+                    android:text="图->英" />
+
+                <CheckBox
+                    android:id="@+id/cb_switch_d"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="英->图" />
+
+                <CheckBox
+                    android:id="@+id/cb_switch_e"
+                    style="@style/checkbox1"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="填空" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10.0dip" />
+
+            <TextView
+                android:id="@+id/tip2"
+                android:layout_width="500.0dip"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20.0dip"
+                android:textColor="@color/learn_words_switch_test_textcolor"
+                android:textSize="16.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/btn_test_start"
+            style="@style/button_style_rectangle"
+            android:layout_centerInParent="true"
+            android:background="@drawable/selector_button_color_red"
+            android:text="@string/teststart" />
+    </RelativeLayout>
+
+</LinearLayout>

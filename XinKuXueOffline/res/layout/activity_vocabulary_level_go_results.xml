@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bm_words"
+    android:padding="10.0dip" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/ivlevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/empty"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30.0dip" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="你本次测试获得"
+                    android:textColor="#353535"
+                    android:textSize="35.0dip" />
+
+                <TextView
+                    android:id="@+id/txtcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ff0202"
+                    android:textSize="35.0dip" />
+
+                <TextView
+                    android:id="@+id/txttip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#353535"
+                    android:textSize="35.0dip" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txttip2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#353535"
+                android:textSize="35.0dip" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30.0dip" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_gohome"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_grey"
+                android:text="@string/gohome" />
+
+            <Button
+                android:id="@+id/btn_anothertest"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_red"
+                android:text="@string/anothertest"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

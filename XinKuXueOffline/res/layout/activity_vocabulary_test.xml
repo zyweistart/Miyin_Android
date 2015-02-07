@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bm_words"
+    android:orientation="horizontal"
+    android:padding="40.0dip" >
+
+    <RelativeLayout
+        android:layout_width="0.0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/problem_picture"
+            android:layout_width="350.0dip"
+            android:layout_height="350.0dip"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/empty"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/problem_words"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30.0dip"
+            android:textColor="@color/black"
+            android:textSize="30.0dip"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/problem_sentence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30.0dip"
+            android:textColor="@color/black"
+            android:textSize="25.0dip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/answer_frame_text"
+        android:layout_width="0.0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/frame_text_selector_answer_a"
+            style="@style/test_words_page_text_error_selector" />
+
+        <TextView
+            android:id="@+id/frame_text_selector_answer_b"
+            style="@style/test_words_page_text_selector" />
+
+        <TextView
+            android:id="@+id/frame_text_selector_answer_c"
+            style="@style/test_words_page_text_selector" />
+
+        <TextView
+            android:id="@+id/frame_text_selector_answer_d"
+            style="@style/test_words_page_text_selector" />
+
+        <TextView
+            android:id="@+id/frame_text_selector_answer_cannotskip"
+            style="@style/test_words_page_cannot_selector"
+            android:text="@string/cannotskip" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/answer_frame_picture"
+        android:layout_width="0.0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/frame_picture_selector_answer_a"
+                    style="@style/test_words_page_picture_frame_selector">>
+                    <ImageView 
+                    	android:id="@+id/frame_imageview_answer_a"
+                        style="@style/test_words_page_imageview"
+                        android:src="@drawable/default_words"
+                        android:contentDescription="@string/empty"/>
+                    <TextView
+                    	android:id="@+id/frame_textview_answer_a"
+	                    style="@style/test_words_page_textview"
+	                    android:text="A" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frame_picture_selector_answer_b"
+                    style="@style/test_words_page_picture_frame_selector">>
+                    <ImageView 
+                    	android:id="@+id/frame_imageview_answer_b"
+                        style="@style/test_words_page_imageview"
+                        android:src="@drawable/default_words"
+                        android:contentDescription="@string/empty"/>
+                    <TextView
+                    	android:id="@+id/frame_textview_answer_b"
+	                    style="@style/test_words_page_textview"
+	                    android:text="B" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+                <LinearLayout
+                    android:id="@+id/frame_picture_selector_answer_c"
+                    style="@style/test_words_page_picture_frame_selector">
+                    <ImageView 
+                    	android:id="@+id/frame_imageview_answer_c"
+                        style="@style/test_words_page_imageview"
+                        android:src="@drawable/default_words"
+                        android:contentDescription="@string/empty"/>
+                    <TextView
+                    	android:id="@+id/frame_textview_answer_c"
+	                    style="@style/test_words_page_textview"
+	                    android:text="C" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frame_picture_selector_answer_d"
+                    style="@style/test_words_page_picture_frame_selector"> >
+                    <ImageView 
+                    	android:id="@+id/frame_imageview_answer_d"
+                        style="@style/test_words_page_imageview"
+                        android:src="@drawable/default_words"
+                        android:contentDescription="@string/empty"/>
+                    <TextView
+                    	android:id="@+id/frame_textview_answer_d"
+	                    style="@style/test_words_page_textview"
+	                    android:text="D" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/frame_picture_selector_answer_cannotskip"
+                style="@style/test_words_page_cannot_selector"
+                android:text="@string/cannotskip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

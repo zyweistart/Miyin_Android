@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="InflateParams" severity="ignore">
+        <ignore path="src/com/start/xinkuxue/StrangeWordsAdapter.java" />
+    </issue>
+    <issue id="NewApi" severity="ignore" />
+    <issue id="ResourceAsColor" severity="ignore" />
+    <issue id="SetJavaScriptEnabled" severity="ignore" />
+    <issue id="SimpleDateFormat" severity="ignore" />
+</lint>

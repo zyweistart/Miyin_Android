@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+   	<color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+	<color name="transparent">#00000000</color>
+	
+	<color name="learn_words_switch_test_textcolor">#353535</color>
+	<color name="test_textcolor">#413f40</color>
+	
+	<color name="bg_header">#005dde</color>
+   	<color name="bg_activity">#e2e3e7</color>
+   	
+   	<color name="bg_grey_p_2">#b6b6b6</color>
+   	<color name="bg_grey_n_2">#3f3f3f</color>
+   	
+</resources>

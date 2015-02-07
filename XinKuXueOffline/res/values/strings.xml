@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">新酷学</string>
+    <string name="login">登录</string>
+    <string name="back">返回</string>
+    <string name="register">注册</string>
+    <string name="exitlogin">退出登录</string>
+    <string name="noaccount">没有账号?</string>
+    <string name="nologin">您还没有登录</string>
+    <string name="accounthint">请输入账号</string>
+    <string name="passwordhint">请输入密码</string>
+    <string name="repasswordhint">请再次输入密码</string>
+    <string name="passworddiffhint">两次密码不一致</string>
+    <string name="learnwords">单词学习</string>
+    <string name="testvocabulary">单词测试</string>
+    <string name="w">w</string>
+    <string name="newwords">生词本</string>
+    <string name="specialtraining">特训营</string>
+    <string name="listenlooklearnwords">边听边看学单词</string>
+    <string name="words123">单词123</string>
+    <string name="testeveryday">每日测试</string>
+    <string name="teststart">开始学习</string>
+    <string name="china">中</string>
+    <string name="cases">例</string>
+    <string name="kuxuememorymethod">酷学记忆法</string>
+    <string name="vocabularytest">单词量测试</string>
+    <string name="practicetest">练习测试</string>
+    <string name="nodata">暂无记录</string>
+    <string name="wordcategory">单词本</string>
+    <string name="errorwordcategory">错词本</string>
+    <string name="cannotskip">不会，跳过</string>
+    <string name="addtonewword">加入单词本</string>
+    <string name="immediatetest">立即测试</string>
+    <string name="waitagain">稍候再说</string>
+    <string name="testmethodtip">测试方法必须大于等于3种</string>
+    <string name="word_data_not_audio">未找到该单词的音频数据，请联系管理员</string>
+    <string name="word_data_not_found">单词数据未找到，请联系管理员</string>
+    <string name="no_network_version_tip">当前为无网络版本，如需访问请联系管理员</string>
+    <string name="understanding">认识</string>
+    <string name="prompt">提示</string>
+    <string name="select_scope">选择区间：</string>
+    <string name="between">~</string>
+    <string name="test_method">测试方式：</string>
+    <string name="section">几选1：</string>
+    <string name="chinesetoenglish">中->英</string>
+    <string name="englishtochinese">英->中</string>
+    <string name="picturetoenglish">图->英</string>
+    <string name="englishtopicture">英->图</string>
+    <string name="fillanswer">填空</string>
+    <string name="mygoreview">我要复习</string>
+    <string name="mygotest">我要测试</string>
+    <string name="gohome">返回主页</string>
+    <string name="anothertest">再测一次</string>
+    <string name="learnword">复习单词</string>
+    <string name="waittry">过会再练</string>
+    <string name="exittip">确认要退出登录吗？</string>
+    
+    <string name="account">账号：</string>
+    <string name="password">密码：</string>
+    <string name="repassword">重复：</string>
+    <string name="age">年龄：</string>
+    <string name="classes">班级：</string>
+    <string name="englishlevel">等级：</string>
+    
+    <string name="message_title">主题</string>
+    <string name="message_title_hint">请输入主题</string>
+    <string name="message_content">内容</string>
+    <string name="message_content_hint">请输入内容</string>
+    
+    <string name="notice1">特训营须知</string>
+    <string name="notice2">特训营新闻</string>
+    <string name="notice3">特训营通知</string>
+    
+    <string name="scoreboard1">TOP10与个人排名</string>
+    <string name="scoreboard2">团队积分榜</string>
+    
+    <string name="aboutus">关于我们</string>
+    <string name="personalinfo">个人信息</string>
+    <string name="othersetting">其它设置</string>
+    
+    <string name="levelname1">单词一级</string>
+    <string name="levelname2">单词二级</string>
+    <string name="levelname3">单词三级</string>
+    <string name="levelname4">单词四级</string>
+    <string name="levelname5">单词五级</string>
+    <string name="levelname6">单词六级</string>
+    <string name="levelname7">单词七级</string>
+    <string name="levelname8">单词八级</string>
+    <string name="levelname9">单词九级</string>
+    <string name="levelname10">单词十级</string>
+    
+</resources>
