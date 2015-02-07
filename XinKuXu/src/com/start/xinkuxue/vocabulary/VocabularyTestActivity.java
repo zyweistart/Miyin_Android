@@ -237,7 +237,7 @@ public class VocabularyTestActivity extends BaseActivity {
 					currentWord();
 				}
 			}
-		}, 1000);
+		}, 1500);
 	}
 
 	public void currentWord() {

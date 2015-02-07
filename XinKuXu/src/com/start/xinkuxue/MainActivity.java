@@ -70,6 +70,10 @@ public class MainActivity extends BaseActivity {
 				}else if(position==2){
 					startActivity(new Intent(MainActivity.this,ScoreboardActivity.class));
 				}else if(position==3){
+					if(!Constant.ISCURRENTNETWORKVERSION){
+						getHandlerContext().makeTextLong(getString(R.string.no_network_version_tip));
+						return;
+					}
 					startActivity(new Intent(MainActivity.this,MessageActivity.class));
 				}else if(position==4){
 					startActivity(new Intent(MainActivity.this,SettingActivity.class));
@@ -108,16 +112,12 @@ public class MainActivity extends BaseActivity {
 			Intent intent = new Intent(this,StrangeWordTypeSwitchActivity.class);
 			startActivity(intent);
 		} else if (v.getId() == R.id.specialtraining) {
-			if(Constant.ISCURRENTNETWORKVERSION){
-				if (mLeftFrame.isShown()) {
-					mLeftFrame.startAnimation(mHiddenAction);
-					mLeftFrame.setVisibility(View.GONE);
-				} else {
-					mLeftFrame.startAnimation(mShowAction);
-					mLeftFrame.setVisibility(View.VISIBLE);
-				}
-			}else{
-				getHandlerContext().makeTextLong("当前为无网络版本，如需访问请联系管理员");
+			if (mLeftFrame.isShown()) {
+				mLeftFrame.startAnimation(mHiddenAction);
+				mLeftFrame.setVisibility(View.GONE);
+			} else {
+				mLeftFrame.startAnimation(mShowAction);
+				mLeftFrame.setVisibility(View.VISIBLE);
 			}
 		}
 	}

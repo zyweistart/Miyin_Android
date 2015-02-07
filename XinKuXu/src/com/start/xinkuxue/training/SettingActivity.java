@@ -82,6 +82,10 @@ public class SettingActivity extends BaseActivity{
 			type=0;
 			setEnabledByIndex();
 		}else if(v.getId()==R.id.tvpersonalinfo){
+			if(!Constant.ISCURRENTNETWORKVERSION){
+				getHandlerContext().makeTextLong(getString(R.string.no_network_version_tip));
+				return;
+			}
 			HttpServer hServer = new HttpServer(Constant.URL.RefreshUser,getHandlerContext());
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("access_token", User.ACCESSKEY);
