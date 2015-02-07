@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.start.core.Constant.ResultCode;
-import com.start.xinkuxue.BaseContext;
+import com.start.xinkuxueoffline.BaseContext;
 
 /**
  * 主体内容区核心父类

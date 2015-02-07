@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.start.core.Constant.ResultCode;
-import com.start.xinkuxue.BaseContext;
-import com.start.xinkuxue.LoginActivity;
+import com.start.xinkuxueoffline.BaseContext;
+import com.start.xinkuxueoffline.LoginActivity;
 
 public class BaseActivity extends AppActivity {
 

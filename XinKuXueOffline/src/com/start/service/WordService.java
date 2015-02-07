@@ -10,8 +10,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.start.service.bean.WordItem;
-import com.start.xinkuxue.BaseContext;
-import com.start.xinkuxue.R;
+import com.start.xinkuxueoffline.BaseContext;
+import com.start.xinkuxueoffline.R;
 
 public class WordService {
 	

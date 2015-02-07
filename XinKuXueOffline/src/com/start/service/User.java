@@ -7,7 +7,7 @@ import start.core.AppConstant;
 import start.core.AppContext;
 
 import com.start.core.Constant.Preferences;
-import com.start.xinkuxue.BaseContext;
+import com.start.xinkuxueoffline.BaseContext;
 
 public class User {
 

@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.start.core.BaseActivity;
 import com.start.service.bean.WordItem;
-import com.start.xinkuxue.BaseContext;
+import com.start.xinkuxueoffline.BaseContext;
 
 public class AppServer {
 

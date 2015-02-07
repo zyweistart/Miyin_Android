@@ -35,8 +35,8 @@ import android.os.AsyncTask;
 
 import com.start.core.BaseActivity;
 import com.start.core.Constant;
-import com.start.xinkuxue.BaseContext;
-import com.start.xinkuxue.R;
+import com.start.xinkuxueoffline.BaseContext;
+import com.start.xinkuxueoffline.R;
 
 /**
  * 应用更新
