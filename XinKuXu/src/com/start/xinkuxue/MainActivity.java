@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.start.core.BaseActivity;
-import com.start.core.Constant;
 import com.start.xinkuxue.learn.LearnTypeSwitchActivity;
 import com.start.xinkuxue.strange.StrangeWordTypeSwitchActivity;
 import com.start.xinkuxue.training.MessageActivity;
@@ -70,8 +69,8 @@ public class MainActivity extends BaseActivity {
 				}else if(position==2){
 					startActivity(new Intent(MainActivity.this,ScoreboardActivity.class));
 				}else if(position==3){
-					if(!Constant.ISCURRENTNETWORKVERSION){
-						getHandlerContext().makeTextLong(getString(R.string.no_network_version_tip));
+					if(!getAppContext().currentUser().isLogin()){
+						getHandlerContext().makeTextLong(getString(R.string.tourists_tip));
 						return;
 					}
 					startActivity(new Intent(MainActivity.this,MessageActivity.class));

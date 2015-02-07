@@ -82,8 +82,8 @@ public class SettingActivity extends BaseActivity{
 			type=0;
 			setEnabledByIndex();
 		}else if(v.getId()==R.id.tvpersonalinfo){
-			if(!Constant.ISCURRENTNETWORKVERSION){
-				getHandlerContext().makeTextLong(getString(R.string.no_network_version_tip));
+			if(!getAppContext().currentUser().isLogin()){
+				getHandlerContext().makeTextLong(getString(R.string.tourists_tip));
 				return;
 			}
 			HttpServer hServer = new HttpServer(Constant.URL.RefreshUser,getHandlerContext());

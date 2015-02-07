@@ -87,8 +87,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50.0dip"/>
-            
+                android:layout_height="50.0dip" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,6 +107,18 @@
                     android:background="@drawable/selector_button_color_red"
                     android:text="@string/login" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_tourist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="游客模式使用"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:padding="5.0dip"
+                android:layout_gravity="right"
+                android:textColor="#353535"
+                android:textSize="18.0dip" />
         </LinearLayout>
     </RelativeLayout>
 

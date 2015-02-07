@@ -36,7 +36,7 @@
     <string name="testmethodtip">测试方法必须大于等于3种</string>
     <string name="word_data_not_audio">未找到该单词的音频数据，请联系管理员</string>
     <string name="word_data_not_found">单词数据未找到，请联系管理员</string>
-    <string name="no_network_version_tip">当前为无网络版本，如需访问请联系管理员</string>
+    <string name="tourists_tip">当前为游客模式，无法使用该功能</string>
     <string name="understanding">认识</string>
     <string name="prompt">提示</string>
     <string name="select_scope">选择区间：</string>

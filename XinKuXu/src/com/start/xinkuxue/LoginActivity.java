@@ -88,6 +88,9 @@ public class LoginActivity extends BaseActivity{
 			login(account,password,true);
 		}else if(v.getId()==R.id.btn_register){
 			getHandlerContext().makeTextLong("账号由后台统一开通，请联系管理员");
+		}else if(v.getId()==R.id.txt_tourist){
+			loginSuccess("游客","tourist",false);
+			getHandlerContext().makeTextLong("以游客模式登录使用");
 		}else{
 			super.onClick(v);
 		}
@@ -100,39 +103,35 @@ public class LoginActivity extends BaseActivity{
 	 * @param autoLogin  
 	 */
 	private void login(final String account,final String password,final Boolean autoLogin){
-		if(Constant.ISCURRENTNETWORKVERSION){
-			HttpServer hServer = new HttpServer(Constant.URL.UserLogin,getHandlerContext());
-			Map<String, String> params = new HashMap<String, String>();
-			params.put("userName",account);
-			params.put("pwd", password);
-			params.put("clientid", "");
-			hServer.setParams(params);
-			hServer.get(new HttpRunnable() {
-	
-				@Override
-				public void run(Response response) throws AppException {
-					
-					try{
-						User.ACCESSKEY=String.valueOf(response.getData("access_token"));
-						Map<String, String> datas = new HashMap<String, String>();
-						JSONObject current=(JSONObject)response.getData("userInfo");
-						JSONArray names = current.names();
-						for (int j = 0; j < names.length(); j++) {
-							String name = names.getString(j);
-							datas.put(name, String.valueOf(current.get(name)));
-						}
-						getAppContext().currentUser().resolve(datas);
-						loginSuccess(account,password,autoLogin);
-					}catch(JSONException e){
-						throw AppException.json(e);
+		HttpServer hServer = new HttpServer(Constant.URL.UserLogin,getHandlerContext());
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("userName",account);
+		params.put("pwd", password);
+		params.put("clientid", "");
+		hServer.setParams(params);
+		hServer.get(new HttpRunnable() {
+
+			@Override
+			public void run(Response response) throws AppException {
+				
+				try{
+					User.ACCESSKEY=String.valueOf(response.getData("access_token"));
+					Map<String, String> datas = new HashMap<String, String>();
+					JSONObject current=(JSONObject)response.getData("userInfo");
+					JSONArray names = current.names();
+					for (int j = 0; j < names.length(); j++) {
+						String name = names.getString(j);
+						datas.put(name, String.valueOf(current.get(name)));
 					}
-					
+					getAppContext().currentUser().resolve(datas);
+					loginSuccess(account,password,autoLogin);
+				}catch(JSONException e){
+					throw AppException.json(e);
 				}
 				
-			});
-		}else{
-			loginSuccess(account,password,autoLogin);
-		}
+			}
+			
+		});
 	}
 	
 	/**
