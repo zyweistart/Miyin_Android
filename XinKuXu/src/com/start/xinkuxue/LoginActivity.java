@@ -100,35 +100,39 @@ public class LoginActivity extends BaseActivity{
 	 * @param autoLogin  
 	 */
 	private void login(final String account,final String password,final Boolean autoLogin){
-		HttpServer hServer = new HttpServer(Constant.URL.UserLogin,getHandlerContext());
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("userName",account);
-		params.put("pwd", password);
-		params.put("clientid", "");
-		hServer.setParams(params);
-		hServer.get(new HttpRunnable() {
-
-			@Override
-			public void run(Response response) throws AppException {
-				
-				try{
-					User.ACCESSKEY=String.valueOf(response.getData("access_token"));
-					Map<String, String> datas = new HashMap<String, String>();
-					JSONObject current=(JSONObject)response.getData("userInfo");
-					JSONArray names = current.names();
-					for (int j = 0; j < names.length(); j++) {
-						String name = names.getString(j);
-						datas.put(name, String.valueOf(current.get(name)));
+		if(Constant.ISCURRENTNETWORKVERSION){
+			HttpServer hServer = new HttpServer(Constant.URL.UserLogin,getHandlerContext());
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("userName",account);
+			params.put("pwd", password);
+			params.put("clientid", "");
+			hServer.setParams(params);
+			hServer.get(new HttpRunnable() {
+	
+				@Override
+				public void run(Response response) throws AppException {
+					
+					try{
+						User.ACCESSKEY=String.valueOf(response.getData("access_token"));
+						Map<String, String> datas = new HashMap<String, String>();
+						JSONObject current=(JSONObject)response.getData("userInfo");
+						JSONArray names = current.names();
+						for (int j = 0; j < names.length(); j++) {
+							String name = names.getString(j);
+							datas.put(name, String.valueOf(current.get(name)));
+						}
+						getAppContext().currentUser().resolve(datas);
+						loginSuccess(account,password,autoLogin);
+					}catch(JSONException e){
+						throw AppException.json(e);
 					}
-					getAppContext().currentUser().resolve(datas);
-					loginSuccess(account,password,autoLogin);
-				}catch(JSONException e){
-					throw AppException.json(e);
+					
 				}
 				
-			}
-			
-		});
+			});
+		}else{
+			loginSuccess(account,password,autoLogin);
+		}
 	}
 	
 	/**

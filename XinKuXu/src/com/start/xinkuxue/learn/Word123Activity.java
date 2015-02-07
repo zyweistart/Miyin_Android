@@ -34,7 +34,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	private String[] mAnswerArray;
 	
 	private ImageView iv_word,iv_memory_method;
-	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
+	private TextView txt_id,txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
 	private WordService mWordService;
 	private WordItem mWordItem;
 	
@@ -75,6 +75,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		
 		iv_word=(ImageView)findViewById(R.id.iv_word);
 		iv_memory_method=(ImageView)findViewById(R.id.iv_memory_method);
+		txt_id=(TextView)findViewById(R.id.txt_id);
 		txt_englishName=(TextView)findViewById(R.id.txt_englishName);
 		txt_phoneticSymbols=(TextView)findViewById(R.id.txt_phoneticSymbols);
 		txt_chineseSignificance=(TextView)findViewById(R.id.txt_chineseSignificance);
@@ -172,7 +173,15 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		txt_current_word_name.setText(mWordItem.getEnglishName());
 		txt_current_word_exampleenglish.setText(mWordItem.getExampleEnglish());
 		txt_current_word_chinesesignificance.setText(mWordItem.getChineseSignificance());
-		
+		String id=mWordItem.getId();
+		if(id.length()==1){
+			id="000"+id;
+		}else if(id.length()==2){
+			id="00"+id;
+		}else if(id.length()==3){
+			id="0"+id;
+		}
+		txt_id.setText(id);
 		txt_englishName.setText(mWordItem.getEnglishName());
 		txt_phoneticSymbols.setText(mWordItem.getPhoneticSymbols());
 		txt_chineseSignificance.setText(mWordItem.getChineseSignificance());

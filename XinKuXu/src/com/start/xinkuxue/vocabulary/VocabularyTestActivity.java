@@ -150,6 +150,7 @@ public class VocabularyTestActivity extends BaseActivity {
 				setStyleTextViewError(frame_text_selector_answer_d);
 			}
 		} else if (v.getId() == R.id.frame_text_selector_answer_cannotskip) {
+			playerError();
 			joinWords();
 			if (mCurrentRightWordItemIndex == 0) {
 				setStyleTextViewRight(frame_text_selector_answer_a);
@@ -197,6 +198,7 @@ public class VocabularyTestActivity extends BaseActivity {
 						frame_textview_answer_d);
 			}
 		} else if (v.getId() == R.id.frame_picture_selector_answer_cannotskip) {
+			playerError();
 			joinWords();
 			if (mCurrentRightWordItemIndex == 0) {
 				setStyleTextViewRight(frame_picture_selector_answer_a,

@@ -32,12 +32,39 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="本次测试得分"
+                android:text="本次测试题数"
                 android:textColor="#353535"
                 android:textSize="35.0dip" />
 
             <TextView
-                android:id="@+id/txtcount"
+                android:id="@+id/txtcount1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0202"
+                android:textSize="35.0dip" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="，答对了"
+                android:textColor="#353535"
+                android:textSize="35.0dip" />
+             <TextView
+                android:id="@+id/txtcount2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0202"
+                android:textSize="35.0dip" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="，正确率 "
+                android:textColor="#353535"
+                android:textSize="35.0dip" />
+            
+             <TextView
+                android:id="@+id/txtcount3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ff0202"

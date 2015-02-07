@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.start.core.BaseActivity;
+import com.start.core.Constant;
 import com.start.xinkuxue.learn.LearnTypeSwitchActivity;
 import com.start.xinkuxue.strange.StrangeWordTypeSwitchActivity;
 import com.start.xinkuxue.training.MessageActivity;
@@ -107,12 +108,16 @@ public class MainActivity extends BaseActivity {
 			Intent intent = new Intent(this,StrangeWordTypeSwitchActivity.class);
 			startActivity(intent);
 		} else if (v.getId() == R.id.specialtraining) {
-			if (mLeftFrame.isShown()) {
-				mLeftFrame.startAnimation(mHiddenAction);
-				mLeftFrame.setVisibility(View.GONE);
-			} else {
-				mLeftFrame.startAnimation(mShowAction);
-				mLeftFrame.setVisibility(View.VISIBLE);
+			if(Constant.ISCURRENTNETWORKVERSION){
+				if (mLeftFrame.isShown()) {
+					mLeftFrame.startAnimation(mHiddenAction);
+					mLeftFrame.setVisibility(View.GONE);
+				} else {
+					mLeftFrame.startAnimation(mShowAction);
+					mLeftFrame.setVisibility(View.VISIBLE);
+				}
+			}else{
+				getHandlerContext().makeTextLong("当前为无网络版本，如需访问请联系管理员");
 			}
 		}
 	}

@@ -48,18 +48,18 @@
                     android:textSize="35.0dip" />
 
                 <TextView
+                    android:id="@+id/txttip1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="，低于本级水平"
                     android:textColor="#353535"
                     android:textSize="35.0dip" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txttip2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="建议降低一级测试"
                 android:textColor="#353535"
                 android:textSize="35.0dip" />
         </LinearLayout>
@@ -84,7 +84,7 @@
                 android:id="@+id/btn_anothertest"
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_red"
-                android:text="@string/anothertest" />
+                android:text="@string/anothertest"/>
         </LinearLayout>
     </LinearLayout>
 

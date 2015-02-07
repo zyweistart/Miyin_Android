@@ -8,6 +8,10 @@ public final class Constant {
 	 * 临时目录
 	 */
 	public static final String TEMPDIRECTORY="temp";
+	/**
+	 * 当前版本环境
+	 */
+	public static final Boolean ISCURRENTNETWORKVERSION=false;
 	
 	/**
 	 * 用户接口

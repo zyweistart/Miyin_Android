@@ -72,18 +72,33 @@
                                 android:textSize="16.0dip" />
                         </LinearLayout>
 
-                        <ImageButton
-                            android:id="@+id/btn_player"
-                            android:layout_width="80.0dip"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_margin="5.0dip"
-                            android:background="@drawable/selector_button_color_grey"
-                            android:contentDescription="@string/empty"
-                            android:onClick="onClick"
-                            android:padding="10.0dip"
-                            android:src="@drawable/ic_player" />
+                            android:orientation="vertical" >
+
+                            <ImageButton
+                                android:id="@+id/btn_player"
+                                android:layout_width="80.0dip"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:background="@drawable/selector_button_color_grey"
+                                android:contentDescription="@string/empty"
+                                android:onClick="onClick"
+                                android:padding="10.0dip"
+                                android:src="@drawable/ic_player" />
+
+                            <TextView
+                                android:id="@+id/txt_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/black"
+                                android:textSize="35.0dip"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </RelativeLayout>
 
                     <View
@@ -208,23 +223,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <TextView
-                android:id="@+id/txt_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20.0dip"
-                android:textColor="@color/black"
-                android:textSize="35.0dip"
-                android:textStyle="bold"
-                android:layout_alignParentLeft="true" />
+            android:layout_alignParentBottom="true" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-            	android:layout_alignParentRight="true"  >
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal" >
 
                 <Button
                     android:id="@+id/btn_addtonewword"

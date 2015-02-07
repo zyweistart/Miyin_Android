@@ -24,7 +24,7 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 	private int mAnswerCount,mRightCount;
 	private RelativeLayout frame_bg;
 	private ImageView ivlevel;
-	private TextView txtcount;
+	private TextView txtcount1,txtcount2,txtcount3;
 	private TextView txttitle;
 	protected Button btn_learnword;
 	protected Bundle mBundle;
@@ -34,7 +34,9 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 		setContentView(R.layout.activity_vocabulary_test_go_results);
 		frame_bg=(RelativeLayout)findViewById(R.id.frame_bg);
 		ivlevel=(ImageView)findViewById(R.id.ivlevel);
-		txtcount=(TextView)findViewById(R.id.txtcount);
+		txtcount1=(TextView)findViewById(R.id.txtcount1);
+		txtcount2=(TextView)findViewById(R.id.txtcount2);
+		txtcount3=(TextView)findViewById(R.id.txtcount3);
 		txttitle=(TextView)findViewById(R.id.txttitle);
 		btn_learnword=(Button)findViewById(R.id.btn_learnword);
 		
@@ -58,7 +60,9 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 				ivlevel.setImageResource(R.drawable.ic_level_icon_1);
 				txttitle.setText("，还需好好复习！");
 			}
-			txtcount.setText(String.valueOf(result));
+			txtcount1.setText(String.valueOf(mAnswerCount));
+			txtcount2.setText(String.valueOf(mRightCount));
+			txtcount3.setText(String.valueOf(result)+"%");
 		}
 	}
 	
