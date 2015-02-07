@@ -48,15 +48,19 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	private ImageView txt_current_word_image,countdown;
 	
 	private int[] countdownimg={
-			R.drawable.countdown00,
-			R.drawable.countdown01,
-			R.drawable.countdown02,
-			R.drawable.countdown03,
-			R.drawable.countdown04,
-			R.drawable.countdown05,
-			R.drawable.countdown06,
-			R.drawable.countdown07,
-			R.drawable.countdown08};
+			R.drawable.countdown0,
+			R.drawable.countdown1,
+			R.drawable.countdown2,
+			R.drawable.countdown3,
+			R.drawable.countdown4,
+			R.drawable.countdown5,
+			R.drawable.countdown6,
+			R.drawable.countdown7,
+			R.drawable.countdown8,
+			R.drawable.countdown9,
+			R.drawable.countdown10,
+			R.drawable.countdown11,
+			R.drawable.countdown12};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -239,7 +243,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		}
 	}
 	
-	private CountDownTimer mCountDownTimer=new CountDownTimer(9000,1000) {
+	private CountDownTimer mCountDownTimer=new CountDownTimer(13000,1000) {
 		
 		@Override
 		public void onTick(long millisUntilFinished) {

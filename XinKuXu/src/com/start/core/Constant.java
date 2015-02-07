@@ -11,7 +11,7 @@ public final class Constant {
 	/**
 	 * 当前版本环境
 	 */
-	public static final Boolean ISCURRENTNETWORKVERSION=false;
+	public static final Boolean ISCURRENTNETWORKVERSION=true;
 	
 	/**
 	 * 用户接口

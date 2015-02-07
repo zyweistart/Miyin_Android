@@ -36,7 +36,7 @@
                     android:id="@+id/countdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/countdown08"
+                    android:src="@drawable/countdown12"
                     android:layout_gravity="center_horizontal"
                     android:contentDescription="@string/empty"/>
                 
