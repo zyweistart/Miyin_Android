@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -28,6 +29,7 @@ import com.start.xinkuxue.vocabulary.VocabularyTypeSwitchActivity;
 
 public class MainActivity extends BaseActivity {
 
+	private long lastPressTime;
 	private LinearLayout mLeftFrame;
 	private ListView mLVTraining;
 	private List<String> mItemDatas;
@@ -119,6 +121,22 @@ public class MainActivity extends BaseActivity {
 				mLeftFrame.setVisibility(View.VISIBLE);
 			}
 		}
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+			if ((System.currentTimeMillis() - lastPressTime) > 2000) {
+				getHandlerContext().makeTextShort("再按一次退出程序");
+				lastPressTime = System.currentTimeMillis();
+			} else {
+				finish();
+				System.exit(0);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }
