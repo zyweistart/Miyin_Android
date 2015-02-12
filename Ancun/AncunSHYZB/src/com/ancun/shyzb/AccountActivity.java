@@ -43,10 +43,9 @@ public class AccountActivity extends BaseActivity implements RefreshListServerLi
 		setContentView(R.layout.activity_account);
 		setMainHeadTitle(getString(R.string.myaccount));
 		
-		//TODO:退订
 		btnUnsubscribe = (Button) findViewById(R.id.btn_right_unsubscribe);
 		btnUnsubscribe.setOnClickListener(this);
-//		activity_myaccount_btn_RightTitle.setVisibility(View.VISIBLE);
+		btnUnsubscribe.setVisibility(View.VISIBLE);
 		
 		txtPhone = (TextView) findViewById(R.id.activity_myaccount_phone);
 		txtRecordingCount = (TextView) findViewById(R.id.activity_myaccount_recordingcount);
