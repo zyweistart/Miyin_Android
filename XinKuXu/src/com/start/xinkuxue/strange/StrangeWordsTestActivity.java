@@ -16,6 +16,7 @@ public class StrangeWordsTestActivity extends VocabularyTestActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		isCountdowning=false;
 		super.onCreate(savedInstanceState);
 	}
 	

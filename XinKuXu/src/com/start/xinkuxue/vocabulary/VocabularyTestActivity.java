@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -57,6 +58,7 @@ public class VocabularyTestActivity extends BaseActivity {
 	private TextView problem_words, problem_sentence;
 	private LinearLayout answer_frame_text;
 	private RelativeLayout answer_frame_picture;
+	private ImageView countdown;
 
 	private TextView frame_text_selector_answer_a,
 			frame_text_selector_answer_b, frame_text_selector_answer_c,
@@ -70,7 +72,24 @@ public class VocabularyTestActivity extends BaseActivity {
 			frame_picture_selector_answer_d;
 	private TextView frame_text_selector_answer_cannotskip,
 			frame_picture_selector_answer_cannotskip;
+	
+	private int[] countdownimg={
+			R.drawable.countdown0,
+			R.drawable.countdown1,
+			R.drawable.countdown2,
+			R.drawable.countdown3,
+			R.drawable.countdown4,
+			R.drawable.countdown5,
+			R.drawable.countdown6,
+			R.drawable.countdown7,
+			R.drawable.countdown8,
+			R.drawable.countdown9,
+			R.drawable.countdown10,
+			R.drawable.countdown11,
+			R.drawable.countdown12};
 
+	protected Boolean isCountdowning=true;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,6 +99,10 @@ public class VocabularyTestActivity extends BaseActivity {
 		problem_sentence = (TextView) findViewById(R.id.problem_sentence);
 		answer_frame_text = (LinearLayout) findViewById(R.id.answer_frame_text);
 		answer_frame_picture = (RelativeLayout) findViewById(R.id.answer_frame_picture);
+		countdown=(ImageView)findViewById(R.id.countdown);
+		if(isCountdowning){
+			countdown.setVisibility(View.VISIBLE);
+		}
 
 		frame_text_selector_answer_a = (TextView) findViewById(R.id.frame_text_selector_answer_a);
 		frame_text_selector_answer_b = (TextView) findViewById(R.id.frame_text_selector_answer_b);
@@ -121,7 +144,18 @@ public class VocabularyTestActivity extends BaseActivity {
 	}
 
 	@Override
+	protected void onPause() {
+		super.onPause();
+		if(isCountdowning){
+			mCountDownTimer.cancel();
+		}
+	}
+	
+	@Override
 	public void onClick(View v) {
+		if(isCountdowning){
+			mCountDownTimer.cancel();
+		}
 		if (v.getId() == R.id.frame_text_selector_answer_a) {
 			if (mCurrentRightWordItemIndex == 0) {
 				playerRight();
@@ -241,6 +275,10 @@ public class VocabularyTestActivity extends BaseActivity {
 	}
 
 	public void currentWord() {
+		if(isCountdowning){
+			mCountDownTimer.cancel();
+			mCountDownTimer.start();
+		}
 		mCurrentWordId = Integer.parseInt(mAnswerArray[mAnswerIndex]);
 		mCurrentRightWordItem = mWordService.findById(mCurrentWordId);
 		// 加载随机答案前3后3中随机查找
@@ -585,4 +623,18 @@ public class VocabularyTestActivity extends BaseActivity {
 		mediaPlayer.start();
 	}
 
+	private CountDownTimer mCountDownTimer=new CountDownTimer(13000,1000) {
+		
+		@Override
+		public void onTick(long millisUntilFinished) {
+			int n=(int)millisUntilFinished / 1000;
+			countdown.setImageResource(countdownimg[n-1]);
+		}
+		
+		@Override
+		public void onFinish() {
+			currentWord();
+		}
+	};
+	
 }
