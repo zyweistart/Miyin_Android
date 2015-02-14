@@ -38,21 +38,6 @@ public class VocabularyLevelTestActivity extends BaseActivity {
 	private int mCurrentRightWordItemIndex;
 	private WordItem mCurrentRightWordItem;
 
-	private int[] countdownimg={
-			R.drawable.countdown0,
-			R.drawable.countdown1,
-			R.drawable.countdown2,
-			R.drawable.countdown3,
-			R.drawable.countdown4,
-			R.drawable.countdown5,
-			R.drawable.countdown6,
-			R.drawable.countdown7,
-			R.drawable.countdown8,
-			R.drawable.countdown9,
-			R.drawable.countdown10,
-			R.drawable.countdown11,
-			R.drawable.countdown12};
-
 	//题目列表
 	private String[] mAnswerArray;
 	//总答对数
@@ -214,7 +199,7 @@ public class VocabularyLevelTestActivity extends BaseActivity {
 		@Override
 		public void onTick(long millisUntilFinished) {
 			int n=(int)millisUntilFinished / Constant.SECOND;
-			countdown.setImageResource(countdownimg[n]);
+			countdown.setImageResource(mCountdownimg[n]);
 		}
 		
 		@Override

@@ -8,8 +8,8 @@ public final class Constant {
 	 * 临时目录
 	 */
 	public static final String TEMPDIRECTORY="temp";
-	public static final int TOTALSECOND=24000;
-	public static final int SECOND=2000;
+	public static final int TOTALSECOND=12000;
+	public static final int SECOND=1000;
 	
 	/**
 	 * 用户接口

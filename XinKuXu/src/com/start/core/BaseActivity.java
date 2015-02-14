@@ -12,10 +12,26 @@ import android.view.inputmethod.InputMethodManager;
 import com.start.core.Constant.ResultCode;
 import com.start.xinkuxue.BaseContext;
 import com.start.xinkuxue.LoginActivity;
+import com.start.xinkuxue.R;
 
 public class BaseActivity extends AppActivity {
 
 	private InputMethodManager mInputMethodManager;
+	
+	protected int[] mCountdownimg={
+			R.drawable.countdown0,
+			R.drawable.countdown1,
+			R.drawable.countdown2,
+			R.drawable.countdown3,
+			R.drawable.countdown4,
+			R.drawable.countdown5,
+			R.drawable.countdown6,
+			R.drawable.countdown7,
+			R.drawable.countdown8,
+			R.drawable.countdown9,
+			R.drawable.countdown10,
+			R.drawable.countdown11,
+			R.drawable.countdown12};
 	
 	public BaseContext getAppContext() {
 		return (BaseContext)BaseContext.getInstance();

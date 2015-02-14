@@ -73,21 +73,6 @@ public class VocabularyTestActivity extends BaseActivity {
 			frame_picture_selector_answer_d;
 	private TextView frame_text_selector_answer_cannotskip,
 			frame_picture_selector_answer_cannotskip;
-	
-	private int[] countdownimg={
-			R.drawable.countdown0,
-			R.drawable.countdown1,
-			R.drawable.countdown2,
-			R.drawable.countdown3,
-			R.drawable.countdown4,
-			R.drawable.countdown5,
-			R.drawable.countdown6,
-			R.drawable.countdown7,
-			R.drawable.countdown8,
-			R.drawable.countdown9,
-			R.drawable.countdown10,
-			R.drawable.countdown11,
-			R.drawable.countdown12};
 
 	protected Boolean isCountdowning=true;
 	
@@ -629,7 +614,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		@Override
 		public void onTick(long millisUntilFinished) {
 			int n=(int)millisUntilFinished / Constant.SECOND;
-			countdown.setImageResource(countdownimg[n]);
+			countdown.setImageResource(mCountdownimg[n]);
 		}
 		
 		@Override

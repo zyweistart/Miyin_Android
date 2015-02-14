@@ -48,21 +48,6 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	private TextView txt_current_word_index,txt_current_word_process,txt_current_word_name,txt_current_word_exampleenglish,txt_current_word_chinesesignificance;
 	private ImageView txt_current_word_image,countdown;
 	
-	private int[] countdownimg={
-			R.drawable.countdown0,
-			R.drawable.countdown1,
-			R.drawable.countdown2,
-			R.drawable.countdown3,
-			R.drawable.countdown4,
-			R.drawable.countdown5,
-			R.drawable.countdown6,
-			R.drawable.countdown7,
-			R.drawable.countdown8,
-			R.drawable.countdown9,
-			R.drawable.countdown10,
-			R.drawable.countdown11,
-			R.drawable.countdown12};
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -249,7 +234,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		@Override
 		public void onTick(long millisUntilFinished) {
 			int n=(int)millisUntilFinished / Constant.SECOND;
-			countdown.setImageResource(countdownimg[n]);
+			countdown.setImageResource(mCountdownimg[n]);
 		}
 		
 		@Override
