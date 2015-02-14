@@ -1,5 +1,9 @@
 package com.start.xinkuxue.vocabulary;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -46,7 +50,7 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 		}else{
 			mAnswerCount=mBundle.getInt(ANSWERCOUNT);
 			mRightCount=mBundle.getInt(RIGHTCOUNT);
-			int result=100/mAnswerCount*mRightCount;
+			double result = accuracy(mRightCount, mAnswerCount);
 			if(mAnswerCount==mRightCount){
 				result=100;
 			}
@@ -63,9 +67,12 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 				ivlevel.setImageResource(R.drawable.ic_level_icon_1);
 				txttitle.setText("还需好好复习！");
 			}
+			DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();  
+	        df.setMaximumFractionDigits(1);  
+	        df.setRoundingMode(RoundingMode.HALF_UP);  
 			txtcount1.setText(String.valueOf(mAnswerCount));
 			txtcount2.setText(String.valueOf(mRightCount));
-			txtcount3.setText(String.valueOf(result)+"%");
+			txtcount3.setText(df.format(result)+"%");
 		}
 	}
 	
@@ -79,5 +86,9 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 			super.onClick(v);
 		}
 	}
+	
+	public double accuracy(double num, double total){  
+		return num / total * 100;
+	} 
 	
 }
