@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.start.core.BaseActivity;
+import com.start.core.Constant;
 import com.start.service.AppServer;
 import com.start.service.WordService;
 import com.start.service.bean.WordItem;
@@ -623,12 +624,12 @@ public class VocabularyTestActivity extends BaseActivity {
 		mediaPlayer.start();
 	}
 
-	private CountDownTimer mCountDownTimer=new CountDownTimer(13000,1000) {
+	private CountDownTimer mCountDownTimer=new CountDownTimer(Constant.TOTALSECOND,Constant.SECOND) {
 		
 		@Override
 		public void onTick(long millisUntilFinished) {
-			int n=(int)millisUntilFinished / 1000;
-			countdown.setImageResource(countdownimg[n-1]);
+			int n=(int)millisUntilFinished / Constant.SECOND;
+			countdown.setImageResource(countdownimg[n]);
 		}
 		
 		@Override
