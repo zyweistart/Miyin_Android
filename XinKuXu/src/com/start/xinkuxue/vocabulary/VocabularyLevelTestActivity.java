@@ -110,6 +110,8 @@ public class VocabularyLevelTestActivity extends BaseActivity {
 			bundle.putInt(VocabularyLevelTestGoResultsActivity.BUNDLE_ANSWER_COUNT,mAnswerArray.length);
 			bundle.putInt(VocabularyLevelTestGoResultsActivity.BUNDLE_ANSWER_RIGHTCOUNT,mRightCount);
 			Intent intent=new Intent(this,VocabularyLevelTestGoResultsActivity.class);
+			intent.addCategory(Intent.CATEGORY_HOME);  
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
 			intent.putExtras(bundle);
 			startActivity(intent);
 			finish();

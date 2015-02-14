@@ -30,6 +30,8 @@ public class WordTestActivity extends VocabularyTestActivity{
 		bundle.putInt(WordTestGoResultsActivity.RIGHTCOUNT, mRightCount);
 		bundle.putInt(WordTestGoResultsActivity.ANSWERCOUNT, mAnswerArray.length);
 		Intent intent=new Intent(this,WordTestGoResultsActivity.class);
+		intent.addCategory(Intent.CATEGORY_HOME);  
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
 		intent.putExtras(bundle);
 		startActivity(intent);
 		finish();

@@ -590,6 +590,8 @@ public class VocabularyTestActivity extends BaseActivity {
 		bundle.putInt(VocabularyTestGoResultsActivity.ANSWERCOUNT,
 				mAnswerArray.length);
 		Intent intent = new Intent(this, VocabularyTestGoResultsActivity.class);
+		intent.addCategory(Intent.CATEGORY_HOME);  
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
 		intent.putExtras(bundle);
 		startActivity(intent);
 		finish();
