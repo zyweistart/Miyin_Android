@@ -634,7 +634,13 @@ public class VocabularyTestActivity extends BaseActivity {
 		
 		@Override
 		public void onFinish() {
-			currentWord();
+			if (mAnswerIndex >= mAnswerArray.length) {
+				toDonePage();
+			} else {
+				frame_text_selector_answer_cannotskip.setEnabled(true);
+				frame_picture_selector_answer_cannotskip.setEnabled(true);
+				currentWord();
+			}
 		}
 	};
 	
