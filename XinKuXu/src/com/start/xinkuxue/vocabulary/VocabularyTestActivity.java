@@ -253,6 +253,7 @@ public class VocabularyTestActivity extends BaseActivity {
 			@Override
 			public void run() {
 				if (mAnswerIndex >= mAnswerArray.length) {
+					mCountDownTimer.cancel();
 					toDonePage();
 				} else {
 					frame_text_selector_answer_cannotskip.setEnabled(true);
