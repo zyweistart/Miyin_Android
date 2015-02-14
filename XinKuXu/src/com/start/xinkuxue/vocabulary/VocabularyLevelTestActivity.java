@@ -76,11 +76,11 @@ public class VocabularyLevelTestActivity extends BaseActivity {
 		}
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		mCountDownTimer.cancel();
-	}
+//	@Override
+//	protected void onPause() {
+//		super.onPause();
+//		mCountDownTimer.cancel();
+//	}
 	
 	@Override
 	public void onClick(View v) {

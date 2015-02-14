@@ -182,7 +182,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	}
 	
 	public void closeAudio(){
-		mCountDownTimer.cancel();
+//		mCountDownTimer.cancel();
 		if(mMediaPlayer!=null){
 			if(mMediaPlayer.isPlaying()){
 				mMediaPlayer.stop();

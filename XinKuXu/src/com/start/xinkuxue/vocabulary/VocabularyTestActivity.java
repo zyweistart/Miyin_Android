@@ -75,7 +75,7 @@ public class VocabularyTestActivity extends BaseActivity {
 			frame_picture_selector_answer_cannotskip;
 
 	protected Boolean isCountdowning=true;
-	
+	private MediaPlayer mMPRight,mMPError;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -109,6 +109,9 @@ public class VocabularyTestActivity extends BaseActivity {
 		frame_picture_selector_answer_d = (LinearLayout) findViewById(R.id.frame_picture_selector_answer_d);
 		frame_picture_selector_answer_cannotskip = (TextView) findViewById(R.id.frame_picture_selector_answer_cannotskip);
 
+		mMPRight = MediaPlayer.create(VocabularyTestActivity.this,R.raw.right);
+		mMPError = MediaPlayer.create(VocabularyTestActivity.this,R.raw.error);
+		
 		mBundle = getIntent().getExtras();
 		if (mBundle != null) {
 			rnTestRandom = new Random();
@@ -129,13 +132,13 @@ public class VocabularyTestActivity extends BaseActivity {
 
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if(isCountdowning){
-			mCountDownTimer.cancel();
-		}
-	}
+//	@Override
+//	protected void onPause() {
+//		super.onPause();
+//		if(isCountdowning){
+//			mCountDownTimer.cancel();
+//		}
+//	}
 	
 	@Override
 	public void onClick(View v) {
@@ -600,13 +603,11 @@ public class VocabularyTestActivity extends BaseActivity {
 
 	public void playerRight() {
 		mRightCount++;
-		MediaPlayer mediaPlayer = MediaPlayer.create(VocabularyTestActivity.this,R.raw.right);
-		mediaPlayer.start();
+		mMPRight.start();
 	}
 	
 	public void playerError() {
-		MediaPlayer mediaPlayer = MediaPlayer.create(VocabularyTestActivity.this,R.raw.error);
-		mediaPlayer.start();
+		mMPError.start();
 	}
 
 	private CountDownTimer mCountDownTimer=new CountDownTimer(Constant.TOTALSECOND,Constant.SECOND) {
