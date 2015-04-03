@@ -31,6 +31,7 @@
     <string name="errorwordcategory">错词本</string>
     <string name="cannotskip">不会，跳过</string>
     <string name="addtonewword">加入单词本</string>
+    <string name="deletetonewword">取消单词本</string>
     <string name="immediatetest">立即测试</string>
     <string name="waitagain">稍候再说</string>
     <string name="testmethodtip">测试方法必须大于等于3种</string>

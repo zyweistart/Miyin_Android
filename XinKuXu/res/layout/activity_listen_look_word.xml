@@ -239,6 +239,15 @@
                     android:background="@drawable/selector_button_color_red"
                     android:text="@string/addtonewword"
                     android:textSize="20.0dip" />
+                
+                <Button
+                    android:id="@+id/btn_deletetonewword"
+                    style="@style/button_style_rectangle"
+                    android:layout_width="150.0dip"
+                    android:layout_height="50.0dip"
+                    android:background="@drawable/selector_button_color_grey"
+                    android:text="@string/deletetonewword"
+                    android:textSize="20.0dip" />
 
                 <ImageButton
                     android:id="@+id/btn_previous"

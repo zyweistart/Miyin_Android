@@ -84,7 +84,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		if(mBundle!=null){
 			mAnswerArray=mBundle.getStringArray(BUNDLE_ANSWER_ARRAY);
 			currentIndex=0;
-			initWord();
+//			initWord();
 		}else{
 			finish();
 		}
@@ -125,6 +125,12 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 		}else{
 			super.onClick(v);
 		}
+	}
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+		initWord();
 	}
 	
 	@Override
@@ -182,7 +188,7 @@ public static final String BUNDLE_ANSWER_ARRAY="BUNDLE_ANSWER_ARRAY";
 	}
 	
 	public void closeAudio(){
-//		mCountDownTimer.cancel();
+		mCountDownTimer.cancel();
 		if(mMediaPlayer!=null){
 			if(mMediaPlayer.isPlaying()){
 				mMediaPlayer.stop();

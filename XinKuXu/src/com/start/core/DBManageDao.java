@@ -70,6 +70,12 @@ public  class DBManageDao {
         }
 	}
 	
+	public void deleteToStrangeWord(String wordId,String userName,String type){
+        if(!isJoin(wordId,userName,type)){
+    		getSQLiteDatabase().delete(StrangeWordItem.TABLENAME, "pindex=? and userName=? and type=?", new String[]{wordId,userName,type});
+        }
+	}
+	
 	/**
 	 * 根据加入时间获取所对应的所有生词
 	 */

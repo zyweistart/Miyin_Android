@@ -36,7 +36,7 @@ public class ListenLookWordActivity extends BaseActivity{
 	
 	private ImageView iv_word,iv_memory_method;
 	private TextView txt_englishName,txt_phoneticSymbols,txt_chineseSignificance,txt_exampleEnglish,txt_exampleChinese,txt_memoryMethodA,txt_memoryMethodB;
-	private Button btn_addtonewword;
+	private Button btn_addtonewword,btn_deletetonewword;
 	private ImageButton btn_previous;
 	private TextView txt_learn_count,txt_id;
 	private WordService mWordService;
@@ -63,6 +63,7 @@ public class ListenLookWordActivity extends BaseActivity{
 		txt_memoryMethodA=(TextView)findViewById(R.id.txt_memoryMethodA);
 		txt_memoryMethodB=(TextView)findViewById(R.id.txt_memoryMethodB);
 		btn_addtonewword=(Button)findViewById(R.id.btn_addtonewword);
+		btn_deletetonewword=(Button)findViewById(R.id.btn_deletetonewword);
 		btn_previous=(ImageButton)findViewById(R.id.btn_previous);
 		txt_learn_count=(TextView)findViewById(R.id.txt_learn_count);
 		txt_id=(TextView)findViewById(R.id.txt_id);
@@ -135,6 +136,11 @@ public class ListenLookWordActivity extends BaseActivity{
 		}else if(v.getId()==R.id.btn_addtonewword){
 			BaseContext.getDBManager().joinToStrangeWord(String.valueOf(mWordItem.getId()), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_WORDS);
 			btn_addtonewword.setVisibility(View.GONE);
+			btn_deletetonewword.setVisibility(View.VISIBLE);
+		}else if(v.getId()==R.id.btn_deletetonewword){
+			BaseContext.getDBManager().deleteToStrangeWord(String.valueOf(mWordItem.getId()), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_WORDS);
+			btn_addtonewword.setVisibility(View.VISIBLE);
+			btn_deletetonewword.setVisibility(View.GONE);
 		}else if(v.getId()==R.id.waitagain){
 			finish();
 		}else{
@@ -155,8 +161,10 @@ public class ListenLookWordActivity extends BaseActivity{
 		}
 		if(BaseContext.getDBManager().isJoin(String.valueOf(mWordItem.getId()), getAppContext().currentUser().getCacheAccount(),StrangeWordItem.CATEGORY_WORDS)){
 			btn_addtonewword.setVisibility(View.VISIBLE);
+			btn_deletetonewword.setVisibility(View.GONE);
 		}else{
 			btn_addtonewword.setVisibility(View.GONE);
+			btn_deletetonewword.setVisibility(View.VISIBLE);
 		}
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 2;

@@ -125,20 +125,25 @@ public class VocabularyTestActivity extends BaseActivity {
 				return;
 			}
 			mAnswerIndex = 0;
-			currentWord();
 		} else {
 			finish();
 		}
 
 	}
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+		currentWord();
+	}
 
-//	@Override
-//	protected void onPause() {
-//		super.onPause();
-//		if(isCountdowning){
-//			mCountDownTimer.cancel();
-//		}
-//	}
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if(isCountdowning){
+			mCountDownTimer.cancel();
+		}
+	}
 	
 	@Override
 	public void onClick(View v) {

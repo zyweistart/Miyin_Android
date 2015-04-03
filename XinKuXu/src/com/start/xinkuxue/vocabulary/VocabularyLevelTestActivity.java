@@ -72,15 +72,20 @@ public class VocabularyLevelTestActivity extends BaseActivity {
 			rnTestRandom = new Random();
 			mAnswerArray=bundle.getStringArray(BUNDLE_ANSWER_ARRAY);
 			mCurrentWordIndex=0;
-			showWord();
 		}
 	}
-
-//	@Override
-//	protected void onPause() {
-//		super.onPause();
-//		mCountDownTimer.cancel();
-//	}
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+		showWord();
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mCountDownTimer.cancel();
+	}
 	
 	@Override
 	public void onClick(View v) {
