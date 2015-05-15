@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="custom_rules" default="debug">
+<project name="custom_rules" default="start_release">
     
 	<!-- 修改的配置文件 -->
 	<property name="app.file.manifest" value="AndroidManifest.xml"/>
@@ -28,7 +28,7 @@
 		<!-- 生成输出到目标文件中 -->
 		<copy file="${out.final.file}" tofile="${app.build.path}\${ant.project.name}\current\${ant.project.name}-${apk-market}.apk" overwrite="true"/>
 		<!-- 生成输出到历史文件中 -->
-		<copy file="${out.final.file}" tofile="${app.build.path}\${ant.project.name}\history\${var.time}\${ant.project.name}-${apk-market}-${var.time}.apk" overwrite="true"/>
+		<copy file="${out.final.file}" tofile="${app.build.path}\${ant.project.name}\history\${var.time}\${ant.project.name}-${apk-market}.apk" overwrite="true"/>
 		<!-- 还原配置文件 -->
 		<copy file="${app.file.manifest.bak}" tofile="${app.file.manifest}" overwrite="true"/>
 		<!-- 删除备份配置文件 -->
@@ -48,9 +48,9 @@
     
 	<!-- 调用该目标方法生成全部 -->
 	<target name="start_release"> 
-	    <!-- 如果生成失败，调用下面语句清理项目，或者执行菜单Project->Clean...
+	    <!-- 如果生成失败，调用下面语句清理项目，或者执行菜单Project->Clean... -->
 	    <antcall target="clean" />
-	    <echo>项目清理完成，开始生成</echo> -->
+	    <echo>项目清理完成，开始生成</echo>
 	   <foreach target="release" list="${app.channel}" param="apk-market" delimiter=";"/> 
 	</target>
     

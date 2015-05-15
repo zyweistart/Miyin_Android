@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ancun.shyzb"
-    android:versionCode="2014041418"
+    android:versionCode="2015012614"
     android:versionName="1.0.1"
     android:installLocation="auto"  >
 
@@ -68,7 +68,7 @@
             android:value="548fe345fd98c5e35400082a" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="WebSite" />
+            android:value="CHANNELNAME" />
 
         <activity
             android:name=".StartActivity"

@@ -70,7 +70,7 @@
             android:value="548fe3b1fd98c59e9b0003a9" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="WebSite" />
+            android:value="CHANNELNAME" />
 
         <activity
             android:name=".StartActivity"
