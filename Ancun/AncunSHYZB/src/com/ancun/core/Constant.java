@@ -99,6 +99,7 @@ public final class Constant {
 		 * 销户
 		 */
 		public static final String ylTaoCancel  ="ylTaoCancel";
+		public static final String ylTaoCancelAPP  ="ylTaoCancelAPP";
 		/**
 		 * 意见反馈
 		 */

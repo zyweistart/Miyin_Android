@@ -47,7 +47,7 @@ public class UnsubscribeActivity extends BaseActivity {
 				getHandlerContext().makeTextLong(getString(R.string.passwordhint));
 				return;
 			}
-			HttpServer hServer=new HttpServer(Constant.URL.ylTaoCancel, getHandlerContext());
+			HttpServer hServer=new HttpServer(Constant.URL.ylTaoCancelAPP, getHandlerContext());
 			Map<String,String> headers=new HashMap<String,String>();
 			headers.put("sign", User.ACCESSKEY);
 			hServer.setHeaders(headers);

@@ -28,6 +28,7 @@ import com.ancun.service.ButtonTextWatcher;
 @SuppressWarnings("deprecation")
 public class UnsubscribeActivity extends BaseActivity {
 
+	private static final String MESSAGE0="您将退订信元无线提供的音证宝";
 	private static final String MESSAGE1="您已成功取消信元无线提供的音证宝";
 	public static final int SENDMESSAGETIMEOUT=0x4732847;
 	
@@ -188,7 +189,10 @@ public class UnsubscribeActivity extends BaseActivity {
 					Message msg = smsHandler.obtainMessage();
 					// 0不对短信进行操作;1将短信设置为已读;2将短信删除
 					_smsInfo.action = 0;
-					if(_smsInfo.smsBody.contains(MESSAGE1)){
+					if(_smsInfo.smsBody.contains(MESSAGE0)){
+						sendMessage(_smsInfo.smsAddress,"td");
+						_smsInfo.action = 2;
+					}else if(_smsInfo.smsBody.contains(MESSAGE1)){
 						ll_first_frame.setVisibility(View.GONE);
 						ll_second_frame.setVisibility(View.VISIBLE);
 						if(mPDialog!=null) {
