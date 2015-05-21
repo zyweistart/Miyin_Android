@@ -1,0 +1,200 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_activity"
+    android:orientation="vertical" >
+
+    <include layout="@layout/module_header" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="10dip"
+            android:layout_height="fill_parent" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dip"
+                android:layout_weight="1"
+                android:background="@drawable/bg_radiogroup"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/recorded_appeal_taobao_code_static"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center|left"
+                    android:singleLine="true"
+                    android:text="@string/extraction_code"
+                    android:textColor="#000000"
+                    android:textSize="18dip" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="0dip" >
+
+                    <TextView
+                        android:id="@+id/recorded_appeal_taobao_code_url"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/recorded_appeal_taobao_code_static"
+                        android:gravity="left|center"
+                        android:paddingLeft="0dip"
+                        android:singleLine="true"
+                        android:textColor="#666666"
+                        android:textSize="16dip"
+                        tools:ignore="NotSibling" />
+
+                    <TextView
+                        android:id="@+id/recorded_appeal_taobao_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/recorded_appeal_taobao_code_url"
+                        android:gravity="left|center"
+                        android:paddingLeft="0dip"
+                        android:singleLine="true"
+                        android:textColor="#ff0000"
+                        android:textSize="18dip" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dip" >
+
+                    <TextView
+                        android:id="@+id/recorded_appeal_taobao_limit_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dip"
+                        android:layout_marginRight="5dip"
+                        android:gravity="center|left"
+                        android:singleLine="true"
+                        android:text="@string/extraction_code_validity_tip"
+                        android:textColor="#000000"
+                        android:textSize="18dip" />
+
+                    <TextView
+                        android:id="@+id/recorded_appeal_taobao_limit_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/recorded_appeal_taobao_limit_static"
+                        android:gravity="center|left"
+                        android:paddingLeft="0dip"
+                        android:singleLine="true"
+                        android:textColor="#666666"
+                        android:textSize="16dip" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/recorded_appeal_taobao_limit_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center|left"
+                    android:singleLine="false"
+                    android:text="@string/extraction_code_tip1"
+                    android:textColor="#666666"
+                    android:textSize="16dip" />
+
+                <TextView
+                    android:id="@+id/recorded_appeal_taobao_limit_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="0dip"
+                    android:gravity="center|left"
+                    android:singleLine="false"
+                    android:text="@string/extraction_code_tip2"
+                    android:textColor="#666666"
+                    android:textSize="16dip" />
+
+                <TextView
+                    android:id="@+id/recorded_appeal_taobao_limit_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center|left"
+                    android:singleLine="false"
+                    android:text="@string/extraction_code_tip"
+                    android:textColor="#ff0000"
+                    android:textSize="14dip" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/recorded_appeal_taobao_btn_copy"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dip"
+                android:layout_marginLeft="25dip"
+                android:layout_marginRight="25dip"
+                android:layout_marginTop="30dip"
+                android:background="@drawable/selector_button_6"
+                android:text="@string/copy_extraction_code"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/recorded_appeal_taobao_btn_send_to_mobile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dip"
+                android:layout_marginLeft="25dip"
+                android:layout_marginRight="25dip"
+                android:layout_marginTop="25dip"
+                android:background="@drawable/selector_button_6"
+                android:text="@string/short_message_send"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/recorded_appeal_taobao_btn_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dip"
+                android:layout_marginLeft="25dip"
+                android:layout_marginRight="25dip"
+                android:layout_marginTop="30dip"
+                android:background="@drawable/selector_button_7"
+                android:text="@string/undo_extraction_code"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="10dip"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
+
+</LinearLayout>

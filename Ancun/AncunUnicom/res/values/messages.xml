@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="empty"></string>
+    <string name="sure">确定</string>
+    <string name="submit">提交</string>
+    <string name="cancle">取消</string>
+    <string name="setting">设置</string>
+    <string name="prompt">提示</string>
+    <string name="wait">请稍候&#8230;</string>
+    <string name="downloading">下载中&#8230;</string>
+    
+    <string name="network_not_connected">网络连接失败，请检查网络设置</string>
+    <string name="xml_parser_failed">数据解析异常</string>
+    <string name="io_exception_error">文件流异常</string>
+    <string name="http_status_code_error">网络异常，错误码：%d</string>
+    <string name="http_exception_error">网络异常，请求超时</string>
+    <string name="socket_exception_error">网络异常，读取数据超时</string>
+    <string name="app_run_code_error">应用程序运行时异常</string>
+    <string name="error_try_again">糟糕出错了，请稍候再试！</string>
+    
+    <string name="app_error">应用程序错误</string>
+    <string name="app_error_message">很抱歉，应用程序出现错误，即将退出。\n请提交错误报告，我们会尽快修复这个问题！</string>
+    <string name="submit_report">提交报告</string>
+    
+    <!-- widget -->
+    <string name="widget_xlistview_header_hint_normal">下拉刷新</string>
+    <string name="widget_xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="widget_xlistview_header_hint_loading">正在加载&#8230;</string>
+    <string name="widget_xlistview_header_last_time">上次更新时间：</string>
+    <string name="widget_xlistview_footer_hint_normal">查看更多</string>
+    <string name="widget_xlistview_footer_hint_ready">松开载入更多</string>
+    <!-- gesture -->
+
+    <!-- Accessibility description sent when user starts drawing a lock pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_start">Pattern started</string>
+    <!-- Accessibility description sent when the pattern times out and is cleared. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_cleared">Pattern cleared</string>
+    <!-- Accessibility description sent when user adds a cell to the pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_cell_added">Cell added</string>
+    <!-- Accessibility description sent when user completes drawing a pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_detected">Pattern completed</string>
+ </resources>
