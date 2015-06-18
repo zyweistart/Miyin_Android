@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.start.core.BaseActivity;
 import com.start.xinkuxue.R;
+import com.start.xinkuxue.strange.StrangeWordTypeSwitchActivity;
 
 /**
  * 单词学习选择界面
@@ -34,8 +35,8 @@ public class LearnTypeSwitchActivity extends BaseActivity{
 			Intent intent=new Intent(this,WordListenLookSectionActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
-		}else if(v.getId()==R.id.btn_testeveryday){
-			Intent intent=new Intent(this,WordTestSectionActivity.class);
+		}else if(v.getId()==R.id.btn_newwords){
+			Intent intent = new Intent(this,StrangeWordTypeSwitchActivity.class);
 			startActivity(intent);
 		}else{
 			super.onClick(v);

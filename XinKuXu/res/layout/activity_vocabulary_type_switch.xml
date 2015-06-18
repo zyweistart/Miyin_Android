@@ -42,6 +42,12 @@
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/practicetest" />
+            
+            <Button
+                android:id="@+id/btn_testeveryday"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_orange"
+                android:text="@string/testeveryday" />
         </LinearLayout>
     </RelativeLayout>
 

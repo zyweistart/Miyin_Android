@@ -115,7 +115,7 @@
             android:orientation="horizontal" >
 
             <RelativeLayout
-                android:id="@+id/newwords"
+                android:id="@+id/wordpk"
                 android:layout_width="170.0dip"
                 android:layout_height="170.0dip"
                 android:background="@drawable/selector_button_color_blue"
@@ -143,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/newwords"
+                        android:text="@string/wordpk"
                         android:textColor="@color/white"
                         android:textSize="25.0dip" />
                 </LinearLayout>

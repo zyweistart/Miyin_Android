@@ -30,7 +30,7 @@ public class VocabularyTestSectionActivity extends BaseActivity{
 	private LinearLayout frame_test_start1,frame_test_start2;
 
 	private CustomEditText et_test_start_index,et_test_end_index,et_section;
-	private CheckBox cb_switch_a,cb_switch_b,cb_switch_c,cb_switch_d,cb_switch_e;
+	private CheckBox cb_switch_a,cb_switch_b,cb_switch_c,cb_switch_d,cb_switch_e,cb_switch_f;
 	
 	private WordService mWordService;
 	private Integer mWordCount;
@@ -63,6 +63,7 @@ public class VocabularyTestSectionActivity extends BaseActivity{
 		cb_switch_c=(CheckBox)findViewById(R.id.cb_switch_c);
 		cb_switch_d=(CheckBox)findViewById(R.id.cb_switch_d);
 		cb_switch_e=(CheckBox)findViewById(R.id.cb_switch_e);
+		cb_switch_f=(CheckBox)findViewById(R.id.cb_switch_f);
 		et_section=(CustomEditText)findViewById(R.id.et_section);
 		et_section.addTextChangedListener(new CustomTextWatcher());
 		frame_test_start1.setVisibility(View.GONE);
@@ -120,6 +121,9 @@ public class VocabularyTestSectionActivity extends BaseActivity{
 			}
 			if(cb_switch_e.isChecked()){
 				indexs.add("5");
+			}
+			if(cb_switch_f.isChecked()){
+				indexs.add("6");
 			}
 			if(indexs.size()<3){
 				getHandlerContext().makeTextLong(getString(R.string.testmethodtip));

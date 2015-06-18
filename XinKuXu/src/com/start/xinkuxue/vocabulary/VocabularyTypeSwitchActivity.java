@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.start.core.BaseActivity;
 import com.start.xinkuxue.R;
+import com.start.xinkuxue.learn.WordTestSectionActivity;
 
 /**
  * 词汇测试界面
@@ -27,6 +28,9 @@ public class VocabularyTypeSwitchActivity extends BaseActivity{
 			startActivity(intent);
 		}else if(v.getId()==R.id.btn_practicetest){
 			Intent intent=new Intent(this,VocabularyTestSectionActivity.class);
+			startActivity(intent);
+		}else if(v.getId()==R.id.btn_testeveryday){
+			Intent intent=new Intent(this,WordTestSectionActivity.class);
 			startActivity(intent);
 		}else{
 			super.onClick(v);

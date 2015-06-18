@@ -44,10 +44,10 @@
                 android:text="@string/words123" />
 
             <Button
-                android:id="@+id/btn_testeveryday"
+                android:id="@+id/btn_newwords"
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_red"
-                android:text="@string/testeveryday" />
+                android:text="@string/newwords" />
         </LinearLayout>
     </RelativeLayout>
 

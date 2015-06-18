@@ -19,7 +19,6 @@ import android.widget.ListView;
 
 import com.start.core.BaseActivity;
 import com.start.xinkuxue.learn.LearnTypeSwitchActivity;
-import com.start.xinkuxue.strange.StrangeWordTypeSwitchActivity;
 import com.start.xinkuxue.training.MessageActivity;
 import com.start.xinkuxue.training.NoticeActivity;
 import com.start.xinkuxue.training.ScoreboardActivity;
@@ -109,9 +108,8 @@ public class MainActivity extends BaseActivity {
 		} else if (v.getId() == R.id.testvocabulary) {
 			Intent intent = new Intent(this, VocabularyTypeSwitchActivity.class);
 			startActivity(intent);
-		} else if (v.getId() == R.id.newwords) {
-			Intent intent = new Intent(this,StrangeWordTypeSwitchActivity.class);
-			startActivity(intent);
+		} else if (v.getId() == R.id.wordpk) {
+			getHandlerContext().makeTextLong("即将上线");
 		} else if (v.getId() == R.id.specialtraining) {
 			if (mLeftFrame.isShown()) {
 				mLeftFrame.startAnimation(mHiddenAction);

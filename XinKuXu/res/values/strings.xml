@@ -13,9 +13,10 @@
     <string name="repasswordhint">请再次输入密码</string>
     <string name="passworddiffhint">两次密码不一致</string>
     <string name="learnwords">单词学习</string>
-    <string name="testvocabulary">单词测试</string>
+    <string name="testvocabulary">词汇测试</string>
     <string name="w">w</string>
     <string name="newwords">生词本</string>
+    <string name="wordpk">单词PK</string>
     <string name="specialtraining">特训营</string>
     <string name="listenlooklearnwords">边听边看学单词</string>
     <string name="words123">单词123</string>
@@ -49,6 +50,7 @@
     <string name="picturetoenglish">图->英</string>
     <string name="englishtopicture">英->图</string>
     <string name="fillanswer">填空</string>
+    <string name="soundchinese">音->中</string>
     <string name="mygoreview">我要复习</string>
     <string name="mygotest">我要测试</string>
     <string name="gohome">返回主页</string>

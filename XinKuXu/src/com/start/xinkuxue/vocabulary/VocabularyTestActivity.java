@@ -1,6 +1,7 @@
 package com.start.xinkuxue.vocabulary;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +14,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -56,10 +59,12 @@ public class VocabularyTestActivity extends BaseActivity {
 	private String mTitle, mAName, mBName, mCName, mDName;
 	protected Bundle mBundle;
 	private ImageView problem_picture;
+	private ImageButton problem_sound;
 	private TextView problem_words, problem_sentence;
 	private LinearLayout answer_frame_text;
 	private RelativeLayout answer_frame_picture;
 	private ImageView countdown;
+	private MediaPlayer mMediaPlayer;
 
 	private TextView frame_text_selector_answer_a,
 			frame_text_selector_answer_b, frame_text_selector_answer_c,
@@ -81,6 +86,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vocabulary_test);
 		problem_picture = (ImageView) findViewById(R.id.problem_picture);
+		problem_sound = (ImageButton) findViewById(R.id.problem_sound);
 		problem_words = (TextView) findViewById(R.id.problem_words);
 		problem_sentence = (TextView) findViewById(R.id.problem_sentence);
 		answer_frame_text = (LinearLayout) findViewById(R.id.answer_frame_text);
@@ -270,6 +276,7 @@ public class VocabularyTestActivity extends BaseActivity {
 	}
 
 	public void currentWord() {
+		closeAudio();
 		if(isCountdowning){
 			mCountDownTimer.cancel();
 			mCountDownTimer.start();
@@ -289,6 +296,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		}
 		int type = Integer.parseInt(mTestType[rnTestRandom
 				.nextInt(mTestType.length)]);
+//		type=6;
 		if (type == 1) {
 			mTitle = mCurrentRightWordItem.getChineseSignificance();
 			mAName = "A、" + sortWordItems.get(0).getEnglishName();
@@ -324,6 +332,13 @@ public class VocabularyTestActivity extends BaseActivity {
 			mCName = "C、" + sortWordItems.get(2).getFillAnswer();
 			mDName = "D、" + sortWordItems.get(3).getFillAnswer();
 			textToText();
+		} else if (type == 6) {
+			mTitle = mCurrentRightWordItem.getId();
+			mAName = "A、" + sortWordItems.get(0).getChineseSignificance();
+			mBName = "B、" + sortWordItems.get(1).getChineseSignificance();
+			mCName = "C、" + sortWordItems.get(2).getChineseSignificance();
+			mDName = "D、" + sortWordItems.get(3).getChineseSignificance();
+			soundToText();
 		}
 		mAnswerIndex++;
 	}
@@ -335,6 +350,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		problem_sentence.setVisibility(View.GONE);
 		answer_frame_text.setVisibility(View.VISIBLE);
 		answer_frame_picture.setVisibility(View.GONE);
+		problem_sound.setVisibility(View.GONE);
 		// 设置样式
 		setStyleTextViewNormal(frame_text_selector_answer_a);
 		setStyleTextViewNormal(frame_text_selector_answer_b);
@@ -355,6 +371,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		problem_sentence.setVisibility(View.GONE);
 		answer_frame_text.setVisibility(View.GONE);
 		answer_frame_picture.setVisibility(View.VISIBLE);
+		problem_sound.setVisibility(View.GONE);
 		// 设置样式、显示内容
 		problem_words.setText(AppServer.ToDBC(mTitle));
 
@@ -413,6 +430,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		problem_sentence.setVisibility(View.VISIBLE);
 		answer_frame_text.setVisibility(View.VISIBLE);
 		answer_frame_picture.setVisibility(View.GONE);
+		problem_sound.setVisibility(View.GONE);
 		// 设置样式
 		setStyleTextViewNormal(frame_text_selector_answer_a);
 		setStyleTextViewNormal(frame_text_selector_answer_b);
@@ -433,6 +451,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		problem_sentence.setVisibility(View.GONE);
 		answer_frame_text.setVisibility(View.VISIBLE);
 		answer_frame_picture.setVisibility(View.GONE);
+		problem_sound.setVisibility(View.GONE);
 		// 设置样式
 		setStyleTextViewNormal(frame_text_selector_answer_a);
 		setStyleTextViewNormal(frame_text_selector_answer_b);
@@ -450,6 +469,52 @@ public class VocabularyTestActivity extends BaseActivity {
 			problem_picture.setImageBitmap(BitmapFactory.decodeResource(
 					getResources(), R.drawable.default_words));
 		}
+		frame_text_selector_answer_a.setText(mAName);
+		frame_text_selector_answer_b.setText(mBName);
+		frame_text_selector_answer_c.setText(mCName);
+		frame_text_selector_answer_d.setText(mDName);
+	}
+	
+	public void soundToText() {
+		// 显示隐藏
+		problem_picture.setVisibility(View.GONE);
+		problem_words.setVisibility(View.GONE);
+		problem_sentence.setVisibility(View.GONE);
+		answer_frame_text.setVisibility(View.VISIBLE);
+		answer_frame_picture.setVisibility(View.GONE);
+		problem_sound.setVisibility(View.VISIBLE);
+		// 设置样式
+		setStyleTextViewNormal(frame_text_selector_answer_a);
+		setStyleTextViewNormal(frame_text_selector_answer_b);
+		setStyleTextViewNormal(frame_text_selector_answer_c);
+		setStyleTextViewNormal(frame_text_selector_answer_d);
+		// 播放声音
+		problem_sound.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				closeAudio();
+				String mAudioPath = mWordService.getAudioPath(mTitle);
+				if(new File(mAudioPath).exists()){
+					try {
+						mMediaPlayer=new MediaPlayer();
+						mMediaPlayer.setDataSource(mAudioPath);
+						mMediaPlayer.prepare();
+						mMediaPlayer.start();
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (SecurityException e) {
+						e.printStackTrace();
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}else{
+					getHandlerContext().makeTextShort(getString(R.string.word_data_not_audio));
+				}
+			}
+		});
 		frame_text_selector_answer_a.setText(mAName);
 		frame_text_selector_answer_b.setText(mBName);
 		frame_text_selector_answer_c.setText(mCName);
@@ -540,8 +605,6 @@ public class VocabularyTestActivity extends BaseActivity {
 
 	/**
 	 * 获取随机题目
-	 * 
-	 * @return
 	 */
 	public List<WordItem> getRandomWordItem() {
 		List<WordItem> answerWordItems = new ArrayList<WordItem>();
@@ -575,8 +638,6 @@ public class VocabularyTestActivity extends BaseActivity {
 
 	/**
 	 * 随机打乱题目顺序
-	 * 
-	 * @return
 	 */
 	public List<WordItem> sortWordItem(List<WordItem> answerWordItems) {
 		List<WordItem> sortWordItems = new ArrayList<WordItem>();
@@ -637,5 +698,15 @@ public class VocabularyTestActivity extends BaseActivity {
 			}
 		}
 	};
+	
+	public void closeAudio(){
+		if(mMediaPlayer!=null){
+			if(mMediaPlayer.isPlaying()){
+				mMediaPlayer.stop();
+			}
+			mMediaPlayer.release();
+			mMediaPlayer=null;
+		}
+	}
 	
 }
