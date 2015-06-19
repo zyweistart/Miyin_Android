@@ -494,7 +494,7 @@ public class VocabularyTestActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				closeAudio();
-				String mAudioPath = mWordService.getAudioPath(mTitle);
+				String mAudioPath = mWordService.getSoundPath(mTitle);
 				if(new File(mAudioPath).exists()){
 					try {
 						mMediaPlayer=new MediaPlayer();

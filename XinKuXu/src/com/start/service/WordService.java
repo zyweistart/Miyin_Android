@@ -17,6 +17,7 @@ public class WordService {
 	
 	public static final String DIRPATH="data";
 	public static final String AUDIOPATH="audio";
+	public static final String SOUNDPATH="sound";
 	public static final String EXAMPLEIMAGEPATH="image";
 	public static final String MEMORYIMAGEPATH="memory";
 	
@@ -35,6 +36,11 @@ public class WordService {
 		if(mSQLiteDatabase==null){
 			throw new Exception(context.getString(R.string.word_data_not_found));
 		}
+	}
+	
+	//获取单词讲解音频路径
+	public String getSoundPath(String name){
+		return BaseContext.getInstance().getStorageDirectory(DIRPATH)+SOUNDPATH+"/"+name+AUDIOEXTENSION;
 	}
 	
 	//获取单词讲解音频路径

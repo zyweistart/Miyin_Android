@@ -110,6 +110,7 @@ public class MainActivity extends BaseActivity {
 			startActivity(intent);
 		} else if (v.getId() == R.id.wordpk) {
 			getHandlerContext().makeTextLong("即将上线");
+//			AppServer.importExcelWord(this);
 		} else if (v.getId() == R.id.specialtraining) {
 			if (mLeftFrame.isShown()) {
 				mLeftFrame.startAnimation(mHiddenAction);

@@ -74,8 +74,9 @@ public class AppServer {
 
 	public static void importExcelWord(Context context) {
 		try {
+			Log.v("AppServer","准备导入数据.....");
 			WordService mWordService=new WordService(context);
-			String path=BaseContext.getInstance().getStorageDirectory("data")+"20141213.xls";
+			String path=BaseContext.getInstance().getStorageDirectory("data")+"20150619.xls";
 			Workbook book = Workbook.getWorkbook(new File(path));
 			// 获得第一个工作表对象
 			Sheet sheet = book.getSheet(0);
@@ -96,7 +97,7 @@ public class AppServer {
 				mWordService.saveToWordItem(w);
 				Log.v("AppServer","第"+w.getId()+"条数据插入成功");
 			}
-			Log.v("AppServer","导出成功");
+			Log.v("AppServer","导入成功");
 			book.close();
 		} catch (Exception e) {
 			System.out.println(e);
