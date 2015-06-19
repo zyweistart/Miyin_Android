@@ -112,6 +112,27 @@ public class ListenLookWordActivity extends BaseActivity{
 			}else{
 				getHandlerContext().makeTextShort(getString(R.string.word_data_not_audio));
 			}
+		}else if(v.getId()==R.id.btn_player_words){
+			closeAudio();
+			String mAudioPath = mWordService.getSoundPath(mWordItem.getId());
+			if(new File(mAudioPath).exists()){
+				try {
+					mMediaPlayer=new MediaPlayer();
+					mMediaPlayer.setDataSource(mAudioPath);
+					mMediaPlayer.prepare();
+					mMediaPlayer.start();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					e.printStackTrace();
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}else{
+				getHandlerContext().makeTextShort(getString(R.string.word_data_not_audio));
+			}
 		}else if(v.getId()==R.id.btn_previous){
 			closeAudio();
 			currentIndex--;

@@ -38,7 +38,7 @@ public class WordService {
 		}
 	}
 	
-	//获取单词讲解音频路径
+	//获取单词音频路径
 	public String getSoundPath(String name){
 		return BaseContext.getInstance().getStorageDirectory(DIRPATH)+SOUNDPATH+"/"+name+AUDIOEXTENSION;
 	}

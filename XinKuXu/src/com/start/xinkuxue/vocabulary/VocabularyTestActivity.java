@@ -339,6 +339,13 @@ public class VocabularyTestActivity extends BaseActivity {
 			mCName = "C、" + sortWordItems.get(2).getChineseSignificance();
 			mDName = "D、" + sortWordItems.get(3).getChineseSignificance();
 			soundToText();
+		} else if (type == 7) {
+			mTitle = mCurrentRightWordItem.getId();
+			mAName = "A、" + sortWordItems.get(0).getEnglishName();
+			mBName = "B、" + sortWordItems.get(1).getEnglishName();
+			mCName = "C、" + sortWordItems.get(2).getEnglishName();
+			mDName = "D、" + sortWordItems.get(3).getEnglishName();
+			soundToText();
 		}
 		mAnswerIndex++;
 	}

@@ -204,6 +204,12 @@
                         style="@style/checkbox1"
                         android:layout_marginLeft="10.0dip"
                         android:text="@string/soundchinese" />
+                    
+                    <CheckBox
+                        android:id="@+id/cb_switch_g"
+                        style="@style/checkbox1"
+                        android:layout_marginLeft="10.0dip"
+                        android:text="@string/soundenglish" />
                 </LinearLayout>
 
                 <View
