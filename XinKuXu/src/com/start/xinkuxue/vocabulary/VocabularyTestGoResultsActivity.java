@@ -4,6 +4,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import start.utils.TimeUtils;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 	private RelativeLayout frame_bg;
 	private ImageView ivlevel;
 	private TextView txtcount1,txtcount2,txtcount3;
-	private TextView txttitle;
+	private TextView txttitle,txttime;
 	protected Button btn_learnword;
 	protected Bundle mBundle;
 	@Override
@@ -42,8 +43,9 @@ public class VocabularyTestGoResultsActivity extends BaseActivity{
 		txtcount2=(TextView)findViewById(R.id.txtcount2);
 		txtcount3=(TextView)findViewById(R.id.txtcount3);
 		txttitle=(TextView)findViewById(R.id.txttitle);
+		txttime=(TextView)findViewById(R.id.txttime);
 		btn_learnword=(Button)findViewById(R.id.btn_learnword);
-		
+		txttime.setText("答题时间："+TimeUtils.getSysTime());
 		mBundle=getIntent().getExtras();
 		if(mBundle==null){
 			finish();
