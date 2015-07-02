@@ -28,35 +28,37 @@ public class VocabularyLevelSwitchActivity extends BaseActivity{
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.btn_levelname1){
-			//1-500
-			toTest(1,500);
+			toTest(1,300);
 		}else if(v.getId()==R.id.btn_levelname2){
-			//501-1000
-			toTest(501,1000);
+			toTest(301,600);
 		}else if(v.getId()==R.id.btn_levelname3){
-			//1001-1500
-			toTest(1001,1500);
+			toTest(601,900);
 		}else if(v.getId()==R.id.btn_levelname4){
-			//1501-2000
-			toTest(1501,2000);
+			toTest(901,1200);
 		}else if(v.getId()==R.id.btn_levelname5){
-			//2001-2500
-			toTest(2001,2500);
+			toTest(1201,1500);
 		}else if(v.getId()==R.id.btn_levelname6){
-			//2501-3000
-			toTest(2501,3000);
+			toTest(1501,1800);
 		}else if(v.getId()==R.id.btn_levelname7){
-			//3001-3500
-			toTest(3001,3500);
+			toTest(1801,2100);
 		}else if(v.getId()==R.id.btn_levelname8){
-			//3501-4000
-			toTest(3501,4000);
+			toTest(2101,2400);
 		}else if(v.getId()==R.id.btn_levelname9){
-			//4001--4500
-			toTest(4001,4500);
+			toTest(2401,2700);
 		}else if(v.getId()==R.id.btn_levelname10){
-			//4501--5000
-			toTest(4501,5000);
+			toTest(2701,3000);
+		}else if(v.getId()==R.id.btn_levelname11){
+			toTest(3001,3300);
+		}else if(v.getId()==R.id.btn_levelname12){
+			toTest(3301,3600);
+		}else if(v.getId()==R.id.btn_levelname13){
+			toTest(3601,3900);
+		}else if(v.getId()==R.id.btn_levelname14){
+			toTest(3901,4200);
+		}else if(v.getId()==R.id.btn_levelname15){
+			toTest(4201,4500);
+		}else if(v.getId()==R.id.btn_levelname16){
+			toTest(4501,4800);
 		}else{
 			super.onClick(v);
 		}

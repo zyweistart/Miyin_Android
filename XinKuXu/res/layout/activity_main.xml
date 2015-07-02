@@ -103,6 +103,44 @@
                         android:textSize="25.0dip" />
                 </LinearLayout>
             </RelativeLayout>
+            <View
+                android:layout_width="20.0dip"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:id="@+id/wordtest"
+                android:layout_width="170.0dip"
+                android:layout_height="170.0dip"
+                android:background="@drawable/selector_button_color_blue"
+                android:clickable="true"
+                android:onClick="onClick" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/empty"
+                        android:src="@drawable/ic_specialtraining" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20.0dip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/wordtest"
+                        android:textColor="@color/white"
+                        android:textSize="25.0dip" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
         <View
@@ -115,10 +153,10 @@
             android:orientation="horizontal" >
 
             <RelativeLayout
-                android:id="@+id/wordpk"
+                android:id="@+id/newwords"
                 android:layout_width="170.0dip"
                 android:layout_height="170.0dip"
-                android:background="@drawable/selector_button_color_blue"
+                android:background="@drawable/selector_button_color_powder"
                 android:clickable="true"
                 android:onClick="onClick" >
 
@@ -143,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/wordpk"
+                        android:text="@string/newwords"
                         android:textColor="@color/white"
                         android:textSize="25.0dip" />
                 </LinearLayout>
@@ -154,10 +192,10 @@
                 android:layout_height="match_parent" />
 
             <RelativeLayout
-                android:id="@+id/specialtraining"
+                android:id="@+id/errorwordcategory"
                 android:layout_width="170.0dip"
                 android:layout_height="170.0dip"
-                android:background="@drawable/selector_button_color_grey"
+                android:background="@drawable/selector_button_color_purple"
                 android:clickable="true"
                 android:onClick="onClick" >
 
@@ -182,7 +220,46 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/specialtraining"
+                        android:text="@string/errorwordcategory"
+                        android:textColor="@color/white"
+                        android:textSize="25.0dip" />
+                </LinearLayout>
+            </RelativeLayout>
+            
+            <View
+                android:layout_width="20.0dip"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:id="@+id/bsummercamp"
+                android:layout_width="170.0dip"
+                android:layout_height="170.0dip"
+                android:background="@drawable/selector_button_color_grey_3"
+                android:clickable="true"
+                android:onClick="onClick" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/empty"
+                        android:src="@drawable/ic_testvocabulary" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20.0dip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/summercamp"
                         android:textColor="@color/white"
                         android:textSize="25.0dip" />
                 </LinearLayout>

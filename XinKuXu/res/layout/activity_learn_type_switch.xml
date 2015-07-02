@@ -47,7 +47,8 @@
                 android:id="@+id/btn_newwords"
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_red"
-                android:text="@string/newwords" />
+                android:text="@string/newwords"
+                android:visibility="gone" />
         </LinearLayout>
     </RelativeLayout>
 

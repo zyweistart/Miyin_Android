@@ -18,12 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.start.core.BaseActivity;
+import com.start.service.bean.StrangeWordItem;
 import com.start.xinkuxue.learn.LearnTypeSwitchActivity;
+import com.start.xinkuxue.strange.StrangeWordsActivity;
 import com.start.xinkuxue.training.MessageActivity;
 import com.start.xinkuxue.training.NoticeActivity;
 import com.start.xinkuxue.training.ScoreboardActivity;
 import com.start.xinkuxue.training.SettingActivity;
 import com.start.xinkuxue.training.TrainingAdapter;
+import com.start.xinkuxue.vocabulary.VocabularyLevelSwitchActivity;
 import com.start.xinkuxue.vocabulary.VocabularyTypeSwitchActivity;
 
 public class MainActivity extends BaseActivity {
@@ -106,12 +109,24 @@ public class MainActivity extends BaseActivity {
 			Intent intent = new Intent(this, LearnTypeSwitchActivity.class);
 			startActivity(intent);
 		} else if (v.getId() == R.id.testvocabulary) {
+			Intent intent=new Intent(this,VocabularyLevelSwitchActivity.class);
+			startActivity(intent);
+		} else if (v.getId() == R.id.wordtest) {
 			Intent intent = new Intent(this, VocabularyTypeSwitchActivity.class);
 			startActivity(intent);
-		} else if (v.getId() == R.id.wordpk) {
-			getHandlerContext().makeTextLong("即将上线");
-//			AppServer.importExcelWord(this);
-		} else if (v.getId() == R.id.specialtraining) {
+		} else if (v.getId() == R.id.newwords) {
+			Bundle bundle=new Bundle();
+			bundle.putString(StrangeWordsActivity.BUNDLE_TYPE, StrangeWordItem.CATEGORY_WORDS);
+			Intent intent=new Intent(this,StrangeWordsActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		} else if (v.getId() == R.id.errorwordcategory) {
+			Bundle bundle=new Bundle();
+			bundle.putString(StrangeWordsActivity.BUNDLE_TYPE, StrangeWordItem.CATEGORY_ERROR);
+			Intent intent=new Intent(this,StrangeWordsActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}else if(v.getId()==R.id.bsummercamp){
 			if (mLeftFrame.isShown()) {
 				mLeftFrame.startAnimation(mHiddenAction);
 				mLeftFrame.setVisibility(View.GONE);
