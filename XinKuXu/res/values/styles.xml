@@ -66,8 +66,8 @@
         <item name="android:gravity">center</item>
     </style>
      <style name="button_style_rectangle">
-        <item name="android:layout_width">280.0dip</item>
-        <item name="android:layout_height">85.0dip</item>
+        <item name="android:layout_width">200.0dip</item>
+        <item name="android:layout_height">65.0dip</item>
         <item name="android:textSize">27.0dip</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>

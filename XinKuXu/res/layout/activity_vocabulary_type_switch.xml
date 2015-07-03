@@ -39,16 +39,16 @@
                 android:visibility="gone" />
 
             <Button
-                android:id="@+id/btn_practicetest"
-                style="@style/button_style_rectangle"
-                android:background="@drawable/selector_button_color_blue"
-                android:text="@string/practicetest" />
-            
-            <Button
                 android:id="@+id/btn_testeveryday"
                 style="@style/button_style_rectangle"
-                android:background="@drawable/selector_button_color_orange"
+                android:background="@drawable/selector_button_color_blue"
                 android:text="@string/testeveryday" />
+            
+            <Button
+                android:id="@+id/btn_practicetest"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_orange"
+                android:text="@string/practicetest" />
         </LinearLayout>
     </RelativeLayout>
 

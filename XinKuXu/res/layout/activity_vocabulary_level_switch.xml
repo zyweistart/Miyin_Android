@@ -34,6 +34,12 @@
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname3" />
+
+            <Button
+                android:id="@+id/btn_levelname4"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname4" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -47,12 +53,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/btn_levelname4"
-                style="@style/button_style_rectangle"
-                android:background="@drawable/selector_button_color_blue"
-                android:text="@string/levelname4" />
 
             <Button
                 android:id="@+id/btn_levelname5"
@@ -65,19 +65,6 @@
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname6" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0.0dip"
-        android:layout_weight="1" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/btn_levelname7"
@@ -90,12 +77,6 @@
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname8" />
-
-            <Button
-                android:id="@+id/btn_levelname9"
-                style="@style/button_style_rectangle"
-                android:background="@drawable/selector_button_color_blue"
-                android:text="@string/levelname9" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -109,6 +90,12 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_levelname9"
+                style="@style/button_style_rectangle"
+                android:background="@drawable/selector_button_color_blue"
+                android:text="@string/levelname9" />
 
             <Button
                 android:id="@+id/btn_levelname10"
@@ -158,38 +145,12 @@
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname15" />
-        </LinearLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0.0dip"
-        android:layout_weight="1" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/btn_levelname16"
                 style="@style/button_style_rectangle"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname16" />
-
-            <Button
-                android:id="@+id/btn_levelname17"
-                style="@style/button_style_rectangle"
-                android:background="@drawable/selector_button_color_blue"
-                android:text="@string/levelname17" 
-                android:visibility="invisible"/>
-
-            <Button
-                android:id="@+id/btn_levelname18"
-                style="@style/button_style_rectangle"
-                android:background="@drawable/selector_button_color_blue"
-                android:text="@string/levelname18"
-                android:visibility="invisible" />
         </LinearLayout>
     </RelativeLayout>
 

@@ -17,7 +17,7 @@
             android:orientation="horizontal" >
 
             <RelativeLayout
-                android:id="@+id/learnwords"
+                android:id="@+id/testvocabulary"
                 android:layout_width="170.0dip"
                 android:layout_height="170.0dip"
                 android:background="@drawable/selector_button_color_orange"
@@ -45,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/learnwords"
+                        android:text="@string/testvocabulary"
                         android:textColor="@color/white"
                         android:textSize="25.0dip" />
                 </LinearLayout>
@@ -56,7 +56,7 @@
                 android:layout_height="match_parent" />
 
             <RelativeLayout
-                android:id="@+id/testvocabulary"
+                android:id="@+id/learnwords"
                 android:layout_width="170.0dip"
                 android:layout_height="170.0dip"
                 android:background="@drawable/selector_button_color_red"
@@ -84,7 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/testvocabulary"
+                        android:text="@string/learnwords"
                         android:textColor="@color/white"
                         android:textSize="25.0dip" />
                 </LinearLayout>

@@ -62,6 +62,13 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="#353535"
                 android:textSize="35.0dip" />
+            <TextView
+                android:id="@+id/txttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#353535"
+                android:textSize="18.0dip" />
         </LinearLayout>
 
         <View

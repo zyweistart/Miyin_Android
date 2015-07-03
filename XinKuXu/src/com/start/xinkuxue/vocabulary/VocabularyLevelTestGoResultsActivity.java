@@ -1,5 +1,6 @@
 package com.start.xinkuxue.vocabulary;
 
+import start.utils.TimeUtils;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,7 @@ public class VocabularyLevelTestGoResultsActivity extends BaseActivity {
 	public static final String BUNDLE_ANSWER_COUNT = "BUNDLE_ANSWER_COUNT";
 	
 	private ImageView ivlevel;
-	private TextView txtcount,txttip1,txttip2;
+	private TextView txtcount,txttip1,txttip2,txttime;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class VocabularyLevelTestGoResultsActivity extends BaseActivity {
 		txtcount=(TextView)findViewById(R.id.txtcount);
 		txttip1=(TextView)findViewById(R.id.txttip1);
 		txttip2=(TextView)findViewById(R.id.txttip2);
+		txttime=(TextView)findViewById(R.id.txttime);
+		txttime.setText("答题时间："+TimeUtils.getSysTime());
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
 			int rightCount=bundle.getInt(BUNDLE_ANSWER_RIGHTCOUNT);
