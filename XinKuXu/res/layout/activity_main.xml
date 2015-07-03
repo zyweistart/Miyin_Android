@@ -35,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/empty"
-                        android:src="@drawable/ic_newwords" />
+                        android:src="@drawable/ic_1" />
 
                     <View
                         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/empty"
-                        android:src="@drawable/ic_specialtraining" />
+                        android:src="@drawable/ic_2" />
 
                     <View
                         android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/empty"
-                        android:src="@drawable/ic_specialtraining" />
+                        android:src="@drawable/ic_3" />
 
                     <View
                         android:layout_width="match_parent"
@@ -158,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/empty"
-                        android:src="@drawable/ic_learnwords" />
+                        android:src="@drawable/ic_4" />
 
                     <View
                         android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/empty"
-                        android:src="@drawable/ic_testvocabulary" />
+                        android:src="@drawable/ic_5" />
 
                     <View
                         android:layout_width="match_parent"
