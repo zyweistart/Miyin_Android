@@ -71,7 +71,7 @@ public class VocabularyLevelSwitchActivity extends BaseActivity{
 //		}
 		Random rnRandom=new Random();
 		//几选一
-		Integer se=(end-start+1)/100;
+		Integer se=5;
 		//答案总数
 		int mAnswerCount=(end-start+1)/se;
 		for(int i=0;i<mAnswerCount;i++){
