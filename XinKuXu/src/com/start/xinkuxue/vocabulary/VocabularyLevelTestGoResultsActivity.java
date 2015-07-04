@@ -47,7 +47,7 @@ public class VocabularyLevelTestGoResultsActivity extends BaseActivity {
 			int rightCount=bundle.getInt(BUNDLE_ANSWER_RIGHTCOUNT);
 			int answerCount=bundle.getInt(BUNDLE_ANSWER_COUNT);
 			String level=bundle.getString(BUNDLE_CURRENT_LEVEL);
-			int result=100/answerCount*rightCount;
+			float result=((float)rightCount)/((float)answerCount)*100;
 			if(result>=80){
 				txttip2.setText("建议测试下一级别");
 				ivlevel.setImageResource(R.drawable.level1);
