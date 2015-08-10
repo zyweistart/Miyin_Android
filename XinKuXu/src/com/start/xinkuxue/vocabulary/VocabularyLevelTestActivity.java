@@ -26,6 +26,7 @@ import com.start.xinkuxue.R;
  */
 public class VocabularyLevelTestActivity extends BaseActivity {
 
+	public static final String BUNDLE_CURRENT_LEVEL = "BUNDLE_CURRENT_LEVEL";
 	public static final String BUNDLE_ANSWER_ARRAY = "BUNDLE_ANSWER_ARRAY";
 
 	private WordService mWordService;
@@ -42,6 +43,8 @@ public class VocabularyLevelTestActivity extends BaseActivity {
 	private String[] mAnswerArray;
 	//总答对数
 	private int mRightCount;
+	//当前测试级别
+	private String level;
 	//当前题目索引
 	private int mCurrentWordIndex;
 	
@@ -71,6 +74,7 @@ public class VocabularyLevelTestActivity extends BaseActivity {
 		if (bundle != null) {
 			rnTestRandom = new Random();
 			mAnswerArray=bundle.getStringArray(BUNDLE_ANSWER_ARRAY);
+			level=bundle.getString(BUNDLE_CURRENT_LEVEL);
 			mCurrentWordIndex=0;
 		}
 	}
@@ -112,6 +116,7 @@ public class VocabularyLevelTestActivity extends BaseActivity {
 		if(mCurrentWordIndex>=mAnswerArray.length){
 			mCountDownTimer.cancel();
 			Bundle bundle=new Bundle();
+			bundle.putString(VocabularyLevelTestGoResultsActivity.BUNDLE_CURRENT_LEVEL, level);
 			bundle.putInt(VocabularyLevelTestGoResultsActivity.BUNDLE_ANSWER_COUNT,mAnswerArray.length);
 			bundle.putInt(VocabularyLevelTestGoResultsActivity.BUNDLE_ANSWER_RIGHTCOUNT,mRightCount);
 			Intent intent=new Intent(this,VocabularyLevelTestGoResultsActivity.class);

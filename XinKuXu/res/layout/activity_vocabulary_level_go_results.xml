@@ -28,31 +28,59 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <LinearLayout
+             <TextView
+                 android:id="@+id/txtlevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:layout_gravity="center_horizontal"
+                android:textColor="#353535"
+                android:textSize="35.0dip" />
+            
+            
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本次测试题数"
+                android:textColor="#353535"
+                android:textSize="35.0dip" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="你本次测试获得"
-                    android:textColor="#353535"
-                    android:textSize="35.0dip" />
-
-                <TextView
-                    android:id="@+id/txtcount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ff0202"
-                    android:textSize="35.0dip" />
-
-                <TextView
-                    android:id="@+id/txttip1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#353535"
-                    android:textSize="35.0dip" />
+            <TextView
+                android:id="@+id/txtcount1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0202"
+                android:textSize="35.0dip" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="，答对了"
+                android:textColor="#353535"
+                android:textSize="35.0dip" />
+             <TextView
+                android:id="@+id/txtcount2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0202"
+                android:textSize="35.0dip" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="，正确率 "
+                android:textColor="#353535"
+                android:textSize="35.0dip" />
+            
+             <TextView
+                android:id="@+id/txtcount3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0202"
+                android:textSize="35.0dip" />Ï
             </LinearLayout>
 
             <TextView

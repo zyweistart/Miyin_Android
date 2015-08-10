@@ -19,25 +19,25 @@
 
             <Button
                 android:id="@+id/btn_levelname1"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname1" />
 
             <Button
                 android:id="@+id/btn_levelname2"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname2" />
 
             <Button
                 android:id="@+id/btn_levelname3"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname3" />
 
             <Button
                 android:id="@+id/btn_levelname4"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname4" />
         </LinearLayout>
@@ -56,25 +56,25 @@
 
             <Button
                 android:id="@+id/btn_levelname5"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname5" />
 
             <Button
                 android:id="@+id/btn_levelname6"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname6" />
 
             <Button
                 android:id="@+id/btn_levelname7"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname7" />
 
             <Button
                 android:id="@+id/btn_levelname8"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname8" />
         </LinearLayout>
@@ -93,25 +93,25 @@
 
             <Button
                 android:id="@+id/btn_levelname9"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname9" />
 
             <Button
                 android:id="@+id/btn_levelname10"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname10" />
 
             <Button
                 android:id="@+id/btn_levelname11"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname11" />
 
             <Button
                 android:id="@+id/btn_levelname12"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname12" />
         </LinearLayout>
@@ -130,25 +130,25 @@
 
             <Button
                 android:id="@+id/btn_levelname13"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname13" />
 
             <Button
                 android:id="@+id/btn_levelname14"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname14" />
 
             <Button
                 android:id="@+id/btn_levelname15"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname15" />
 
             <Button
                 android:id="@+id/btn_levelname16"
-                style="@style/button_style_rectangle"
+                style="@style/button_style_rectangle1"
                 android:background="@drawable/selector_button_color_blue"
                 android:text="@string/levelname16" />
         </LinearLayout>
