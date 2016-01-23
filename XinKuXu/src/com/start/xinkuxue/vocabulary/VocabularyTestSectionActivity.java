@@ -29,14 +29,15 @@ public class VocabularyTestSectionActivity extends BaseActivity{
 	
 	private LinearLayout frame_test_start1,frame_test_start2;
 
-	private CustomEditText et_test_start_index,et_test_end_index,et_section;
-	private CheckBox cb_switch_a,cb_switch_b,cb_switch_c,cb_switch_d,cb_switch_e,cb_switch_f,cb_switch_g;
+	protected CustomEditText et_test_start_index,et_test_end_index,et_section;
+	protected CheckBox cb_switch_a,cb_switch_b,cb_switch_c,cb_switch_d,cb_switch_e,cb_switch_f,cb_switch_g;
 	
 	private WordService mWordService;
 	private Integer mWordCount;
 	
 	protected TextView tip2;
 	protected LinearLayout frame_et_section;
+	protected int testSize;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,9 @@ public class VocabularyTestSectionActivity extends BaseActivity{
 		et_section.setText("1");
 //		tip2.setVisibility(View.GONE);
 //		frame_et_section.setVisibility(View.GONE);
+		testSize=1;
+		cb_switch_b.setChecked(false);
+		cb_switch_c.setChecked(false);
 	}
 	
 	@Override
@@ -129,8 +133,8 @@ public class VocabularyTestSectionActivity extends BaseActivity{
 			if(cb_switch_g.isChecked()){
 				indexs.add("7");
 			}
-			if(indexs.size()<3){
-				getHandlerContext().makeTextLong(getString(R.string.testmethodtip));
+			if(indexs.size()<testSize){
+				getHandlerContext().makeTextLong("测试方法必须大于等于"+testSize+"种");
 				return;
 			}
 			Random rnRandom=new Random();

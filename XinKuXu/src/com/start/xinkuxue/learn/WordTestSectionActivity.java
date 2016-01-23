@@ -20,6 +20,9 @@ public class WordTestSectionActivity extends VocabularyTestSectionActivity{
 		super.onCreate(savedInstanceState);
 		tip2.setVisibility(View.GONE);
 		frame_et_section.setVisibility(View.GONE);
+		testSize=3;
+		cb_switch_b.setChecked(true);
+		cb_switch_c.setChecked(true);
 	}
 	
 	@Override
