@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -692,6 +693,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		public void onTick(long millisUntilFinished) {
 			int n=(int)millisUntilFinished / Constant.SECOND;
 			countdown.setImageResource(mCountdownimg[n]);
+			Log.i("COUNTDOWNING", "当前时间是:"+n);
 		}
 		
 		@Override

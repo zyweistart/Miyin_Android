@@ -26,7 +26,6 @@ public class LearnTypeSwitchActivity extends BaseActivity{
 		if(v.getId()==R.id.btn_listenlooklearnwords){
 			Bundle bundle=new Bundle();
 			bundle.putInt(WordListenLookSectionActivity.TESTSWITCHTYPE, 0);
-			bundle.putString(WordListenLookSectionActivity.BUNDLE_START_BUTTON_TITLE, "开始学习");
 			Intent intent=new Intent(this,WordListenLookSectionActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.start.core.BaseActivity;
@@ -23,8 +22,7 @@ import com.start.xinkuxue.R;
 public class WordListenLookSectionActivity extends BaseActivity{
 	
 	public static final String TESTSWITCHTYPE="TESTSWITCHTYPE";
-	public static final String BUNDLE_START_BUTTON_TITLE="BUNDLE_START_BUTTON_TITLE";
-
+	
 	private int mWordCount,mSwitchType;
 	private WordService mWordService;
 	
@@ -54,11 +52,6 @@ public class WordListenLookSectionActivity extends BaseActivity{
 			frame_test_start2.setVisibility(View.GONE);
 			et_word_start_index.setText("1");
 			et_word_end_index.setText(String.valueOf(mWordCount));
-			String name=bundle.getString(BUNDLE_START_BUTTON_TITLE);
-			if(name!=null){
-				Button startTest=(Button)findViewById(R.id.btn_test_start1);
-				startTest.setText(name);
-			}
 		}else{
 			finish();
 		}
