@@ -152,6 +152,13 @@ public class VocabularyTestActivity extends BaseActivity {
 		}
 	}
 	
+	protected void onStop(){
+		super.onStop();
+		if(isCountdowning){
+			mCountDownTimer.cancel();
+		}
+	}
+	
 	@Override
 	public void onClick(View v) {
 		if(isCountdowning){
