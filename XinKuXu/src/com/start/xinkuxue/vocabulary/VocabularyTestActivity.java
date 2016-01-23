@@ -265,7 +265,6 @@ public class VocabularyTestActivity extends BaseActivity {
 			@Override
 			public void run() {
 				if (mAnswerIndex >= mAnswerArray.length) {
-					mCountDownTimer.cancel();
 					toDonePage();
 				} else {
 					frame_text_selector_answer_cannotskip.setEnabled(true);
@@ -277,11 +276,10 @@ public class VocabularyTestActivity extends BaseActivity {
 	}
 
 	public void currentWord() {
-		closeAudio();
 		if(isCountdowning){
 			mCountDownTimer.cancel();
-			mCountDownTimer.start();
 		}
+		closeAudio();
 		mCurrentWordId = Integer.parseInt(mAnswerArray[mAnswerIndex]);
 		mCurrentRightWordItem = mWordService.findById(mCurrentWordId);
 		// 加载随机答案前3后3中随机查找
@@ -349,6 +347,9 @@ public class VocabularyTestActivity extends BaseActivity {
 			soundToText();
 		}
 		mAnswerIndex++;
+		if(isCountdowning){
+			mCountDownTimer.start();
+		}
 	}
 
 	public void wordToText() {
@@ -658,6 +659,7 @@ public class VocabularyTestActivity extends BaseActivity {
 	}
 
 	public void toDonePage() {
+		mCountDownTimer.cancel();
 		Bundle bundle = new Bundle();
 		bundle.putAll(mBundle);
 		bundle.putInt(VocabularyTestGoResultsActivity.RIGHTCOUNT, mRightCount);
@@ -693,7 +695,7 @@ public class VocabularyTestActivity extends BaseActivity {
 		public void onTick(long millisUntilFinished) {
 			int n=(int)millisUntilFinished / Constant.SECOND;
 			countdown.setImageResource(mCountdownimg[n]);
-			Log.i("COUNTDOWNING", "当前时间是:"+n);
+			Log.i(TAG, "当前第题:"+mAnswerIndex+"时间是:"+n);
 		}
 		
 		@Override
